@@ -46,7 +46,7 @@ jobs:
           done
 
       - name: Sync / to adamlui/chatgpt-apps/chatgpt-infinity/
-        run: rsync -avhr --delete --exclude={'.git','.github'} ${{ github.workspace }}/adamlui/chatgpt-infinity/ ${{ github.workspace }}/adamlui/chatgpt-apps/chatgpt-infinity/
+        run: rsync -avhr --delete --exclude={'.*','package*json'} ${{ github.workspace }}/adamlui/chatgpt-infinity/ ${{ github.workspace }}/adamlui/chatgpt-apps/chatgpt-infinity/
 
       - name: Sync /greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-infinity/
         run: rsync -avhr --delete ${{ github.workspace }}/adamlui/chatgpt-infinity/greasemonkey/ ${{ github.workspace }}/adamlui/userscripts/chatgpt/chatgpt-infinity/
