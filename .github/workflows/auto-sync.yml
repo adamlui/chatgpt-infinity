@@ -18,6 +18,7 @@ jobs:
           token: ${{ secrets.REPO_SYNC_PAT }}
           repository: adamlui/chatgpt-infinity
           path: adamlui/chatgpt-infinity
+          fetch-depth: 2
 
       - name: Checkout adamlui/chatgpt-apps
         uses: actions/checkout@v2
@@ -36,12 +37,17 @@ jobs:
       - name: Sync docs between root & /greasemonkey
         run: |
           shopt -s globstar
-          for file in "${{ github.workspace }}/adamlui/chatgpt-infinity/docs/"**/*.md; do
-            relative_path=${file#"${{ github.workspace }}/adamlui/chatgpt-infinity/docs/"}
-            if [ "$(stat -c %y "${{ github.workspace }}/adamlui/chatgpt-infinity/docs/$relative_path")" > "$(stat -c %y "${{ github.workspace }}/adamlui/chatgpt-infinity/greasemonkey/docs/$relative_path")" ]; then
-              cp -f "${{ github.workspace }}/adamlui/chatgpt-infinity/docs/$relative_path" "${{ github.workspace }}/adamlui/chatgpt-infinity/greasemonkey/docs/$relative_path"
-            elif [ "$(stat -c %y "${{ github.workspace }}/adamlui/chatgpt-infinity/greasemonkey/docs/$relative_path")" > "$(stat -c %y "${{ github.workspace }}/adamlui/chatgpt-infinity/docs/$relative_path")" ]; then
-              cp -f "${{ github.workspace }}/adamlui/chatgpt-infinity/greasemonkey/docs/$relative_path" "${{ github.workspace }}/adamlui/chatgpt-infinity/docs/$relative_path"
+          cd ${{ github.workspace }}/adamlui/chatgpt-infinity
+          for file in docs/**/*.md; do
+            relative_path=${file#"docs/"}
+            root_doc="${{ github.workspace }}/adamlui/chatgpt-infinity/docs/$relative_path"
+            gm_doc="${{ github.workspace }}/adamlui/chatgpt-infinity/greasemonkey/docs/$relative_path"
+            root_modified=$(git log -1 --format="%ct" -- "$root_doc")
+            gm_modified=$(git log -1 --format="%ct" -- "$gm_doc")
+            if (( root_modified > gm_modified )); then
+              cp -f "$root_doc" "$gm_doc"
+            else
+              cp -f "$gm_doc" "$root_doc"
             fi
           done
 
