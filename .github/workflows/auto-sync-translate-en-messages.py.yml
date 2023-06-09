@@ -1,0 +1,115 @@
+name: Sync translate-en-messages.py within repo + to adamlui/python-utils/translate-messages/, then / to adamlui/chatgpt-apps/chatgpt-infinity/, then /greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-infinity/
+
+on:
+  push:
+    branches: [master, main]
+    paths: '**/translate-en-messages.py'
+
+jobs:
+  build:
+    if: github.event.commits[0].committer.username != 'auto-sync-bot'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout adamlui/chatgpt-infinity
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.REPO_SYNC_PAT }}
+          repository: adamlui/chatgpt-infinity
+          path: adamlui/chatgpt-infinity
+          fetch-depth: 2
+
+      - name: Checkout adamlui/python-utils
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.REPO_SYNC_PAT }}
+          repository: adamlui/python-utils
+          path: adamlui/python-utils
+
+      - name: Checkout adamlui/chatgpt-apps
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.REPO_SYNC_PAT }}
+          repository: adamlui/chatgpt-apps
+          path: adamlui/chatgpt-apps
+
+      - name: Checkout adamlui/userscripts
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.REPO_SYNC_PAT }}
+          repository: adamlui/userscripts
+          path: adamlui/userscripts
+
+      - name: Sync translate-en-messages.py between all locations + to adamlui/python-utils/translate-messages/
+        run: |
+          cd ${{ github.workspace }}/adamlui/chatgpt-infinity
+          files=$(find . -name "translate-en-messages.py" -type f)
+          newest_file=""
+          newest_timestamp=0
+
+          # Find the newest translate-en-messages.py file
+          for file in $files; do
+            timestamp=$(git log -1 --format="%ct" -- "$file")
+            if [[ $timestamp -gt $newest_timestamp ]]; then
+              newest_file=$file
+              newest_timestamp=$timestamp
+            fi
+          done
+
+          if [[ -n $newest_file ]]; then
+            # Copy and replace all other translate-en-messages.py files
+            for file in $files; do
+              if [[ $file != $newest_file ]]; then
+                cp -f "$newest_file" "$file"
+              fi
+            done
+
+            # Copy the newest_file to adamlui/python-utils/translate-messages/translate-en-messages.py
+            cp -f -v "$newest_file" "${{ github.workspace }}/adamlui/python-utils/translate-messages/translate-en-messages.py"
+          fi
+
+      - name: Sync / to adamlui/chatgpt-apps/chatgpt-infinity/
+        run: rsync -avhr --delete --exclude={'.*','package*json'} ${{ github.workspace }}/adamlui/chatgpt-infinity/ ${{ github.workspace }}/adamlui/chatgpt-apps/chatgpt-infinity/
+
+      - name: Sync /greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-infinity/
+        run: rsync -avhr --delete ${{ github.workspace }}/adamlui/chatgpt-infinity/greasemonkey/ ${{ github.workspace }}/adamlui/userscripts/chatgpt/chatgpt-infinity/
+
+      - name: Push to adamlui/chatgpt-infinity
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          push_options: '--force'
+          add_options: '--all'
+          commit_user_email: auto-sync@chatgptevo.com
+          commit_message: '${{ github.event.head_commit.message }} ↞ [auto-sync from `adamlui/chatgpt-infinity`]'
+          file_pattern: '**/translate-en-messages.py'
+          repository: adamlui/chatgpt-infinity
+
+      - name: Push to adamlui/chatgpt-apps
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          push_options: '--force'
+          add_options: '--all'
+          commit_user_email: auto-sync@chatgptevo.com
+          commit_message: '${{ github.event.head_commit.message }} ↞ [auto-sync from `adamlui/chatgpt-infinity`]'
+          file_pattern: 'chatgpt-infinity/**'
+          repository: adamlui/chatgpt-apps
+
+      - name: Push to adamlui/userscripts
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          push_options: '--force'
+          add_options: '--all'
+          commit_user_email: auto-sync@chatgptevo.com
+          commit_message: '${{ github.event.head_commit.message }} ↞ [auto-sync from `adamlui/chatgpt-infinity`]'
+          file_pattern: 'chatgpt/chatgpt-infinity/**'
+          repository: adamlui/userscripts
+
+      - name: Push to adamlui/python-utils
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          push_options: '--force'
+          add_options: '--all'
+          commit_user_email: auto-sync@chatgptevo.com
+          commit_message: '${{ github.event.head_commit.message }} ↞ [auto-sync from `adamlui/chatgpt-infinity`]'
+          file_pattern: '**/translate-en-messages.py'
+          repository: adamlui/python-utils
