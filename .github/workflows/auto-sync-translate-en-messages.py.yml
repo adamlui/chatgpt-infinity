@@ -40,7 +40,7 @@ jobs:
           repository: adamlui/userscripts
           path: adamlui/userscripts
 
-      - name: Sync translate-en-messages.py between all locations + to adamlui/python-utils/translate-messages/
+      - name: Sync translate-en-messages.py within repo + to adamlui/python-utils/translate-messages/
         run: |
           cd ${{ github.workspace }}/adamlui/chatgpt-infinity
           files=$(find . -name "translate-en-messages.py" -type f)
