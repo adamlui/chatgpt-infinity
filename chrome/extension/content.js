@@ -177,7 +177,8 @@
 
     restartOnReplyLang = () => { // eslint-disable-line no-undef
         settings.load('replyLanguage').then(() => {
-            infinityMode.deactivate() ; setTimeout(infinityMode.activate, 500)
+            chatgpt.stop() ; document.querySelector('#infToggleLabel').click() // toggle off
+            setTimeout(() => { document.querySelector('#infToggleLabel').click() }, 500) // toggle on
     })}
 
     restartOnReplyInt = () => { // eslint-disable-line no-undef
