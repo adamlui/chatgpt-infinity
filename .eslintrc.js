@@ -7,8 +7,7 @@ module.exports  = {
             'ConditionalExpression', // ternarys
             'BinaryExpression', // string concatenations, math, comparison, etc.
             'BlockStatement', 'SwitchCase', // closing braces
-            'ObjectExpression', 'ArrayExpression',
-            'CallExpression > :last-child' // closing parentheses of function calls
+            'ObjectExpression', 'ArrayExpression'
         ]}],
         'quotes': ['error', 'single', { 'avoidEscape': true, 'allowTemplateLiterals': true }], // enforce single quotes for string literals
         'key-spacing': ['error', { 'beforeColon': false, 'afterColon': true }], // enforce spacing in object properties
