@@ -146,7 +146,7 @@
         activate: async () => {
             if (!infinityMode.fromMsg) notify(chrome.i18n.getMessage('menuLabel_infinityMode') + ': ON')
             infinityMode.fromMsg = false
-            try { document.querySelector('nav a').click() } catch (error) { return }
+            try { chatgpt.startNewChat() } catch (error) { return }
             setTimeout(() => {
                 chatgpt.send('Generate a single random Q&A'
                     + ( config.replyLanguage ? ( ' in ' + config.replyLanguage ) : '' )
