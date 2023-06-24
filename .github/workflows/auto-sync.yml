@@ -1,10 +1,12 @@
-name: Sync (/ to adamlui/chatgpt-apps/chatgpt-infinity/) && (/greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-infinity/)
+name: Sync /*, /docs & /media to adamlui/chatgpt-apps/chatgpt-infinity/*
 
 on:
   push:
     branches: [ master, main ]
     paths:
-      - '**'
+      - '*'
+      - 'docs/**'
+      - 'media/**'
 
 jobs:
   build:
@@ -18,7 +20,6 @@ jobs:
           token: ${{ secrets.REPO_SYNC_PAT }}
           repository: adamlui/chatgpt-infinity
           path: adamlui/chatgpt-infinity
-          fetch-depth: 2
 
       - name: Checkout adamlui/chatgpt-apps
         uses: actions/checkout@v2
@@ -27,45 +28,8 @@ jobs:
           repository: adamlui/chatgpt-apps
           path: adamlui/chatgpt-apps
 
-      - name: Checkout adamlui/userscripts
-        uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.REPO_SYNC_PAT }}
-          repository: adamlui/userscripts
-          path: adamlui/userscripts
-
-      - name: Sync docs between root & /greasemonkey
-        run: |
-          shopt -s globstar
-          cd ${{ github.workspace }}/adamlui/chatgpt-infinity
-          for file in docs/**/*.md; do
-            relative_path=${file#"docs/"}
-            root_doc="${{ github.workspace }}/adamlui/chatgpt-infinity/docs/$relative_path"
-            gm_doc="${{ github.workspace }}/adamlui/chatgpt-infinity/greasemonkey/docs/$relative_path"
-            root_modified=$(git log -1 --format="%ct" -- "$root_doc")
-            gm_modified=$(git log -1 --format="%ct" -- "$gm_doc")
-            if (( root_modified > gm_modified )); then
-              cp -f "$root_doc" "$gm_doc"
-            else
-              cp -f "$gm_doc" "$root_doc"
-            fi
-          done
-
-      - name: Sync / to adamlui/chatgpt-apps/chatgpt-infinity/
+      - name: Sync /* to adamlui/chatgpt-apps/chatgpt-infinity/*
         run: rsync -avhr --delete --exclude={'.*','package*json'} ${{ github.workspace }}/adamlui/chatgpt-infinity/ ${{ github.workspace }}/adamlui/chatgpt-apps/chatgpt-infinity/
-
-      - name: Sync /greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-infinity/
-        run: rsync -avhr --delete ${{ github.workspace }}/adamlui/chatgpt-infinity/greasemonkey/ ${{ github.workspace }}/adamlui/userscripts/chatgpt/chatgpt-infinity/
-
-      - name: Push to adamlui/chatgpt-infinity
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          push_options: '--force'
-          add_options: '--all'
-          commit_user_email: auto-sync@chatgptevo.com
-          commit_message: '${{ github.event.head_commit.message }} ↞ [auto-sync from `adamlui/chatgpt-infinity`]'
-          file_pattern: '**'
-          repository: adamlui/chatgpt-infinity
 
       - name: Push to adamlui/chatgpt-apps
         uses: stefanzweifel/git-auto-commit-action@v4
@@ -76,13 +40,3 @@ jobs:
           commit_message: '${{ github.event.head_commit.message }} ↞ [auto-sync from `adamlui/chatgpt-infinity`]'
           file_pattern: 'chatgpt-infinity/**'
           repository: adamlui/chatgpt-apps
-
-      - name: Push to adamlui/userscripts
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          push_options: '--force'
-          add_options: '--all'
-          commit_user_email: auto-sync@chatgptevo.com
-          commit_message: '${{ github.event.head_commit.message }} ↞ [auto-sync from `adamlui/chatgpt-infinity`]'
-          file_pattern: 'chatgpt/chatgpt-infinity/**'
-          repository: adamlui/userscripts
