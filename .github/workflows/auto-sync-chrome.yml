@@ -1,0 +1,80 @@
+name: Sync /chrome/extension/ to /(edge|opera)/extension/, then /chrome/extension/_locales/ to /greasemonkey/_locales/, then / to adamlui/chatgpt-apps/chatgpt-infinity/, then /greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-infinity/
+
+on:
+  push:
+    branches: [ master, main ]
+    paths:
+      - 'chrome/**'
+
+jobs:
+  build:
+    if: github.event.commits[0].committer.username != 'auto-sync-bot'
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout adamlui/chatgpt-infinity
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.REPO_SYNC_PAT }}
+          repository: adamlui/chatgpt-infinity
+          path: adamlui/chatgpt-infinity
+
+      - name: Checkout adamlui/chatgpt-apps
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.REPO_SYNC_PAT }}
+          repository: adamlui/chatgpt-apps
+          path: adamlui/chatgpt-apps
+
+      - name: Checkout adamlui/userscripts
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.REPO_SYNC_PAT }}
+          repository: adamlui/userscripts
+          path: adamlui/userscripts
+
+      - name: Sync /chrome/extension/ to /(edge|opera)/extension/
+        run: |
+          for browser in edge opera
+          do
+            rsync -avhr --delete "${{ github.workspace }}/adamlui/chatgpt-infinity/chrome/extension/" "${{ github.workspace }}/adamlui/chatgpt-infinity/$browser/extension/"
+          done
+
+      - name: Sync /chrome/extension/_locales/ to /greasemonkey/_locales/
+        run: rsync -avhr --delete "${{ github.workspace }}/adamlui/chatgpt-infinity/chrome/extension/_locales/" "${{ github.workspace }}/adamlui/chatgpt-infinity/greasemonkey/_locales"
+
+      - name: Sync / to adamlui/chatgpt-apps/chatgpt-infinity/
+        run: rsync -avhr --delete --exclude={'.*','package*json'} ${{ github.workspace }}/adamlui/chatgpt-infinity/ ${{ github.workspace }}/adamlui/chatgpt-apps/chatgpt-infinity/
+
+      - name: Sync /greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-infinity/
+        run: rsync -avhr --delete ${{ github.workspace }}/adamlui/chatgpt-infinity/greasemonkey/ ${{ github.workspace }}/adamlui/userscripts/chatgpt/chatgpt-infinity/
+
+      - name: Push to adamlui/chatgpt-infinity
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          push_options: '--force'
+          add_options: '--all'
+          commit_user_email: auto-sync@chatgptevo.com
+          commit_message: '${{ github.event.head_commit.message }} ↞ [auto-sync from `adamlui/chatgpt-infinity`]'
+          file_pattern: '**'
+          repository: adamlui/chatgpt-infinity
+
+      - name: Push to adamlui/chatgpt-apps
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          push_options: '--force'
+          add_options: '--all'
+          commit_user_email: auto-sync@chatgptevo.com
+          commit_message: '${{ github.event.head_commit.message }} ↞ [auto-sync from `adamlui/chatgpt-infinity`]'
+          file_pattern: 'chatgpt-infinity/**'
+          repository: adamlui/chatgpt-apps
+
+      - name: Push to adamlui/userscripts
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          push_options: '--force'
+          add_options: '--all'
+          commit_user_email: auto-sync@chatgptevo.com
+          commit_message: '${{ github.event.head_commit.message }} ↞ [auto-sync from `adamlui/chatgpt-infinity`]'
+          file_pattern: 'chatgpt/chatgpt-infinity/**'
+          repository: adamlui/userscripts
