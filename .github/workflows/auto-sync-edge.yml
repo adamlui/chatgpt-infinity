@@ -37,7 +37,7 @@ jobs:
         run: |
           for browser in chrome opera
           do
-            rsync -avhr --delete "${{ github.workspace }}/adamlui/chatgpt-infinity/edge/extension/" "${{ github.workspace }}/adamlui/chatgpt-infinity/$browser/extension/"
+            rsync -avhr --delete "${{ github.workspace }}/adamlui/chatgpt-infinity/edge/extension/" "${{ github.workspace }}/adamlui/chatgpt-infinity/$browser/extension"
           done
 
       - name: Sync /edge/extension/_locales/ to /greasemonkey/_locales/
