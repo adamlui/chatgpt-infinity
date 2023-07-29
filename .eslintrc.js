@@ -2,13 +2,7 @@ module.exports  = {
     'extends': ['eslint:recommended'],
     'ignorePatterns': ['**/*.md', '**/*.min.js'],
     'rules': {
-        'indent': ['error', 4, { 'ignoredNodes': [ // enforce 4-space indentation, except for...
-            'TemplateLiteral > *', // template literal children
-            'ConditionalExpression', // ternarys
-            'BinaryExpression', // string concatenations, math, comparison, etc.
-            'BlockStatement', 'SwitchCase', // closing braces
-            'ArrayExpression', 'FunctionExpression', 'ObjectExpression' // array/object literals + function expressions
-        ]}],
+        'indent': 'off',
         'quotes': ['error', 'single', { 'avoidEscape': true, 'allowTemplateLiterals': true }], // enforce single quotes for string literals
         'key-spacing': ['error', { 'beforeColon': false, 'afterColon': true }], // enforce spacing in object properties
         'comma-dangle': ['error', 'never'], // enforce no trailing commas in arrays or objects
@@ -17,7 +11,7 @@ module.exports  = {
         'no-empty': 'off', // allow empty blocks
         'no-useless-escape': 'off' // allow all escape chars cause ESLint sucks at detecting truly useless ones
     },
-    'globals': { '$': true, 'chatgpt': true, 'chrome': true, 'global_module': true, 'GM_cookie': true },
+    'globals': { 'chatgpt': 'readonly', 'chrome': 'readonly', 'syncExtension': 'writable' },
     'parserOptions': { 'ecmaVersion': 2022, 'sourceType': 'script' },
     'overrides': [{ 'files': ['**/lib*/**.js'], 'parserOptions': { 'sourceType': 'module' }}],
     'env': { 'browser': true, 'node': true, 'es6': true, 'greasemonkey': true }
