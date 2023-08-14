@@ -37,17 +37,28 @@ jobs:
         run: |
           for browser in chrome edge
           do
-            rsync -avhr --delete "${{ github.workspace }}/adamlui/chatgpt-infinity/opera/extension/" "${{ github.workspace }}/adamlui/chatgpt-infinity/$browser/extension"
+            rsync -avhr --delete \
+              "${{ github.workspace }}/adamlui/chatgpt-infinity/opera/extension/" \
+              "${{ github.workspace }}/adamlui/chatgpt-infinity/$browser/extension"
           done
 
       - name: Sync /opera/extension/_locales/ to /greasemonkey/_locales/
-        run: rsync -avhr --delete "${{ github.workspace }}/adamlui/chatgpt-infinity/opera/extension/_locales/" "${{ github.workspace }}/adamlui/chatgpt-infinity/greasemonkey/_locales"
+        run: |
+          rsync -avhr --delete \
+            "${{ github.workspace }}/adamlui/chatgpt-infinity/opera/extension/_locales/" \
+            "${{ github.workspace }}/adamlui/chatgpt-infinity/greasemonkey/_locales"
 
       - name: Sync / to adamlui/chatgpt-apps/chatgpt-infinity/
-        run: rsync -avhr --delete --exclude={'.*','package*json'} ${{ github.workspace }}/adamlui/chatgpt-infinity/ ${{ github.workspace }}/adamlui/chatgpt-apps/chatgpt-infinity/
+        run: |
+          rsync -avhr --delete --exclude={'.*','package*json'} \
+            ${{ github.workspace }}/adamlui/chatgpt-infinity/ \
+            ${{ github.workspace }}/adamlui/chatgpt-apps/chatgpt-infinity/
 
       - name: Sync /greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-infinity/
-        run: rsync -avhr --delete ${{ github.workspace }}/adamlui/chatgpt-infinity/greasemonkey/ ${{ github.workspace }}/adamlui/userscripts/chatgpt/chatgpt-infinity/
+        run: |
+          rsync -avhr --delete \
+            ${{ github.workspace }}/adamlui/chatgpt-infinity/greasemonkey/ \
+            ${{ github.workspace }}/adamlui/userscripts/chatgpt/chatgpt-infinity/
 
       - name: Push to adamlui/chatgpt-infinity
         uses: stefanzweifel/git-auto-commit-action@v4
