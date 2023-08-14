@@ -29,7 +29,10 @@ jobs:
           path: adamlui/chatgpt-apps
 
       - name: Sync /* to adamlui/chatgpt-apps/chatgpt-infinity/*
-        run: rsync -avhr --delete --exclude={'.*','package*json'} ${{ github.workspace }}/adamlui/chatgpt-infinity/ ${{ github.workspace }}/adamlui/chatgpt-apps/chatgpt-infinity/
+        run: |
+          rsync -avhr --delete --exclude={'.*','package*json'} \
+            ${{ github.workspace }}/adamlui/chatgpt-infinity/ \
+            ${{ github.workspace }}/adamlui/chatgpt-apps/chatgpt-infinity/
 
       - name: Push to adamlui/chatgpt-apps
         uses: stefanzweifel/git-auto-commit-action@v4
