@@ -34,7 +34,10 @@ jobs:
           path: adamlui/chatgpt-apps
 
       - name: Sync /greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-infinity/
-        run: rsync -avhr --delete ${{ github.workspace }}/adamlui/chatgpt-infinity/greasemonkey/ ${{ github.workspace }}/adamlui/userscripts/chatgpt/chatgpt-infinity/
+        run: |
+          rsync -avhr --delete \
+            ${{ github.workspace }}/adamlui/chatgpt-infinity/greasemonkey/ \
+            ${{ github.workspace }}/adamlui/userscripts/chatgpt/chatgpt-infinity/
 
       - name: Sync /greasemonkey/_locales/ to /(chrome|edge|opera)/extension/_locales/
         run: |
