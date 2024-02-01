@@ -2,9 +2,8 @@ name: Sync /edge/extension/ to /(chrome|opera)/extension/, then /edge/extension/
 
 on:
   push:
-    branches: [ master, main ]
-    paths:
-      - 'edge/**'
+    branches: main
+    paths: edge/**
 
 jobs:
   build:

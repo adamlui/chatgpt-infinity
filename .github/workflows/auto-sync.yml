@@ -2,7 +2,7 @@ name: Sync /*, /docs & /media to adamlui/chatgpt-apps/chatgpt-infinity/*
 
 on:
   push:
-    branches: [ master, main ]
+    branches: main
     paths:
       - '*'
       - 'docs/**'
