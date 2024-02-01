@@ -1,10 +1,6 @@
 {
   "devDependencies": {
     "eslint": "^8.56.0",
-    "imagemin": "^8.0.1",
-    "imagemin-webp": "^8.0.0"
-  },
-  "dependencies": {
     "husky": "^9.0.7"
   },
   "scripts": {
