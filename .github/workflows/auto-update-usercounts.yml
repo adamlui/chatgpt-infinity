@@ -1,0 +1,105 @@
+name: Auto-update aggregate usercount shields in root READMEs
+
+on:
+  schedule:
+    - cron: "0 1 * * 0" # every Sunday 1a
+
+jobs:
+  update-usercount-shields:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout adamlui/chatgpt-infinity
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.REPO_SYNC_PAT }}
+          repository: adamlui/chatgpt-infinity
+          path: adamlui/chatgpt-infinity
+
+      - name: Fetch/sum user counts
+        id: get-usercounts
+        run: |
+          expand_num() { # expand nums abbreviated w/ 'k' or 'm' suffix to integers
+            local num=$(echo "$1" | tr '[:upper:]' '[:lower:]') # convert to lowercase
+            if [[ $num =~ k$ ]] ; then
+              num="${num%k}" # remove 'k' suffix
+              num=$(awk "BEGIN { printf \"%.0f\", $num * 1000 }") # multiply by 1000
+            elif [[ $num =~ m$ ]] ; then
+              num="${num%m}" # remove 'm' suffix
+              num=$(awk "BEGIN { printf \"%.0f\", $num * 1000000 }") # multiply by 1000000
+            fi ; echo "$num"
+          }
+
+          abbreviate_num() { # abbreviate nums aesthetically
+            local num=$1 ; first_digit="${num:0:1}" second_digit="${num:1:1}"
+            second_digit=$(( second_digit < 5 ? 0 : 5 )) # round 2nd digit down
+            if (( num >= 10000000 )) ; then # abbr 10M+
+              abbreviated_num="$(( num / 1000000 ))M+"
+            elif (( num >= 1000000 )) ; then # abbr 1M+ to 9.5M+
+              abbreviated_num="${first_digit}"
+                (( second_digit != 0 )) && abbreviated_num+=".$second_digit"
+                abbreviated_num+="M+"
+            elif (( num >= 100000 )) ; then # abbr 100K+ to 950K+
+                abbreviated_num="${first_digit}${second_digit}0K+"
+            elif (( num >= 10000 )) ; then # abbr 10K+ to 90K+
+                abbreviated_num="${first_digit}0K+"
+            elif (( num >= 1000 )) ; then # abbr 1K to 9.9K
+              remainder=$(( (num % 1000) / 100 ))
+              abbreviated_num="$(( num / 1000 ))"
+                (( remainder != 0 )) && abbreviated_num+=".$remainder"
+                abbreviated_num+="K"
+            else abbreviated_num="$num" ; fi # preserve <1K as is
+            echo "$abbreviated_num"
+          }
+
+          # Fetch Chrome active user count
+          base_url="https://img.shields.io/chrome-web-store/users/"
+          app_id="amikeononomkhphopbflomhnmdijjpmb"
+          chrome_users=$(curl -s "$base_url$app_id" |
+            sed -n 's/.*<title>users: \([0-9.k]\+\)*<\/title>.*/\1/p')
+          chrome_users=$(expand_num "$chrome_users")
+          echo -e "\nChrome users: $chrome_users"
+
+          # Fetch Edge active user count
+          base_url="https://microsoftedge.microsoft.com/addons/getproductdetailsbycrxid/"
+          app_id="jgonecnbmehicpdpjkdekamhmlebfagb"
+          edge_users=$(curl -s "$base_url$app_id" |
+            grep -o '"activeInstallCount":[0-9]*' |
+            sed 's/"activeInstallCount"://')
+          echo "Edge users: $edge_users"
+
+          # Fetch Greasy Fork total user count
+          base_url="https://img.shields.io/greasyfork/dt/"
+          app_id="465051"
+          gf_users=$(curl -s "$base_url$app_id" |
+            sed -n 's/.*<title>installs: \([0-9.k]\+\)*<\/title>.*/\1/p')
+          gf_users=$(expand_num "$gf_users")
+          echo "Greasy Fork users: $gf_users"
+
+          # Sum/format user counts
+          total_users=$((chrome_users + edge_users + gf_users))
+          formatted_total=$(abbreviate_num "$total_users")
+          echo -e "\nTotal users: $total_users"
+          echo "Formatted total: $formatted_total"
+
+          # Store for update step next
+          echo "total_users=$formatted_total" >> $GITHUB_OUTPUT
+
+      - name: Update README shields
+        run: |
+          cd ${{ github.workspace }}/adamlui/chatgpt-infinity
+          total_users=$(echo ${{ steps.get-usercounts.outputs.total_users }})
+          sed -i "s/\(badge\/[^-]*-\)[0-9.,km+]\+-/\1$total_users-/g" $(find docs/ -name "README.md")
+          if [ $? -eq 0 ] ; then echo "Usercount shields updated to $total_users"
+          else echo "Usercount shields up-to-date already" ; fi
+
+      - name: Push to adamlui/chatgpt-infinity
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          push_options: --force
+          add_options: --all
+          commit_user_email: auto-sync@kudoai.com
+          commit_author: kudo-sync-bot <auto-sync@kudoai.com>
+          commit_message: Updated usercount shield counters
+          file_pattern: "**/README.md"
+          repository: adamlui/chatgpt-infinity
