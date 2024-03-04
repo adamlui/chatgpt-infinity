@@ -19,6 +19,8 @@ jobs:
       - name: Fetch/sum user counts
         id: get-usercounts
         run: |
+          LC_NUMERIC=en_US # to insert commas
+
           expand_num() { # expand nums abbreviated w/ 'k' or 'm' suffix to integers
             local num=$(echo "$1" | tr '[:upper:]' '[:lower:]') # convert to lowercase
             if [[ $num =~ k$ ]] ; then
@@ -30,26 +32,29 @@ jobs:
             fi ; echo "$num"
           }
 
-          abbreviate_num() { # abbreviate nums aesthetically
+          format_total() {
             local num=$1 ; first_digit="${num:0:1}" second_digit="${num:1:1}"
             second_digit=$(( second_digit < 5 ? 0 : 5 )) # round 2nd digit down
-            if (( num >= 10000000 )) ; then # abbr 10M+
-              abbreviated_num="$(( num / 1000000 ))M+"
-            elif (( num >= 1000000 )) ; then # abbr 1M+ to 9.5M+
-              abbreviated_num="${first_digit}"
-                (( second_digit != 0 )) && abbreviated_num+=".$second_digit"
-                abbreviated_num+="M+"
-            elif (( num >= 100000 )) ; then # abbr 100K+ to 950K+
-              abbreviated_num="${first_digit}${second_digit}0K+"
-            elif (( num >= 10000 )) ; then # abbr 10K+ to 90K+
-              abbreviated_num="${first_digit}0K+"
+            if (( num >= 1000000000 )) ; then # 1B+ w/ one decimal place
+              formatted_num="$(( num / 1000000000 ))"
+              remainder=$(( (num % 1000000000) / 100000000 ))
+              if (( remainder != 0 )) ; then formatted_num+=".$remainder" ; fi
+              formatted_num+="B+"
+            elif (( num >= 10000000 )) ; then # abbr 10,000,000+ to 999,000,000+
+              formatted_num=$(printf "%'.f+" $((( num / 1000000 ) * 1000000 )))
+            elif (( num >= 1000000 )) ; then # abbr 1,000,000+ to 9,500,000+
+              formatted_num="${first_digit},${second_digit}00,000+"
+            elif (( num >= 100000 )) ; then # abbr 100,000+ to 950,000+
+              formatted_num="${first_digit}${second_digit}0,000+"
+            elif (( num >= 10000 )) ; then # abbr 10,000+ to 90,000+
+              formatted_num="${first_digit}0,000+"
             elif (( num >= 1000 )) ; then # abbr 1K to 9.9K
+              formatted_num="$(( num / 1000 ))"
               remainder=$(( (num % 1000) / 100 ))
-              abbreviated_num="$(( num / 1000 ))"
-                (( remainder != 0 )) && abbreviated_num+=".$remainder"
-                abbreviated_num+="K"
-            else abbreviated_num="$num" ; fi # preserve <1K as is
-            echo "$abbreviated_num"
+              if (( remainder != 0 )) ; then formatted_num+=".$remainder" ; fi
+              formatted_num+="K"
+            else formatted_num="$num" ; fi # preserve <1K as is
+            echo "$formatted_num"
           }
 
           # Fetch Chrome active user count
@@ -78,7 +83,7 @@ jobs:
 
           # Sum/format user counts
           total_users=$((chrome_users + edge_users + gf_users))
-          formatted_total=$(abbreviate_num "$total_users")
+          formatted_total=$(format_total "$total_users")
           echo -e "\nTotal users: $total_users"
           echo "Formatted total: $formatted_total"
 
