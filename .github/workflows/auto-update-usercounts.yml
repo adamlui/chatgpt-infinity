@@ -40,9 +40,9 @@ jobs:
                 (( second_digit != 0 )) && abbreviated_num+=".$second_digit"
                 abbreviated_num+="M+"
             elif (( num >= 100000 )) ; then # abbr 100K+ to 950K+
-                abbreviated_num="${first_digit}${second_digit}0K+"
+              abbreviated_num="${first_digit}${second_digit}0K+"
             elif (( num >= 10000 )) ; then # abbr 10K+ to 90K+
-                abbreviated_num="${first_digit}0K+"
+              abbreviated_num="${first_digit}0K+"
             elif (( num >= 1000 )) ; then # abbr 1K to 9.9K
               remainder=$(( (num % 1000) / 100 ))
               abbreviated_num="$(( num / 1000 ))"
