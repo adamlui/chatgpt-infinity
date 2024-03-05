@@ -81,10 +81,12 @@ jobs:
           gf_users=$(expand_num "$gf_users")
           echo "Greasy Fork users: $gf_users"
 
-          # Sum/format user counts
+          # Sum user counts
           total_users=$((chrome_users + edge_users + gf_users))
-          formatted_total=$(format_total "$total_users")
           echo -e "\nTotal users: $total_users"
+
+          # Format total
+          formatted_total=$(format_total "$total_users")
           echo "Formatted total: $formatted_total"
 
           # Store for update step next
