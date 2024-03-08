@@ -61,7 +61,7 @@ jobs:
           base_url="https://img.shields.io/chrome-web-store/users/"
           app_id="amikeononomkhphopbflomhnmdijjpmb"
           chrome_users=$(curl -s "$base_url$app_id" |
-            sed -n 's/.*<title>users: \([0-9.k]\+\)*<\/title>.*/\1/p')
+            sed -n 's/.*<title>users: \([0-9.k]\+\)*<\/title>.*/\1/Ip')
           chrome_users=$(expand_num "$chrome_users")
           echo -e "\nChrome users: $chrome_users"
 
@@ -77,7 +77,7 @@ jobs:
           base_url="https://img.shields.io/greasyfork/dt/"
           app_id="465051"
           gf_users=$(curl -s "$base_url$app_id" |
-            sed -n 's/.*<title>installs: \([0-9.k]\+\)*<\/title>.*/\1/p')
+            sed -n 's/.*<title>installs: \([0-9.k]\+\)*<\/title>.*/\1/Ip')
           gf_users=$(expand_num "$gf_users")
           echo "Greasy Fork users: $gf_users"
 
@@ -96,7 +96,7 @@ jobs:
         run: |
           cd ${{ github.workspace }}/adamlui/chatgpt-infinity
           total_users=$(echo ${{ steps.get-usercounts.outputs.total_users }})
-          sed -i "s/\(badge\/[^-]*-\)[0-9.,km+]\+-/\1$total_users-/g" $(find docs/ -name "README.md")
+          sed -i "s/\(badge\/[^-]*-\)[0-9.,km+]\+-/\1$total_users-/gI" $(find docs/ -name "README.md")
           if [ $? -eq 0 ] ; then echo "Usercount shields updated to $total_users"
           else echo "Usercount shields up-to-date already" ; fi
 
