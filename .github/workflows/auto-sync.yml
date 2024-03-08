@@ -1,4 +1,4 @@
-name: Sync LICENSE.md from root/* to chrome/*, then root/* to adamlui/chatgpt-apps/chatgpt-infinity/
+name: Sync LICENSE.md from ./* to <platform>/*, then ./* to adamlui/chatgpt-apps/chatgpt-infinity/
 
 on:
   push:
@@ -29,7 +29,7 @@ jobs:
           repository: adamlui/chatgpt-apps
           path: adamlui/chatgpt-apps
 
-      - name: Sync LICENSE.md from root/* to chrome/*
+      - name: Sync LICENSE.md from ./* to <platform>/*
         run: |
           cd ${{ github.workspace }}/adamlui/chatgpt-infinity
           platforms=($(find . -type d -name "docs" | # paths to docs/
