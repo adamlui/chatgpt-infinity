@@ -61,11 +61,17 @@ jobs:
                   echo "Copied $root_license to $platform_license"
           fi ; fi ; done; done
 
-      - name: Sync root/* to adamlui/chatgpt-apps/chatgpt-infinity/*
+      - name: Sync ./* to adamlui/chatgpt-apps/chatgpt-infinity/*
         run: |
           rsync -avhr --delete --exclude={'.*','package*json'} \
             ${{ github.workspace }}/adamlui/chatgpt-infinity/ \
             ${{ github.workspace }}/adamlui/chatgpt-apps/chatgpt-infinity/
+
+      - name: Sync ./* to adamlui/userscripts/chatgpt/chatgpt-infinity/*
+        run: |
+          rsync -avhr --delete \
+            ${{ github.workspace }}/adamlui/chatgpt-infinity/greasemonkey/ \
+            ${{ github.workspace }}/adamlui/userscripts/chatgpt/chatgpt-infinity/
 
       - name: Push to adamlui/chatgpt-infinity
         uses: stefanzweifel/git-auto-commit-action@v4
