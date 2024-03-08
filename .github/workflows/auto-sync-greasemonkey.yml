@@ -38,7 +38,7 @@ jobs:
           cd ${{ github.workspace }}/adamlui/chatgpt-infinity
           platforms=($(find . -type d -name "docs" | # paths to docs/
             awk -F'/' '{print $(NF-1)}' | # filter to parents
-            grep -v "^opera$")) # exclude greasemonkey
+            grep -v "^greasemonkey$")) # exclude greasemonkey
           echo "Platforms: ${platforms[@]}"
           languages=($(ls docs/*/LICENSE.md | # paths to LICENSEs
             awk -F'/' '{print $(NF-1)}') # filter to parents
