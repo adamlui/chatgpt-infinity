@@ -29,6 +29,13 @@ jobs:
           repository: adamlui/chatgpt-apps
           path: adamlui/chatgpt-apps
 
+      - name: Checkout adamlui/userscripts
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.REPO_SYNC_PAT }}
+          repository: adamlui/userscripts
+          path: adamlui/userscripts
+
       - name: Sync LICENSE.md from ./* to <platform>/*
         run: |
           cd ${{ github.workspace }}/adamlui/chatgpt-infinity
@@ -79,3 +86,13 @@ jobs:
           commit_message: "${{ github.event.head_commit.message }} ↞ [auto-sync from `adamlui/chatgpt-infinity`]"
           file_pattern: "chatgpt-infinity/**"
           repository: adamlui/chatgpt-apps
+
+      - name: Push to adamlui/userscripts
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          push_options: --force
+          add_options: --all
+          commit_user_email: auto-sync@kudoai.com
+          commit_message: "${{ github.event.head_commit.message }} ↞ [auto-sync from `adamlui/chatgpt-infinity`]"
+          file_pattern: "chatgpt/chatgpt-infinity/**"
+          repository: adamlui/userscripts
