@@ -1,4 +1,4 @@
-name: Sync /chrome/extension/ to /(edge|opera)/extension/, then /chrome/extension/_locales/ to /greasemonkey/_locales/, then / to adamlui/chatgpt-apps/chatgpt-infinity/, then /greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-infinity/
+name: Sync LICENSE.md from chrome/docs* to root, then chrome/extension/_locales/ to greasemonkey/_locales/, then ./ to adamlui/chatgpt-apps/chatgpt-infinity/, then greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-infinity/
 
 on:
   push:
@@ -17,6 +17,7 @@ jobs:
           token: ${{ secrets.REPO_SYNC_PAT }}
           repository: adamlui/chatgpt-infinity
           path: adamlui/chatgpt-infinity
+          fetch-depth: 2
 
       - name: Checkout adamlui/chatgpt-apps
         uses: actions/checkout@v2
@@ -31,6 +32,26 @@ jobs:
           token: ${{ secrets.REPO_SYNC_PAT }}
           repository: adamlui/userscripts
           path: adamlui/userscripts
+
+      - name: Sync LICENSE.md from chrome/docs to root
+        run: |
+          cd ${{ github.workspace }}/adamlui/chatgpt-infinity
+          languages=($(ls docs/*/LICENSE.md | # paths to LICENSEs
+            awk -F'/' '{print $(NF-1)}') # filter to parents
+            "en") # include English
+          echo -e "Languages: ${languages[@]}\n"
+          for lang in "${languages[@]}"; do
+            chrome_license=chrome$([[ "$lang" != "en" ]] && echo "/docs/$lang/" || echo "/")LICENSE.md
+            chrome_license_content=$(git show HEAD:"$chrome_license")
+            chrome_license_modified=$(git log -1 --format="%ct" -- "$chrome_license")
+            root_license=.$([[ "$lang" != "en" ]] && echo "/docs/$lang/" || echo "/")LICENSE.md
+            root_license_content=$(git show HEAD:"$root_license")
+            root_license_modified=$(git log -1 --format="%ct" -- "$root_license")
+            if [[ $chrome_license_modified -gt $root_license_modified ]] ; then
+              if [[ "$chrome_license_content" != "$root_license_content" ]] ; then
+                cp -f "$chrome_license" "$root_license"
+                echo "Copied $chrome_license to $root_license"
+          fi ; fi ; done
 
       - name: Sync /chrome/extension/ to /(edge|opera)/extension/
         run: |
