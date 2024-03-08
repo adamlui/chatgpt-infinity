@@ -1,4 +1,4 @@
-name: Sync LICENSE.md from opera/* to <platform>/*, then opera/extension/ to (chrome|edge)/extension/, then opera/extension/_locales/ to greasemonkey/_locales/, then ./ to adamlui/chatgpt-apps/chatgpt-infinity/, then greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-infinity/
+name: Sync LICENSE.md from opera/* to <platform>/*, then opera/extension/* to (chrome|edge)/extension/*, then opera/extension/_locales/* to greasemonkey/_locales/*, then ./* to adamlui/chatgpt-apps/chatgpt-infinity/*, then greasemonkey/* to adamlui/userscripts/chatgpt/chatgpt-infinity/*
 
 on:
   push:
@@ -58,7 +58,7 @@ jobs:
                   echo "Copied $opera_license to $platform_license"
           fi ; fi ; done; done
 
-      - name: Sync opera/extension/ to (chrome|edge)/extension/
+      - name: Sync opera/extension/* to (chrome|edge)/extension/*
         run: |
           for browser in chrome edge
           do
@@ -67,19 +67,19 @@ jobs:
               "${{ github.workspace }}/adamlui/chatgpt-infinity/$browser/extension"
           done
 
-      - name: Sync opera/extension/_locales/ to greasemonkey/_locales/
+      - name: Sync opera/extension/_locales/* to greasemonkey/_locales/*
         run: |
           rsync -avhr --delete \
             "${{ github.workspace }}/adamlui/chatgpt-infinity/opera/extension/_locales/" \
             "${{ github.workspace }}/adamlui/chatgpt-infinity/greasemonkey/_locales"
 
-      - name: Sync ./ to adamlui/chatgpt-apps/chatgpt-infinity/
+      - name: Sync ./* to adamlui/chatgpt-apps/chatgpt-infinity/*
         run: |
           rsync -avhr --delete --exclude={'.*','package*json'} \
             ${{ github.workspace }}/adamlui/chatgpt-infinity/ \
             ${{ github.workspace }}/adamlui/chatgpt-apps/chatgpt-infinity/
 
-      - name: Sync greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-infinity/
+      - name: Sync greasemonkey/* to adamlui/userscripts/chatgpt/chatgpt-infinity/*
         run: |
           rsync -avhr --delete \
             ${{ github.workspace }}/adamlui/chatgpt-infinity/greasemonkey/ \

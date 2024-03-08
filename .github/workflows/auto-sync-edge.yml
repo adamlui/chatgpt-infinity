@@ -1,4 +1,4 @@
-name: Sync LICENSE.md from edge/* to <platform>/*, then edge/extension/ to (chrome|opera)/extension/, then edge/extension/_locales/ to greasemonkey/_locales/, then ./ to adamlui/chatgpt-apps/chatgpt-infinity/, then greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-infinity/
+name: Sync LICENSE.md from edge/* to <platform>/*, then edge/extension/* to (chrome|opera)/extension/*, then edge/extension/_locales/* to greasemonkey/_locales/*, then ./* to adamlui/chatgpt-apps/chatgpt-infinity/*, then greasemonkey/* to adamlui/userscripts/chatgpt/chatgpt-infinity/*
 
 on:
   push:
@@ -58,7 +58,7 @@ jobs:
                   echo "Copied $edge_license to $platform_license"
           fi ; fi ; done; done
 
-      - name: Sync edge/extension/ to (chrome|opera)/extension/
+      - name: Sync edge/extension/* to (chrome|opera)/extension/*
         run: |
           for browser in chrome opera
           do
@@ -67,19 +67,19 @@ jobs:
               "${{ github.workspace }}/adamlui/chatgpt-infinity/$browser/extension"
           done
 
-      - name: Sync edge/extension/_locales/ to greasemonkey/_locales/
+      - name: Sync edge/extension/_locales/* to greasemonkey/_locales/*
         run: |
           rsync -avhr --delete \
             "${{ github.workspace }}/adamlui/chatgpt-infinity/edge/extension/_locales/" \
             "${{ github.workspace }}/adamlui/chatgpt-infinity/greasemonkey/_locales"
 
-      - name: Sync ./ to adamlui/chatgpt-apps/chatgpt-infinity/
+      - name: Sync ./* to adamlui/chatgpt-apps/chatgpt-infinity/*
         run: |
           rsync -avhr --delete --exclude={'.*','package*json'} \
             ${{ github.workspace }}/adamlui/chatgpt-infinity/ \
             ${{ github.workspace }}/adamlui/chatgpt-apps/chatgpt-infinity/
 
-      - name: Sync greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-infinity/
+      - name: Sync greasemonkey/* to adamlui/userscripts/chatgpt/chatgpt-infinity/*
         run: |
           rsync -avhr --delete \
             ${{ github.workspace }}/adamlui/chatgpt-infinity/greasemonkey/ \
