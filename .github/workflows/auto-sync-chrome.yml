@@ -1,4 +1,4 @@
-name: Sync LICENSE.md from chrome/* to <platform>/*, then chrome/extension/_locales/ to greasemonkey/_locales/, then ./ to adamlui/chatgpt-apps/chatgpt-infinity/, then greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-infinity/
+name: Sync LICENSE.md from chrome/* to <platform>/*, then chrome/extension/ to (edge|opera)/extension/, then chrome/extension/_locales/ to greasemonkey/_locales/, then ./ to adamlui/chatgpt-apps/chatgpt-infinity/, then greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-infinity/
 
 on:
   push:
