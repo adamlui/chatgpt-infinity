@@ -45,11 +45,11 @@ jobs:
             "en") # include English
           echo -e "Languages: ${languages[@]}\n"
           for lang in "${languages[@]}"; do
-            chrome_license=chrome$([[ "$lang" != "en" ]] && echo "/docs/$lang/" || echo "/")LICENSE.md
+            chrome_license=./chrome$([[ "$lang" != "en" ]] && echo "/docs/$lang/" || echo "/")LICENSE.md
             chrome_license_content=$(git show HEAD:"$chrome_license")
             chrome_license_modified=$(git log -1 --format="%ct" -- "$chrome_license")
             for platform in "${platforms[@]}"; do
-              platform_license=$platform/$([[ "$lang" != "en" ]] && echo "docs/$lang/" || echo "")LICENSE.md
+              platform_license=./$platform/$([[ "$lang" != "en" ]] && echo "docs/$lang/" || echo "")LICENSE.md
               platform_license_content=$(git show HEAD:"$platform_license")
               platform_license_modified=$(git log -1 --format="%ct" -- "$platform_license")
               if [[ $chrome_license_modified -gt $platform_license_modified ]] ; then
