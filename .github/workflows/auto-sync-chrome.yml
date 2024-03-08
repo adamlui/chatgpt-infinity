@@ -1,4 +1,4 @@
-name: Sync LICENSE.md from chrome/docs* to root, then chrome/extension/_locales/ to greasemonkey/_locales/, then ./ to adamlui/chatgpt-apps/chatgpt-infinity/, then greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-infinity/
+name: Sync LICENSE.md from chrome/* to root, then chrome/extension/_locales/ to greasemonkey/_locales/, then ./ to adamlui/chatgpt-apps/chatgpt-infinity/, then greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-infinity/
 
 on:
   push:
@@ -33,7 +33,7 @@ jobs:
           repository: adamlui/userscripts
           path: adamlui/userscripts
 
-      - name: Sync LICENSE.md from chrome/docs to root
+      - name: Sync LICENSE.md from chrome/* to root
         run: |
           cd ${{ github.workspace }}/adamlui/chatgpt-infinity
           languages=($(ls docs/*/LICENSE.md | # paths to LICENSEs
