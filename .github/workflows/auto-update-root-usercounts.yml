@@ -69,8 +69,7 @@ jobs:
           base_url="https://microsoftedge.microsoft.com/addons/getproductdetailsbycrxid/"
           app_id="jgonecnbmehicpdpjkdekamhmlebfagb"
           edge_users=$(curl -s "$base_url$app_id" |
-            grep -o '"activeInstallCount":[0-9]*' |
-            sed 's/"activeInstallCount"://')
+            sed -n 's/.*"activeInstallCount":\([0-9]*\).*/\1/p')
           echo "Edge users: $edge_users"
 
           # Fetch Greasy Fork total user count
