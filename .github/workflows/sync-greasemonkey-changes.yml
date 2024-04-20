@@ -2,8 +2,8 @@ name: Sync LICENSE.md from greasemonkey/* to <platform>/*, then greasemonkey/* t
 
 on:
   push:
-    branches: main
-    paths: greasemonkey/**
+    branches: [main]
+    paths: [greasemonkey/**]
 
 jobs:
   build:

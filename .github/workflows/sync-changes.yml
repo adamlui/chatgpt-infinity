@@ -2,7 +2,7 @@ name: Sync LICENSE.md from ./* to <platform>/*, then ./* to adamlui/chatgpt-apps
 
 on:
   push:
-    branches: main
+    branches: [main]
     paths:
       - "*"
       - "docs/**"

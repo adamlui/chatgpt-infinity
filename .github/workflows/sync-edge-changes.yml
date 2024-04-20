@@ -2,8 +2,8 @@ name: Sync LICENSE.md from edge/* to <platform>/*, then edge/extension/* to (chr
 
 on:
   push:
-    branches: main
-    paths: edge/**
+    branches: [main]
+    paths: [edge/**]
 
 jobs:
   build:

@@ -2,8 +2,8 @@ name: Sync LICENSE.md from opera/* to <platform>/*, then opera/extension/* to (c
 
 on:
   push:
-    branches: main
-    paths: opera/**
+    branches: [main]
+    paths: [opera/**]
 
 jobs:
   build:

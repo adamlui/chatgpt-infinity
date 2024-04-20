@@ -2,8 +2,8 @@ name: Sync LICENSE.md from chrome/* to <platform>/*, then chrome/extension/* to 
 
 on:
   push:
-    branches: main
-    paths: chrome/**
+    branches: [main]
+    paths: [chrome/**]
 
 jobs:
   build:
