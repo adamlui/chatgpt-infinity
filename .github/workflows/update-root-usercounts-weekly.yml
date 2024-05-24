@@ -95,8 +95,13 @@ jobs:
         run: |
           cd ${{ github.workspace }}/adamlui/chatgpt-infinity
           total_users=$(echo ${{ steps.get-usercounts.outputs.total_users }})
-          sed -i "s/\(badge\/[^-]*-\)[0-9.,km+]\+-/\1$total_users-/gI" $(find docs/ -name "README.md")
-          if [ $? -eq 0 ] ; then echo "Usercount shields updated to $total_users"
+          for readme in $(find docs/ -name "README.md") ; do
+            old_readme=$(<"$readme")
+            sed -i "s/\(badge\/[^-]*-\)[0-9.,km+]\+-/\1$total_users-/gI" $(find docs/ -name "README.md")
+            new_readme=$(<"$readme")
+            if [ "$old_readme" != "$new_readme" ] ; then shield_updated=true ; fi
+          done          
+          if [ "$shield_updated" = true ] ; then echo "Usercount shields updated to $total_users"
           else echo "Usercount shields up-to-date already" ; fi
 
       - name: Push to adamlui/chatgpt-infinity
