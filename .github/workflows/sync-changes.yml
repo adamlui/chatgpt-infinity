@@ -15,7 +15,7 @@ jobs:
     steps:
 
       - name: Checkout adamlui/chatgpt-infinity
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           token: ${{ secrets.REPO_SYNC_PAT }}
           repository: adamlui/chatgpt-infinity
@@ -23,14 +23,14 @@ jobs:
           fetch-depth: 2
 
       - name: Checkout adamlui/chatgpt-apps
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           token: ${{ secrets.REPO_SYNC_PAT }}
           repository: adamlui/chatgpt-apps
           path: adamlui/chatgpt-apps
 
       - name: Checkout adamlui/userscripts
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           token: ${{ secrets.REPO_SYNC_PAT }}
           repository: adamlui/userscripts
