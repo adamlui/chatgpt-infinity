@@ -104,7 +104,7 @@ jobs:
       - name: Update README shields
         id: update-shields
         run: |
-          cd ${{ github.workspace }}/adamlui/chatgpt-widescreen
+          cd ${{ github.workspace }}/adamlui/chatgpt-infinity
 
           total_users="${{ steps.get-stats.outputs.total_users }}"
           total_clones="${{ steps.get-stats.outputs.total_clones }}"
