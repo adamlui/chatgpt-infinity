@@ -1,6 +1,8 @@
 name: Update usercount/clones shields in root READMEs
 
-on: workflow_dispatch
+on:
+  schedule:
+    - cron: "18 2 * * 2,4,6" # every Tue/Thu/Sat @ 2:18 AM
 
 jobs:
   update-usercount-shields:
