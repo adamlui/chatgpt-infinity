@@ -1,4 +1,4 @@
-name: Update aggregate usercount shields in root READMEs
+name: Update usercount/clones shields in root READMEs
 
 on:
   schedule:
@@ -16,11 +16,9 @@ jobs:
           repository: adamlui/chatgpt-infinity
           path: adamlui/chatgpt-infinity
 
-      - name: Fetch/sum user counts
-        id: get-usercounts
+      - name: Fetch/sum user + clone counts
+        id: get-stats
         run: |
-          LC_NUMERIC=en_US # to insert commas
-
           expand_num() { # expand nums abbreviated w/ 'k' or 'm' suffix to integers
             local num=$(echo "$1" | tr '[:upper:]' '[:lower:]') # convert to lowercase
             if [[ $num =~ k$ ]] ; then
@@ -82,30 +80,71 @@ jobs:
 
           # Sum user counts
           total_users=$((chrome_users + edge_users + gf_users))
-          echo -e "\nTotal users: $total_users"
+          echo -e "\n-----\nTotal users: $total_users\n-----\n"
 
-          # Format total
-          formatted_total=$(format_total "$total_users")
-          echo "Formatted total: $formatted_total"
+          # Fetch/calculate git clone count
+          biweekly_clones=$(curl -sSL \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.REPO_SYNC_PAT }}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/adamlui/chatgpt-infinity/traffic/clones" |
+            sed -n -E '0,/.*"count": ([0-9]+).*/ s//\1/p')
+          total_clones=$((biweekly_clones * 2))
+          echo "Biweekly git clones: $biweekly_clones"
+          echo -e "\n-----\nTotal monthly git clones: $total_clones\n-----\n"
 
-          # Store for update step next
-          echo "total_users=$formatted_total" >> $GITHUB_OUTPUT
+          # Format totals
+          formatted_total_users=$(format_total "$total_users")
+          echo "Formatted total users: $formatted_total_users"
+          formatted_total_clones=$(format_total "$total_clones")
+          echo "Formatted total monthly git clones: $formatted_total_clones"
+
+          # Expose as outputs for update step next
+          echo "total_users=$formatted_total_users" >> $GITHUB_OUTPUT
+          echo "total_clones=$formatted_total_clones" >> $GITHUB_OUTPUT
 
       - name: Update README shields
+        id: update-shields
         run: |
           cd ${{ github.workspace }}/adamlui/chatgpt-widescreen
-          total_users=$(echo ${{ steps.get-usercounts.outputs.total_users }})
+
+          total_users="${{ steps.get-stats.outputs.total_users }}"
+          total_clones="${{ steps.get-stats.outputs.total_clones }}"
+
           if [ "$total_users" == "0" ] ; then echo "Error getting total usercount"
           else # perform update
             for readme in $(find docs/ -name "README.md") ; do
               old_readme=$(<"$readme")
               sed -i "s/\(badge\/[^-]*-\)[0-9.,km+]\+-/\1$total_users-/gI" "$readme"
               new_readme=$(<"$readme")
-              if [ "$old_readme" != "$new_readme" ] ; then shield_updated=true ; fi
+              if [ "$old_readme" != "$new_readme" ] ; then users_updated=true ; fi
             done          
-            if [ "$shield_updated" = true ] ; then echo "Usercount shields updated to $total_users"
-            else echo "Usercount shields up-to-date already" ; fi
+            if [ "$users_updated" = true ] ; then echo "Usercount shields updated to $total_users"
+            else echo "Usercount shields already up-to-date" ; fi
           fi
+
+          # Update git clones shield
+          if [ "$total_clones" == "0" ] ; then echo "Error getting total git clones"
+          else # perform update
+            for readme in $(find docs/ -name "README.md") ; do
+              old_readme=$(<"$readme")
+              sed -i -E "s|(badge/[^-]+-)[0-9.,km+]+(/[^?]+\?logo=github)|\1$total_clones\2|gI" "$readme"
+              new_readme=$(<"$readme")
+              if [ "$old_readme" != "$new_readme" ] ; then clones_updated=true ; fi
+            done
+            if [ "$clones_updated" = true ] ; then echo "Git clones shields updated to $total_clones"
+            else echo "Git clones shields already up-to-date" ; fi
+          fi
+
+          # Define commit msg for push step next
+          if [ "$users_updated" = true ] && [ "$clones_updated" = true ] ; then
+            multi_shield_types_updated=true ; fi
+          commit_msg="Updated "
+          [ "$users_updated" = true              ] && commit_msg+="usercount"
+          [ "$multi_shield_types_updated" = true ] && commit_msg+="/"
+          [ "$clones_updated" = true             ] && commit_msg+="clones"
+          commit_msg+=" shield counters in root READMEs"
+          echo "commit_msg=$commit_msg" >> $GITHUB_OUTPUT # expose as output
 
       - name: Push to adamlui/chatgpt-infinity
         run: |
@@ -113,5 +152,5 @@ jobs:
           git config --global user.name "kudo-sync-bot"
           git config --global user.email "auto-sync@kudoai.com"
           git add .
-          git commit -n -m "Upddated usercount shield counters" || true
+          git commit -n -m "${{ steps.update-shields.outputs.commit_msg }}" || true
           git push
