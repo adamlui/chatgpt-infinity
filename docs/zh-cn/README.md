@@ -20,7 +20,7 @@
 [![\[Microsoft Edge\]](https://img.shields.io/badge/dynamic/json?logo=microsoftedge&logoColor=white&labelColor=464646&color=7bfce9&label=%E8%AF%84%E5%88%86&suffix=/5&query=%24.averageRating&url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Fjgonecnbmehicpdpjkdekamhmlebfagb&style=for-the-badge)](https://edge.chatgptinfinity.com)
 [![\[许可证: MIT\]](https://img.shields.io/badge/%E8%AE%B8%E5%8F%AF%E8%AF%81-MIT-fcde7b.svg?logo=internetarchive&logoColor=white&labelColor=464646&style=for-the-badge)](LICENSE.md)
 [![\[GitHub 提交\]](https://img.shields.io/github/commit-activity/m/adamlui/chatgpt-infinity?label=%E6%8F%90%E4%BA%A4&logo=github&logoColor=white&labelColor=464646&color=7bb7fc&style=for-the-badge)](https://github.chatgptinfinity.com/commits)
-![](https://img.shields.io/badge/%E5%85%8B%E9%9A%86-1.4K/%E6%9C%88-869da0?logo=github&logoColor=white&labelColor=464646&style=for-the-badge)
+![](https://img.shields.io/badge/%E5%85%8B%E9%9A%86-2.1K/%E6%9C%88-869da0?logo=github&logoColor=white&labelColor=464646&style=for-the-badge)
 [![\[CodeFactor 等级\]](https://img.shields.io/codefactor/grade/github/adamlui/chatgpt-infinity?label=%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F&logo=codefactor&logoColor=white&labelColor=464646&color=b5fc7b&style=for-the-badge)](https://www.codefactor.io/repository/github/adamlui/chatgpt-infinity)
 [![\[供电 chatgpt.js\]](https://img.shields.io/badge/%E4%BE%9B%E7%94%B5-chatgpt.js-black?logo=gamejolt&logoColor=white&labelColor=464646&style=for-the-badge)](https://github.com/KudoAI/chatgpt.js?utm_source=chatgpt_infinity&utm_content=github_shield)
 [![\[SonarCloud 漏洞\]](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fsonarcloud.io%2Fapi%2Fmeasures%2Fcomponent%3Fcomponent%3Dadamlui_chatgpt-infinity%26metricKeys%3Dvulnerabilities&query=%24.component.measures.0.value&style=for-the-badge&logo=sonarcloud&logoColor=white&labelColor=464646&label=%E6%BC%8F%E6%B4%9E&color=gold)](https://sonarcloud.io/component_measures?metric=new_vulnerabilities&id=adamlui_chatgpt-infinity)
@@ -156,7 +156,7 @@ ChatGPT 无穷 与以下浏览器兼容:
 
 ## 🧠 贡献者
 
-该项目的存在得益于以下贡献者的代码、翻译、问题和想法:
+该项目的存在得益于以下贡献者的代码、测试、问题、翻译和想法：
 
 [![](https://images.weserv.nl/?url=https://avatars.githubusercontent.com/u/10906554?first-contrib=2023.04.28&h=50&w=50&mask=circle&maxage=7d "@adamlui")](https://github.com/adamlui)
 [![](https://images.weserv.nl/?url=https://avatars.githubusercontent.com/u/131989355?first-contrib=2023.04.30-doc-translations&h=50&w=50&mask=circle&maxage=7d "@Zin6969")](https://github.com/Zin6969)

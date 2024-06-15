@@ -20,7 +20,7 @@
 [![\[Microsoft Edge\]](https://img.shields.io/badge/dynamic/json?logo=microsoftedge&logoColor=white&labelColor=464646&color=7bfce9&label=rating&suffix=/5&query=%24.averageRating&url=https%3A%2F%2Fmicrosoftedge.microsoft.com%2Faddons%2Fgetproductdetailsbycrxid%2Fjgonecnbmehicpdpjkdekamhmlebfagb&style=for-the-badge)](https://edge.chatgptinfinity.com)
 [![\[License: MIT\]](https://img.shields.io/badge/License-MIT-orange.svg?logo=internetarchive&logoColor=white&labelColor=464646&style=for-the-badge)](https://github.chatgptinfinity.com/blob/main/LICENSE.md)
 [![\[GitHub commits\]](https://img.shields.io/github/commit-activity/m/adamlui/chatgpt-infinity?label=Commits&logo=github&logoColor=white&labelColor=464646&color=7bb7fc&style=for-the-badge)](https://github.chatgptinfinity.com/commits)
-![](https://img.shields.io/badge/Clones-1.4K/month-869da0?logo=github&logoColor=white&labelColor=464646&style=for-the-badge)
+![](https://img.shields.io/badge/Clones-2.1K/month-869da0?logo=github&logoColor=white&labelColor=464646&style=for-the-badge)
 [![\[CodeFactor grade\]](https://img.shields.io/codefactor/grade/github/adamlui/chatgpt-infinity?label=Code+Quality&logo=codefactor&logoColor=white&labelColor=464646&color=b5fc7b&style=for-the-badge)](https://www.codefactor.io/repository/github/adamlui/chatgpt-infinity)
 [![\[Powered by chatgpt.js\]](https://img.shields.io/badge/Powered_by-chatgpt.js-black?logo=gamejolt&logoColor=white&labelColor=464646&style=for-the-badge)](https://github.com/KudoAI/chatgpt.js?utm_source=chatgpt_infinity&utm_content=github_shield)
 [![\[SonarCloud vulnerabilities\]](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fsonarcloud.io%2Fapi%2Fmeasures%2Fcomponent%3Fcomponent%3Dadamlui_chatgpt-infinity%26metricKeys%3Dvulnerabilities&query=%24.component.measures.0.value&style=for-the-badge&logo=sonarcloud&logoColor=white&labelColor=464646&label=Vulnerabilities&color=gold)](https://sonarcloud.io/component_measures?metric=new_vulnerabilities&id=adamlui_chatgpt-infinity)
@@ -159,7 +159,7 @@ If you've tested it to work in a browser not listed, simply create a [pull reque
 
 ## 🧠 Contributors
 
-This project exists thanks to code, translations, issues & ideas from the following contributors:
+This project exists thanks to code, testing, issues, translations & ideas from the following contributors:
 
 [![](https://images.weserv.nl/?url=https://avatars.githubusercontent.com/u/10906554?first-contrib=2023.04.28&h=50&w=50&mask=circle&maxage=7d "@adamlui")](https://github.com/adamlui)
 [![](https://images.weserv.nl/?url=https://avatars.githubusercontent.com/u/131989355?first-contrib=2023.04.30-doc-translations&h=50&w=50&mask=circle&maxage=7d "@Zin6969")](https://github.com/Zin6969)
