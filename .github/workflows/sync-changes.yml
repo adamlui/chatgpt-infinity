@@ -79,7 +79,7 @@ jobs:
           git config --global user.name "kudo-sync-bot"
           git config --global user.email "auto-sync@kudoai.com"
           git add .
-          git commit -n -m "${{ github.event.head_commit.message }} ↞ [auto-sync from `root`]" || true
+          git commit -n -m "$(echo '${{ github.event.head_commit.message }}' | sed 's/`/\`/g') ↞ [auto-sync from root]" || true
           git push
 
       - name: Push changes to adamlui/chatgpt-apps
@@ -88,7 +88,7 @@ jobs:
           git config --global user.name "kudo-sync-bot"
           git config --global user.email "auto-sync@kudoai.com"
           git add .
-          git commit -n -m "${{ github.event.head_commit.message }} ↞ [auto-sync from `adamlui/chatgpt-infinity`]" || true
+          git commit -n -m "$(echo '${{ github.event.head_commit.message }}' | sed 's/`/\`/g') ↞ [auto-sync from \`adamlui/chatgpt-infinity\`]" || true
           git push
 
       - name: Push changes to adamlui/userscripts
@@ -97,5 +97,5 @@ jobs:
           git config --global user.name "kudo-sync-bot"
           git config --global user.email "auto-sync@kudoai.com"
           git add .
-          git commit -n -m "${{ github.event.head_commit.message }} ↞ [auto-sync from `adamlui/chatgpt-infinity`]" || true
+          git commit -n -m "$(echo '${{ github.event.head_commit.message }}' | sed 's/`/\`/g') ↞ [auto-sync from \`adamlui/chatgpt-infinity\`]" || true
           git push
