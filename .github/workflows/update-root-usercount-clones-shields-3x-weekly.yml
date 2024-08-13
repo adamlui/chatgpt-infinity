@@ -1,4 +1,4 @@
-name: Update usercount/clones shields in root READMEs
+name: Update usercount/clones shields in root READMEs, sync to adamlui/chatgpt-apps
 
 on:
   schedule:
