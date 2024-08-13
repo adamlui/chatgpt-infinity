@@ -16,6 +16,13 @@ jobs:
           repository: adamlui/chatgpt-infinity
           path: adamlui/chatgpt-infinity
 
+      - name: Checkout adamlui/chatgpt-apps
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.REPO_SYNC_PAT }}
+          repository: adamlui/chatgpt-apps
+          path: adamlui/chatgpt-apps
+
       - name: Fetch/sum user + clone counts
         id: get-stats
         run: |
@@ -136,7 +143,7 @@ jobs:
             else echo "Git clones shields already up-to-date" ; fi
           fi
 
-          # Define commit msg for push step next
+          # Define commit msg for push steps
           if [ "$users_updated" = true ] && [ "$clones_updated" = true ] ; then
             multi_shield_types_updated=true ; fi
           commit_msg="Updated "
@@ -146,9 +153,24 @@ jobs:
           commit_msg+=" shield counters in root READMEs"
           echo "commit_msg=$commit_msg" >> $GITHUB_OUTPUT # expose as output
 
-      - name: Push to adamlui/chatgpt-infinity
+      - name: Sync ./* to adamlui/chatgpt-apps/chatgpt-infinity/*
+        run: |
+          rsync -avhr --delete --exclude={'.*','eslint*','package*json'} \
+            ${{ github.workspace }}/adamlui/chatgpt-infinity/ \
+            ${{ github.workspace }}/adamlui/chatgpt-apps/chatgpt-infinity/
+
+      - name: Push changes to adamlui/chatgpt-infinity
         run: |
           cd ${{ github.workspace }}/adamlui/chatgpt-infinity
+          git config --global user.name "kudo-sync-bot"
+          git config --global user.email "auto-sync@kudoai.com"
+          git add .
+          git commit -n -m "${{ steps.update-shields.outputs.commit_msg }}" || true
+          git push
+
+      - name: Push changes to adamlui/chatgpt-apps
+        run: |
+          cd ${{ github.workspace }}/adamlui/chatgpt-apps
           git config --global user.name "kudo-sync-bot"
           git config --global user.email "auto-sync@kudoai.com"
           git add .
