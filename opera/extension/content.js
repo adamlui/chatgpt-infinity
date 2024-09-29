@@ -210,7 +210,7 @@
 
         },
 
-        toggle() { config.infinityMode ? infinityMode.activate() : infinityMode.deactivate() }
+        toggle() { infinityMode[config.infinityMode ? 'activate' : 'deactivate']() }
     }
 
     // Define SYNC function
