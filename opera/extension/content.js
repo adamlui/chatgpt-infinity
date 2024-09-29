@@ -16,12 +16,14 @@
 
     // Add CHROME MSG listener
     chrome.runtime.onMessage.addListener(req => {
-        infinity.muted = true // prevent top-right notif blocked by popup
+        
         if (req.action == 'notify') notify(req.msg, req.pos)
         else if (req.action == 'alert') siteAlert(req.title, req.msg, req.btns)
-        else if (req.action == 'infinity.toggle') infinity.toggle()
-        else if (req.action == 'infinity.restart') infinity.restart({ target: req.target })
-        else if (req.action == 'sync.storageToUI') syncStorageToUI()
+        else if (req.action.startsWith('infinity')) {
+            infinity.muted = true // prevent top-right notif blocked by popup
+            if (req.action == 'infinity.toggle') infinity.toggle()
+            else if (req.action == 'infinity.restart') infinity.restart({ target: req.target })
+        } else if (req.action == 'sync.storageToUI') syncStorageToUI()
     })
 
     // Init ENV info
