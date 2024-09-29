@@ -22,7 +22,7 @@
         else if (req.action == 'alert') siteAlert(req.title, req.msg, req.btns)
         else if (req.action == 'infinity.toggle') infinity.toggle()
         else if (req.action == 'infinity.restart') infinity.restart({ target: req.target })
-        else if (req.action == 'sync.storageToUI') syncStorageToUI().then(() => sendResp({ status: 'done' }))
+        else if (req.action == 'sync.storageToUI') syncStorageToUI().then(sendResp)
     })
 
     // Init ENV info
