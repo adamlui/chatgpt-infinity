@@ -15,14 +15,13 @@
     app.urls.assetHost = app.urls.gitHub.replace('github.com', 'cdn.jsdelivr.net/gh') + `@${app.latestAssetCommitHash}`
 
     // Add CHROME MSG listener
-    let fromMsg = false // to prevent double notifications blocked by popup
-    chrome.runtime.onMessage.addListener(async (req, _, sendResp) => {
-        fromMsg = true
+    chrome.runtime.onMessage.addListener(req => {
+        infinity.muted = true // prevent top-right notif blocked by popup
         if (req.action == 'notify') notify(req.msg, req.pos)
         else if (req.action == 'alert') siteAlert(req.title, req.msg, req.btns)
         else if (req.action == 'infinity.toggle') infinity.toggle()
         else if (req.action == 'infinity.restart') infinity.restart({ target: req.target })
-        else if (req.action == 'sync.storageToUI') syncStorageToUI().then(sendResp)
+        else if (req.action == 'sync.storageToUI') syncStorageToUI()
     })
 
     // Init ENV info
@@ -157,8 +156,8 @@
                 + ( config.replyLanguage ? ( ' in ' + config.replyLanguage ) : '' )
                 + ( ' on ' + ( config.replyTopic == 'ALL' ? 'ALL topics' : 'the topic of ' + config.replyTopic ))
                 + ' then answer it. Don\'t type anything else.'
-            if (!fromMsg) notify(`${chrome.i18n.getMessage('menuLabel_infinityMode')}: ON`)
-            fromMsg = false
+            if (!infinity.muted) notify(`${chrome.i18n.getMessage('menuLabel_infinityMode')}: ON`)
+            infinity.muted = false
             if (env.browser.isMobile && chatgpt.sidebar.isOn()) chatgpt.sidebar.hide()
             if (!new URL(location).pathname.startsWith('/g/')) // not on GPT page
                 try { chatgpt.startNewChat() } catch (err) { return } // start new chat
@@ -189,8 +188,8 @@
         },
 
         async deactivate() {
-            if (!fromMsg) notify(`${chrome.i18n.getMessage('menuLabel_infinityMode')}: OFF`)
-            fromMsg = false
+            if (!infinity.muted) notify(`${chrome.i18n.getMessage('menuLabel_infinityMode')}: OFF`)
+            infinity.muted = false
             chatgpt.stop() ; clearTimeout(infinity.isActive) ; infinity.isActive = null
             document.getElementById('infinity-toggle-input').checked = false // for window listener
             settings.save('infinityMode', false) // in case toggled by PV listener
