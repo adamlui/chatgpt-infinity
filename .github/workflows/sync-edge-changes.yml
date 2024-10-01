@@ -1,4 +1,4 @@
-name: Sync LICENSE.md from edge/* to <platform>/*, then edge/extension/* to (chrome|opera)/extension/*, then edge/extension/_locales/* to greasemonkey/_locales/*, then ./* to adamlui/chatgpt-apps/chatgpt-infinity/*, then greasemonkey/* to adamlui/userscripts/chatgpt/chatgpt-infinity/*
+name: Sync LICENSE.md from edge/* to <platform>/*, then edge/extension/* to (chrome|opera)/extension/*, then edge/extension/_locales/* to <firefox/extension|greasemonkey>/_locales/*, then ./* to adamlui/chatgpt-apps/chatgpt-infinity/*, then greasemonkey/* to adamlui/userscripts/chatgpt/chatgpt-infinity/*
 
 on:
   push:
@@ -72,6 +72,12 @@ jobs:
               "${{ github.workspace }}/adamlui/chatgpt-infinity/edge/extension/" \
               "${{ github.workspace }}/adamlui/chatgpt-infinity/$browser/extension"
           done
+
+      - name: Sync edge/extension/_locales/* to firefox/extension/_locales/*
+        run: |
+          rsync -avhr --delete \
+            "${{ github.workspace }}/adamlui/chatgpt-infinity/edge/extension/_locales/" \
+            "${{ github.workspace }}/adamlui/chatgpt-infinity/firefox/extension/_locales"
 
       - name: Sync edge/extension/_locales/* to greasemonkey/_locales/*
         run: |
