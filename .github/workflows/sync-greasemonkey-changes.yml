@@ -1,4 +1,4 @@
-name: Sync LICENSE.md from greasemonkey/* to <platform>/*, then greasemonkey/* to adamlui/userscripts/chatgpt/chatgpt-infinity/*, then greasemonkey/_locales/* to (chrome|edge|firefox|opera)/extension/_locales/*, then ./* to adamlui/chatgpt-apps/chatgpt-infinity/*
+name: Sync greasemonkey/* to adamlui/userscripts/chatgpt/chatgpt-infinity/*, then * to adamlui/chatgpt-apps/chatgpt-infinity/*
 
 on:
   push:
@@ -39,47 +39,13 @@ jobs:
           repository: adamlui/chatgpt-apps
           path: adamlui/chatgpt-apps
 
-      - name: Sync LICENSE.md from greasemonkey/* to <platform>/*
-        run: |
-          cd ${{ github.workspace }}/adamlui/chatgpt-infinity
-          platforms=($(find . -type d -name "docs" | # paths to docs/
-            awk -F'/' '{print $(NF-1)}' | # filter to parents
-            grep -v "^greasemonkey$")) # exclude greasemonkey
-          echo "Platforms: ${platforms[@]}"
-          languages=($(ls docs/*/LICENSE.md | # paths to LICENSEs
-            awk -F'/' '{print $(NF-1)}') # filter to parents
-            "en") # include English
-          echo -e "Languages: ${languages[@]}\n"
-          for lang in "${languages[@]}"; do
-            gm_license=./greasemonkey$([[ "$lang" != "en" ]] && echo "/docs/$lang/" || echo "/")LICENSE.md
-            gm_license_content=$(git show HEAD:"$gm_license")
-            gm_license_modified=$(git log -1 --format="%ct" -- "$gm_license")
-            for platform in "${platforms[@]}"; do
-              platform_license=./$platform/$([[ "$lang" != "en" ]] && echo "docs/$lang/" || echo "")LICENSE.md
-              platform_license_content=$(git show HEAD:"$platform_license")
-              platform_license_modified=$(git log -1 --format="%ct" -- "$platform_license")
-              if [[ $gm_license_modified -gt $platform_license_modified ]] ; then
-                if [[ "$gm_license_content" != "$platform_license_content" ]] ; then
-                  cp -f "$gm_license" "$platform_license"
-                  echo "Copied $gm_license to $platform_license"
-          fi ; fi ; done; done
-
       - name: Sync greasemonkey/* to adamlui/userscripts/chatgpt/chatgpt-infinity/*
         run: |
           rsync -avhr --delete \
             ${{ github.workspace }}/adamlui/chatgpt-infinity/greasemonkey/ \
             ${{ github.workspace }}/adamlui/userscripts/chatgpt/chatgpt-infinity/
 
-      - name: Sync greasemonkey/_locales/* to (chrome|edge|firefox|opera)/extension/_locales/*
-        run: |
-          for browser in chrome edge firefox opera
-          do
-            rsync -avhr --delete \
-              "${{ github.workspace }}/adamlui/chatgpt-infinity/greasemonkey/_locales/" \
-              "${{ github.workspace }}/adamlui/chatgpt-infinity/$browser/extension/_locales/"
-          done
-
-      - name: Sync ./* to adamlui/chatgpt-apps/chatgpt-infinity/*
+      - name: Sync * to adamlui/chatgpt-apps/chatgpt-infinity/*
         run: |
           rsync -avhr --delete --exclude={'.*','eslint*','package*json'} \
             ${{ github.workspace }}/adamlui/chatgpt-infinity/ \
@@ -92,13 +58,6 @@ jobs:
           echo "ESCAPED_MSG<<EOF" >> $GITHUB_ENV
           echo "$COMMIT_MSG" | sed 's/`/\`/g' >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
-
-      - name: Push changes to adamlui/chatgpt-infinity
-        run: |
-          cd ${{ github.workspace }}/adamlui/chatgpt-infinity
-          git add .
-          git commit -n -m "$ESCAPED_MSG ↞ [auto-sync from \`greasemonkey\`]" || true
-          git push
 
       - name: Push changes to adamlui/chatgpt-apps
         run: |
