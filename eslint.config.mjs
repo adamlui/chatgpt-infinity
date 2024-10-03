@@ -19,7 +19,7 @@ export default [
         languageOptions: {
             ecmaVersion: 2022, sourceType: 'script',
             globals: {
-                ...globals.browser, ...globals.greasemonkey,
+                ...globals.browser, ...globals.node, ...globals.greasemonkey,
                 chatgpt: 'readonly', chrome: 'readonly', dom: 'readonly'
             }
         }
