@@ -100,9 +100,7 @@ jobs:
         id: update-shields
         run: |
           cd ${{ github.workspace }}/adamlui/chatgpt-infinity
-
           total_users="${{ steps.get-stats.outputs.total_users }}"
-
           if [ "$total_users" == "0" ] ; then echo "Error getting total usercount"
           else # perform update
             for readme in $(find docs/ -name "README.md") ; do
