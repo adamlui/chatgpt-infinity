@@ -5,7 +5,7 @@ on:
     - cron: "18 2 * * 2" # every Tue @ 2:18 AM
 
 jobs:
-  update-usercount-shields:
+  update-root-usercount-shields:
     runs-on: ubuntu-latest
 
     steps:
