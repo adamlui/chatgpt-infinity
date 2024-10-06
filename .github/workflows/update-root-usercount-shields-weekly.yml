@@ -70,6 +70,13 @@ jobs:
           chrome_users=$(expand_num "$chrome_users")
           echo -e "\nChrome users: $chrome_users"
 
+          # Fetch Firefox daily user count
+          base_url="https://addons.mozilla.org/api/v5/addons/addon/"
+          app_id="chatgpt-infinity"
+          ff_users=$(curl -s "$base_url$app_id/" |
+            sed -n 's/.*"average_daily_users":\([0-9]*\).*/\1/p')
+          echo "Firefox users: $ff_users"
+
           # Fetch Edge active user count
           base_url="https://microsoftedge.microsoft.com/addons/getproductdetailsbycrxid/"
           app_id="jgonecnbmehicpdpjkdekamhmlebfagb"
@@ -86,7 +93,7 @@ jobs:
           echo "Greasy Fork users: $gf_users"
 
           # Sum user counts
-          total_users=$((chrome_users + edge_users + gf_users))
+          total_users=$((chrome_users + ff_users + edge_users + gf_users))
           echo -e "\n-----\nTotal users: $total_users\n-----\n"
 
           # Format totals
