@@ -1,4 +1,4 @@
-name: Sync _locales/* between <chrome|firefox>/extension/, then * to adamlui/chatgpt-apps/chatgpt-infinity/*, then greasemonkey/* to adamlui/userscripts/chatgpt/chatgpt-infinity/*
+name: Sync _locales/* between <chrome|firefox>/extension/, then * to adamlui/ai-apps/chatgpt-infinity/*, then greasemonkey/* to adamlui/userscripts/chatgpt/chatgpt-infinity/*
 
 on:
   push:
@@ -25,12 +25,12 @@ jobs:
           path: adamlui/chatgpt-infinity
           fetch-depth: 2
 
-      - name: Checkout adamlui/chatgpt-apps
+      - name: Checkout adamlui/ai-apps
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.REPO_SYNC_PAT }}
-          repository: adamlui/chatgpt-apps
-          path: adamlui/chatgpt-apps
+          repository: adamlui/ai-apps
+          path: adamlui/ai-apps
 
       - name: Checkout adamlui/userscripts
         uses: actions/checkout@v4
@@ -64,11 +64,11 @@ jobs:
               fi
           done
 
-      - name: Sync * to adamlui/chatgpt-apps/chatgpt-infinity/*
+      - name: Sync * to adamlui/ai-apps/chatgpt-infinity/*
         run: |
           rsync -avhr --delete --exclude={'.*','eslint*','package*json'} \
             ${{ github.workspace }}/adamlui/chatgpt-infinity/ \
-            ${{ github.workspace }}/adamlui/chatgpt-apps/chatgpt-infinity/
+            ${{ github.workspace }}/adamlui/ai-apps/chatgpt-infinity/
 
       - name: Sync greasemonkey/* to adamlui/userscripts/chatgpt/chatgpt-infinity/*
         run: |
@@ -91,9 +91,9 @@ jobs:
           git commit -n -m "$ESCAPED_MSG ↞ [auto-sync from \`adamlui/chatgpt-infinity\`]" || true
           git push
 
-      - name: Push changes to adamlui/chatgpt-apps
+      - name: Push changes to adamlui/ai-apps
         run: |
-          cd ${{ github.workspace }}/adamlui/chatgpt-apps
+          cd ${{ github.workspace }}/adamlui/ai-apps
           git add .
           git commit -n -m "$ESCAPED_MSG ↞ [auto-sync from \`adamlui/chatgpt-infinity\`]" || true
           git push
