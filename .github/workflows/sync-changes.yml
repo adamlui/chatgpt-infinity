@@ -84,6 +84,7 @@ jobs:
       - name: Config committer
         run: |
           gpg --batch --import <(echo "${{ secrets.GPG_PRIVATE_KEY }}")
+          git config --global commit.gpgsign true
           git config --global user.name "kudo-sync-bot"
           git config --global user.email "auto-sync@kudoai.com"
           git config --global user.signingkey  "${{ secrets.GPG_PRIVATE_ID }}"
@@ -92,19 +93,19 @@ jobs:
         run: |
           cd ${{ github.workspace }}/adamlui/chatgpt-infinity
           git add .
-          git commit -S -n -m "$ESCAPED_MSG ↞ [auto-sync from \`adamlui/chatgpt-infinity\`]" || true
+          git commit -n -m "$ESCAPED_MSG ↞ [auto-sync from \`adamlui/chatgpt-infinity\`]" || true
           git push
 
       - name: Push changes to adamlui/ai-apps
         run: |
           cd ${{ github.workspace }}/adamlui/ai-apps
           git add .
-          git commit -S -n -m "$ESCAPED_MSG ↞ [auto-sync from \`adamlui/chatgpt-infinity\`]" || true
+          git commit -n -m "$ESCAPED_MSG ↞ [auto-sync from \`adamlui/chatgpt-infinity\`]" || true
           git push
 
       - name: Push changes to adamlui/userscripts
         run: |
           cd ${{ github.workspace }}/adamlui/userscripts
           git add .
-          git commit -S -n -m "$ESCAPED_MSG ↞ [auto-sync from \`adamlui/chatgpt-infinity\`]" || true
+          git commit -n -m "$ESCAPED_MSG ↞ [auto-sync from \`adamlui/chatgpt-infinity\`]" || true
           git push
