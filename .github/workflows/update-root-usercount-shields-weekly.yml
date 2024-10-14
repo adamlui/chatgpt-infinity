@@ -108,18 +108,19 @@ jobs:
         run: |
           cd ${{ github.workspace }}/adamlui/chatgpt-infinity
           total_users="${{ env.total_users }}"
-          if [[ "$total_users" == "0" ]] ; then echo "Error getting total usercount"
+          if [ "$total_users" == "0" ] ; then echo "Error getting total usercount"
           else # perform update
             for readme in $(find docs/ -name "README.md") ; do
               old_readme=$(<"$readme")
               sed -i "s/\(badge\/[^-]*-\)[0-9.,km+]\+-/\1$total_users-/gI" "$readme"
               new_readme=$(<"$readme")
-              [[ "$old_readme" != "$new_readme" && "$users_updated" != true ]] && users_updated=true
+              if [[ "$old_readme" != "$new_readme" && "$users_updated" != true ]]
+                then users_updated=true ; fi
             done
-            if [[ "$users_updated" == true ]] ; then echo "Usercount shields updated to $total_users"
+            if [ "$users_updated" = true ] ; then echo "Usercount shields updated to $total_users"
             else echo "Usercount shields already up-to-date" ; fi
           fi
-          if [[ "$users_updated" == true ]] ; then echo "users_updated=true" >> $GITHUB_ENV ; fi
+          if [ "$users_updated" = true ] ; then echo "users_updated=true" >> $GITHUB_ENV ; fi
 
       - name: Sync ** to adamlui/ai-apps/chatgpt-infinity/
         if: env.users_updated == 'true'
@@ -150,5 +151,5 @@ jobs:
         run: |
           cd ${{ github.workspace }}/adamlui/ai-apps
           git add .
-          git commit -n -m "Updated usercount shield counters in ChatGPT Infinity root READMEs" || true
+          git commit -n -m "Updated usercount shield counters in ChatGPT infinity root READMEs" || true
           git push
