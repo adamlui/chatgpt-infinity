@@ -41,7 +41,6 @@ jobs:
           cd ${{ github.workspace }}/adamlui/chatgpt-infinity
           ff_dir="firefox/extension/_locales"
           chrome_dir="chrome/extension/_locales"
-          locales_changed=false
           
           # Loop thru all lang dirs in firefox
           for locale in $(find "$ff_dir" -mindepth 1 -maxdepth 1 -type d -exec basename {} \;) ; do
@@ -62,7 +61,6 @@ jobs:
                   fi
               fi
           done
-          [[ "$locales_changed" == "true" ]] && echo "locales_changed=true" >> $GITHUB_ENV
 
       - name: Sync ** to adamlui/ai-apps/chatgpt-infinity/
         run: |
