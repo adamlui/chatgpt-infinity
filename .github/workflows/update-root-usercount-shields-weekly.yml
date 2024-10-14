@@ -108,7 +108,7 @@ jobs:
         run: |
           cd ${{ github.workspace }}/adamlui/chatgpt-infinity
           total_users="${{ env.total_users }}"
-          if [ "$total_users" == "0" ] ; then echo "Error getting total usercount"
+          if [[ "$total_users" == "0" ]] ; then echo "Error getting total usercount"
           else # perform update
             for readme in $(find docs/ -name "README.md") ; do
               old_readme=$(<"$readme")
@@ -116,7 +116,7 @@ jobs:
               new_readme=$(<"$readme")
               [[ "$old_readme" != "$new_readme" && "$users_updated" != true ]] && users_updated=true
             done
-            [ "$users_updated" = true ] && echo "Usercount shields updated to $total_users"
+            [[ "$users_updated" = true ]] && echo "Usercount shields updated to $total_users"
             else echo "Usercount shields already up-to-date" ; fi
           fi
 
