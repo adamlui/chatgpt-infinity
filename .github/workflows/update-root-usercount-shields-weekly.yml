@@ -63,7 +63,7 @@ jobs:
             echo "$formatted_num"
           }
 
-          # Fetch Chrome active user count
+          # Fetch Chrome weekly user count
           base_url="https://img.shields.io/chrome-web-store/users/"
           app_id="amikeononomkhphopbflomhnmdijjpmb"
           chrome_users=$(curl -s "$base_url$app_id" |
