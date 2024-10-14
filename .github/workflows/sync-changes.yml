@@ -61,7 +61,7 @@ jobs:
                   fi
               fi
           done
-          [ "$locales_changed" == true ] && echo "locales_changed=true" >> $GITHUB_ENV
+          [ "$locales_changed" = true ] && echo "locales_changed=true" >> $GITHUB_ENV
 
       - name: Sync ** to adamlui/ai-apps/chatgpt-infinity/
         run: |
