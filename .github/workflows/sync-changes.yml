@@ -59,6 +59,7 @@ jobs:
                      cp -f "$ff_file" "$chrome_file"
                 else cp -f "$chrome_file" "$ff_file" ; fi
               fi
+
             fi
           done
           if [[ "$locales_changed" == true ]] ; then echo "locales_changed=true" >> $GITHUB_ENV ; fi
