@@ -97,11 +97,11 @@ jobs:
           total_users=$((chrome_users + ff_users + edge_users + gf_users))
           echo -e "\n-----\nTotal users: $total_users\n-----\n"
 
-          # Format totals
+          # Format total
           formatted_total_users=$(format_total "$total_users")
           echo "Formatted total users: $formatted_total_users"
 
-          # Expose as env var for update step next
+          # Expose total for update step next
           echo "total_users=$formatted_total_users" >> $GITHUB_ENV
 
       - name: Update README shields
