@@ -53,9 +53,9 @@ jobs:
                   chrome_timestamp=$(git log -1 --format="%ct" -- "$chrome_file" 2>/dev/null || echo 0)
           
                   # Sync the most recently updated messages.json to the other dir
-                  if [[ $ff_timestamp -ne $chrome_timestamp ]] ; then
-                      [[ "$locales_changed" != true ]] && locales_changed=true
-                      if [[ $ff_timestamp -gt $chrome_timestamp ]] ; then
+                  if [ $ff_timestamp -ne $chrome_timestamp ] ; then
+                      [ "$locales_changed" != true ] && locales_changed=true
+                      if [ $ff_timestamp -gt $chrome_timestamp ] ; then
                            cp -f "$ff_file" "$chrome_file"
                       else cp -f "$chrome_file" "$ff_file" ; fi
                   fi
