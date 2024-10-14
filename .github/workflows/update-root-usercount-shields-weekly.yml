@@ -26,7 +26,6 @@ jobs:
           path: adamlui/ai-apps
 
       - name: Fetch/sum user counts
-        id: get-stats
         run: |
           expand_num() { # expand nums abbreviated w/ 'k' or 'm' suffix to integers
             local num=$(echo "$1" | tr '[:upper:]' '[:lower:]') # convert to lowercase
@@ -102,14 +101,14 @@ jobs:
           formatted_total_users=$(format_total "$total_users")
           echo "Formatted total users: $formatted_total_users"
 
-          # Expose as outputs for update step next
-          echo "total_users=$formatted_total_users" >> $GITHUB_OUTPUT
+          # Expose as env var for update step next
+          echo "total_users=$formatted_total_users" >> $GITHUB_ENV
 
       - name: Update README shields
         id: update-shields
         run: |
           cd ${{ github.workspace }}/adamlui/chatgpt-infinity
-          total_users="${{ steps.get-stats.outputs.total_users }}"
+          total_users="${{ env.total_users }}"
           if [ "$total_users" == "0" ] ; then echo "Error getting total usercount"
           else # perform update
             for readme in $(find docs/ -name "README.md") ; do
