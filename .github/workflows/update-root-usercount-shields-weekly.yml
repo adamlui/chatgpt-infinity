@@ -114,8 +114,8 @@ jobs:
               old_readme=$(<"$readme")
               sed -i "s/\(badge\/[^-]*-\)[0-9.,km+]\+-/\1$total_users-/gI" "$readme"
               new_readme=$(<"$readme")
-              if [ "$old_readme" != "$new_readme" ] ; then users_updated=true ; fi
-            done          
+              [[ "$old_readme" != "$new_readme" && "$users_updated" != true ]] && users_updated=true
+            done
             if [ "$users_updated" = true ] ; then echo "Usercount shields updated to $total_users"
             else echo "Usercount shields already up-to-date" ; fi
           fi
