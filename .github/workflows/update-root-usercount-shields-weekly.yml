@@ -120,6 +120,8 @@ jobs:
             if [ "$users_updated" = true ] ; then echo "Usercount shields updated to $total_users"
             else echo "Usercount shields already up-to-date" ; fi
           fi
+
+          # Set Updated flag to check in subseuqent steps
           if [ "$users_updated" = true ] ; then echo "users_updated=true" >> $GITHUB_ENV ; fi
 
       - name: Sync ** to adamlui/ai-apps/chatgpt-infinity/
