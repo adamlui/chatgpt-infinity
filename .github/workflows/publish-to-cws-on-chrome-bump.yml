@@ -1,4 +1,4 @@
-name: Publish to CWS on chrome version bump
+name: Publish to CWS on Chrome version bump
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
           path: adamlui/chatgpt-infinity
           fetch-depth: 2
 
-      - name: Check chrome manifest for version bump
+      - name: Check Chrome manifest for version bump
         run: |
           cd ${{ github.workspace }}/adamlui/chatgpt-infinity
           CURRENT_VER=$(cat chrome/extension/manifest.json | grep '"version"' | sed -E 's/.*"version": "(.*)".*/\1/')
