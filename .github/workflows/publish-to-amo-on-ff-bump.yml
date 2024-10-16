@@ -22,17 +22,17 @@ jobs:
           PREV_VER=$(git show HEAD^:firefox/extension/manifest.json | grep '"version"' | sed -E 's/.*"version": "(.*)".*/\1/')
           if [ "$(printf '%s\n' "$PREV_VER" "$CURRENT_VER" | sort -V | head -n 1)" != "$CURRENT_VER" ] ; then
                echo "Extension updated from $PREV_VER to $CURRENT_VER"
-               echo "version_changed=true" >> $GITHUB_ENV
-          else echo "version_changed=false" >> $GITHUB_ENV ; fi
+               echo "VERSION_CHANGED=true" >> $GITHUB_ENV
+          else echo "VERSION_CHANGED=false" >> $GITHUB_ENV ; fi
 
       - name: Create zipball
-        if: env.version_changed == 'true'
+        if: env.VERSION_CHANGED == 'true'
         run: |
           cd firefox/extension
           zip -r ../../extension.zip .
         
       - name: Publish to AMO
-        if: env.version_changed == 'true'
+        if: env.VERSION_CHANGED == 'true'
         uses: cardinalby/webext-buildtools-firefox-addons-action@v1
         with:
           zipFilePath: 'extension.zip'
