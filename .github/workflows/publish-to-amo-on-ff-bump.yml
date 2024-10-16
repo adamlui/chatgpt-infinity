@@ -28,5 +28,6 @@ jobs:
       - name: Create zipball
         if: env.version_changed == 'true'
         run: |
-          zip -j -r extension.zip firefox/extension
-          unzip -l extension.zip
+          cd firefox/extension
+          zip -r ../../extension.zip .
+          unzip -l ../../extension.zip
