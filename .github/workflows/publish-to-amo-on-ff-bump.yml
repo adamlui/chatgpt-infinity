@@ -28,12 +28,12 @@ jobs:
       - name: Create zipball
         if: env.version_changed == 'true'
         run: zip -r extension.zip firefox/extension
-
+        
       - name: Publish to AMO
         if: env.version_changed == 'true'
-        uses: yayuyokitano/firefox-addon@v0.0.6-alpha
+        uses: cardinalby/webext-buildtools-firefox-addons-action@v1
         with:
-          api_key: ${{ secrets.AMO_ISSUER }}
-          api_secret: ${{ secrets.AMO_SECRET }}
-          guid: "chatgpt.infinity@chatgptevo.com"
-          xpi_path: extension.zip
+          zipFilePath: 'extension.zip'
+          extensionId: 'chatgpt.infinity@chatgptevo.com'
+          jwtIssuer: ${{ secrets.AMO_ISSUER }}
+          jwtSecret: ${{ secrets.AMO_SECRET }}
