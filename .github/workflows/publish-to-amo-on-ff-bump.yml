@@ -30,7 +30,7 @@ jobs:
         run: |
           cd firefox/extension
           zip -r ../../extension.zip .
-        
+
       - name: Publish to AMO
         if: env.VERSION_CHANGED == 'true'
         uses: cardinalby/webext-buildtools-firefox-addons-action@v1
