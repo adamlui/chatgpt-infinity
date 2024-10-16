@@ -23,17 +23,17 @@ jobs:
           if [ "$(printf '%s\n' "$PREV_VER" "$CURRENT_VER" | sort -V | head -n 1)" != "$CURRENT_VER" ] ; then
                echo "Extension updated from $PREV_VER to $CURRENT_VER"
                echo "CURRENT_VER=${CURRENT_VER}" >> $GITHUB_ENV # for notes field in EWS step
-               echo "version_changed=true" >> $GITHUB_ENV
-          else echo "version_changed=false" >> $GITHUB_ENV ; fi
+               echo "VERSION_CHANGED=true" >> $GITHUB_ENV
+          else echo "VERSION_CHANGED=false" >> $GITHUB_ENV ; fi
 
       - name: Create zipball
-        if: env.version_changed == 'true'
+        if: env.VERSION_CHANGED == 'true'
         run: |
           cd firefox/extension
           zip -r ../../extension.zip .
 
       - name: Publish to CWS
-        if: env.version_changed == 'true'
+        if: env.VERSION_CHANGED == 'true'
         uses: trmcnvn/chrome-addon@v2
         with:
           extension: amikeononomkhphopbflomhnmdijjpmb
@@ -43,7 +43,7 @@ jobs:
           refresh-token: ${{ secrets.CWS_REFRESH_TOKEN }}
 
       - name: Publish to EWS
-        if: env.version_changed == 'true'
+        if: env.VERSION_CHANGED == 'true'
         uses: inverse/edge-addon@v1.0.9
         with:
           product_id: ${{ secrets.EWS_PRODUCT_ID }}
