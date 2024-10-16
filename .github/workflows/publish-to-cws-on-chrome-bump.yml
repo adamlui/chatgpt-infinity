@@ -27,7 +27,9 @@ jobs:
 
       - name: Create zipball
         if: env.version_changed == 'true'
-        run: zip -r extension.zip chrome/extension
+        run: |
+          cd firefox/extension
+          zip -r ../../extension.zip .
 
       - name: Publish to CWS
         if: env.version_changed == 'true'
