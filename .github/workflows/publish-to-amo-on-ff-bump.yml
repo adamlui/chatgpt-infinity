@@ -2,7 +2,7 @@ name: Publish to AMO on FF version bump
 
 on:
   push:
-    branches: [main]
+    branches: [actions-playground]
     paths: [firefox/extension/manifest.json]
 
 jobs:
@@ -27,13 +27,6 @@ jobs:
 
       - name: Create zipball
         if: env.version_changed == 'true'
-        run: zip -r extension.zip firefox/extension
-        
-      - name: Publish to AMO
-        if: env.version_changed == 'true'
-        uses: cardinalby/webext-buildtools-firefox-addons-action@v1
-        with:
-          zipFilePath: 'extension.zip'
-          extensionId: 'chatgpt.infinity@chatgptevo.com'
-          jwtIssuer: ${{ secrets.AMO_ISSUER }}
-          jwtSecret: ${{ secrets.AMO_SECRET }}
+        run: |
+          zip -r extension.zip firefox/extension
+          unzip -l extension.zip
