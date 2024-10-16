@@ -10,9 +10,9 @@
     "lint:fix": "eslint . --fix --cache",
     "lint:fix-all": "eslint . --fix",
     "bump": "bash utils/bump.sh",
-    "bump:chrome": "bash utils/bump.sh chrome",
-    "bump:chromium": "bash utils/bump.sh chrome",
-    "bump:ff": "bash utils/bump.sh ff",
-    "bump:firefox": "bash utils/bump.sh ff"
+    "bump:chrome": "bash utils/bump.sh --chrome",
+    "bump:chromium": "bash utils/bump.sh --chrome",
+    "bump:ff": "bash utils/bump.sh --ff",
+    "bump:firefox": "bash utils/bump.sh --ff"
   }
 }
