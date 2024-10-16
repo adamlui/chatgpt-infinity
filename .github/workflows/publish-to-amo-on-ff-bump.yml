@@ -13,14 +13,11 @@ jobs:
       - name: Checkout adamlui/chatgpt-infinity
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.REPO_SYNC_PAT }}
-          repository: adamlui/chatgpt-infinity
-          path: adamlui/chatgpt-infinity
+          sparse-checkout: firefox
           fetch-depth: 2
 
       - name: Check FF manifest for version bump
         run: |
-          cd ${{ github.workspace }}/adamlui/chatgpt-infinity
           CURRENT_VER=$(cat firefox/extension/manifest.json | grep '"version"' | sed -E 's/.*"version": "(.*)".*/\1/')
           PREV_VER=$(git show HEAD^:firefox/extension/manifest.json | grep '"version"' | sed -E 's/.*"version": "(.*)".*/\1/')
           if [ "$(printf '%s\n' "$PREV_VER" "$CURRENT_VER" | sort -V | head -n 1)" != "$CURRENT_VER" ] ; then
@@ -30,9 +27,7 @@ jobs:
 
       - name: Create zipball
         if: env.version_changed == 'true'
-        run: |
-          cd ${{ github.workspace }}/adamlui/chatgpt-infinity/firefox/extension
-          zip -r ../../extension.zip .
+        run: zip -r extension.zip firefox/extension
 
       - name: Publish to AMO
         if: env.version_changed == 'true'
@@ -41,4 +36,4 @@ jobs:
           api_key: ${{ secrets.AMO_ISSUER }}
           api_secret: ${{ secrets.AMO_SECRET }}
           guid: "chatgpt.infinity@chatgptevo.com"
-          xpi_path: ${{ github.workspace }}/adamlui/chatgpt-infinity/extension.zip
+          xpi_path: extension.zip

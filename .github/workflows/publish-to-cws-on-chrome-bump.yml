@@ -13,14 +13,11 @@ jobs:
       - name: Checkout adamlui/chatgpt-infinity
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.REPO_SYNC_PAT }}
-          repository: adamlui/chatgpt-infinity
-          path: adamlui/chatgpt-infinity
+          sparse-checkout: chrome
           fetch-depth: 2
 
       - name: Check Chrome manifest for version bump
         run: |
-          cd ${{ github.workspace }}/adamlui/chatgpt-infinity
           CURRENT_VER=$(cat chrome/extension/manifest.json | grep '"version"' | sed -E 's/.*"version": "(.*)".*/\1/')
           PREV_VER=$(git show HEAD^:chrome/extension/manifest.json | grep '"version"' | sed -E 's/.*"version": "(.*)".*/\1/')
           if [ "$(printf '%s\n' "$PREV_VER" "$CURRENT_VER" | sort -V | head -n 1)" != "$CURRENT_VER" ] ; then
@@ -30,16 +27,14 @@ jobs:
 
       - name: Create zipball
         if: env.version_changed == 'true'
-        run: |
-          cd ${{ github.workspace }}/adamlui/chatgpt-infinity/chrome/extension
-          zip -r ../../extension.zip .
+        run: zip -r extension.zip chrome/extension
 
       - name: Publish to CWS
         if: env.version_changed == 'true'
         uses: trmcnvn/chrome-addon@v2
         with:
           extension: amikeononomkhphopbflomhnmdijjpmb
-          zip: ${{ github.workspace }}/adamlui/chatgpt-infinity/extension.zip
+          zip: extension.zip
           client-id: ${{ secrets.CWS_CLIENT_ID }}
           client-secret: ${{ secrets.CWS_CLIENT_SECRET }}
           refresh-token: ${{ secrets.CWS_REFRESH_TOKEN }}
