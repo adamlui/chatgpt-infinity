@@ -1,4 +1,4 @@
-name: Publish to CWS on Chrome version bump
+name: Publish to CWS + EWS on Chrome version bump
 
 on:
   push:
@@ -22,6 +22,7 @@ jobs:
           PREV_VER=$(git show HEAD^:chrome/extension/manifest.json | grep '"version"' | sed -E 's/.*"version": "(.*)".*/\1/')
           if [ "$(printf '%s\n' "$PREV_VER" "$CURRENT_VER" | sort -V | head -n 1)" != "$CURRENT_VER" ] ; then
                echo "Extension updated from $PREV_VER to $CURRENT_VER"
+               echo "CURRENT_VER=${CURRENT_VER}" >> $GITHUB_ENV # for notes field in EWS step
                echo "version_changed=true" >> $GITHUB_ENV
           else echo "version_changed=false" >> $GITHUB_ENV ; fi
 
@@ -40,3 +41,15 @@ jobs:
           client-id: ${{ secrets.CWS_CLIENT_ID }}
           client-secret: ${{ secrets.CWS_CLIENT_SECRET }}
           refresh-token: ${{ secrets.CWS_REFRESH_TOKEN }}
+
+      - name: Publish to EWS
+        if: env.version_changed == 'true'
+        uses: inverse/edge-addon@v1.0.9
+        with:
+          product_id: ${{ secrets.EWS_PRODUCT_ID }}
+          client_id: ${{ secrets.EWS_CLIENT_ID }}
+          client_secret: ${{ secrets.EWS_CLIENT_SECRET }}
+          access_token_url: ${{ secrets.EWS_ACCESS_TOKEN_URL }}
+          zip: extension.zip
+          notes: 'Version ${{ env.CURRENT_VER }} upload'
+          debug: true
