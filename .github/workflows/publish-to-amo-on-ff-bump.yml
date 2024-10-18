@@ -20,7 +20,7 @@ jobs:
         run: |
           CURRENT_VER=$(cat firefox/extension/manifest.json | grep '"version"' | sed -E 's/.*"version": "(.*)".*/\1/')
           PREV_VER=$(git show HEAD^:firefox/extension/manifest.json | grep '"version"' | sed -E 's/.*"version": "(.*)".*/\1/')
-          if [ "$(printf '%s\n' "$PREV_VER" "$CURRENT_VER" | sort -V | head -n 1)" != "$CURRENT_VER" ] ; then
+          if [ "$CURRENT_VER" != "$PREV_VER" ] ; then
                echo "Extension updated from $PREV_VER to $CURRENT_VER"
                echo "VERSION_CHANGED=true" >> $GITHUB_ENV
           else echo "VERSION_CHANGED=false" >> $GITHUB_ENV ; fi
