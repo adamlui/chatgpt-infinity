@@ -1,5 +1,15 @@
 {
   "homepage": "https://www.chatgptinfinity.com",
+  "funding": [
+    {
+      "type": "github",
+      "url": "http://github.com/sponsors/adamlui"
+    },
+    {
+      "type": "ko-fi",
+      "url": "https://ko-fi.com/adamlui"
+    }
+  ],
   "devDependencies": {
     "eslint": "^9.12.0",
     "eslint-plugin-json": "^4.0.1",
