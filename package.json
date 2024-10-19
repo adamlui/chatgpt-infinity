@@ -1,5 +1,11 @@
 {
+  "author": {
+    "name": "Adam Lui",
+    "email": "adam@kudoai.com",
+    "url": "https://github.com/adamlui"
+  },
   "homepage": "https://www.chatgptinfinity.com",
+  "license": "MIT",
   "funding": [
     {
       "type": "github",
