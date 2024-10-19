@@ -41,6 +41,7 @@ jobs:
           client-id: ${{ secrets.CWS_CLIENT_ID }}
           client-secret: ${{ secrets.CWS_CLIENT_SECRET }}
           refresh-token: ${{ secrets.CWS_REFRESH_TOKEN }}
+        continue-on-error: true
 
       - name: Publish to EWS
         if: env.VERSION_CHANGED == 'true'
@@ -53,3 +54,4 @@ jobs:
           zip: extension.zip
           notes: 'Version ${{ env.CURRENT_VER }} upload'
           debug: true
+        continue-on-error: true

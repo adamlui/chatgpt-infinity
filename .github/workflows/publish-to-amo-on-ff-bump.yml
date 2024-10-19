@@ -39,3 +39,4 @@ jobs:
           extensionId: 'chatgpt.infinity@chatgptevo.com'
           jwtIssuer: ${{ secrets.AMO_ISSUER }}
           jwtSecret: ${{ secrets.AMO_SECRET }}
+        continue-on-error: true
