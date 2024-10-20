@@ -34,7 +34,7 @@
     <img width=auto height=60 src="https://media.chatgptinfinity.com/images/badges/microsoft-store/get-it-from-microsoft-blue-square-border-light-457x157.png"></a>
 <a href="https://ff.chatgptinfinity.com/?source=github&medium=readme&content=platform-badge">
     <img width=auto height=60 src="https://media.chatgptinfinity.com/images/badges/firefox/available-for-firefox/raspberry-border-334x128.png"></a>
-<a href="https://greasyfork.chatgptinfinity.com">
+<a href="https://gf.chatgptinfinity.com">
     <img width=auto height=60 src="https://media.chatgptinfinity.com/images/badges/greasy-fork/available-on-greasy-fork-gold-square-border-light-816x262.png"></a>
 
 </div>
@@ -87,7 +87,7 @@
     - [OrangeMonkey](https://chromewebstore.google.com/detail/orangemonkey/ekmeppjgajofkpiofbebgcbohbmfldaf) 或 [OrangeMonkey Pro](https://chromewebstore.google.com/detail/orangemonkey-pro/ggdmdoodcfamjggeigifpjfnnjfbland) 为了 Chrome
     - 或 Tampermonkey 为了 [Chrome](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo), [Firefox](https://addons.mozilla.org/firefox/addon/tampermonkey/), [Edge](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd) 或 [Opera](https://addons.opera.com/extensions/details/tampermonkey-beta/)
 
-2. 安装 [ChatGPT 无穷](https://greasyfork.chatgptinfinity.com) 用户脚本（将在上面安装的管理器中加载）
+2. 安装 [ChatGPT 无穷](https://gf.chatgptinfinity.com) 用户脚本（将在上面安装的管理器中加载）
 
 3. 访问 [chatgpt.com](https://chatgpt.com) & 侧边栏添加无限切换!
 
@@ -125,21 +125,21 @@ ChatGPT 无穷 与以下浏览器兼容:
 
 ### 🖥️ 台式
 
-- **[Google Chrome](https://www.chrome.com)** (通过 [Chrome 扩大](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link) or [Greasemonkey 用户脚本](https://greasyfork.chatgptinfinity.com))
-- **[Mozilla Firefox](https://www.firefox.com)** (通过 [Firefox 扩展程序](https://ff.chatgptinfinity.com/?source=github&medium=readme&content=platform-link) 或 [Greasemonkey userscript](https://greasyfork.chatgptinfinity.com))
-- **[Microsoft Edge](https://www.microsoft.com/edge)** (通过 [Edge 扩大](https://edge.chatgptinfinity.com) or [Greasemonkey 用户脚本](https://greasyfork.chatgptinfinity.com))
-- **[Opera](https://www.opera.com)** (通过 [Chrome 扩大](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link) or [Greasemonkey 用户脚本](https://greasyfork.chatgptinfinity.com))
-- **[Brave](https://brave.com)** (通过 [Chrome 扩大](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link) or [Greasemonkey 用户脚本](https://greasyfork.chatgptinfinity.com))
-- **[Vivaldi](https://vivaldi.com)** (通过 [Chrome 扩大](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link) or [Greasemonkey 用户脚本](https://greasyfork.chatgptinfinity.com))
-- **[LibreWolf](https://librewolf.net)** (通过 [Firefox 扩展程序](https://ff.chatgptinfinity.com/?source=github&medium=readme&content=platform-link) 或 [Greasemonkey 用户脚本](https://greasyfork.chatgptinfinity.com))
-- **[Ghost](https://ghostbrowser.com)** (通过 [Chrome 扩大](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link) or [Greasemonkey 用户脚本](https://greasyfork.chatgptinfinity.com))
-- **[QQ](https://browser.qq.com)** (通过 [Chrome 扩大](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link) or [Greasemonkey 用户脚本](https://greasyfork.chatgptinfinity.com))
-- **[Whale](https://whale.naver.com)** (通过 [Chrome 扩大](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link) or [Greasemonkey 用户脚本](https://greasyfork.chatgptinfinity.com))
+- **[Google Chrome](https://www.chrome.com)** (通过 [Chrome 扩大](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link) or [Greasemonkey 用户脚本](https://gf.chatgptinfinity.com))
+- **[Mozilla Firefox](https://www.firefox.com)** (通过 [Firefox 扩展程序](https://ff.chatgptinfinity.com/?source=github&medium=readme&content=platform-link) 或 [Greasemonkey userscript](https://gf.chatgptinfinity.com))
+- **[Microsoft Edge](https://www.microsoft.com/edge)** (通过 [Edge 扩大](https://edge.chatgptinfinity.com) or [Greasemonkey 用户脚本](https://gf.chatgptinfinity.com))
+- **[Opera](https://www.opera.com)** (通过 [Chrome 扩大](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link) or [Greasemonkey 用户脚本](https://gf.chatgptinfinity.com))
+- **[Brave](https://brave.com)** (通过 [Chrome 扩大](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link) or [Greasemonkey 用户脚本](https://gf.chatgptinfinity.com))
+- **[Vivaldi](https://vivaldi.com)** (通过 [Chrome 扩大](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link) or [Greasemonkey 用户脚本](https://gf.chatgptinfinity.com))
+- **[LibreWolf](https://librewolf.net)** (通过 [Firefox 扩展程序](https://ff.chatgptinfinity.com/?source=github&medium=readme&content=platform-link) 或 [Greasemonkey 用户脚本](https://gf.chatgptinfinity.com))
+- **[Ghost](https://ghostbrowser.com)** (通过 [Chrome 扩大](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link) or [Greasemonkey 用户脚本](https://gf.chatgptinfinity.com))
+- **[QQ](https://browser.qq.com)** (通过 [Chrome 扩大](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link) or [Greasemonkey 用户脚本](https://gf.chatgptinfinity.com))
+- **[Whale](https://whale.naver.com)** (通过 [Chrome 扩大](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link) or [Greasemonkey 用户脚本](https://gf.chatgptinfinity.com))
 
 <br><picture><source type="image/png" media="(prefers-color-scheme: dark)" srcset="https://media.chatgptinfinity.com/images/logos/platforms/android/head-plus-word/white/logo150x24.png"><img alt="Android" width=111 src="https://media.chatgptinfinity.com/images/logos/platforms/android/head-plus-word/green-head-black-word/logo150x24.png"></picture><br>
 
-- **[Kiwi](https://kiwibrowser.com)** (通过 [Chrome 扩大](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link) or [Greasemonkey 用户脚本](https://greasyfork.chatgptinfinity.com))
-- **[Mozilla Firefox](https://www.mozilla.org/firefox/browsers/mobile/android/)** (通过 [Greasemonkey userscript](https://greasyfork.chatgptinfinity.com))
+- **[Kiwi](https://kiwibrowser.com)** (通过 [Chrome 扩大](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link) or [Greasemonkey 用户脚本](https://gf.chatgptinfinity.com))
+- **[Mozilla Firefox](https://www.mozilla.org/firefox/browsers/mobile/android/)** (通过 [Greasemonkey userscript](https://gf.chatgptinfinity.com))
 
 <br>
 
@@ -151,7 +151,7 @@ ChatGPT 无穷 与以下浏览器兼容:
     <img height=75 src="https://media.chatgptinfinity.com/images/buttons/add-to-edge-button.png"></a>
 <a href="https://ff.chatgptinfinity.com/?source=github&medium=readme&content=install-button">
     <img height=75 src="https://media.chatgptinfinity.com/images/buttons/add-to-firefox-button.png"></a>
-<a href="https://greasyfork.chatgptinfinity.com">
+<a href="https://gf.chatgptinfinity.com">
     <img height=75 src="https://media.chatgptinfinity.com/images/buttons/add-userscript-button.png"></a>
 
 <br>
