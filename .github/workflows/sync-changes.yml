@@ -62,7 +62,7 @@ jobs:
 
             fi
           done
-          if [[ "$locales_updated" == true ]] ; then echo "locales_updated=true" >> $GITHUB_ENV ; fi
+          if [[ "$locales_updated" == true ]] ; then echo "LOCALES_UPDATED=true" >> $GITHUB_ENV ; fi
 
       - name: Sync ** to adamlui/ai-apps/chatgpt-infinity/
         run: |
@@ -93,7 +93,7 @@ jobs:
           git config --global user.signingkey "${{ secrets.GPG_PRIVATE_ID }}"
 
       - name: Push changes to adamlui/chatgpt-infinity
-        if: env.locales_updated == 'true'
+        if: env.LOCALES_UPDATED == 'true'
         run: |
           cd ${{ github.workspace }}/adamlui/chatgpt-infinity
           git add .

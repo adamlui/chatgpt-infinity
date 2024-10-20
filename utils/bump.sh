@@ -1,75 +1,75 @@
 #!/bin/bash
 
 # Init UI colors
-nc="\033[0m"    # no color
-br="\033[1;91m" # bright red
-by="\033[1;33m" # bright yellow
-bg="\033[1;92m" # bright green
-bw="\033[1;97m" # bright white
+NC="\033[0m"    # no color
+BR="\033[1;91m" # bright red
+BY="\033[1;33m" # bright yellow
+BG="\033[1;92m" # bright green
+BW="\033[1;97m" # bright white
 
 # Init manifest paths
-CHROME_MANIFEST="chrome/extension/manifest.json"
-FF_MANIFEST="firefox/extension/manifest.json"
+chrome_manifest="chrome/extension/manifest.json"
+ff_manifest="firefox/extension/manifest.json"
 
 # Normalize args
-ARG=${1#-} ; ARG=${ARG#-} # strip leading dash(es)
+arg=${1#-} ; arg=${arg#-} # strip leading dash(es)
 
 # Determine manifests to edit
-case "$ARG" in
-    chrome|chromium) MANIFESTS_TO_EDIT=("$CHROME_MANIFEST") ;;
-    firefox|ff) MANIFESTS_TO_EDIT=("$FF_MANIFEST") ;;
-    "") MANIFESTS_TO_EDIT=("$CHROME_MANIFEST" "$FF_MANIFEST") ;;
-    *) echo -e "${br}Invalid argument. Use 'chrome', 'chromium', 'firefox', 'ff', or leave empty.${nc}" ; exit 1 ;;
+case "$arg" in
+    chrome|chromium) MANIFESTS_TO_EDIT=("$chrome_manifest") ;;
+    firefox|ff) MANIFESTS_TO_EDIT=("$ff_manifest") ;;
+    "") MANIFESTS_TO_EDIT=("$chrome_manifest" "$ff_manifest") ;;
+    *) echo -e "${BR}Invalid argument. Use 'chrome', 'chromium', 'firefox', 'ff', or leave empty.${NC}" ; exit 1 ;;
 esac
-MULTI_BUMP=$( # flag for echos/git commit msg
+multi_bump=$( # flag for echos/git commit msg
     [[ ${#MANIFESTS_TO_EDIT[@]} -gt 1 ]] && echo true || echo false)
 
 # Bump versions
-if $MULTI_BUMP
-    then VERSION_LABEL="versions in manifests"
-    else VERSION_LABEL="version in ${MANIFESTS_TO_EDIT[0]}"
+if $multi_bump
+    then version_label="versions in manifests"
+    else version_label="version in ${MANIFESTS_TO_EDIT[0]}"
 fi
-echo -e "${by}\nBumping ${VERSION_LABEL}...${nc}\n"
-TODAY=$(date +'%Y.%-m.%-d') # YYYY.M.D format
-NEW_VERSIONS=() # for dynamic commit msg
-for MANIFEST in "${MANIFESTS_TO_EDIT[@]}" ; do
+echo -e "${BY}\nBumping ${version_label}...${NC}\n"
+today=$(date +'%Y.%-m.%-d') # YYYY.M.D format
+new_versions=() # for dynamic commit msg
+for manifest in "${MANIFESTS_TO_EDIT[@]}" ; do
 
     # Determine old/new versions
-    OLD_VER=$(sed -n 's/.*"version": *"\([0-9.]*\)".*/\1/p' "$MANIFEST")
-    if [[ $OLD_VER == "$TODAY" ]]  # exact match for $TODAY
-        then # bump to $TODAY.1
-            NEW_VER="$TODAY.1"
-    elif [[ $OLD_VER == "$TODAY."* ]] # partial match for $TODAY
-        then # bump to $TODAY.n+1
-            LAST_NUMBER=$(echo "$OLD_VER" | awk -F '.' '{print $NF}')
-            NEW_VER="$TODAY.$((LAST_NUMBER + 1))"
-    else # no match for $TODAY
-        # bump to $TODAY
-            NEW_VER="$TODAY"
+    old_ver=$(sed -n 's/.*"version": *"\([0-9.]*\)".*/\1/p' "$manifest")
+    if [[ $old_ver == "$today" ]]  # exact match for $today
+        then # bump to $today.1
+            new_ver="$today.1"
+    elif [[ $old_ver == "$today."* ]] # partial match for $today
+        then # bump to $today.n+1
+            LAST_NUMBER=$(echo "$old_ver" | awk -F '.' '{print $NF}')
+            new_ver="$today.$((LAST_NUMBER + 1))"
+    else # no match for $today
+        # bump to $today
+            new_ver="$today"
     fi
-    NEW_VERSIONS+=("$NEW_VER")
+    new_versions+=("$new_ver")
 
     # Bump old version
-    sed -i "s/\"version\": \"$OLD_VER\"/\"version\": \"$NEW_VER\"/" "$MANIFEST"
+    sed -i "s/\"version\": \"$old_ver\"/\"version\": \"$new_ver\"/" "$manifest"
     if [[ ${#MANIFESTS_TO_EDIT[@]} -gt 1 ]]; then
-        echo -e "${MANIFEST}: ${bw}v${OLD_VER}${nc} → ${bg}v${NEW_VER}${nc}"
+        echo -e "${manifest}: ${BW}v${old_ver}${NC} → ${BG}v${new_ver}${NC}"
     else
-        echo -e "${bw}v${OLD_VER}${nc} → ${bg}v${NEW_VER}${nc}"
+        echo -e "${BW}v${old_ver}${NC} → ${BG}v${new_ver}${NC}"
     fi
 done
 
 # Define commit msg
 COMMIT_MSG="Bumped \`version\`"
-UNIQUE_VERSIONS=($(printf "%s\n" "${NEW_VERSIONS[@]}" | sort -u))
-if [[ ${#UNIQUE_VERSIONS[@]} -eq 1 ]] ; then
-    COMMIT_MSG+=" to \`${UNIQUE_VERSIONS[0]}\`" ; fi
+unique_versions=($(printf "%s\n" "${new_versions[@]}" | sort -u))
+if [[ ${#unique_versions[@]} -eq 1 ]] ; then
+    COMMIT_MSG+=" to \`${unique_versions[0]}\`" ; fi
 
 # Commit/push bump(s)
-echo -e "${by}\nCommitting $( [[ $MULTI_BUMP == true ]] && echo bumps || echo bump) to Git...\n${nc}"
+echo -e "${BY}\nCommitting $( [[ $multi_bump == true ]] && echo bumps || echo bump) to Git...\n${NC}"
 git add ./**/manifest.json
 git commit -n -m "$COMMIT_MSG"
 git push
 
 # Print final summary
-MANIFEST_LABEL=$( [[ $MULTI_BUMP == true ]] && echo "Manifests" || echo "${MANIFESTS_TO_EDIT[0]}")
-echo -e "\n${bg}Success! ${MANIFEST_LABEL} updated/committed/pushed to GitHub${nc}"
+manifest_label=$( [[ $multi_bump == true ]] && echo "Manifests" || echo "${MANIFESTS_TO_EDIT[0]}")
+echo -e "\n${BG}Success! ${manifest_label} updated/committed/pushed to GitHub${NC}"

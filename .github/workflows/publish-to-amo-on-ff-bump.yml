@@ -18,10 +18,10 @@ jobs:
 
       - name: Check FF manifest for version bump
         run: |
-          CURRENT_VER=$(cat firefox/extension/manifest.json | grep '"version"' | sed -E 's/.*"version": "(.*)".*/\1/')
-          PREV_VER=$(git show HEAD^:firefox/extension/manifest.json | grep '"version"' | sed -E 's/.*"version": "(.*)".*/\1/')
-          if [ "$CURRENT_VER" != "$PREV_VER" ] ; then
-               echo "Extension updated from $PREV_VER to $CURRENT_VER"
+          current_ver=$(cat firefox/extension/manifest.json | grep '"version"' | sed -E 's/.*"version": "(.*)".*/\1/')
+          prev_ver=$(git show HEAD^:firefox/extension/manifest.json | grep '"version"' | sed -E 's/.*"version": "(.*)".*/\1/')
+          if [ "$current_ver" != "$prev_ver" ] ; then
+               echo "Extension updated from $prev_ver to $current_ver"
                echo "VERSION_CHANGED=true" >> $GITHUB_ENV
           else echo "VERSION_CHANGED=false" >> $GITHUB_ENV ; fi
 
