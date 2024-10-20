@@ -30,22 +30,22 @@ if $multi_bump
     else version_label="version in ${MANIFESTS_TO_EDIT[0]}"
 fi
 echo -e "${BY}\nBumping ${version_label}...${NC}\n"
-today=$(date +'%Y.%-m.%-d') # YYYY.M.D format
+TODAY=$(date +'%Y.%-m.%-d') # YYYY.M.D format
 new_versions=() # for dynamic commit msg
 for manifest in "${MANIFESTS_TO_EDIT[@]}" ; do
 
     # Determine old/new versions
     old_ver=$(sed -n 's/.*"version": *"\([0-9.]*\)".*/\1/p' "$manifest")
-    if [[ $old_ver == "$today" ]]  # exact match for $today
-        then # bump to $today.1
-            new_ver="$today.1"
-    elif [[ $old_ver == "$today."* ]] # partial match for $today
-        then # bump to $today.n+1
+    if [[ $old_ver == "$TODAY" ]]  # exact match for $TODAY
+        then # bump to $TODAY.1
+            new_ver="$TODAY.1"
+    elif [[ $old_ver == "$TODAY."* ]] # partial match for $TODAY
+        then # bump to $TODAY.n+1
             LAST_NUMBER=$(echo "$old_ver" | awk -F '.' '{print $NF}')
-            new_ver="$today.$((LAST_NUMBER + 1))"
-    else # no match for $today
-        # bump to $today
-            new_ver="$today"
+            new_ver="$TODAY.$((LAST_NUMBER + 1))"
+    else # no match for $TODAY
+        # bump to $TODAY
+            new_ver="$TODAY"
     fi
     new_versions+=("$new_ver")
 
