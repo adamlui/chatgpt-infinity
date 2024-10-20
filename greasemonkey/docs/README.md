@@ -1,10 +1,10 @@
 <a id="top"></a>
 
-<a href="https://gf.chatgptinfinity.com"><img src="https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity/chrome/media/images/tiles/marquee-promo-tile-1400x560.png"></a>
+<a href="https://gm.chatgptinfinity.com"><img src="https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity/chrome/media/images/tiles/marquee-promo-tile-1400x560.png"></a>
 
 <div align="center">
 
-<a href="https://gf.chatgptinfinity.com"><img alt="[Greasy Fork]" height=31 src="https://img.shields.io/greasyfork/dt/465051?label=Users&logo=weightsandbiases&logoColor=white&labelColor=464646&color=af68ff&style=for-the-badge"></img></a>
+<a href="https://gm.chatgptinfinity.com"><img alt="[Greasy Fork]" height=31 src="https://img.shields.io/greasyfork/dt/465051?label=Users&logo=weightsandbiases&logoColor=white&labelColor=464646&color=af68ff&style=for-the-badge"></img></a>
 <a href="../LICENSE.md"><img alt="[License: MIT]" height=31 src="https://img.shields.io/badge/License-MIT-orange.svg?logo=internetarchive&logoColor=white&labelColor=464646&style=for-the-badge"></img></a>
 <a href="https://www.codefactor.io/repository/github/adamlui/chatgpt-infinity"><img alt="[CodeFactor grade]" height=31 src="https://img.shields.io/codefactor/grade/github/adamlui/chatgpt-infinity?label=Code+Quality&logo=codefactor&logoColor=white&labelColor=464646&color=b5fc7b&style=for-the-badge"></img></a>
 <a href="https://github.com/KudoAI/chatgpt.js?utm_source=chatgpt_infinity&utm_content=github_shield"><img alt="[Powered by chatgpt.js]" height=31 src="https://img.shields.io/badge/Powered_by-chatgpt.js-black?logo=gamejolt&logoColor=white&labelColor=464646&style=for-the-badge"></img></a>
@@ -14,7 +14,7 @@
 
 <br>
 
-<a href="https://gf.chatgptinfinity.com"><img height=45 alt="Install this script" src="https://media.chatgptinfinity.com/images/buttons/greasy-fork/install-button.svg"></a><a href="#installation"><img height=45 alt="How to install" title="How to install" src="https://media.chatgptinfinity.com/images/buttons/greasy-fork/help-button.svg"></a>
+<a href="https://gm.chatgptinfinity.com"><img height=45 alt="Install this script" src="https://media.chatgptinfinity.com/images/buttons/greasy-fork/install-button.svg"></a><a href="#installation"><img height=45 alt="How to install" title="How to install" src="https://media.chatgptinfinity.com/images/buttons/greasy-fork/help-button.svg"></a>
 <br>
 [Discuss](https://github.com/adamlui/chatgpt-infinity/discussions) / 
 [Review](https://greasyfork.org/scripts/465051-chatgpt-infinity/feedback#post-discussion) / 
@@ -53,7 +53,7 @@
     - [OrangeMonkey](https://chromewebstore.google.com/detail/orangemonkey/ekmeppjgajofkpiofbebgcbohbmfldaf) or [OrangeMonkey Pro](https://chromewebstore.google.com/detail/orangemonkey-pro/ggdmdoodcfamjggeigifpjfnnjfbland) for Chrome
     - or Tampermonkey for [Chrome](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo), [Firefox](https://addons.mozilla.org/firefox/addon/tampermonkey/), [Edge](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd) or [Opera](https://addons.opera.com/extensions/details/tampermonkey-beta/)
 
-2. Install [ChatGPT Infinity](https://gf.chatgptinfinity.com) userscript (will load in manager installed above)
+2. Install [ChatGPT Infinity](https://gm.chatgptinfinity.com) userscript (will load in manager installed above)
 
 3. Visit [chatgpt.com](https://chatgpt.com) as normal, and a toggle appears in the sidebar and toolbar menu
 
@@ -108,7 +108,7 @@ ChatGPT Infinity is compatible w/ the following browsers using [ScriptCat](https
 
 <br>
 
-<a href="https://gf.chatgptinfinity.com"><img height=45 alt="Install this script" src="https://media.chatgptinfinity.com/images/buttons/greasy-fork/install-button.svg"></a><a href="#installation"><img height=45 alt="How to install" title="How to install" src="https://media.chatgptinfinity.com/images/buttons/greasy-fork/help-button.svg"></a>
+<a href="https://gm.chatgptinfinity.com"><img height=45 alt="Install this script" src="https://media.chatgptinfinity.com/images/buttons/greasy-fork/install-button.svg"></a><a href="#installation"><img height=45 alt="How to install" title="How to install" src="https://media.chatgptinfinity.com/images/buttons/greasy-fork/help-button.svg"></a>
 <br>
 [Discuss](https://github.com/adamlui/chatgpt-infinity/discussions) / 
 [More ChatGPT userscripts](https://github.com/adamlui/userscripts/tree/master/chatgpt)

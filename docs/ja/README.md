@@ -36,7 +36,7 @@
     <img width=auto height=60 src="https://media.chatgptinfinity.com/images/badges/chrome-web-store/available-in-the-chrome-web-store-green-square-border-light-498x152.png"></a>
 <a href="https://edge.chatgptinfinity.com">
     <img width=auto height=60 src="https://media.chatgptinfinity.com/images/badges/microsoft-store/get-it-from-microsoft-blue-square-border-light-457x157.png"></a>
-<a href="https://gf.chatgptinfinity.com">
+<a href="https://gm.chatgptinfinity.com">
     <img width=auto height=60 src="https://media.chatgptinfinity.com/images/badges/greasy-fork/available-on-greasy-fork-gold-square-border-light-816x262.png"></a>
 
 </div>
@@ -82,7 +82,7 @@
 
 1. Tampermonkey ([Chrome](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo), [Firefox](https://addons.mozilla.org/firefox/addon/tampermonkey/), [Edge](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd), [Opera](https://addons.opera.com/extensions/details/tampermonkey-beta/)) または Violentmonkey ([Chrome](https://chromewebstore.google.com/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag), [Firefox](https://addons.mozilla.org/firefox/addon/violentmonkey/), [Edge](https://microsoftedge.microsoft.com/addons/detail/eeagobfjdenkkddmbclomhiblgggliao)) をインストールします
 
-2. [ChatGPT Infinity](https://gf.chatgptinfinity.com) ユーザースクリプトをインストールします（上記でインストールしたユーザースクリプトマネージャーで読み込まれます）
+2. [ChatGPT Infinity](https://gm.chatgptinfinity.com) ユーザースクリプトをインストールします（上記でインストールしたユーザースクリプトマネージャーで読み込まれます）
 
 3. [chatgpt.com](https://chatgpt.com) を訪れると、サイドバーに無限トグルが追加されます！
 
@@ -121,21 +121,21 @@ ChatGPT Infinity は、強力な [chatgpt.js](https://github.com/KudoAI/chatgpt.
 
 ### 🖥️ デスクトップ
 
-- **[Google Chrome](https://www.chrome.com)**（[Chrome 拡張機能](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link)または[Greasemonkey ユーザースクリプト](https://gf.chatgptinfinity.com)を介して）
-- **[Mozilla Firefox](https://www.firefox.com)**（[Firefox 拡張機能](https://ff.chatgptinfinity.com/?source=github&medium=readme&content=platform-link)または[Greasemonkey ユーザースクリプト](https://gf.chatgptinfinity.com)を介して）
-- **[Microsoft Edge](https://www.microsoft.com/edge)**（[Edge アドオン](https://edge.chatgptinfinity.com)または[Greasemonkey ユーザースクリプト](https://gf.chatgptinfinity.com)を介して）
-- **[Opera](https://www.opera.com)**（[Chrome 拡張機能](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link)または[Greasemonkey ユーザースクリプト](https://gf.chatgptinfinity.com)を介して）
-- **[Brave](https://brave.com)**（[Chrome 拡張機能](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link)または[Greasemonkey ユーザースクリプト](https://gf.chatgptinfinity.com)を介して）
-- **[Vivaldi](https://vivaldi.com)**（[Chrome 拡張機能](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link)または[Greasemonkey ユーザースクリプト](https://gf.chatgptinfinity.com)を介して）
-- **[LibreWolf](https://librewolf.net)**（[Firefox 拡張機能](https://ff.chatgptinfinity.com/?source=github&medium=readme&content=platform-link)または[Greasemonkey ユーザースクリプト](https://gf.chatgptinfinity.com)を介して）
-- **[Ghost](https://ghostbrowser.com)**（[Chrome 拡張機能](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link)または[Greasemonkey ユーザースクリプト](https://gf.chatgptinfinity.com)を介して）
-- **[QQ](https://browser.qq.com)**（[Chrome 拡張機能](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link)または[Greasemonkey ユーザースクリプト](https://gf.chatgptinfinity.com)を介して）
-- **[Whale](https://whale.naver.com)**（[Chrome 拡張機能](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link)または[Greasemonkey ユーザースクリプト](https://gf.chatgptinfinity.com)を介して）
+- **[Google Chrome](https://www.chrome.com)**（[Chrome 拡張機能](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link)または[Greasemonkey ユーザースクリプト](https://gm.chatgptinfinity.com)を介して）
+- **[Mozilla Firefox](https://www.firefox.com)**（[Firefox 拡張機能](https://ff.chatgptinfinity.com/?source=github&medium=readme&content=platform-link)または[Greasemonkey ユーザースクリプト](https://gm.chatgptinfinity.com)を介して）
+- **[Microsoft Edge](https://www.microsoft.com/edge)**（[Edge アドオン](https://edge.chatgptinfinity.com)または[Greasemonkey ユーザースクリプト](https://gm.chatgptinfinity.com)を介して）
+- **[Opera](https://www.opera.com)**（[Chrome 拡張機能](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link)または[Greasemonkey ユーザースクリプト](https://gm.chatgptinfinity.com)を介して）
+- **[Brave](https://brave.com)**（[Chrome 拡張機能](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link)または[Greasemonkey ユーザースクリプト](https://gm.chatgptinfinity.com)を介して）
+- **[Vivaldi](https://vivaldi.com)**（[Chrome 拡張機能](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link)または[Greasemonkey ユーザースクリプト](https://gm.chatgptinfinity.com)を介して）
+- **[LibreWolf](https://librewolf.net)**（[Firefox 拡張機能](https://ff.chatgptinfinity.com/?source=github&medium=readme&content=platform-link)または[Greasemonkey ユーザースクリプト](https://gm.chatgptinfinity.com)を介して）
+- **[Ghost](https://ghostbrowser.com)**（[Chrome 拡張機能](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link)または[Greasemonkey ユーザースクリプト](https://gm.chatgptinfinity.com)を介して）
+- **[QQ](https://browser.qq.com)**（[Chrome 拡張機能](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link)または[Greasemonkey ユーザースクリプト](https://gm.chatgptinfinity.com)を介して）
+- **[Whale](https://whale.naver.com)**（[Chrome 拡張機能](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link)または[Greasemonkey ユーザースクリプト](https://gm.chatgptinfinity.com)を介して）
 
 <br><picture><source type="image/png" media="(prefers-color-scheme: dark)" srcset="https://media.chatgptinfinity.com/images/logos/platforms/android/head-plus-word/white/logo150x24.png"><img alt="Android" width=111 src="https://media.chatgptinfinity.com/images/logos/platforms/android/head-plus-word/green-head-black-word/logo150x24.png"></picture><br>
 
-- **[Kiwi](https://kiwibrowser.com)**（[Chrome 拡張機能](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link)または[Greasemonkey ユーザースクリプト](https://gf.chatgptinfinity.com)を介して）
-- **[Mozilla Firefox](https://www.mozilla.org/firefox/browsers/mobile/android/)**（[Greasemonkey ユーザースクリプト](https://gf.chatgptinfinity.com)を介して）
+- **[Kiwi](https://kiwibrowser.com)**（[Chrome 拡張機能](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link)または[Greasemonkey ユーザースクリプト](https://gm.chatgptinfinity.com)を介して）
+- **[Mozilla Firefox](https://www.mozilla.org/firefox/browsers/mobile/android/)**（[Greasemonkey ユーザースクリプト](https://gm.chatgptinfinity.com)を介して）
 
 <br>
 
@@ -147,7 +147,7 @@ ChatGPT Infinity は、強力な [chatgpt.js](https://github.com/KudoAI/chatgpt.
     <img height=75 src="https://media.chatgptinfinity.com/images/buttons/add-to-chrome-button.png"></a>
 <a href="https://edge.chatgptinfinity.com">
     <img height=75 src="https://media.chatgptinfinity.com/images/buttons/add-to-edge-button.png"></a>
-<a href="https://gf.chatgptinfinity.com">
+<a href="https://gm.chatgptinfinity.com">
     <img height=75 src="https://media.chatgptinfinity.com/images/buttons/add-userscript-button.png"></a>
 
 <br>
