@@ -1,7 +1,7 @@
 (async () => {
 
     // Init APP data
-    const app = { latestAssetCommitHash: '190b1ee' },
+    const app = { latestAssetCommitHash: 'ebf1306' },
           assetHostURL = `https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@${app.latestAssetCommitHash}`
     Object.assign(app, await (await fetch(`${assetHostURL}/app.json`)).json())
     Object.assign(app, { settings: {
