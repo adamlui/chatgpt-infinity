@@ -36,7 +36,7 @@ jobs:
         if: env.VERSION_CHANGED == 'true'
         uses: mobilefirstllc/cws-publish@latest
         with:
-          action: 'publish'
+          action: publish
           client_id: ${{ secrets.CWS_CLIENT_ID }}
           client_secret: ${{ secrets.CWS_CLIENT_SECRET }}
           refresh_token: ${{ secrets.CWS_REFRESH_TOKEN }}
