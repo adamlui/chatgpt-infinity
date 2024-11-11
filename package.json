@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@eslint/json": "^0.6.0",
+    "@eslint/markdown": "^6.2.1",
     "eslint": "^9.14.0",
     "husky": "^9.1.6"
   }
