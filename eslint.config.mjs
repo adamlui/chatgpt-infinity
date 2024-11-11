@@ -1,6 +1,6 @@
-import js from '@eslint/js';
-import globals from 'globals';
-import json from 'eslint-plugin-json';
+import js from '@eslint/js'
+import globals from 'globals'
+import json from 'eslint-plugin-json'
 
 export default [
     js.configs.recommended,
@@ -26,4 +26,4 @@ export default [
     },
     { files: ['**/*.mjs', '**/components/*.js', '**/lib/*.js'], languageOptions: { sourceType: 'module' }},
     { files: ['**/*.json'], ...json.configs['recommended'] }
-];
+]
