@@ -34,13 +34,14 @@ jobs:
 
       - name: Publish to CWS
         if: env.VERSION_CHANGED == 'true'
-        uses: trmcnvn/chrome-addon@v2
+        uses: mobilefirstllc/cws-publish@latest
         with:
-          extension: amikeononomkhphopbflomhnmdijjpmb
-          zip: extension.zip
-          client-id: ${{ secrets.CWS_CLIENT_ID }}
-          client-secret: ${{ secrets.CWS_CLIENT_SECRET }}
-          refresh-token: ${{ secrets.CWS_REFRESH_TOKEN }}
+          action: 'publish'
+          client_id: ${{ secrets.CWS_CLIENT_ID }}
+          client_secret: ${{ secrets.CWS_CLIENT_SECRET }}
+          refresh_token: ${{ secrets.CWS_REFRESH_TOKEN }}
+          extension_id: amikeononomkhphopbflomhnmdijjpmb
+          zip_file: extension.zip
         continue-on-error: true
 
       - name: Publish to EWS
