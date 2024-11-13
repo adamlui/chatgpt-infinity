@@ -22,7 +22,6 @@ jobs:
           prev_ver=$(git show HEAD^:chrome/extension/manifest.json | grep '"version"' | sed -E 's/.*"version": "(.*)".*/\1/')
           if [ "$current_ver" != "$prev_ver" ] ; then
                echo "Extension updated from $prev_ver to $current_ver"
-               echo "CURRENT_VER=${current_ver}" >> $GITHUB_ENV # for notes field in EWS step
                echo "VERSION_CHANGED=true" >> $GITHUB_ENV
           else echo "VERSION_CHANGED=false" >> $GITHUB_ENV ; fi
 
@@ -46,13 +45,10 @@ jobs:
 
       - name: Publish to EWS
         if: env.VERSION_CHANGED == 'true'
-        uses: inverse/edge-addon@v1.0.9
+        uses: wdzeng/edge-addon@v2
         with:
-          product_id: ${{ secrets.EWS_PRODUCT_ID }}
-          client_id: ${{ secrets.EWS_CLIENT_ID }}
-          client_secret: ${{ secrets.EWS_CLIENT_SECRET }}
-          access_token_url: ${{ secrets.EWS_ACCESS_TOKEN_URL }}
-          zip: extension.zip
-          notes: 'Version ${{ env.CURRENT_VER }} upload'
-          debug: true
+          product-id: ${{ secrets.EWS_PRODUCT_ID }}
+          client-id: ${{ secrets.EWS_CLIENT_ID }}
+          api-key: ${{ secrets.EWS_CLIENT_SECRET }}
+          zip-path: extension.zip
         continue-on-error: true
