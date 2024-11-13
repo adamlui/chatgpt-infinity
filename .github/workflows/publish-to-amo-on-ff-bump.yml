@@ -35,8 +35,8 @@ jobs:
         if: env.VERSION_CHANGED == 'true'
         uses: cardinalby/webext-buildtools-firefox-addons-action@v1
         with:
-          zipFilePath: extension.zip
           extensionId: 'chatgpt.infinity@chatgptevo.com'
           jwtIssuer: ${{ secrets.AMO_ISSUER }}
           jwtSecret: ${{ secrets.AMO_SECRET }}
+          zipFilePath: extension.zip
         continue-on-error: true
