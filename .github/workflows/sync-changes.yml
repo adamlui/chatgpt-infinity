@@ -97,19 +97,19 @@ jobs:
         run: |
           cd ${{ github.workspace }}/adamlui/chatgpt-infinity
           git add .
-          git commit -n -m "$ESCAPED_MSG ↞ [auto-sync from adamlui/chatgpt-infinity]" || true
+          git commit -n -m "$ESCAPED_MSG ↞ [auto-sync from https://github.com/adamlui/chatgpt-infinity]" || true
           git push
 
       - name: Push changes to adamlui/ai-apps
         run: |
           cd ${{ github.workspace }}/adamlui/ai-apps
           git add .
-          git commit -n -m "$ESCAPED_MSG ↞ [auto-sync from adamlui/chatgpt-infinity]" || true
+          git commit -n -m "$ESCAPED_MSG ↞ [auto-sync from https://github.com/adamlui/chatgpt-infinity]" || true
           git push
 
       - name: Push changes to adamlui/userscripts
         run: |
           cd ${{ github.workspace }}/adamlui/userscripts
           git add .
-          git commit -n -m "$ESCAPED_MSG ↞ [auto-sync from adamlui/chatgpt-infinity]" || true
+          git commit -n -m "$ESCAPED_MSG ↞ [auto-sync from https://github.com/adamlui/chatgpt-infinity]" || true
           git push
