@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.14.1
+// @version             2024.11.17
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -401,7 +401,7 @@
                         while (true) {
                             let replyLanguage = prompt(
                                 `${app.msgs.prompt_updateReplyLang}:`, config.replyLanguage)
-                            if (replyLanguage === null) break // user cancelled so do nothing
+                            if (replyLanguage == null) break // user cancelled so do nothing
                             else if (!/\d/.test(replyLanguage)) {
                                 replyLanguage = ( // auto-case for menu/alert aesthetics
                                     [2, 3].includes(replyLanguage.length) || replyLanguage.includes('-') ? replyLanguage.toUpperCase()
@@ -418,7 +418,7 @@
                     } else if (key == 'replyTopic') {
                         const replyTopic = prompt(( app.msgs.prompt_updateReplyTopic )
                                         + ' (' + ( app.msgs.prompt_orEnter ) + ' \'ALL\'):', config.replyTopic)
-                        if (replyTopic !== null) { // user didn't cancel
+                        if (replyTopic != null) { // user didn't cancel
                             const str_replyTopic = replyTopic.toString()
                             settings.save('replyTopic', !replyTopic || re_all.test(str_replyTopic) ? 'ALL' : str_replyTopic)
                             siteAlert(( app.msgs.alert_replyTopicUpdated ) + '!',
@@ -438,7 +438,7 @@
                         while (true) {
                             const replyInterval = prompt(
                                 `${app.msgs.prompt_updateReplyInt}:`, config.replyInterval)
-                            if (replyInterval === null) break // user cancelled so do nothing
+                            if (replyInterval == null) break // user cancelled so do nothing
                             else if (!isNaN(parseInt(replyInterval, 10)) && parseInt(replyInterval, 10) > 4) { // valid int set
                                 settings.save('replyInterval', parseInt(replyInterval, 10))
                                 siteAlert(( app.msgs.alert_replyIntUpdated ) + '!', // title

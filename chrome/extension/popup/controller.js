@@ -142,7 +142,7 @@
                 if (key == 'replyLanguage') {
                     while (true) {
                         let replyLanguage = prompt(`${chrome.i18n.getMessage('prompt_updateReplyLang')}:`, config.replyLanguage)
-                        if (replyLanguage === null) break // user cancelled so do nothing
+                        if (replyLanguage == null) break // user cancelled so do nothing
                         else if (!/\d/.test(replyLanguage)) {
                             replyLanguage = ( // auto-case for menu/alert aesthetics
                                 [2, 3].includes(replyLanguage.length) || replyLanguage.includes('-') ? replyLanguage.toUpperCase()
@@ -160,7 +160,7 @@
                 } else if (key == 'replyTopic') {
                     const replyTopic = prompt(chrome.i18n.getMessage('prompt_updateReplyTopic')
                         + ' (' + chrome.i18n.getMessage('prompt_orEnter') + ' \'ALL\'):', config.replyTopic)
-                    if (replyTopic !== null) { // user didn't cancel
+                    if (replyTopic != null) { // user didn't cancel
                         const str_replyTopic = replyTopic.toString()
                         settings.save('replyTopic', !replyTopic || re_all.test(str_replyTopic) ? 'ALL' : str_replyTopic)
                         siteAlert(chrome.i18n.getMessage('alert_replyTopicUpdated') + '!',
@@ -175,7 +175,7 @@
                 } else if (key == 'replyInterval') {
                     while (true) {
                         const replyInterval = prompt(`${chrome.i18n.getMessage('prompt_updateReplyInt')}:`, config.replyInterval)
-                        if (replyInterval === null) break // user cancelled so do nothing
+                        if (replyInterval == null) break // user cancelled so do nothing
                         else if (!isNaN(parseInt(replyInterval, 10)) && parseInt(replyInterval, 10) > 4) { // valid int set
                             settings.save('replyInterval', parseInt(replyInterval, 10))
                             siteAlert(chrome.i18n.getMessage('alert_replyIntUpdated') + '!',
