@@ -28,11 +28,11 @@
     "bump:firefox": "bash utils/bump.sh --ff"
   },
   "devDependencies": {
-    "@eslint/json": "^0.6.0",
+    "@eslint/json": "^0.7.0",
     "@eslint/markdown": "^6.2.1",
     "eslint": "^9.15.0",
     "eslint-plugin-regexp": "^2.7.0",
     "eslint-plugin-yml": "^1.15.0",
-    "husky": "^9.1.6"
+    "husky": "^9.1.7"
   }
 }
