@@ -48,7 +48,7 @@
                 })
         },
 
-        storageToUI() { return sendMsgToActiveTab({ action: 'sync.storageToUI' })}
+        storageToUI() { return sendMsgToActiveTab({ action: 'syncStorageToUI' })}
     }
 
     function toTitleCase(str) {

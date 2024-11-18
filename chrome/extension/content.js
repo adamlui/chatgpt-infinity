@@ -21,7 +21,7 @@
         else if (req.action.startsWith('infinity')) {
             infinity.muted = true // prevent top-right notif blocked by popup
             infinity[/\.(\w+)/.exec(req.action)[1]](req.options)
-        } else if (req.action == 'sync.storageToUI') {
+        } else if (req.action == 'syncStorageToUI') {
             if (req.sender == 'service-worker.js') // disable Infinity mode 1st to not transfer between tabs
                 settings.save('infinityMode', false)
             syncStorageToUI()

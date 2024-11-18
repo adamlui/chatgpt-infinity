@@ -29,7 +29,7 @@
     // Sync settings to activated tabs
     chrome.tabs.onActivated.addListener(activeInfo =>
         chrome.tabs.sendMessage(activeInfo.tabId, {
-            action: 'sync.storageToUI',
+            action: 'syncStorageToUI',
             sender: 'background.js' // for content.js to reset config.infinityMode
     }))
 
