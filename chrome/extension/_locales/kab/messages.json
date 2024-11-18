@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Nezmer ad nernu aseɣẓan-agi iǧehden" },
   "alert_tyForSupport": { "message": "Tanemmirt i tallelt-ik" },
   "alert_author": { "message": "ameskar" },
-  "btnLabel_moreApps": { "message": "Ugar n iseqdacen ChatGPT" },
+  "btnLabel_moreAIextensions": { "message": "Ugar n iwenniten n AI" },
   "btnLabel_leaveReview": { "message": "Aneggaru yeǧǧa-d" },
   "btnLabel_rateUs": { "message": "Rmed-aɣ" },
   "btnLabel_getSupport": { "message": "Awi tallalt" },

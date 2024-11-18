@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Wadajir, waxaan sii wadi karnaa softiweerkan xoogga leh ee sii kordhaya" },
   "alert_tyForSupport": { "message": "Waad ku mahadsan tahay taageeradaada" },
   "alert_author": { "message": "Qoraa" },
-  "btnLabel_moreApps": { "message": "Codsiyada ChatGPT dheeraad ah" },
+  "btnLabel_moreAIextensions": { "message": "Kordhinta AI dheeraad ah" },
   "btnLabel_leaveReview": { "message": "Dib u eegista Ka tag" },
   "btnLabel_rateUs": { "message": "Nagu Qiimee" },
   "btnLabel_getSupport": { "message": "Tageero raadso" },

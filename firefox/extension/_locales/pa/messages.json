@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "ਮਿਲ ਕੇ, ਅਸੀਂ ਇਸ ਸ਼ਕਤੀਸ਼ਾਲੀ ਸਾੱਫਟਵੇਅਰ ਨੂੰ ਵਧਦੇ ਰੱਖ ਸਕਦੇ ਹਾਂ" },
   "alert_tyForSupport": { "message": "ਤੁਹਾਡੇ ਸਮਰਥਨ ਲਈ ਧੰਨਵਾਦ" },
   "alert_author": { "message": "_ਲੇਖਕ" },
-  "btnLabel_moreApps": { "message": "ਹੋਰ ChatGPT ਐਪਸ" },
+  "btnLabel_moreAIextensions": { "message": "ਹੋਰ AI ਐਕਸਟੈਂਸ਼ਨਾਂ" },
   "btnLabel_leaveReview": { "message": "ਸਮੀਖਿਆ ਛੱਡੋ" },
   "btnLabel_rateUs": { "message": "ਸਾਡੇ ਨਾਲ ਰੇਟ ਕਰੋ" },
   "btnLabel_getSupport": { "message": "ਸਹਾਇਤਾ ਪ੍ਰਾਪਤ ਕਰੋ" },

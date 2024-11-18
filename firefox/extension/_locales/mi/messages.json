@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Ka taea e tatou te pupuri i tenei pūmanawa kaha tupu" },
   "alert_tyForSupport": { "message": "kia ora mo to whakaaro ki a koe" },
   "alert_author": { "message": "Kaitito" },
-  "btnLabel_moreApps": { "message": "Ētahi atu ChatGPT Apps" },
+  "btnLabel_moreAIextensions": { "message": "Ētahi atu whakawhitinga AI" },
   "btnLabel_leaveReview": { "message": "Waiho i te arotake" },
   "btnLabel_rateUs": { "message": "Te utu ki a tatou" },
   "btnLabel_getSupport": { "message": "Tautoko" },

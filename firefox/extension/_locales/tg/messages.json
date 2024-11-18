@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Якҷоя, мо метавонем ин нармафзори пуриқтидорро нигоҳ дорем" },
   "alert_tyForSupport": { "message": "Salamat sa iyong suporta" },
   "alert_author": { "message": "муаллиф" },
-  "btnLabel_moreApps": { "message": "Бештар ChatGPT Барномаҳо" },
+  "btnLabel_moreAIextensions": { "message": "More AI Вусъатот" },
   "btnLabel_leaveReview": { "message": "Баромадан аз тафсир" },
   "btnLabel_rateUs": { "message": "Баҳои мо" },
   "btnLabel_getSupport": { "message": "Гирифтани Дастгирӣ" },

@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Elkarrekin, software indartsu hau hazten jarrai dezakegu" },
   "alert_tyForSupport": { "message": "Eskerrik asko zure laguntzagatik" },
   "alert_author": { "message": "egilea" },
-  "btnLabel_moreApps": { "message": "ChatGPT aplikazio gehiago" },
+  "btnLabel_moreAIextensions": { "message": "AI luzapen gehiago" },
   "btnLabel_leaveReview": { "message": "Utzi Iritzia" },
   "btnLabel_rateUs": { "message": "Baloratu gaitzazu" },
   "btnLabel_getSupport": { "message": "Laguntza lortu" },

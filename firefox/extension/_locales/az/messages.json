@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Bu güclü proqram təminatını birlikdə inkişaf etdirə bilərik" },
   "alert_tyForSupport": { "message": "Dəstəyiniz üçün təşəkkür edirik" },
   "alert_author": { "message": "Müəllif" },
-  "btnLabel_moreApps": { "message": "Daha çox ChatGPT Proqramları" },
+  "btnLabel_moreAIextensions": { "message": "Daha çox AI Uzantısı" },
   "btnLabel_leaveReview": { "message": "Rəy bildirin" },
   "btnLabel_rateUs": { "message": "Bizi qiymətləndirin" },
   "btnLabel_getSupport": { "message": "Dəstək Əldə Edin" },

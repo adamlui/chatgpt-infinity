@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Бид хамтдаа энэхүү хүчирхэг программыг хөгжүүлэх боломжтой" },
   "alert_tyForSupport": { "message": "Үргэлж дэмжиж байгаад баярлалаа," },
   "alert_author": { "message": "Зохиогч" },
-  "btnLabel_moreApps": { "message": "Илүү их чатGPT аппууд" },
+  "btnLabel_moreAIextensions": { "message": "Илүү AI Өргөтгөлүүд" },
   "btnLabel_leaveReview": { "message": "Сэтгэгдэл үлдээх" },
   "btnLabel_rateUs": { "message": "Биднийг үнэлэх" },
   "btnLabel_getSupport": { "message": "Тусламж авах" },

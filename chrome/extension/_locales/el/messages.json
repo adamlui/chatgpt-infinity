@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Μαζί, μπορούμε να συνεχίσουμε να αναπτύσσουμε αυτό το ισχυρό λογισμικό" },
   "alert_tyForSupport": { "message": "Σας ευχαριστούμε για την υποστήριξή σας" },
   "alert_author": { "message": "συντάκτης" },
-  "btnLabel_moreApps": { "message": "Περισσότερες εφαρμογές ChatGPT" },
+  "btnLabel_moreAIextensions": { "message": "Περισσότερες επεκτάσεις τεχνητής νοημοσύνης" },
   "btnLabel_leaveReview": { "message": "Αφήστε μια Kριτική" },
   "btnLabel_rateUs": { "message": "Βαθμολογήστε μας" },
   "btnLabel_getSupport": { "message": "Λάβετε υποστήριξη" },

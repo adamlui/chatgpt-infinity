@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "གཅིག་ཁར་འཛོམས་ཏེ་ ང་བཅས་ཀྱིས་ ཨ་ནི་ནུས་ཤུགས་ཅན་གྱི་ གློག་རིག་འདི་ ཡར་རྒྱས་འགྱོ་ཚུགསཔ་བཟོཝ་ཨིན།" },
   "alert_tyForSupport": { "message": "ཁྱེད་ཀྱི་ཆ་རོགས་འབད་མི་དེ་ལུ་ བཀའ་དྲིན་ཆེ་ཟེར་ཞུ་ནི།" },
   "alert_author": { "message": "རྩོམ་པ་པོ།" },
-  "btnLabel_moreApps": { "message": "ཁ་གསལ་གྱི་ཁ་གསལ་གྱི་ཁ་གསལ་ཚུ་" },
+  "btnLabel_moreAIextensions": { "message": "རྒྱང་སྒྲིལ་ཚུ་" },
   "btnLabel_leaveReview": { "message": "བསྐྱར་ཞིབ་བཀོག་བཞག་" },
   "btnLabel_rateUs": { "message": "ང་བཅས་ལུ་བཀག་སྡོམ་འབད་" },
   "btnLabel_getSupport": { "message": "རྒྱབ་སྐྱོར་ཐོབ་ནི་" },

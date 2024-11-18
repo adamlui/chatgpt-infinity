@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "เราสามารถทำให้ซอฟต์แวร์ที่มีประสิทธิภาพนี้เติบโตไปด้วยกัน" },
   "alert_tyForSupport": { "message": "ขอขอบคุณสำหรับการสนับสนุนของคุณ!" },
   "alert_author": { "message": "ผู้เขียน" },
-  "btnLabel_moreApps": { "message": "แอป ChatGPT เพิ่มเติม" },
+  "btnLabel_moreAIextensions": { "message": "ส่วนขยาย AI เพิ่มเติม" },
   "btnLabel_leaveReview": { "message": "ให้รีวิว" },
   "btnLabel_rateUs": { "message": "ให้คะแนนเรา" },
   "btnLabel_getSupport": { "message": "รับความช่วยเหลือ" },

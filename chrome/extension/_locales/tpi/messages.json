@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Yumi ken mekim dispela bikpela program i go bikpela wantaim" },
   "alert_tyForSupport": { "message": "THANK YOU long helpim yu" },
   "alert_author": { "message": "man bilong raitim buk" },
-  "btnLabel_moreApps": { "message": "Ol app bilong ChatGPT" },
+  "btnLabel_moreAIextensions": { "message": "+ long extensions" },
   "btnLabel_leaveReview": { "message": "Lusim toksave" },
   "btnLabel_rateUs": { "message": "Toksave long mipela" },
   "btnLabel_getSupport": { "message": "Kisim helpim" },

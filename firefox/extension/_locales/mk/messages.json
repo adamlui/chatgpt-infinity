@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Заедно, можеме да го одржиме растот на овој моќен софтвер" },
   "alert_tyForSupport": { "message": "Ви благодариме за вашата поддршка" },
   "alert_author": { "message": "Март" },
-  "btnLabel_moreApps": { "message": "Повеќе апликации за ChatGPT" },
+  "btnLabel_moreAIextensions": { "message": "Повеќе екстензии на вештачка интелигенција" },
   "btnLabel_leaveReview": { "message": "Остави еден преглед" },
   "btnLabel_rateUs": { "message": "Оценете не" },
   "btnLabel_getSupport": { "message": "Добијте поддршка" },

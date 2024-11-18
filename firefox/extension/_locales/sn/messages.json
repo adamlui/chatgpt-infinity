@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Pamwe chete, tinogona kuchengeta software iyi yakasimba ichikura" },
   "alert_tyForSupport": { "message": "Ndinokutendai nerutsigiro rwenyu" },
   "alert_author": { "message": "munyori" },
-  "btnLabel_moreApps": { "message": "Zvakawanda ChatGPT Apps" },
+  "btnLabel_moreAIextensions": { "message": "Zvimwe AI Extensions" },
   "btnLabel_leaveReview": { "message": "Taura nesu" },
   "btnLabel_rateUs": { "message": "Taura nesu" },
   "btnLabel_getSupport": { "message": "Kuwana Rutsigiro" },

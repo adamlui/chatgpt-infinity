@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Gyda'n gilydd, gallwn gadw'r feddalwedd bwerus hon i dyfu" },
   "alert_tyForSupport": { "message": "Diolch ichi am eich cefnogaeth" },
   "alert_author": { "message": "awdur" },
-  "btnLabel_moreApps": { "message": "Mwy o ChatGPT Apps" },
+  "btnLabel_moreAIextensions": { "message": "Mwy o Estyniadau AI" },
   "btnLabel_leaveReview": { "message": "Gadael Adolygiad" },
   "btnLabel_rateUs": { "message": "Graddio Ni" },
   "btnLabel_getSupport": { "message": "Cael cymorth" },

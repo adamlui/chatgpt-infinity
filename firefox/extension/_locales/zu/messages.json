@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Ndawonye, singagcina le software enamandla ikhula" },
   "alert_tyForSupport": { "message": "Siyabonga ngokungeseka kwenu" },
   "alert_author": { "message": "Ukhetho" },
-  "btnLabel_moreApps": { "message": "Ama-app engeziwe e-ChatGPT" },
+  "btnLabel_moreAIextensions": { "message": "Izandiso Ezengeziwe ze-AI" },
   "btnLabel_leaveReview": { "message": "Shiya Okushiwo Abanye" },
   "btnLabel_rateUs": { "message": "Silinganise" },
   "btnLabel_getSupport": { "message": "Thola Usizo" },

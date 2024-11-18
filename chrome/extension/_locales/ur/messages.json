@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "ایک ساتھ مل کر، ہم اس طاقتور سافٹ ویئر کو بڑھتے ہوئے رکھ سکتے ہیں" },
   "alert_tyForSupport": { "message": "آپ کے تعاون کا شکریہ۔ " },
   "alert_author": { "message": "مصنف" },
-  "btnLabel_moreApps": { "message": "مزید چیٹ جی پی ٹی ایپس" },
+  "btnLabel_moreAIextensions": { "message": "مزید AI ایکسٹینشنز" },
   "btnLabel_leaveReview": { "message": "جائزہ دیں" },
   "btnLabel_rateUs": { "message": "ہمیں درجہ دیں!" },
   "btnLabel_getSupport": { "message": "سپورٹ حاصل کریں" },

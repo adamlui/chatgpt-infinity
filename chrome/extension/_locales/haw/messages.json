@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Hiki iā mākou ke hoʻomau i ka ulu ʻana o kēia polokalamu ikaika" },
   "alert_tyForSupport": { "message": "Mahalo iā ʻoe no kāu kākoʻo" },
   "alert_author": { "message": "mea kākau" },
-  "btnLabel_moreApps": { "message": "Nā polokalamu ChatGPT hou aku" },
+  "btnLabel_moreAIextensions": { "message": "Hoʻonui AI hou aku" },
   "btnLabel_leaveReview": { "message": "Haʻalele Nānā" },
   "btnLabel_rateUs": { "message": "E helu iā mākou" },
   "btnLabel_getSupport": { "message": "Loaʻa Kākoʻo" },

@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Bi hev re, em dikarin vê nermalava hêzdar mezin bikin" },
   "alert_tyForSupport": { "message": "Spas ji bo piştgiriya we" },
   "alert_author": { "message": "بوونیار - دروستکەر - دانەر ( پیاو )" },
-  "btnLabel_moreApps": { "message": "زیاتری ئاپەکانی ChatGPT" },
+  "btnLabel_moreAIextensions": { "message": "Zêdetir Pêvekên AI-ê" },
   "btnLabel_leaveReview": { "message": "Bihêle Review" },
   "btnLabel_rateUs": { "message": "Me binirxînin" },
   "btnLabel_getSupport": { "message": "پشتگیری بگرە" },

@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "కలిసి, మనం ఈ శక్తివంతమైన సాఫ్ట్ ‌ వేర్ ‌ ను పెంచుకోవచ్చు" },
   "alert_tyForSupport": { "message": "మీ మద్దతుకు ధన్యవాదాలు" },
   "alert_author": { "message": "రచయిత" },
-  "btnLabel_moreApps": { "message": "మరిన్ని ChatGPT యాప్ ‌ లు" },
+  "btnLabel_moreAIextensions": { "message": "మరిన్ని AI పొడిగింపులు" },
   "btnLabel_leaveReview": { "message": "సమీక్షను వదిలివేయండి" },
   "btnLabel_rateUs": { "message": "మాకు రేటింగ్ ఇవ్వండి" },
   "btnLabel_getSupport": { "message": "సహకారం తీసుకోండి" },

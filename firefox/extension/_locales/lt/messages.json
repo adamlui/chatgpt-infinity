@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Kartu mes galime auginti šią galingą programinę įrangą" },
   "alert_tyForSupport": { "message": "Dėkojame už Jūsų palaikymą" },
   "alert_author": { "message": "Autorius" },
-  "btnLabel_moreApps": { "message": "Daugiau ChatGPT programų" },
+  "btnLabel_moreAIextensions": { "message": "Daugiau DI plėtinių" },
   "btnLabel_leaveReview": { "message": "Palikite atsiliepimą" },
   "btnLabel_rateUs": { "message": "Įvertinkite mus" },
   "btnLabel_getSupport": { "message": "Gauti palaikymą" },

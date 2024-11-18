@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "အတူတကွ ဒီအစွမ်းထက်တဲ့ ဆော့ဖ်ဝဲကို ကြီးထွားအောင် ထိန်းထားနိုင်ပါတယ် ။" },
   "alert_tyForSupport": { "message": "စဉ်ဆက်မပြတ်ပံပိုးမှုအတွက် ကျေးဇူးတင်ရှိပါသည်။ " },
   "alert_author": { "message": "ရေးသူ" },
-  "btnLabel_moreApps": { "message": "နောက်ထပ် ChatGPT အက်ပ်များ" },
+  "btnLabel_moreAIextensions": { "message": "ပိုများသော AI Extensions" },
   "btnLabel_leaveReview": { "message": "ပြန်လည်သုံးသပ်မှုကိုစွန့်ခွာပါ" },
   "btnLabel_rateUs": { "message": "ကြှနျုပျတို့ကို Rate" },
   "btnLabel_getSupport": { "message": "ပံ့ပိုးမှုရယူပါ" },

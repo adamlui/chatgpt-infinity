@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Kopā mēs varam turpināt šīs jaudīgās programmatūras attīstību" },
   "alert_tyForSupport": { "message": "Paldies par Jūsu atbalstu" },
   "alert_author": { "message": "autors" },
-  "btnLabel_moreApps": { "message": "Vairāk ChatGPT lietotņu" },
+  "btnLabel_moreAIextensions": { "message": "Citi MI paplašinājumi" },
   "btnLabel_leaveReview": { "message": "Atstāt atsauksmi?" },
   "btnLabel_rateUs": { "message": "Novērtē mūs" },
   "btnLabel_getSupport": { "message": "Saņemt atbalstu" },

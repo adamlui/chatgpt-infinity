@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "په ګډه، موږ کولی شو دا پیاوړی سافټویر وده وکړو" },
   "alert_tyForSupport": { "message": "د ستاسو د ملاتړ مننه" },
   "alert_author": { "message": "لیکونکی" },
-  "btnLabel_moreApps": { "message": "نور چیټ جی پی ټي ایپونه" },
+  "btnLabel_moreAIextensions": { "message": "د AI نور تمدیدونه" },
   "btnLabel_leaveReview": { "message": "د رخصتۍ بیاکتنه" },
   "btnLabel_rateUs": { "message": "موږ ته رتبه راکړئ" },
   "btnLabel_getSupport": { "message": "مرسته ترلاسه کړئ" },

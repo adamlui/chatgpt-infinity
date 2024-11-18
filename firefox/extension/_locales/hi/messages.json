@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "साथ में, हम इस शक्तिशाली सॉफ़्टवेयर को बढ़ाते रह सकते हैं" },
   "alert_tyForSupport": { "message": "आपकी मदद के लिए धन्यवाद।﻿" },
   "alert_author": { "message": "लेखक" },
-  "btnLabel_moreApps": { "message": "और ChatGPT ऐप्स" },
+  "btnLabel_moreAIextensions": { "message": "और AI एक्सटेंशन" },
   "btnLabel_leaveReview": { "message": "समीक्षा छोड़ें" },
   "btnLabel_rateUs": { "message": "हमें रेटिंग दें" },
   "btnLabel_getSupport": { "message": "सपोर्ट प्राप्त करें" },

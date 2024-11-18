@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "同心協力，我們可以讓這個強大的軟體" },
   "alert_tyForSupport": { "message": "感謝您的支持" },
   "alert_author": { "message": "作者" },
-  "btnLabel_moreApps": { "message": "更多 ChatGPT 應用程式" },
+  "btnLabel_moreAIextensions": { "message": "更多人工智慧擴充功能" },
   "btnLabel_leaveReview": { "message": "留下評語" },
   "btnLabel_rateUs": { "message": "評價我們" },
   "btnLabel_getSupport": { "message": "取得支援" },

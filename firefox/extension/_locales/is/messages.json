@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Saman getum við haldið þessum öfluga hugbúnaði vaxandi" },
   "alert_tyForSupport": { "message": "Kærar þakkir fyrir stuðning þinn. &lt;/cf&gt;" },
   "alert_author": { "message": "höfundur" },
-  "btnLabel_moreApps": { "message": "Fleiri ChatGPT öpp" },
+  "btnLabel_moreAIextensions": { "message": "Fleiri gervigreindarviðbætur" },
   "btnLabel_leaveReview": { "message": "Skildu eftir umsögn" },
   "btnLabel_rateUs": { "message": "Gefðu okkur einkunn" },
   "btnLabel_getSupport": { "message": "Fá stuðning" },

@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Xuntos, podemos manter este poderoso software crecendo" },
   "alert_tyForSupport": { "message": "Grazas polo voso apoio" },
   "alert_author": { "message": "autor" },
-  "btnLabel_moreApps": { "message": "Máis aplicacións de ChatGPT" },
+  "btnLabel_moreAIextensions": { "message": "Máis extensións de IA" },
   "btnLabel_leaveReview": { "message": "Deixa unha opinión" },
   "btnLabel_rateUs": { "message": "Valóranos" },
   "btnLabel_getSupport": { "message": "Asistencia" },

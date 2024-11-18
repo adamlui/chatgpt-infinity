@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "ମିଳିମିଶି ଆମେ ଏହି ଶକ୍ତିଶାଳୀ ସଫ୍ଟୱେୟାରକୁ ବଢ଼ାଇ ପାରିବା ।" },
   "alert_tyForSupport": { "message": "ଆପଣଙ୍କ ସମର୍ଥନ ପାଇଁ ଧନ୍ୟବାଦ ।" },
   "alert_author": { "message": "ଲେଖକ" },
-  "btnLabel_moreApps": { "message": "ଅଧିକ ଚାଟGPT ପ୍ରୟୋଗଗୁଡ଼ିକ" },
+  "btnLabel_moreAIextensions": { "message": "ଅଧିକ AI ଅନୁଲଗ୍ନଗୁଡ଼ିକ" },
   "btnLabel_leaveReview": { "message": "ସମୀକ୍ଷା ଛାଡନ୍ତୁ" },
   "btnLabel_rateUs": { "message": "ଆମକୁ ମୂଲ୍ୟାଙ୍କନ କରନ୍ତୁ" },
   "btnLabel_getSupport": { "message": "ସପୋର୍ଟ ପାଆନ୍ତୁ" },

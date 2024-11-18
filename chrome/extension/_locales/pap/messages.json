@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Huntu nos por sigui ku e tremendo programa aki" },
   "alert_tyForSupport": { "message": "Danki pa boso sosten" },
   "alert_author": { "message": "outor" },
-  "btnLabel_moreApps": { "message": "Mas informacion de ChatGPT Apps" },
+  "btnLabel_moreAIextensions": { "message": "Mas Ampliacion" },
   "btnLabel_leaveReview": { "message": "Laga revision" },
   "btnLabel_rateUs": { "message": "Rate Nos" },
   "btnLabel_getSupport": { "message": "Recibí Apoyo" },

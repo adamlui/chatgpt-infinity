@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "រួមគ្នា យើងអាចរក្សាកម្មវិធីដ៏មានឥទ្ធិពលនេះឱ្យកាន់តែរីកចម្រើន" },
   "alert_tyForSupport": { "message": "អរគុណយ៉ាងជ្រាលជ្រៅ សូមអោយព្រះអាទិត្យប្រទានពរដល់អ្នក" },
   "alert_author": { "message": "អ្នកបញ្ចូលព័ត៌មាន" },
-  "btnLabel_moreApps": { "message": "កម្មវិធី ChatGPT ច្រើនទៀត" },
+  "btnLabel_moreAIextensions": { "message": "ផ្នែកបន្ថែម AI ច្រើនទៀត" },
   "btnLabel_leaveReview": { "message": "សូមទុកមតិ" },
   "btnLabel_rateUs": { "message": "វាយតម្លៃយើង" },
   "btnLabel_getSupport": { "message": "ទទួលបានការគាំទ្រ" },

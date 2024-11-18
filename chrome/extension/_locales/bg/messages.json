@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Заедно можем да поддържаме растежа на този мощен софтуер" },
   "alert_tyForSupport": { "message": "Благодарим ви за подкрепата" },
   "alert_author": { "message": "автор" },
-  "btnLabel_moreApps": { "message": "Още приложения за ChatGPT" },
+  "btnLabel_moreAIextensions": { "message": "Още разширения с изкуствен интелект" },
   "btnLabel_leaveReview": { "message": "Оставете рецензия" },
   "btnLabel_rateUs": { "message": "Оценете ни" },
   "btnLabel_getSupport": { "message": "Вземи поддръжка" },

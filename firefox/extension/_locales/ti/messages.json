@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "ብሓባር ፡ ነዚ ሓያል ሶፍትዌር እዚ ክንዕቅቦ ንኽእል ኢና" },
   "alert_tyForSupport": { "message": "ስለቲ ቐጻሊ ደገፍኩም የመስግነኩም።" },
   "alert_author": { "message": "ደራሲ" },
-  "btnLabel_moreApps": { "message": "ዝያዳ ናይ ChatGPT መተግበሪታት" },
+  "btnLabel_moreAIextensions": { "message": "ዝያዳ ናይ AI ምስፍሕፋሕ" },
   "btnLabel_leaveReview": { "message": "ግምገማ ሓዲግካ" },
   "btnLabel_rateUs": { "message": "ተመዝገብና" },
   "btnLabel_getSupport": { "message": "ደገፍ ርኸቡ" },

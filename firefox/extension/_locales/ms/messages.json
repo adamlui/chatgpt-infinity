@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Bersama-sama, kita boleh memastikan perisian yang berkuasa ini terus berkembang" },
   "alert_tyForSupport": { "message": "Terima kasih atas sokongan anda" },
   "alert_author": { "message": "pengarang" },
-  "btnLabel_moreApps": { "message": "Lebih Banyak Aplikasi ChatGPT" },
+  "btnLabel_moreAIextensions": { "message": "Lebih Banyak Sambungan AI" },
   "btnLabel_leaveReview": { "message": "Tinggalkan ulasan" },
   "btnLabel_rateUs": { "message": "Nilaikan kami" },
   "btnLabel_getSupport": { "message": "Dapatkan Sokongan" },

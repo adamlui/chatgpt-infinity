@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Разом ми зможемо продовжувати розвивати це потужне програмне забезпечення" },
   "alert_tyForSupport": { "message": "Дякую за підтримку" },
   "alert_author": { "message": "Автор" },
-  "btnLabel_moreApps": { "message": "Більше додатків ChatGPT" },
+  "btnLabel_moreAIextensions": { "message": "Більше розширень AI" },
   "btnLabel_leaveReview": { "message": "Залишити відгук" },
   "btnLabel_rateUs": { "message": "Оцініть нас" },
   "btnLabel_getSupport": { "message": "Отримати підтримку" },

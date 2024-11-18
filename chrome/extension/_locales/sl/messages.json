@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Skupaj lahko ohranjamo rast te zmogljive programske opreme" },
   "alert_tyForSupport": { "message": "Hvala za vašo podporo" },
   "alert_author": { "message": "Avtor" },
-  "btnLabel_moreApps": { "message": "Več aplikacij ChatGPT" },
+  "btnLabel_moreAIextensions": { "message": "Več razširitev umetne inteligence" },
   "btnLabel_leaveReview": { "message": "Dodajte oceno" },
   "btnLabel_rateUs": { "message": "Ocenite nas" },
   "btnLabel_getSupport": { "message": "Podpora" },

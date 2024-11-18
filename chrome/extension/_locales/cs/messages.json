@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Společně můžeme udržet tento výkonný software v růstu" },
   "alert_tyForSupport": { "message": "Děkujeme za vaši přízeň" },
   "alert_author": { "message": "autor" },
-  "btnLabel_moreApps": { "message": "Další aplikace ChatGPT" },
+  "btnLabel_moreAIextensions": { "message": "Další rozšíření AI" },
   "btnLabel_leaveReview": { "message": "Přidat Hodnocení" },
   "btnLabel_rateUs": { "message": "Ohodnoťte nás" },
   "btnLabel_getSupport": { "message": "Získat podporu" },

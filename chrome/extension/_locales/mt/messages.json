@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Flimkien, nistgħu nżommu dan is-softwer qawwi jikber" },
   "alert_tyForSupport": { "message": "Grazzi tal-appoġġ tiegħek" },
   "alert_author": { "message": "awtur" },
-  "btnLabel_moreApps": { "message": "Iktar Apps taċ-ChatGPT" },
+  "btnLabel_moreAIextensions": { "message": "Iktar Estensjonijiet tal-IA" },
   "btnLabel_leaveReview": { "message": "Ħalli r-Review" },
   "btnLabel_rateUs": { "message": "Rata us" },
   "btnLabel_getSupport": { "message": "Ikseb l-Għajnuna" },

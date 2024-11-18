@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "አንድ ላይ ፣ ይህንን ኃይለኛ ሶፍትዌር እያደገ ማቆየት እንችላለን" },
   "alert_tyForSupport": { "message": "የእርስዎ ድጋፍ እናመሰግናለን" },
   "alert_author": { "message": "ደራሲ" },
-  "btnLabel_moreApps": { "message": "ተጨማሪ ChatGPT መተግበሪያዎች" },
+  "btnLabel_moreAIextensions": { "message": "ተጨማሪ የ AI ቅጥያዎች" },
   "btnLabel_leaveReview": { "message": "ግምገማ ይተው" },
   "btnLabel_rateUs": { "message": "ደረጃ ይስጡን" },
   "btnLabel_getSupport": { "message": "ድጋፍ ያግኙ" },

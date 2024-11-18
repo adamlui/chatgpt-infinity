@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Zajedno možemo održati rast ovog moćnog softvera" },
   "alert_tyForSupport": { "message": "Hvala na podršci" },
   "alert_author": { "message": "autor" },
-  "btnLabel_moreApps": { "message": "Još aplikacija za ChatGPT" },
+  "btnLabel_moreAIextensions": { "message": "Više AI ekstenzija" },
   "btnLabel_leaveReview": { "message": "Ostavite recenziju" },
   "btnLabel_rateUs": { "message": "Ocijenite nas" },
   "btnLabel_getSupport": { "message": "Podrška" },

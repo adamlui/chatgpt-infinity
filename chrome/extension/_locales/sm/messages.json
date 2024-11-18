@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Faatasi, e mafai ona tatou tausia lenei polokalama mamana tuputupu ae" },
   "alert_tyForSupport": { "message": "Talosia na e fiafia iai" },
   "alert_author": { "message": "tusitala" },
-  "btnLabel_moreApps": { "message": "Sili ChatGPT Apps" },
+  "btnLabel_moreAIextensions": { "message": "Sili atu AI Faʻalauteleina" },
   "btnLabel_leaveReview": { "message": "Tuua Iloiloga" },
   "btnLabel_rateUs": { "message": "Faatusatusaina i Tatou" },
   "btnLabel_getSupport": { "message": "Maua Lagolago" },

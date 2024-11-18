@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "ما با هم می توانیم این نرم افزار قدرتمند را در حال رشد نگه داریم" },
   "alert_tyForSupport": { "message": "از حمایت شما سپاس‌گزاریم. " },
   "alert_author": { "message": "نویسنده" },
-  "btnLabel_moreApps": { "message": "برنامه های بیشتر ChatGPT" },
+  "btnLabel_moreAIextensions": { "message": "افزونه های بیشتر هوش مصنوعی" },
   "btnLabel_leaveReview": { "message": "بررسی را ترک کنید" },
   "btnLabel_rateUs": { "message": "به طراح افشان رای دهید" },
   "btnLabel_getSupport": { "message": "پشتیبانی" },

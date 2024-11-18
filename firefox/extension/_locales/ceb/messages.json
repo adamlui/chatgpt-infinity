@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Mag-uban, mahimo naton mapadayon ang kini nga kusug nga software nga nagtubo" },
   "alert_tyForSupport": { "message": "Salamat sa inyong suporta" },
   "alert_author": { "message": "Tagsulat" },
-  "btnLabel_moreApps": { "message": "Dugang nga ChatGPT Apps" },
+  "btnLabel_moreAIextensions": { "message": "Dugang nga mga Extension sa AI" },
   "btnLabel_leaveReview": { "message": "Biyai ang Review" },
   "btnLabel_rateUs": { "message": "I-rate Kanato" },
   "btnLabel_getSupport": { "message": "Kuhaa ang Suporta" },

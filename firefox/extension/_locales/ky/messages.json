@@ -47,7 +47,7 @@
   "alert_growTogether": { "message": "Биргелешип, биз бул күчтүү программалык камсыздоонун өсүп турушу мүмкүн" },
   "alert_tyForSupport": { "message": "Колдооңуз үчүн рахмат" },
   "alert_author": { "message": "Автору: " },
-  "btnLabel_moreApps": { "message": "Көбүрөөк ChatGPT колдонмолору" },
+  "btnLabel_moreAIextensions": { "message": "Көбүрөөк AI кеңейтүүлөрү" },
   "btnLabel_leaveReview": { "message": "Сын-пикир калтыруу" },
   "btnLabel_rateUs": { "message": "Бизди баалоо" },
   "btnLabel_getSupport": { "message": "Колдоо алуу" },
