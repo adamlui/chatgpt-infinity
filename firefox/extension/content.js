@@ -124,13 +124,13 @@
     
                 // Create/size/position navicon
                 const navicon = document.getElementById('infinity-toggle-navicon')
-                            || dom.create.elem('img', { id: 'infinity-toggle-navicon' })
+                             || dom.create.elem('img', { id: 'infinity-toggle-navicon' })
                 navicon.style.width = navicon.style.height = '1.25rem'
                 navicon.style.marginLeft = '2px' ; navicon.style.marginRight = '4px'
 
                 // Create/ID/disable/hide/update checkbox
                 const toggleInput = document.getElementById('infinity-toggle-input')
-                                || dom.create.elem('input', { id: 'infinity-toggle-input', type: 'checkbox', disabled: true })
+                                 || dom.create.elem('input', { id: 'infinity-toggle-input', type: 'checkbox', disabled: true })
                 toggleInput.style.display = 'none' ; toggleInput.checked = config.infinityMode
 
                 // Create/ID/stylize switch
@@ -146,7 +146,7 @@
 
                 // Create/stylize knob, append to switch
                 const knobSpan = document.getElementById('infinity-toggle-knob-span')
-                                || dom.create.elem('span', { id: 'infinity-toggle-knob-span' })
+                              || dom.create.elem('span', { id: 'infinity-toggle-knob-span' })
                 const knobStyles = {
                     position: 'absolute', left: '3px', bottom: '1.25px',
                     width: '12px', height: '12px', content: '""', borderRadius: '28px',

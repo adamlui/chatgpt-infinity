@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.19.2
+// @version             2024.11.19.3
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -745,7 +745,7 @@
         
                 // Create/stylize knob, append to switch
                 const knobSpan = document.getElementById('infinity-toggle-knob-span')
-                            || dom.create.elem('span', { id: 'infinity-toggle-knob-span' })
+                              || dom.create.elem('span', { id: 'infinity-toggle-knob-span' })
                 const knobStyles = {
                     position: 'absolute', left: '3px', bottom: '1.25px',
                     width: '12px', height: '12px', content: '""', borderRadius: '28px',
@@ -757,7 +757,7 @@
         
                 // Create/stylize/fill label
                 const toggleLabel = document.getElementById('infinity-toggle-label')
-                                || dom.create.elem('label', { id: 'infinity-toggle-label' })
+                                 || dom.create.elem('label', { id: 'infinity-toggle-label' })
                 if (!ui.firstLink) { // add font size/weight since no ui.firstLink to borrow from
                     toggleLabel.style.fontSize = '0.875rem' ; toggleLabel.style.fontWeight = 600 }
                 toggleLabel.style.marginLeft = `-${ !ui.firstLink ? 23 : 41 }px` // left-shift to navicon
