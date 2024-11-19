@@ -71,12 +71,13 @@
     // Define UI functions
 
     const navToggle = {
-        async insert() {
+        insert() {
+            if (document.getElementById('infinity-toggle-navicon')) return
 
             // Insert toggle
-            const toggleParent = document.querySelector('nav')
-            if (!toggleParent.contains(navToggleDiv))
-                 toggleParent.insertBefore(navToggleDiv, toggleParent.children[1])
+            const sidebar = document.querySelectorAll('nav')[env.browser.isMobile ? 1 : 0]
+            if (!sidebar) return
+            sidebar.insertBefore(navToggleDiv, sidebar.children[1])
     
             // Tweak styles
             const knobSpan = document.getElementById('infinity-toggle-knob-span'),
@@ -109,7 +110,7 @@
                 const switchSpan = document.getElementById('infinity-switch-span')
                                 || dom.create.elem('span', { id: 'infinity-switch-span' })
                 const switchStyles = {
-                    position: 'relative', left: `${ env.browser.isMobile ? 211 : !ui.firstLink ? 160 : 154 }px`,
+                    position: 'relative', left: `${ env.browser.isMobile ? 169 : !ui.firstLink ? 160 : 154 }px`,
                     backgroundColor: toggleInput.checked ? '#ccc' : '#AD68FF', // init opposite  final color
                     bottom: `${ !ui.firstLink ? -0.15 : 0 }em`,
                     width: '30px', height: '15px', '-webkit-transition': '.4s', transition: '0.4s',  borderRadius: '28px'
