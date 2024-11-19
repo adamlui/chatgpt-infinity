@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.19.1
+// @version             2024.11.19.2
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -670,19 +670,46 @@
     // Define UI functions
 
     const sidebarToggle = {
+
+        create() {
+            sidebarToggle.div = document.createElement('div')
+            sidebarToggle.update() // create children
+
+            // Stylize/classify
+            sidebarToggle.div.style.height = '37px'
+            sidebarToggle.div.style.margin = '2px 0' // add v-margins
+            sidebarToggle.div.style.userSelect = 'none' // prevent highlighting
+            sidebarToggle.div.style.cursor = 'pointer' // add finger cursor
+            if (ui.firstLink) { // borrow/assign classes from sidebar elems
+                const firstIcon = ui.firstLink.querySelector('div:first-child'),
+                      firstLabel = ui.firstLink.querySelector('div:nth-child(2)')
+                sidebarToggle.div.classList.add(...ui.firstLink.classList, ...(firstLabel?.classList || []))
+                sidebarToggle.div.querySelector('img')?.classList.add(...(firstIcon?.classList || []))
+            }
+
+            // Add click listener
+            sidebarToggle.div.onclick = () => {
+                const toggleInput = document.getElementById('infinity-toggle-input')
+                toggleInput.checked = !toggleInput.checked
+                settings.save('infinityMode', toggleInput.checked)
+                infinity.toggle()
+            }
+        },
+
         insert() {
             if (document.getElementById('infinity-toggle-navicon')) return
+            if (!sidebarToggle.div) sidebarToggle.create()
 
             // Insert toggle
             const sidebar = document.querySelectorAll('nav')[env.browser.isMobile ? 1 : 0]
             if (!sidebar) return
-            sidebar.insertBefore(sidebarToggleDiv, sidebar.children[1])
+            sidebar.insertBefore(sidebarToggle.div, sidebar.children[1])
     
             // Tweak styles
             const knobSpan = document.getElementById('infinity-toggle-knob-span'),
                   navicon = document.getElementById('infinity-toggle-navicon')
-            sidebarToggleDiv.style.flexGrow = 'unset' // overcome OpenAI .grow
-            sidebarToggleDiv.style.paddingLeft = '8px'
+            sidebarToggle.div.style.flexGrow = 'unset' // overcome OpenAI .grow
+            sidebarToggle.div.style.paddingLeft = '8px'
             if (knobSpan) knobSpan.style.boxShadow = (
                 'rgba(0, 0, 0, .3) 0 1px 2px 0' + ( chatgpt.isDarkMode() ? ', rgba(0, 0, 0, .15) 0 3px 6px 2px' : '' ))
             if (navicon) navicon.src = `${ // update navicon color in case scheme changed
@@ -691,7 +718,7 @@
         },
 
         update() {
-            if (config.toggleHidden) sidebarToggleDiv.style.display = 'none'
+            if (config.toggleHidden) sidebarToggle.div.style.display = 'none'
             else {
 
                 // Create/size/position navicon
@@ -742,10 +769,10 @@
                                     + ( toggleInput.checked ? ( app.msgs.state_enabled  || 'enabled' )
                                                             : ( app.msgs.state_disabled ))
                 // Append elements
-                for (const elem of [navicon, toggleInput, switchSpan, toggleLabel]) sidebarToggleDiv.append(elem)
+                for (const elem of [navicon, toggleInput, switchSpan, toggleLabel]) sidebarToggle.div.append(elem)
         
                 // Update visual state
-                sidebarToggleDiv.style.display = 'flex'
+                sidebarToggle.div.style.display = 'flex'
                 setTimeout(() => {
                     switchSpan.style.backgroundColor = toggleInput.checked ? '#ad68ff' : '#ccc'
                     switchSpan.style.boxShadow = toggleInput.checked ? '2px 1px 9px #d8a9ff' : 'none'
@@ -873,30 +900,7 @@
         )
     }
 
-    // Create NAV TOGGLE div, add styles
-    const sidebarToggleDiv = document.createElement('div')
-    sidebarToggleDiv.style.height = '37px'
-    sidebarToggleDiv.style.margin = '2px 0' // add v-margins
-    sidebarToggleDiv.style.userSelect = 'none' // prevent highlighting
-    sidebarToggleDiv.style.cursor = 'pointer' // add finger cursor
-    sidebarToggle.update() // create children
-
-    if (ui.firstLink) { // borrow/assign CLASSES from sidebar div
-        const firstIcon = ui.firstLink.querySelector('div:first-child'),
-              firstLabel = ui.firstLink.querySelector('div:nth-child(2)')
-        sidebarToggleDiv.classList.add(...ui.firstLink.classList, ...(firstLabel?.classList || []))
-        sidebarToggleDiv.querySelector('img')?.classList.add(...(firstIcon?.classList || []))
-    }
-
     sidebarToggle.insert()
-
-    // Add LISTENER to toggle switch/label/config/menu
-    sidebarToggleDiv.onclick = () => {
-        const toggleInput = document.getElementById('infinity-toggle-input')
-        toggleInput.checked = !toggleInput.checked
-        settings.save('infinityMode', toggleInput.checked)
-        infinity.toggle()
-    }
 
     // Auto-start if enabled
     if (config.autoStart) infinity.activate()
