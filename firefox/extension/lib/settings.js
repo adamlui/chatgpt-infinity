@@ -1,7 +1,23 @@
 const config = {}, settings = {
     availKeys: [
         'autoScrollDisabled', 'autoStart', 'extensionDisabled', 'infinityMode',
-        'replyInterval', 'replyLanguage', 'replyTopic', 'toggleHidden' ],
+        'replyInterval', 'replyLanguage', 'replyTopic', 'toggleHidden'
+    ],
+    
+    props: {
+        autoStart: { type: 'toggle',
+            label: chrome.i18n.getMessage('menuLabel_autoStart') },
+        toggleHidden: { type: 'toggle',
+            label: chrome.i18n.getMessage('menuLabel_toggleVis') },
+        autoScrollDisabled: { type: 'toggle',
+            label: chrome.i18n.getMessage('menuLabel_autoScroll') },
+        replyLanguage: { type: 'prompt', symbol: '🌐',
+            label: chrome.i18n.getMessage('menuLabel_replyLang') },
+        replyTopic: { type: 'prompt', symbol: '🧠',
+            label: chrome.i18n.getMessage('menuLabel_replyTopic') },
+        replyInterval: { type: 'prompt', symbol: '⌚',
+            label: chrome.i18n.getMessage('menuLabel_replyInt') }
+    },
 
     load() {
         const keys = ( // original array if array, else new array from multiple args
