@@ -1,8 +1,4 @@
 const config = {}, settings = {
-    availKeys: [
-        'autoScrollDisabled', 'autoStart', 'extensionDisabled', 'infinityMode',
-        'replyInterval', 'replyLanguage', 'replyTopic', 'toggleHidden'
-    ],
     
     props: {
         autoStart: { type: 'toggle',
