@@ -33,7 +33,7 @@
 
     // Init CONFIG
     settings.save('userLanguage', (await chrome.i18n.getAcceptLanguages())[0])
-    await settings.load('extensionDisabled', Object.keys(settings.props))
+    await settings.load('extensionDisabled', Object.keys(settings.controls))
     if (!config.replyLanguage) settings.save('replyLanguage', config.userLanguage) // init reply language if unset
     if (!config.replyTopic) settings.save('replyTopic', 'ALL') // init reply topic if unset
     if (!config.replyInterval) settings.save('replyInterval', 7) // init refresh interval to 7 secs if unset
@@ -248,7 +248,7 @@
     // Define SYNC function
 
     async function syncStorageToUI() { // on toolbar popup toggles + ChatGPT tab activations
-        await settings.load('extensionDisabled', 'infinityMode', Object.keys(settings.props))
+        await settings.load('extensionDisabled', 'infinityMode', Object.keys(settings.controls))
         sidebarToggle.update() // based on config.toggleHidden + config.infinityMode
     }
 

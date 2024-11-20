@@ -1,6 +1,6 @@
 const config = {}, settings = {
-    
-    props: {
+
+    controls: {
         autoStart: { type: 'toggle',
             label: chrome.i18n.getMessage('menuLabel_autoStart') },
         toggleHidden: { type: 'toggle',

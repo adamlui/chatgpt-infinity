@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.20.2
+// @version             2024.11.20.3
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -359,8 +359,8 @@
         Object.assign(app.msgs, localizedMsgs)
     }
 
-    // Init SETTINGS props
-    Object.assign(settings, { props: {
+    // Init SETTINGS controls
+    Object.assign(settings, { controls: {
         autoStart: { type: 'toggle', label: app.msgs.menuLabel_autoStart },
         toggleHidden: { type: 'toggle', label: app.msgs.menuLabel_toggleVis },
         autoScrollDisabled: { type: 'toggle', label: app.msgs.menuLabel_autoScroll },
@@ -381,9 +381,9 @@
 
             // Init prompt setting status labels
             const re_all = new RegExp(`^(${app.msgs.menuLabel_all}|all|any|every)$`, 'i')
-            settings.props.replyLanguage.status = config.replyLanguage
-            settings.props.replyTopic.status = re_all.test(config.replyTopic) ? app.msgs.menuLabel_all : toTitleCase(config.replyTopic)
-            settings.props.replyInterval.status = `${config.replyInterval}s`
+            settings.controls.replyLanguage.status = config.replyLanguage
+            settings.controls.replyTopic.status = re_all.test(config.replyTopic) ? app.msgs.menuLabel_all : toTitleCase(config.replyTopic)
+            settings.controls.replyInterval.status = `${config.replyInterval}s`
 
             // Add Infinity Mode toggle
             const imLabel = `${menu.state.symbols[+!!config.infinityMode]} `
@@ -392,11 +392,11 @@
             menu.ids.push(GM_registerMenuCommand(imLabel, () => { document.getElementById('infinity-toggle-label').click() }))
 
             // Add setting entries
-            Object.keys(settings.props).forEach(key => {
+            Object.keys(settings.controls).forEach(key => {
                 const settingIsEnabled = config[key] ^ /disabled|hidden/i.test(key),
-                      menuLabel = `${ settings.props[key].symbol || menu.state.symbols[+settingIsEnabled] } ${settings.props[key].label}`
-                                +   ( settings.props[key].type == 'toggle' ? ( menu.state.separator + menu.state.words[+settingIsEnabled] )
-                                                                         : `— ${settings.props[key].status}` )
+                      menuLabel = `${ settings.controls[key].symbol || menu.state.symbols[+settingIsEnabled] } ${settings.controls[key].label}`
+                                +   ( settings.controls[key].type == 'toggle' ? ( menu.state.separator + menu.state.words[+settingIsEnabled] )
+                                                                         : `— ${settings.controls[key].status}` )
                 menu.ids.push(GM_registerMenuCommand(menuLabel, () => {
                     if (key == 'replyLanguage') {
                         while (true) {
@@ -452,7 +452,7 @@
                         }
                     } else { // save toggled state + notify
                         settings.save(key, !config[key])
-                        notify(`${settings.props[key].label}: ${menu.state.words[+(/disabled|hidden/i.test(key) ^ config[key])]}`)
+                        notify(`${settings.controls[key].label}: ${menu.state.words[+(/disabled|hidden/i.test(key) ^ config[key])]}`)
                     }
                     syncConfigToUI()
                 }))

@@ -76,7 +76,7 @@
     // Create CHILD toggles on chatgpt.com
     if (site == 'chatgpt') {
         settings.save('userLanguage', (await chrome.i18n.getAcceptLanguages())[0])
-        await settings.load(Object.keys(settings.props))
+        await settings.load(Object.keys(settings.controls))
 
         // Create/insert toggles section
         const togglesDiv = dom.create.elem('div', { class: 'menu' })
@@ -103,27 +103,27 @@
 
         // Create/insert settings toggles
         const re_all = new RegExp(`^(${chrome.i18n.getMessage('menuLabel_all')}|all|any|every)$`, 'i')
-        settings.props.replyLanguage.status = config.replyLanguage
-        settings.props.replyTopic.status = re_all.test(config.replyTopic) ? chrome.i18n.getMessage('menuLabel_all') : toTitleCase(config.replyTopic)
-        settings.props.replyInterval.status = `${config.replyInterval}s`
-        Object.keys(settings.props).forEach(key => {
+        settings.controls.replyLanguage.status = config.replyLanguage
+        settings.controls.replyTopic.status = re_all.test(config.replyTopic) ? chrome.i18n.getMessage('menuLabel_all') : toTitleCase(config.replyTopic)
+        settings.controls.replyInterval.status = `${config.replyInterval}s`
+        Object.keys(settings.controls).forEach(key => {
 
             // Init elems
             const menuItemDiv = dom.create.elem('div', { class: 'menu-item menu-area' }),
                   menuLabel = dom.create.elem('label', { class: 'menu-icon' }),
                   menuLabelSpan = document.createElement('span')
             let menuInput, menuSlider
-            menuLabelSpan.textContent = settings.props[key].label
-            if (settings.props[key].type == 'toggle') {
+            menuLabelSpan.textContent = settings.controls[key].label
+            if (settings.controls[key].type == 'toggle') {
                 menuInput = dom.create.elem('input', { type: 'checkbox' })
                 menuInput.checked = /disabled|hidden/i.test(key) ^ config[key]
                 menuSlider = dom.create.elem('span', { class: 'slider' })
                 menuLabel.append(menuInput, menuSlider)
                 menuLabel.classList.add('toggle-switch')
             } else { // prompt settings
-                menuLabel.innerText = settings.props[key].symbol
+                menuLabel.innerText = settings.controls[key].symbol
                 menuLabel.classList.add('menu-prompt')
-                menuLabelSpan.innerText +=  `— ${settings.props[key].status}`
+                menuLabelSpan.innerText +=  `— ${settings.controls[key].status}`
             }
 
             // Assemble/append elems
@@ -131,13 +131,13 @@
             togglesDiv.append(menuItemDiv)
 
             // Add listeners
-            if (settings.props[key].type == 'toggle') {
+            if (settings.controls[key].type == 'toggle') {
                 menuItemDiv.onclick = () => menuInput.click()
                 menuInput.onclick = menuSlider.onclick = event => // prevent double toggle
                     event.stopImmediatePropagation()
                 menuInput.onchange = () => {
                     settings.save(key, !config[key]) ; sync.storageToUI()
-                    notify(`${settings.props[key].label} ${chrome.i18n.getMessage(`state_${
+                    notify(`${settings.controls[key].label} ${chrome.i18n.getMessage(`state_${
                         /disabled|hidden/i.test(key) != config[key] ? 'on' : 'off'}`).toUpperCase()}`)
                 }
             } else menuItemDiv.onclick = async () => {
