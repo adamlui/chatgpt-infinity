@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.19.3
+// @version             2024.11.20
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -248,12 +248,13 @@
     const xhr = env.scriptManager == 'OrangeMonkey' ? GM_xmlhttpRequest : GM.xmlHttpRequest
 
     // Init APP info
-    const app = { configKeyPrefix: 'chatGPTinfinity', latestAssetCommitHash: '0f2098f' },
-          assetHostURL = `https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@${app.latestAssetCommitHash}`
-    Object.assign(app, await new Promise(resolve => xhr({
-        method: 'GET', url: `${assetHostURL}/app.json`,
+    const app = { configKeyPrefix: 'chatGPTinfinity', latestAssetCommitHash: '0f2098f', urls: {} }
+    app.urls.assetHost = `https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@${app.latestAssetCommitHash}`
+    const appData = await new Promise(resolve => xhr({
+        method: 'GET', url: `${app.urls.assetHost}/app.json`,
         onload: resp => resolve(JSON.parse(resp.responseText))
-    })))
+    }))
+    Object.assign(app, { ...appData, urls: { ...app.urls, ...appData.urls }})
     app.urls.update = app.urls.greasyFork.replace('https://', 'https://update.')
         .replace(/(\d+)-?([a-z-]*)$/i, (_, id, name) => `${id}/${ name || 'script' }.meta.js`)
 
@@ -334,7 +335,7 @@
     }
     if (!config.userLanguage.startsWith('en')) { // localize msgs for non-English users
         const localizedMsgs = await new Promise(resolve => {
-            const msgHostDir = assetHostURL + '/chrome/extension/_locales/',
+            const msgHostDir = app.urls.assetHost + '/chrome/extension/_locales/',
                   msgLocaleDir = ( config.userLanguage ? config.userLanguage.replace('-', '_') : 'en' ) + '/'
             let msgHref = msgHostDir + msgLocaleDir + 'messages.json', msgXHRtries = 0
             function fetchMsgs() { xhr({ method: 'GET', url: msgHref, onload: handleMsgs })}
