@@ -296,7 +296,7 @@
     })).observe(document.documentElement, { childList: true, subtree: true })
 
     // Disable distracting SIDEBAR CLICK-ZOOM effect
-    if (!document.querySelector('[sidebar-click-zoom-observed]')) {
+    if (!document.documentElement.hasAttribute('sidebar-click-zoom-observed')) {
         new MutationObserver(mutations => mutations.forEach(({ target }) => {
             if (target.closest('[class*="sidebar"]') // include sidebar divs
                 && !target.id.endsWith('-knob-span') // exclude our sidebarToggle

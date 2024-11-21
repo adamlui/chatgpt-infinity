@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.21.6
+// @version             2024.11.21.7
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -855,7 +855,7 @@
     const extensionInstalled = await Promise.race([
         new Promise(resolve => {
             (function checkExtensionInstalled() {
-                if (document.querySelector('[cif-extension-installed]')) resolve(true)
+                if (document.documentElement.hasAttribute('cif-extension-installed')) resolve(true)
                 else setTimeout(checkExtensionInstalled, 200)
             })()
         }), new Promise(resolve => setTimeout(() => resolve(false), 1500))])
@@ -911,7 +911,7 @@
     })).observe(document.documentElement, { childList: true, subtree: true })
 
     // Disable distracting SIDEBAR CLICK-ZOOM effect
-    if (!document.querySelector('[sidebar-click-zoom-observed]')) {
+    if (!document.documentElement.hasAttribute('sidebar-click-zoom-observed')) {
         new MutationObserver(mutations => mutations.forEach(({ target }) => {
             if (target.closest('[class*="sidebar"]') // include sidebar divs
                 && !target.id.endsWith('-knob-span') // exclude our sidebarToggle
