@@ -238,6 +238,7 @@ const chatgpt = {
     getNewChatLink() { return document.querySelector('nav a[href="/"]'); },
     getScrollToBottomButton() { return document.querySelector('button:has([d^="M12 21C11.7348"])'); },
     getSendButton() { return document.querySelector('[data-testid="send-button"]'); },
+    getStopButton() { return document.querySelector('button[data-testid="stop-button"]'); },
     isDarkMode() { return document.documentElement.classList.toString().includes('dark'); },
 
     async isIdle(timeout = null) {
