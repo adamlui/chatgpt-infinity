@@ -98,8 +98,8 @@
         },
 
         insert() {
-            if (document.getElementById('infinity-toggle-navicon')) return
-            if (!sidebarToggle.div) sidebarToggle.create()
+            if (sidebarToggle.status?.startsWith('insert') || document.getElementById('infinity-toggle-navicon')) return
+            sidebarToggle.status = 'inserting' ; if (!sidebarToggle.div) sidebarToggle.create()
 
             // Insert toggle
             const sidebar = document.querySelectorAll('nav')[env.browser.isMobile ? 1 : 0]
@@ -116,67 +116,66 @@
             if (navicon) navicon.src = `${ // update navicon color in case scheme changed
                 app.urls.mediaHost}/images/icons/infinity-symbol/`
               + `${ chatgpt.isDarkMode() ? 'white' : 'black' }/icon32.png?${app.latestAssetCommitHash}`
+
+            sidebarToggle.status = 'inserted'
         },
 
         update() {
-            if (config.extensionDisabled || config.toggleHidden) sidebarToggle.div.style.display = 'none'
-            else {
-    
-                // Create/size/position navicon
-                const navicon = document.getElementById('infinity-toggle-navicon')
-                             || dom.create.elem('img', { id: 'infinity-toggle-navicon' })
-                navicon.style.width = navicon.style.height = '1.25rem'
-                navicon.style.marginLeft = '2px' ; navicon.style.marginRight = '4px'
+        sidebarToggle.div.style.display = config.toggleHidden ? 'none' : 'flex'
 
-                // Create/ID/disable/hide/update checkbox
-                const toggleInput = document.getElementById('infinity-toggle-input')
-                                 || dom.create.elem('input', { id: 'infinity-toggle-input', type: 'checkbox', disabled: true })
-                toggleInput.style.display = 'none' ; toggleInput.checked = config.infinityMode
+            // Create/size/position navicon
+            const navicon = document.getElementById('infinity-toggle-navicon')
+                            || dom.create.elem('img', { id: 'infinity-toggle-navicon' })
+            navicon.style.width = navicon.style.height = '1.25rem'
+            navicon.style.marginLeft = '2px' ; navicon.style.marginRight = '4px'
 
-                // Create/ID/stylize switch
-                const switchSpan = document.getElementById('infinity-switch-span')
-                                || dom.create.elem('span', { id: 'infinity-switch-span' })
-                Object.assign(switchSpan.style, {
-                    position: 'relative', left: `${ env.browser.isMobile ? 169 : !ui.firstLink ? 160 : 154 }px`,
-                    backgroundColor: toggleInput.checked ? '#ccc' : '#AD68FF', // init opposite  final color
-                    bottom: `${ !ui.firstLink ? -0.15 : 0 }em`,
-                    width: '30px', height: '15px', '-webkit-transition': '.4s', transition: '0.4s',  borderRadius: '28px'
-                })
+            // Create/ID/disable/hide/update checkbox
+            const toggleInput = document.getElementById('infinity-toggle-input')
+                                || dom.create.elem('input', { id: 'infinity-toggle-input', type: 'checkbox', disabled: true })
+            toggleInput.style.display = 'none' ; toggleInput.checked = config.infinityMode
 
-                // Create/stylize knob, append to switch
-                const knobSpan = document.getElementById('infinity-toggle-knob-span')
-                              || dom.create.elem('span', { id: 'infinity-toggle-knob-span' })
-                Object.assign(knobSpan.style, {
-                    position: 'absolute', left: '3px', bottom: '1.25px',
-                    width: '12px', height: '12px', content: '""', borderRadius: '28px',
-                    transform: toggleInput.checked ? // init opposite final pos
-                        'translateX(0)' : 'translateX(13px) translateY(0)',
-                    backgroundColor: 'white',  '-webkit-transition': '0.4s', transition: '0.4s'
-                }) ; switchSpan.append(knobSpan)
+            // Create/ID/stylize switch
+            const switchSpan = document.getElementById('infinity-switch-span')
+                            || dom.create.elem('span', { id: 'infinity-switch-span' })
+            Object.assign(switchSpan.style, {
+                position: 'relative', left: `${ env.browser.isMobile ? 169 : !ui.firstLink ? 160 : 154 }px`,
+                backgroundColor: toggleInput.checked ? '#ccc' : '#AD68FF', // init opposite  final color
+                bottom: `${ !ui.firstLink ? -0.15 : 0 }em`,
+                width: '30px', height: '15px', '-webkit-transition': '.4s', transition: '0.4s',  borderRadius: '28px'
+            })
 
-                // Create/stylize/fill label
-                const toggleLabel = document.getElementById('infinity-toggle-label')
-                                 || dom.create.elem('label', { id: 'infinity-toggle-label' })
-                if (!ui.firstLink) { // add font size/weight since no ui.firstLink to borrow from
-                    toggleLabel.style.fontSize = '0.875rem' ; toggleLabel.style.fontWeight = 600 }
-                toggleLabel.style.marginLeft = `-${ !ui.firstLink ? 23 : 41 }px` // left-shift to navicon
-                toggleLabel.style.cursor = 'pointer' // add finger cursor on hover
-                toggleLabel.style.width = `${ env.browser.isMobile ? 201 : 148 }px` // to truncate overflown text
-                toggleLabel.style.overflow = 'hidden' // to truncate overflown text
-                toggleLabel.style.textOverflow = 'ellipsis' // to truncate overflown text
-                toggleLabel.innerText = chrome.i18n.getMessage('menuLabel_infinityMode') + ' '
-                                      + chrome.i18n.getMessage('state_' + ( toggleInput.checked ? 'enabled' : 'disabled' ))
-                // Append elements
-                for (const elem of [navicon, toggleInput, switchSpan, toggleLabel]) sidebarToggle.div.append(elem)
+            // Create/stylize knob, append to switch
+            const knobSpan = document.getElementById('infinity-toggle-knob-span')
+                            || dom.create.elem('span', { id: 'infinity-toggle-knob-span' })
+            Object.assign(knobSpan.style, {
+                position: 'absolute', left: '3px', bottom: '1.25px',
+                width: '12px', height: '12px', content: '""', borderRadius: '28px',
+                transform: toggleInput.checked ? // init opposite final pos
+                    'translateX(0)' : 'translateX(13px) translateY(0)',
+                backgroundColor: 'white',  '-webkit-transition': '0.4s', transition: '0.4s'
+            }) ; switchSpan.append(knobSpan)
 
-                // Update visual state
-                sidebarToggle.div.style.display = 'flex'
-                setTimeout(() => {
-                    switchSpan.style.backgroundColor = toggleInput.checked ? '#ad68ff' : '#ccc'
-                    switchSpan.style.boxShadow = toggleInput.checked ? '2px 1px 9px #d8a9ff' : 'none'
-                    knobSpan.style.transform = toggleInput.checked ? 'translateX(13px) translateY(0)' : 'translateX(0)'
-                }, 1) // min delay to trigger transition fx
-            }
+            // Create/stylize/fill label
+            const toggleLabel = document.getElementById('infinity-toggle-label')
+                                || dom.create.elem('label', { id: 'infinity-toggle-label' })
+            if (!ui.firstLink) { // add font size/weight since no ui.firstLink to borrow from
+                toggleLabel.style.fontSize = '0.875rem' ; toggleLabel.style.fontWeight = 600 }
+            toggleLabel.style.marginLeft = `-${ !ui.firstLink ? 23 : 41 }px` // left-shift to navicon
+            toggleLabel.style.cursor = 'pointer' // add finger cursor on hover
+            toggleLabel.style.width = `${ env.browser.isMobile ? 201 : 148 }px` // to truncate overflown text
+            toggleLabel.style.overflow = 'hidden' // to truncate overflown text
+            toggleLabel.style.textOverflow = 'ellipsis' // to truncate overflown text
+            toggleLabel.innerText = chrome.i18n.getMessage('menuLabel_infinityMode') + ' '
+                                    + chrome.i18n.getMessage('state_' + ( toggleInput.checked ? 'enabled' : 'disabled' ))
+            // Append elements
+            for (const elem of [navicon, toggleInput, switchSpan, toggleLabel]) sidebarToggle.div.append(elem)
+
+            // Update visual state
+            setTimeout(() => {
+                switchSpan.style.backgroundColor = toggleInput.checked ? '#ad68ff' : '#ccc'
+                switchSpan.style.boxShadow = toggleInput.checked ? '2px 1px 9px #d8a9ff' : 'none'
+                knobSpan.style.transform = toggleInput.checked ? 'translateX(13px) translateY(0)' : 'translateX(0)'
+            }, 1) // min delay to trigger transition fx
         }
     }
 
@@ -290,10 +289,10 @@
     if (config.autoStart) infinity.activate()
 
     // Monitor <html> to maintain NAV TOGGLE VISIBILITY on node changes
-    new MutationObserver(mutations => mutations.forEach(mutation => {
-        if (mutation.type == 'childList' && mutation.addedNodes.length && !config.toggleHidden)
-            sidebarToggle.insert()
-    })).observe(document.documentElement, { childList: true, subtree: true })
+    new MutationObserver(() => {
+        if (!config.toggleHidden && !document.getElementById('infinity-toggle-navicon') && sidebarToggle.status != 'inserting') {
+            sidebarToggle.status = 'missing' ; sidebarToggle.insert() }       
+    }).observe(document.body, { attributes: true, subtree: true })
 
     // Disable distracting SIDEBAR CLICK-ZOOM effect
     if (!document.documentElement.hasAttribute('sidebar-click-zoom-observed')) {
