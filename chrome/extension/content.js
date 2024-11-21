@@ -67,6 +67,11 @@
 
     // Define UI functions
 
+    async function syncStorageToUI() { // on toolbar popup toggles + ChatGPT tab activations
+        await settings.load('extensionDisabled', 'infinityMode', ...Object.keys(settings.controls))
+        sidebarToggle.update() // based on config.toggleHidden + config.infinityMode
+    }
+
     const sidebarToggle = {
 
         create() {
@@ -241,13 +246,6 @@
         },
 
         toggle() { infinity[config.infinityMode ? 'activate' : 'deactivate']() }
-    }
-
-    // Define SYNC function
-
-    async function syncStorageToUI() { // on toolbar popup toggles + ChatGPT tab activations
-        await settings.load('extensionDisabled', 'infinityMode', ...Object.keys(settings.controls))
-        sidebarToggle.update() // based on config.toggleHidden + config.infinityMode
     }
 
     // Run MAIN routine
