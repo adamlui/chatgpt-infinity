@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.21.1
+// @version             2024.11.21.2
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -389,7 +389,10 @@
             const imLabel = `${menu.state.symbols[+!!config.infinityMode]} `
                           + `${app.msgs.menuLabel_infinityMode} ∞ `
                           + menu.state.separator + menu.state.words[+!!config.infinityMode]
-            menu.ids.push(GM_registerMenuCommand(imLabel, () => { document.getElementById('infinity-toggle-label').click() }))
+            menu.ids.push(GM_registerMenuCommand(imLabel, () => {
+                settings.save('infinityMode', !config.infinityMode) ; syncStorageToUI()
+                infinity.toggle()
+            }))
 
             // Add setting entries
             Object.keys(settings.controls).forEach(key => {
