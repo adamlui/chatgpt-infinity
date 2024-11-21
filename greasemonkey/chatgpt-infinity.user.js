@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.21
+// @version             2024.11.21.1
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -690,9 +690,8 @@
 
             // Add click listener
             sidebarToggle.div.onclick = () => {
-                const toggleInput = document.getElementById('infinity-toggle-input')
-                toggleInput.checked = !toggleInput.checked
-                settings.save('infinityMode', toggleInput.checked)
+                const toggleInput = sidebarToggle.div.querySelector('input')
+                toggleInput.checked = !toggleInput.checked ; settings.save('infinityMode', toggleInput.checked)
                 infinity.toggle()
             }
         },
@@ -765,8 +764,8 @@
                 toggleLabel.style.overflow = 'hidden' // to truncate overflown text
                 toggleLabel.style.textOverflow = 'ellipsis' // to truncate overflown text
                 toggleLabel.innerText = ( app.msgs.menuLabel_infinityMode ) + ' '
-                                    + ( toggleInput.checked ? ( app.msgs.state_enabled  || 'enabled' )
-                                                            : ( app.msgs.state_disabled ))
+                                      + ( toggleInput.checked ? ( app.msgs.state_enabled  || 'enabled' )
+                                                              : ( app.msgs.state_disabled ))
                 // Append elements
                 for (const elem of [navicon, toggleInput, switchSpan, toggleLabel]) sidebarToggle.div.append(elem)
         

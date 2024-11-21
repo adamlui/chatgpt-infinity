@@ -84,12 +84,10 @@
                 sidebarToggle.div.classList.add(...ui.firstLink.classList, ...(firstLabel?.classList || []))
                 sidebarToggle.div.querySelector('img')?.classList.add(...(firstIcon?.classList || []))
             }
-
             // Add click listener
             sidebarToggle.div.onclick = () => {
-                const toggleInput = document.getElementById('infinity-toggle-input')
-                toggleInput.checked = !toggleInput.checked
-                settings.save('infinityMode', toggleInput.checked)
+                const toggleInput = sidebarToggle.div.querySelector('input')
+                toggleInput.checked = !toggleInput.checked ; settings.save('infinityMode', toggleInput.checked)
                 infinity.toggle()
             }
         },
@@ -162,7 +160,7 @@
                 toggleLabel.style.overflow = 'hidden' // to truncate overflown text
                 toggleLabel.style.textOverflow = 'ellipsis' // to truncate overflown text
                 toggleLabel.innerText = chrome.i18n.getMessage('menuLabel_infinityMode') + ' '
-                                        + chrome.i18n.getMessage('state_' + ( toggleInput.checked ? 'enabled' : 'disabled' ))
+                                      + chrome.i18n.getMessage('state_' + ( toggleInput.checked ? 'enabled' : 'disabled' ))
                 // Append elements
                 for (const elem of [navicon, toggleInput, switchSpan, toggleLabel]) sidebarToggle.div.append(elem)
 
