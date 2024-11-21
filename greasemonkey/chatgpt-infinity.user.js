@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.20.3
+// @version             2024.11.21
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -454,7 +454,7 @@
                         settings.save(key, !config[key])
                         notify(`${settings.controls[key].label}: ${menu.state.words[+(/disabled|hidden/i.test(key) ^ config[key])]}`)
                     }
-                    syncConfigToUI()
+                    syncStorageToUI()
                 }))
             })
 
@@ -794,7 +794,7 @@
     const infinity = {
 
         async activate() {
-            settings.save('infinityMode', true) ; syncConfigToUI()
+            settings.save('infinityMode', true) ; syncStorageToUI()
             const activatePrompt = 'Generate a single random question'
                 + ( config.replyLanguage ? ( ' in ' + config.replyLanguage ) : '' )
                 + ( ' on ' + ( config.replyTopic == 'ALL' ? 'ALL topics' : 'the topic of ' + config.replyTopic ))
@@ -823,7 +823,7 @@
         },
 
         deactivate() {
-            settings.save('infinityMode', false) ; syncConfigToUI()
+            settings.save('infinityMode', false) ; syncStorageToUI()
             chatgpt.stop() ; clearTimeout(infinity.isActive) ; infinity.isActive = null
             notify(`${app.msgs.menuLabel_infinityMode}: ${app.msgs.state_off.toUpperCase()}`)
         },
@@ -842,9 +842,9 @@
         toggle() { infinity[config.infinityMode ? 'activate' : 'deactivate']() }
     }
 
-    // Define SYNC functions
+    // Define SYNC function
 
-    function syncConfigToUI() {
+    function syncStorageToUI() {
         sidebarToggle.update() // based on config.toggleHidden + config.infinityMode
         menu.refresh() // symbols/suffixes
     }
