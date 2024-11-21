@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.21.3
+// @version             2024.11.21.4
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -390,7 +390,7 @@
                           + `${app.msgs.menuLabel_infinityMode} ∞ `
                           + menu.state.separator + menu.state.words[+!!config.infinityMode]
             menu.ids.push(GM_registerMenuCommand(imLabel, () => {
-                settings.save('infinityMode', !config.infinityMode) ; syncStorageToUI()
+                settings.save('infinityMode', !config.infinityMode) ; syncConfigToUI()
                 infinity.toggle()
             }))
 
@@ -457,7 +457,7 @@
                         settings.save(key, !config[key])
                         notify(`${settings.controls[key].label}: ${menu.state.words[+(/disabled|hidden/i.test(key) ^ config[key])]}`)
                     }
-                    syncStorageToUI()
+                    syncConfigToUI()
                 }))
             })
 
@@ -796,7 +796,7 @@
     const infinity = {
 
         async activate() {
-            settings.save('infinityMode', true) ; syncStorageToUI()
+            settings.save('infinityMode', true) ; syncConfigToUI()
             const activatePrompt = 'Generate a single random question'
                 + ( config.replyLanguage ? ( ' in ' + config.replyLanguage ) : '' )
                 + ( ' on ' + ( config.replyTopic == 'ALL' ? 'ALL topics' : 'the topic of ' + config.replyTopic ))
@@ -825,7 +825,7 @@
         },
 
         deactivate() {
-            settings.save('infinityMode', false) ; syncStorageToUI()
+            settings.save('infinityMode', false) ; syncConfigToUI()
             chatgpt.stop() ; clearTimeout(infinity.isActive) ; infinity.isActive = null
             notify(`${app.msgs.menuLabel_infinityMode}: ${app.msgs.state_off.toUpperCase()}`)
         },
@@ -846,7 +846,7 @@
 
     // Define SYNC function
 
-    function syncStorageToUI() {
+    function syncConfigToUI() {
         sidebarToggle.update() // based on config.toggleHidden + config.infinityMode
         menu.refresh() // prefixes/suffixes
     }
