@@ -15,7 +15,7 @@
 
     // Add CHROME MSG listener
     chrome.runtime.onMessage.addListener(req => {
-        
+
         if (req.action == 'notify') notify(req.msg, req.pos)
         else if (req.action == 'alert') siteAlert(req.title, req.msg, req.btns)
         else if (req.action.startsWith('infinity')) {
@@ -105,7 +105,7 @@
             const sidebar = document.querySelectorAll('nav')[env.browser.isMobile ? 1 : 0]
             if (!sidebar) return
             sidebar.insertBefore(sidebarToggle.div, sidebar.children[1])
-    
+
             // Tweak styles
             const knobSpan = document.getElementById('infinity-toggle-knob-span'),
                   navicon = document.getElementById('infinity-toggle-navicon')

@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.21.9
+// @version             2024.11.21.10
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -415,7 +415,7 @@
                                     ( app.msgs.appName ) + ' ' // msg
                                         + ( app.msgs.alert_willReplyIn ) + ' '
                                         + ( replyLanguage || app.msgs.alert_yourSysLang) + '.')
-                                if (config.infinityMode) infinity.restart({ target: 'new' }) // using new reply language                        
+                                if (config.infinityMode) infinity.restart({ target: 'new' }) // using new reply language
                                 break
                             }
                         }
@@ -449,7 +449,7 @@
                                     ( app.msgs.appName ) + ' ' // msg
                                         + ( app.msgs.alert_willReplyEvery ) + ' '
                                         + replyInterval + ' ' + ( app.msgs.unit_seconds ) + '.')
-                                if (config.infinityMode) infinity.restart({ target: 'self' }) // using new reply interval                    
+                                if (config.infinityMode) infinity.restart({ target: 'self' }) // using new reply interval
                                 break
                             }
                         }
@@ -589,7 +589,7 @@
                         function moreChatGPTapps() { modals.safeWinOpen(app.urls.relatedApps) }
                     ], '', 478 // set width
                 )
-        
+
                 // Re-format buttons to include emoji + localized label + hide Dismiss button
                 for (const button of document.getElementById(aboutModalID).querySelectorAll('button')) {
                     button.style.cssText = 'cursor: pointer !important' // since tweaks won't load on auto-disable
@@ -603,7 +603,7 @@
                         '🤖 ' + ( app.msgs.btnLabel_moreAIextensions ))
                     else button.style.display = 'none' // hide Dismiss button
                 }
-            }        
+            }
         },
 
         donate: {
@@ -712,7 +712,7 @@
             const sidebar = document.querySelectorAll('nav')[env.browser.isMobile ? 1 : 0]
             if (!sidebar) return
             sidebar.insertBefore(sidebarToggle.div, sidebar.children[1])
-    
+
             // Tweak styles
             const knobSpan = document.getElementById('infinity-toggle-knob-span'),
                   navicon = document.getElementById('infinity-toggle-navicon')
@@ -735,12 +735,12 @@
                             || dom.create.elem('img', { id: 'infinity-toggle-navicon' })
             navicon.style.width = navicon.style.height = '1.25rem'
             navicon.style.marginLeft = '2px' ; navicon.style.marginRight = '4px'
-    
+
             // Create/ID/disable/hide/update checkbox
             const toggleInput = document.getElementById('infinity-toggle-input')
                                 || dom.create.elem('input', { id: 'infinity-toggle-input', type: 'checkbox', disabled: true })
             toggleInput.style.display = 'none' ; toggleInput.checked = config.infinityMode
-    
+
             // Create/ID/stylize switch
             const switchSpan = document.getElementById('infinity-switch-span')
                             || dom.create.elem('span', { id: 'infinity-switch-span' })
@@ -750,7 +750,7 @@
                 bottom: `${ !ui.firstLink ? -0.15 : env.browser.isFF ? 0.05 : 0 }em`,
                 width: '30px', height: '15px', '-webkit-transition': '.4s', transition: '0.4s',  borderRadius: '28px'
             })
-    
+
             // Create/stylize knob, append to switch
             const knobSpan = document.getElementById('infinity-toggle-knob-span')
                             || dom.create.elem('span', { id: 'infinity-toggle-knob-span' })
@@ -761,7 +761,7 @@
                     'translateX(0)' : 'translateX(13px) translateY(0)',
                 backgroundColor: 'white',  '-webkit-transition': '0.4s', transition: '0.4s'
             }) ; switchSpan.append(knobSpan)
-    
+
             // Create/stylize/fill label
             const toggleLabel = document.getElementById('infinity-toggle-label')
                                 || dom.create.elem('label', { id: 'infinity-toggle-label' })
@@ -777,7 +777,7 @@
                                                             : ( app.msgs.state_disabled ))
             // Append elements
             for (const elem of [navicon, toggleInput, switchSpan, toggleLabel]) sidebarToggle.div.append(elem)
-    
+
             // Update visual state
             setTimeout(() => {
                 switchSpan.style.backgroundColor = toggleInput.checked ? '#ad68ff' : '#ccc'

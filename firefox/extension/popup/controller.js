@@ -41,7 +41,7 @@
                     + 'icon' + dimension + '.png'
             })
             chrome.action.setIcon({ path: iconPaths })
-    
+
             // Update menu contents
             document.querySelectorAll('div.logo, div.menu-title, div.menu')
                 .forEach(elem => {
@@ -66,7 +66,7 @@
     const masterToggle = document.querySelector('input')
     await settings.load('extensionDisabled')
     masterToggle.checked = !config.extensionDisabled ; sync.fade()
-    masterToggle.onchange = () => {    
+    masterToggle.onchange = () => {
         settings.save('extensionDisabled', !config.extensionDisabled)
         if (config.infinityMode) // always disable Infinity Mode on master toggle
             document.querySelector('.menu-area > .toggle-switch > input')?.click()

@@ -26,7 +26,7 @@ const chatgpt = {
               modalMessage = document.createElement('p');
 
         // Create/append/update modal style (if missing or outdated)
-        const thisUpdated = 20231203; // datestamp of last edit for this file's `modalStyle` 
+        const thisUpdated = 20231203; // datestamp of last edit for this file's `modalStyle`
         let modalStyle = document.querySelector('#chatgpt-modal-style'); // try to select existing style
         if (!modalStyle || parseInt(modalStyle.getAttribute('last-updated'), 10) < thisUpdated) { // if missing or outdated
             if (!modalStyle) { // outright missing, create/id/attr/append it first
@@ -38,7 +38,7 @@ const chatgpt = {
                 '.no-mobile-tap-outline { outline: none ; -webkit-tap-highlight-color: transparent }'
 
                 // Background styles
-                + '.chatgpt-modal {' 
+                + '.chatgpt-modal {'
                     + 'position: fixed ; top: 0 ; left: 0 ; width: 100% ; height: 100% ;' // expand to full view-port
                     + 'background-color: rgba(67, 70, 72, 0) ;' // init dim bg but no opacity
                     + 'transition: background-color 0.05s ease ;' // speed to transition in show alert routine
@@ -90,7 +90,7 @@ const chatgpt = {
                     + `border: 1px solid ${ scheme == 'dark' ? 'white' : 'black' } ;`
                     + 'background-color: black ; position: inherit }'
                 + '.chatgpt-modal input[type="checkbox"]:focus { outline: none ; box-shadow: none }'
-            );            
+            );
         }
 
         // Insert text into elements
@@ -160,7 +160,7 @@ const chatgpt = {
         const modalElems = [closeBtn, modalTitle, modalMessage, modalButtons, checkboxDiv];
         modalElems.forEach((elem) => { modal.append(elem); });
         modal.style.width = `${ width || 458 }px`;
-        modalContainer.append(modal); document.body.append(modalContainer); 
+        modalContainer.append(modal); document.body.append(modalContainer);
 
         // Enqueue alert
         let alertQueue = JSON.parse(localStorage.alertQueue);
@@ -172,7 +172,7 @@ const chatgpt = {
         if (alertQueue.length === 1) {
             modalContainer.style.display = '';
             setTimeout(() => { // delay non-0 opacity's for transition fx
-                modalContainer.style.backgroundColor = ( 
+                modalContainer.style.backgroundColor = (
                     `rgba(67, 70, 72, ${ scheme === 'dark' ? 0.62 : 0.1 })`);
                 modalContainer.classList.add('animated'); }, 100);
         }
@@ -314,7 +314,7 @@ const chatgpt = {
                                  + (notificationDiv.isRight ? 'Right' : 'Left');
 
         // Create/append/update notification style (if missing or outdated)
-        const thisUpdated = 20231110; // datestamp of last edit for this file's `notifStyle` 
+        const thisUpdated = 20231110; // datestamp of last edit for this file's `notifStyle`
         let notifStyle = document.querySelector('#chatgpt-notif-style'); // try to select existing style
         if (!notifStyle || parseInt(notifStyle.getAttribute('last-updated'), 10) < thisUpdated) { // if missing or outdated
             if (!notifStyle) { // outright missing, create/id/attr/append it first
@@ -337,7 +337,7 @@ const chatgpt = {
                     + '45% { opacity: 0.05 ; transform: rotateX(-81deg) }'
                     + '100% { opacity: 0 ; transform: rotateX(-180deg) scale(1.15) }}'
             );
-        } 
+        }
 
         // Enqueue notification
         let notifyProps = JSON.parse(localStorage.notifyProps);
@@ -370,7 +370,7 @@ const chatgpt = {
             notificationDiv.style.transition = 'transform 0.15s ease, opacity 0.15s ease';
         }, 10);
 
-        // Init delay before hiding        
+        // Init delay before hiding
         const hideDelay = fadeDuration > notifDuration ? 0 // don't delay if fade exceeds notification duration
                         : notifDuration - fadeDuration; // otherwise delay for difference
 
@@ -379,7 +379,7 @@ const chatgpt = {
             notificationDiv.style.animation = `notif-zoom-fade-out ${ fadeDuration }s ease-out`;
             clearTimeout(dismissFuncTID);
         };
-        const dismissFuncTID = setTimeout(dismissNotif, hideDelay * 1000); // maintain visibility for `hideDelay` secs, then dismiss     
+        const dismissFuncTID = setTimeout(dismissNotif, hideDelay * 1000); // maintain visibility for `hideDelay` secs, then dismiss
         closeSVG.onclick = dismissNotif; // add to close button clicks
 
         // Destroy notification
@@ -612,7 +612,7 @@ for (const prop in chatgpt) {
 // Prefix console logs w/ '🤖 chatgpt.js >> '
 const consolePrefix = '🤖 chatgpt.js >> ', ogError = console.error, ogInfo = console.info;
 console.error = (...args) => {
-    if (!args[0].startsWith(consolePrefix)) ogError(consolePrefix + args[0], ...args.slice(1)); 
+    if (!args[0].startsWith(consolePrefix)) ogError(consolePrefix + args[0], ...args.slice(1));
     else ogError(...args);
 };
 console.info = (msg) => {
