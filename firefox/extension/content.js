@@ -166,8 +166,8 @@
                 width: `${ env.browser.isMobile ? 201 : 148 }px`, // to truncate overflown text
                 overflow: 'hidden', textOverflow: 'ellipsis' // to truncate overflown text
             })
-            toggleLabel.innerText = chrome.i18n.getMessage('menuLabel_infinityMode') + ' '
-                                    + chrome.i18n.getMessage('state_' + ( toggleInput.checked ? 'enabled' : 'disabled' ))
+            toggleLabel.innerText = `${chrome.i18n.getMessage('menuLabel_infinityMode')} ${
+                                       chrome.i18n.getMessage('state_' + ( toggleInput.checked ? 'enabled' : 'disabled' ))}`
             // Append elements
             sidebarToggle.div.append(navicon, toggleInput, switchSpan, toggleLabel)
 
