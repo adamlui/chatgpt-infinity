@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.21.10
+// @version             2024.11.22
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -685,10 +685,7 @@
             sidebarToggle.update() // create children
 
             // Stylize/classify
-            sidebarToggle.div.style.height = '37px'
-            sidebarToggle.div.style.margin = '2px 0' // add v-margins
-            sidebarToggle.div.style.userSelect = 'none' // prevent highlighting
-            sidebarToggle.div.style.cursor = 'pointer' // add finger cursor
+            sidebarToggle.div.style.cssText = 'height: 37px ; margin: 2px 0 ; user-select: none ; cursor: pointer'
             if (ui.firstLink) { // borrow/assign classes from sidebar elems
                 const firstIcon = ui.firstLink.querySelector('div:first-child'),
                       firstLabel = ui.firstLink.querySelector('div:nth-child(2)')
@@ -733,8 +730,7 @@
             // Create/size/position navicon
             const navicon = document.getElementById('infinity-toggle-navicon')
                             || dom.create.elem('img', { id: 'infinity-toggle-navicon' })
-            navicon.style.width = navicon.style.height = '1.25rem'
-            navicon.style.marginLeft = '2px' ; navicon.style.marginRight = '4px'
+            navicon.style.cssText = 'width: 1.25rem ; height: 1.25rem ; margin-left: 2px ; margin-right: 4px'
 
             // Create/ID/disable/hide/update checkbox
             const toggleInput = document.getElementById('infinity-toggle-input')
@@ -765,16 +761,17 @@
             // Create/stylize/fill label
             const toggleLabel = document.getElementById('infinity-toggle-label')
                                 || dom.create.elem('label', { id: 'infinity-toggle-label' })
-            if (!ui.firstLink) { // add font size/weight since no ui.firstLink to borrow from
-                toggleLabel.style.fontSize = '0.875rem' ; toggleLabel.style.fontWeight = 600 }
-            toggleLabel.style.marginLeft = `-${ !ui.firstLink ? 23 : 41 }px` // left-shift to navicon
-            toggleLabel.style.cursor = 'pointer' // add finger cursor on hover
-            toggleLabel.style.width = `${ env.browser.isMobile ? 201 : 148 }px` // to truncate overflown text
-            toggleLabel.style.overflow = 'hidden' // to truncate overflown text
-            toggleLabel.style.textOverflow = 'ellipsis' // to truncate overflown text
+            if (!ui.firstLink) // add font size/weight since no ui.firstLink to borrow from
+                toggleLabel.style.cssText = 'font-size: 0.875rem, font-weight: 600'
+            Object.assign(toggleLabel.style, {
+                marginLeft: `-${ !ui.firstLink ? 23 : 41 }px`, // left-shift to navicon
+                cursor: 'pointer', // add finger cursor on hover
+                width: `${ env.browser.isMobile ? 201 : 148 }px`, // to truncate overflown text
+                overflow: 'hidden', textOverflow: 'ellipsis' // to truncate overflown text
+            })
             toggleLabel.innerText = ( app.msgs.menuLabel_infinityMode ) + ' '
-                                    + ( toggleInput.checked ? ( app.msgs.state_enabled  || 'enabled' )
-                                                            : ( app.msgs.state_disabled ))
+                                  + ( toggleInput.checked ? ( app.msgs.state_enabled  || 'enabled' )
+                                                          : ( app.msgs.state_disabled ))
             // Append elements
             for (const elem of [navicon, toggleInput, switchSpan, toggleLabel]) sidebarToggle.div.append(elem)
 
