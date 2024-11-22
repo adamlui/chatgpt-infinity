@@ -122,16 +122,16 @@
         },
 
         update() {
-        sidebarToggle.div.style.display = config.toggleHidden ? 'none' : 'flex'
+            sidebarToggle.div.style.display = config.toggleHidden ? 'none' : 'flex'
 
             // Create/size/position navicon
             const navicon = document.getElementById('infinity-toggle-navicon')
-                            || dom.create.elem('img', { id: 'infinity-toggle-navicon' })
+                         || dom.create.elem('img', { id: 'infinity-toggle-navicon' })
             navicon.style.cssText = 'width: 1.25rem ; height: 1.25rem ; margin-left: 2px ; margin-right: 4px'
 
             // Create/ID/disable/hide/update checkbox
             const toggleInput = document.getElementById('infinity-toggle-input')
-                                || dom.create.elem('input', { id: 'infinity-toggle-input', type: 'checkbox', disabled: true })
+                             || dom.create.elem('input', { id: 'infinity-toggle-input', type: 'checkbox', disabled: true })
             toggleInput.style.display = 'none' ; toggleInput.checked = config.infinityMode
 
             // Create/ID/stylize switch
@@ -140,13 +140,13 @@
             Object.assign(switchSpan.style, {
                 position: 'relative', left: `${ env.browser.isMobile ? 169 : !ui.firstLink ? 160 : 154 }px`,
                 backgroundColor: toggleInput.checked ? '#ccc' : '#AD68FF', // init opposite  final color
-                bottom: `${ !ui.firstLink ? -0.15 : 0 }em`,
+                bottom: `${ !ui.firstLink ? -0.15 : 0.05 }em`,
                 width: '30px', height: '15px', '-webkit-transition': '.4s', transition: '0.4s',  borderRadius: '28px'
             })
 
             // Create/stylize knob, append to switch
             const knobSpan = document.getElementById('infinity-toggle-knob-span')
-                            || dom.create.elem('span', { id: 'infinity-toggle-knob-span' })
+                          || dom.create.elem('span', { id: 'infinity-toggle-knob-span' })
             Object.assign(knobSpan.style, {
                 position: 'absolute', left: '3px', bottom: '1.25px',
                 width: '12px', height: '12px', content: '""', borderRadius: '28px',
@@ -157,7 +157,7 @@
 
             // Create/stylize/fill label
             const toggleLabel = document.getElementById('infinity-toggle-label')
-                                || dom.create.elem('label', { id: 'infinity-toggle-label' })
+                             || dom.create.elem('label', { id: 'infinity-toggle-label' })
             if (!ui.firstLink) // add font size/weight since no ui.firstLink to borrow from
                 toggleLabel.style.cssText = 'font-size: 0.875rem, font-weight: 600'
             Object.assign(toggleLabel.style, {
