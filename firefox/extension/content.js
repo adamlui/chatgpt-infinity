@@ -169,7 +169,7 @@
             toggleLabel.innerText = chrome.i18n.getMessage('menuLabel_infinityMode') + ' '
                                     + chrome.i18n.getMessage('state_' + ( toggleInput.checked ? 'enabled' : 'disabled' ))
             // Append elements
-            for (const elem of [navicon, toggleInput, switchSpan, toggleLabel]) sidebarToggle.div.append(elem)
+            sidebarToggle.div.append(navicon, toggleInput, switchSpan, toggleLabel)
 
             // Update visual state
             setTimeout(() => {
