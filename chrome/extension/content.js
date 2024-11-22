@@ -231,8 +231,7 @@
 
         async restart(options = { target: 'new' }) {
             if (options.target == 'new') {
-                chatgpt.stop() ; infinity.deactivate()
-                setTimeout(() => infinity.activate(), 750)
+                infinity.deactivate() ; setTimeout(() => infinity.activate(), 750)
             } else {
                 clearTimeout(infinity.isActive) ; infinity.isActive = null ; await chatgpt.isIdle()
                 if (config.infinityMode && !infinity.isActive) { // double-check in case de-activated before scheduled
