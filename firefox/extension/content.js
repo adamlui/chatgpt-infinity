@@ -82,7 +82,7 @@
             sidebarToggle.update() // create children
 
             // Stylize/classify
-            sidebarToggle.div.style.cssText = 'height: 37px ; margin: 2px 0 ; user-select: none ; cursor: pointer'
+            sidebarToggle.div.style.cssText += 'height: 37px ; margin: 2px 0 ; user-select: none ; cursor: pointer'
             if (ui.firstLink) { // borrow/assign classes from sidebar elems
                 const firstIcon = ui.firstLink.querySelector('div:first-child'),
                       firstLabel = ui.firstLink.querySelector('div:nth-child(2)')
