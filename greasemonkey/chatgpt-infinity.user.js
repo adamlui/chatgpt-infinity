@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.22.4
+// @version             2024.11.22.5
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -434,7 +434,8 @@
                                     + '!'
                             )
                             if (config.infinityMode) { // restart session using new reply topic
-                                chatgpt.stop() ; document.getElementById('infinity-toggle-label').click() // toggle off
+                                if (chatgpt.getStopBtn()) chatgpt.stop()
+                                document.getElementById('infinity-toggle-label').click() // toggle off
                                 setTimeout(() => { document.getElementById('infinity-toggle-label').click() }, 500) // toggle on
                             }
                         }
@@ -826,7 +827,8 @@
 
         deactivate() {
             settings.save('infinityMode', false) ; syncConfigToUI()
-            chatgpt.stop() ; clearTimeout(infinity.isActive) ; infinity.isActive = null
+            if (chatgpt.getStopBtn()) chatgpt.stop()
+            clearTimeout(infinity.isActive) ; infinity.isActive = null
             notify(`${app.msgs.menuLabel_infinityMode}: ${app.msgs.state_off.toUpperCase()}`)
         },
 

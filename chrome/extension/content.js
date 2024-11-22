@@ -226,7 +226,8 @@
             if (!infinity.muted) notify(`${chrome.i18n.getMessage('menuLabel_infinityMode')}: ${
                                            chrome.i18n.getMessage('state_off').toUpperCase()}`)
             else infinity.muted = false
-            chatgpt.stop() ; clearTimeout(infinity.isActive) ; infinity.isActive = null
+            if (chatgpt.getStopBtn()) chatgpt.stop()
+            clearTimeout(infinity.isActive) ; infinity.isActive = null
         },
 
         async restart(options = { target: 'new' }) {
