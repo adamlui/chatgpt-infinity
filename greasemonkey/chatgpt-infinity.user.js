@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.22.12
+// @version             2024.11.22.13
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -401,9 +401,12 @@
                 const settingIsEnabled = config[key] ^ /disabled|hidden/i.test(key),
                       menuLabel = `${ settings.controls[key].symbol || menu.state.symbols[+settingIsEnabled] } ${settings.controls[key].label}`
                                 +   ( settings.controls[key].type == 'toggle' ? ( menu.state.separator + menu.state.words[+settingIsEnabled] )
-                                                                         : `— ${settings.controls[key].status}` )
+                                                                              : `— ${settings.controls[key].status}` )
                 menu.ids.push(GM_registerMenuCommand(menuLabel, () => {
-                    if (key == 'replyLanguage') {
+                    if (settings.controls[key].type == 'toggle') {
+                        settings.save(key, !config[key])
+                        notify(`${settings.controls[key].label}: ${menu.state.words[+(/disabled|hidden/i.test(key) ^ config[key])]}`)
+                    } else if (key == 'replyLanguage') {
                         while (true) {
                             let replyLanguage = prompt(
                                 `${app.msgs.prompt_updateReplyLang}:`, config.replyLanguage)
@@ -452,9 +455,6 @@
                                 break
                             }
                         }
-                    } else { // save toggled state + notify
-                        settings.save(key, !config[key])
-                        notify(`${settings.controls[key].label}: ${menu.state.words[+(/disabled|hidden/i.test(key) ^ config[key])]}`)
                     }
                     syncConfigToUI()
                 }))
