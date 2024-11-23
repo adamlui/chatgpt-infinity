@@ -28,7 +28,7 @@
         }
     })
 
-    // Init ENV info
+    // Init ENV context
     const env = { browser: { isMobile: chatgpt.browser.isMobile() }}
 
     // Init CONFIG
