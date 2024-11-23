@@ -31,7 +31,7 @@
     // Init ENV context
     const env = { browser: { isMobile: chatgpt.browser.isMobile() }}
 
-    // Init CONFIG
+    // Init SETTINGS
     await settings.load('extensionDisabled', ...Object.keys(settings.controls))
     if (!config.replyLanguage) settings.save('replyLanguage', (await chrome.i18n.getAcceptLanguages())[0]) // init reply language if unset
     if (!config.replyTopic) settings.save('replyTopic', 'ALL') // init reply topic if unset
