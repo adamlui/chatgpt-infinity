@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.22.11
+// @version             2024.11.22.12
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -349,25 +349,27 @@
     // Init SETTINGS
     const config = {}
     const settings = {
+
+        controls: {
+            autoStart: { type: 'toggle', label: app.msgs.menuLabel_autoStart },
+            toggleHidden: { type: 'toggle', label: app.msgs.menuLabel_toggleVis },
+            autoScrollDisabled: { type: 'toggle', label: app.msgs.menuLabel_autoScroll },
+            replyLanguage: { type: 'prompt', symbol: '🌐', label: app.msgs.menuLabel_replyLang },
+            replyTopic: { type: 'prompt', symbol: '🧠', label: app.msgs.menuLabel_replyTopic },
+            replyInterval: { type: 'prompt', symbol: '⌚', label: app.msgs.menuLabel_replyInt }
+        },
+
         load(...keys) {
             if (Array.isArray(keys[0])) keys = keys[0] // use 1st array arg, else all comma-separated ones
             keys.forEach(key => config[key] = GM_getValue(app.configKeyPrefix + '_' + key, false))
         },
+
         save(key, value) { GM_setValue(app.configKeyPrefix + '_' + key, value) ; config[key] = value }
-    } ; settings.load('autoScrollDisabled', 'autoStart', 'replyInterval', 'replyLanguage', 'replyTopic', 'toggleHidden')
+    }
+    settings.load('autoScrollDisabled', 'autoStart', 'replyInterval', 'replyLanguage', 'replyTopic', 'toggleHidden')
     if (!config.replyLanguage) settings.save('replyLanguage', env.browser.language) // init reply language if unset
     if (!config.replyTopic) settings.save('replyTopic', 'ALL') // init reply topic if unset
     if (!config.replyInterval) settings.save('replyInterval', 7) // init refresh interval to 7 secs if unset
-
-    // Init SETTINGS controls
-    Object.assign(settings, { controls: {
-        autoStart: { type: 'toggle', label: app.msgs.menuLabel_autoStart },
-        toggleHidden: { type: 'toggle', label: app.msgs.menuLabel_toggleVis },
-        autoScrollDisabled: { type: 'toggle', label: app.msgs.menuLabel_autoScroll },
-        replyLanguage: { type: 'prompt', symbol: '🌐', label: app.msgs.menuLabel_replyLang },
-        replyTopic: { type: 'prompt', symbol: '🧠', label: app.msgs.menuLabel_replyTopic },
-        replyInterval: { type: 'prompt', symbol: '⌚', label: app.msgs.menuLabel_replyInt }
-    }})
 
     // Define MENU functions
 
