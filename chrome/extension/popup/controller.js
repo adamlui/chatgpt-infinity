@@ -73,7 +73,6 @@
 
     // Create CHILD toggles on chatgpt.com
     if (site == 'chatgpt') {
-        settings.save('userLanguage', (await chrome.i18n.getAcceptLanguages())[0])
         await settings.load(Object.keys(settings.controls))
 
         // Create/insert toggles section
@@ -138,7 +137,7 @@
                     notify(`${settings.controls[key].label} ${chrome.i18n.getMessage(`state_${
                         /disabled|hidden/i.test(key) != config[key] ? 'on' : 'off'}`).toUpperCase()}`)
                 }
-            } else menuItemDiv.onclick = () => {
+            } else menuItemDiv.onclick = async () => {
                 if (key == 'replyLanguage') {
                     while (true) {
                         let replyLanguage = prompt(`${chrome.i18n.getMessage('prompt_updateReplyLang')}:`, config.replyLanguage)
@@ -147,7 +146,7 @@
                             replyLanguage = ( // auto-case for menu/alert aesthetics
                                 [2, 3].includes(replyLanguage.length) || replyLanguage.includes('-') ? replyLanguage.toUpperCase()
                                 : replyLanguage.charAt(0).toUpperCase() + replyLanguage.slice(1).toLowerCase() )
-                            settings.save('replyLanguage', replyLanguage || config.userLanguage)
+                            settings.save('replyLanguage', replyLanguage || (await chrome.i18n.getAcceptLanguages())[0])
                             siteAlert(chrome.i18n.getMessage('alert_replyLangUpdated') + '!',
                                 chrome.i18n.getMessage('appName') + ' ' + chrome.i18n.getMessage('alert_willReplyIn') + ' '
                                 + ( replyLanguage || chrome.i18n.getMessage('alert_yourSysLang') ) + '.')

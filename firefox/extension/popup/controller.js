@@ -75,7 +75,6 @@
 
     // Create CHILD toggles on chatgpt.com
     if (site == 'chatgpt') {
-        settings.save('userLanguage', (await chrome.i18n.getAcceptLanguages())[0])
         await settings.load(Object.keys(settings.controls))
 
         // Create/insert toggles section
@@ -149,7 +148,7 @@
                             replyLanguage = ( // auto-case for menu/alert aesthetics
                                 [2, 3].includes(replyLanguage.length) || replyLanguage.includes('-') ? replyLanguage.toUpperCase()
                                 : replyLanguage.charAt(0).toUpperCase() + replyLanguage.slice(1).toLowerCase() )
-                            settings.save('replyLanguage', replyLanguage || config.userLanguage)
+                            settings.save('replyLanguage', replyLanguage || (await chrome.i18n.getAcceptLanguages())[0])
                             siteAlert(chrome.i18n.getMessage('alert_replyLangUpdated') + '!',
                                 chrome.i18n.getMessage('appName') + ' ' + chrome.i18n.getMessage('alert_willReplyIn') + ' '
                                 + ( replyLanguage || chrome.i18n.getMessage('alert_yourSysLang') ) + '.')
