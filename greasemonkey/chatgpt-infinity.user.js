@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.22.6
+// @version             2024.11.22.7
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -242,7 +242,7 @@
 
     // Init ENV vars
     const env = {
-        browser: { isMobile: chatgpt.browser.isMobile(), isFF: chatgpt.browser.isFirefox() },
+        browser: { language: chatgpt.getUserLanguage(), isMobile: chatgpt.browser.isMobile(), isFF: chatgpt.browser.isFirefox() },
         scriptManager: (() => { try { return GM_info.scriptHandler } catch (err) { return 'unknown' }})()
     }
     const xhr = env.scriptManager == 'OrangeMonkey' ? GM_xmlhttpRequest : GM.xmlHttpRequest
@@ -259,15 +259,14 @@
         .replace(/(\d+)-?([a-z-]*)$/i, (_, id, name) => `${id}/${ name || 'script' }.meta.js`)
 
     // Init CONFIG
-    const config = { userLanguage: chatgpt.getUserLanguage() }
-    const settings = {
+    const config = {}, settings = {
         load(...keys) {
             if (Array.isArray(keys[0])) keys = keys[0] // use 1st array arg, else all comma-separated ones
             keys.forEach(key => config[key] = GM_getValue(app.configKeyPrefix + '_' + key, false))
         },
         save(key, value) { GM_setValue(app.configKeyPrefix + '_' + key, value) ; config[key] = value }
     } ; settings.load('autoScrollDisabled', 'autoStart', 'replyInterval', 'replyLanguage', 'replyTopic', 'toggleHidden')
-    if (!config.replyLanguage) settings.save('replyLanguage', config.userLanguage) // init reply language if unset
+    if (!config.replyLanguage) settings.save('replyLanguage', env.browser.language) // init reply language if unset
     if (!config.replyTopic) settings.save('replyTopic', 'ALL') // init reply topic if unset
     if (!config.replyInterval) settings.save('replyInterval', 7) // init refresh interval to 7 secs if unset
 
@@ -333,10 +332,10 @@
         state_on: 'on',
         state_off: 'off'
     }
-    if (!config.userLanguage.startsWith('en')) { // localize msgs for non-English users
+    if (!env.browser.language.startsWith('en')) { // localize msgs for non-English users
         const localizedMsgs = await new Promise(resolve => {
             const msgHostDir = app.urls.assetHost + '/chrome/extension/_locales/',
-                  msgLocaleDir = ( config.userLanguage ? config.userLanguage.replace('-', '_') : 'en' ) + '/'
+                  msgLocaleDir = ( env.browser.language ? env.browser.language.replace('-', '_') : 'en' ) + '/'
             let msgHref = msgHostDir + msgLocaleDir + 'messages.json', msgXHRtries = 0
             function fetchMsgs() { xhr({ method: 'GET', url: msgHref, onload: handleMsgs })}
             function handleMsgs(resp) {
@@ -348,7 +347,7 @@
                     resolve(flatMsgs)
                 } catch (err) { // if bad response
                     msgXHRtries++ ; if (msgXHRtries == 3) return resolve({}) // try up to 3X (original/region-stripped/EN) only
-                    msgHref = config.userLanguage.includes('-') && msgXHRtries == 1 ? // if regional lang on 1st try...
+                    msgHref = env.browser.language.includes('-') && msgXHRtries == 1 ? // if regional lang on 1st try...
                         msgHref.replace(/([^_]+_[^_]+)_[^/]*(\/.*)/, '$1$2') // ...strip region before retrying
                             : ( msgHostDir + 'en/messages.json' ) // else use default English messages
                     fetchMsgs()
@@ -410,7 +409,7 @@
                                 replyLanguage = ( // auto-case for menu/alert aesthetics
                                     [2, 3].includes(replyLanguage.length) || replyLanguage.includes('-') ? replyLanguage.toUpperCase()
                                     : replyLanguage.charAt(0).toUpperCase() + replyLanguage.slice(1).toLowerCase() )
-                                settings.save('replyLanguage', replyLanguage || config.userLanguage)
+                                settings.save('replyLanguage', replyLanguage || env.browser.language)
                                 siteAlert(( app.msgs.alert_replyLangUpdated ) + '!', // title
                                     ( app.msgs.appName ) + ' ' // msg
                                         + ( app.msgs.alert_willReplyIn ) + ' '
@@ -504,7 +503,7 @@
                         )
 
                         // Localize button labels if needed
-                        if (!config.userLanguage.startsWith('en')) {
+                        if (!env.browser.language.startsWith('en')) {
                             const updateAlert = document.querySelector(`[id="${updateModalID}"]`),
                                   updateBtns = updateAlert.querySelectorAll('button')
                             updateBtns[1].textContent = app.msgs.btnLabel_update
