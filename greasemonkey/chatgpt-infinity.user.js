@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.22.13
+// @version             2024.11.23
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -236,13 +236,16 @@
 // ==/UserScript==
 
 // Documentation: https://docs.chatgptinfinity.com
-// NOTE: This script relies on the powerful chatgpt.js library @ https://chatgpt.js.org © 2023–2024 KudoAI & contributors under the MIT license.
+// NOTE: This script relies on the powerful chatgpt.js library @ https://chatgpt.js.org
+//  © 2023–2024 KudoAI & contributors under the MIT license.
 
 (async () => {
 
     // Init ENV context
     const env = {
-        browser: { language: chatgpt.getUserLanguage(), isMobile: chatgpt.browser.isMobile(), isFF: chatgpt.browser.isFirefox() },
+        browser: {
+            language: chatgpt.getUserLanguage(), isMobile: chatgpt.browser.isMobile(), isFF: chatgpt.browser.isFirefox()
+        },
         scriptManager: (() => { try { return GM_info.scriptHandler } catch (err) { return 'unknown' }})()
     }
     const xhr = env.scriptManager == 'OrangeMonkey' ? GM_xmlhttpRequest : GM.xmlHttpRequest
@@ -334,7 +337,7 @@
                             flatMsgs[key] = msgs[key].message
                     resolve(flatMsgs)
                 } catch (err) { // if bad response
-                    msgXHRtries++ ; if (msgXHRtries == 3) return resolve({}) // try up to 3X (original/region-stripped/EN) only
+                    msgXHRtries++ ; if (msgXHRtries == 3) return resolve({}) // try original/region-stripped/EN only
                     msgHref = env.browser.language.includes('-') && msgXHRtries == 1 ? // if regional lang on 1st try...
                         msgHref.replace(/([^_]+_[^_]+)_[^/]*(\/.*)/, '$1$2') // ...strip region before retrying
                             : ( msgHostDir + 'en/messages.json' ) // else use default English messages
@@ -384,7 +387,8 @@
             // Init prompt setting status labels
             const re_all = new RegExp(`^(${app.msgs.menuLabel_all}|all|any|every)$`, 'i')
             settings.controls.replyLanguage.status = config.replyLanguage
-            settings.controls.replyTopic.status = re_all.test(config.replyTopic) ? app.msgs.menuLabel_all : toTitleCase(config.replyTopic)
+            settings.controls.replyTopic.status = re_all.test(config.replyTopic) ? app.msgs.menuLabel_all
+                                                                                 : toTitleCase(config.replyTopic)
             settings.controls.replyInterval.status = `${config.replyInterval}s`
 
             // Add Infinity Mode toggle
@@ -398,28 +402,31 @@
 
             // Add setting entries
             Object.keys(settings.controls).forEach(key => {
-                const settingIsEnabled = config[key] ^ /disabled|hidden/i.test(key),
-                      menuLabel = `${ settings.controls[key].symbol || menu.state.symbols[+settingIsEnabled] } ${settings.controls[key].label}`
-                                +   ( settings.controls[key].type == 'toggle' ? ( menu.state.separator + menu.state.words[+settingIsEnabled] )
-                                                                              : `— ${settings.controls[key].status}` )
+                const settingIsEnabled = config[key] ^ /disabled|hidden/i.test(key)
+                const menuLabel = `${ settings.controls[key].symbol || menu.state.symbols[+settingIsEnabled] } `
+                                + settings.controls[key].label
+                                + ( settings.controls[key].type == 'toggle' ? menu.state.separator
+                                                                            + menu.state.words[+settingIsEnabled]
+                                                                            : `— ${settings.controls[key].status}` )
                 menu.ids.push(GM_registerMenuCommand(menuLabel, () => {
                     if (settings.controls[key].type == 'toggle') {
                         settings.save(key, !config[key])
-                        notify(`${settings.controls[key].label}: ${menu.state.words[+(/disabled|hidden/i.test(key) ^ config[key])]}`)
+                        notify(`${settings.controls[key].label}: ${
+                            menu.state.words[+(/disabled|hidden/i.test(key) ^ config[key])]}`)
                     } else if (key == 'replyLanguage') {
                         while (true) {
-                            let replyLanguage = prompt(
+                            let replyLang = prompt(
                                 `${app.msgs.prompt_updateReplyLang}:`, config.replyLanguage)
-                            if (replyLanguage == null) break // user cancelled so do nothing
-                            else if (!/\d/.test(replyLanguage)) {
-                                replyLanguage = ( // auto-case for menu/alert aesthetics
-                                    [2, 3].includes(replyLanguage.length) || replyLanguage.includes('-') ? replyLanguage.toUpperCase()
-                                    : replyLanguage.charAt(0).toUpperCase() + replyLanguage.slice(1).toLowerCase() )
-                                settings.save('replyLanguage', replyLanguage || env.browser.language)
+                            if (replyLang == null) break // user cancelled so do nothing
+                            else if (!/\d/.test(replyLang)) {
+                                replyLang = ( // auto-case for menu/alert aesthetics
+                                    replyLang.length < 4 || replyLang.includes('-') ? replyLang.toUpperCase()
+                                        : replyLang.charAt(0).toUpperCase() + replyLang.slice(1).toLowerCase() )
+                                settings.save('replyLanguage', replyLang || env.browser.language)
                                 siteAlert(( app.msgs.alert_replyLangUpdated ) + '!', // title
                                     ( app.msgs.appName ) + ' ' // msg
                                         + ( app.msgs.alert_willReplyIn ) + ' '
-                                        + ( replyLanguage || app.msgs.alert_yourSysLang) + '.')
+                                        + ( replyLang || app.msgs.alert_yourSysLang) + '.')
                                 if (config.infinityMode) infinity.restart({ target: 'new' }) // using new reply language
                                 break
                             }
@@ -429,29 +436,28 @@
                                         + ' (' + ( app.msgs.prompt_orEnter ) + ' \'ALL\'):', config.replyTopic)
                         if (replyTopic != null) { // user didn't cancel
                             const str_replyTopic = replyTopic.toString()
-                            settings.save('replyTopic', !replyTopic || re_all.test(str_replyTopic) ? 'ALL' : str_replyTopic)
-                            siteAlert(( app.msgs.alert_replyTopicUpdated ) + '!',
-                                ( app.msgs.appName ) + ' '
-                                    + ( app.msgs.alert_willAnswer ) + ' '
-                                    + ( !replyTopic || re_all.test(str_replyTopic)
-                                        ? app.msgs.alert_onAllTopics
-                                        : (( app.msgs.alert_onTopicOf ) + ' ' + str_replyTopic ))
+                            settings.save('replyTopic', !replyTopic || re_all.test(str_replyTopic) ? 'ALL'
+                                                                                                   : str_replyTopic)
+                            siteAlert(`${app.msgs.alert_replyTopicUpdated}!`,
+                                `${app.msgs.appName} ${app.msgs.alert_willAnswer} `
+                                    + ( !replyTopic || re_all.test(str_replyTopic) ? app.msgs.alert_onAllTopics
+                                        : `${app.msgs.alert_onTopicOf} ${str_replyTopic}` )
                                     + '!'
                             )
-                            if (config.infinityMode) infinity.restart({ target: 'new' }) // using new reply topic
+                            if (config.infinityMode) infinity.restart({ target: 'new' })
                         }
                     } else if (key == 'replyInterval') {
                         while (true) {
                             const replyInterval = prompt(
                                 `${app.msgs.prompt_updateReplyInt}:`, config.replyInterval)
                             if (replyInterval == null) break // user cancelled so do nothing
-                            else if (!isNaN(parseInt(replyInterval, 10)) && parseInt(replyInterval, 10) > 4) { // valid int set
+                            else if (!isNaN(parseInt(replyInterval, 10)) && parseInt(replyInterval, 10) > 4) {
                                 settings.save('replyInterval', parseInt(replyInterval, 10))
                                 siteAlert(( app.msgs.alert_replyIntUpdated ) + '!', // title
                                     ( app.msgs.appName ) + ' ' // msg
                                         + ( app.msgs.alert_willReplyEvery ) + ' '
                                         + replyInterval + ' ' + ( app.msgs.unit_seconds ) + '.')
-                                if (config.infinityMode) infinity.restart({ target: 'self' }) // using new reply interval
+                                if (config.infinityMode) infinity.restart({ target: 'self' })
                                 break
                             }
                         }
@@ -576,11 +582,12 @@
                     `<span style="${headingStyle}"><b>🏷️ <i>${app.msgs.about_version}</i></b>: </span>`
                         + `<span style="${pStyle}">${GM_info.script.version}</span>\n`
                     + `<span style="${headingStyle}"><b>⚡ <i>${app.msgs.about_poweredBy}</i></b>: </span>`
-                        + `<span style="${pStyle}"><a style="${aStyle}" href="${app.urls.chatgptJS}" target="_blank" rel="noopener">`
-                        + 'chatgpt.js</a>' + ( chatgptJSver ? ( ' v' + chatgptJSver ) : '' ) + '</span>\n'
+                        + `<span style="${pStyle}">`
+                            + `<a style="${aStyle}" href="${app.urls.chatgptJS}" target="_blank" rel="noopener">`
+                                + 'chatgpt.js</a>' + ( chatgptJSver ? ( ' v' + chatgptJSver ) : '' ) + '</span>\n'
                     + `<span style="${headingStyle}"><b>📜 <i>${app.msgs.about_sourceCode}</i></b>:</span>\n`
                         + `<span style="${pBrStyle}"><a href="${app.urls.gitHub}" target="_blank" rel="nopener">`
-                        + app.urls.gitHub + '</a></span>',
+                            + app.urls.gitHub + '</a></span>',
                     [ // buttons
                         function checkForUpdates() { updateCheck() },
                         function getSupport() { modals.safeWinOpen(app.urls.support) },
@@ -616,18 +623,22 @@
                     `💖 ${app.msgs.alert_showYourSupport}`, // title
                         `<p>${app.msgs.appName} ${app.msgs.alert_isOSS}.</p>`
                       + `<p>${app.msgs.alert_despiteAffliction} `
-                          + `<a target="_blank" rel="noopener" href="${modals.donate.longCOVIDwikiLink}">${app.msgs.alert_longCOVID}</a> `
+                          + `<a target="_blank" rel="noopener" href="${modals.donate.longCOVIDwikiLink}">`
+                              + `${app.msgs.alert_longCOVID}</a> `
                           + `${app.msgs.alert_since2020}, ${app.msgs.alert_byDonatingResults}.</p>`
-                      + `<p>${app.msgs.alert_yourContrib}, <b>${app.msgs.alert_noMatterSize}</b>, ${app.msgs.alert_directlySupports}.</p>`
+                      + `<p>${app.msgs.alert_yourContrib}, <b>${app.msgs.alert_noMatterSize}</b>, `
+                          + `${app.msgs.alert_directlySupports}.</p>`
                       + `<p>${app.msgs.alert_tyForSupport}!</p>`
-                      + `<img src="https://cdn.jsdelivr.net/gh/adamlui/adamlui/images/siggie/${ chatgpt.isDarkMode() ? 'white' : 'black' }.png"`
-                          + ' style="height: 54px ; margin: 5px 0 -2px 5px"></img>'
-                      + `<p>—<b><a target="_blank" rel="noopener" href="${app.author.url}">${app.msgs.appAuthor}</a></b>, ${app.msgs.alert_author}</p>`,
+                      + '<img src="https://cdn.jsdelivr.net/gh/adamlui/adamlui/images/siggie/'
+                          + `${ chatgpt.isDarkMode() ? 'white' : 'black' }.png" `
+                          + 'style="height: 54px ; margin: 5px 0 -2px 5px"></img>'
+                      + `<p>—<b><a target="_blank" rel="noopener" href="${app.author.url}">`
+                          + `${app.msgs.appAuthor}</a></b>, ${app.msgs.alert_author}</p>`,
                     [ // buttons
                         function paypal() { modals.safeWinOpen(app.urls.donate.payPal) },
                         function githubSponsors() { modals.safeWinOpen(app.urls.donate.gitHub) },
                         function cashApp() { modals.safeWinOpen(app.urls.donate.cashApp) },
-                        function rateUs() { modals.feedback.show() }
+                        function rateUs() { modals.safeWinOpen(app.urls.review.greasyFork) }
                     ], '', 478 // set width
                 )
 
@@ -641,7 +652,8 @@
                 btns.forEach((btn, idx) => {
                     if (idx == 0) btn.style.display = 'none' // hide Dismiss button
                     else {
-                        btn.style.cssText = 'padding: 8px 6px !important ; margin-top: -14px ; width: 107px ; line-height: 14px'
+                        btn.style.cssText = 'padding: 8px 6px !important ; margin-top: -14px ;'
+                                          + ' width: 107px ; line-height: 14px'
                         if (idx == btns.length -1) // de-emphasize right-most button
                             btn.classList.remove('primary-modal-btn')
                         else if (/rate/i.test(btn.textContent)) // localize 'Rate Us' label
@@ -663,7 +675,7 @@
                 )
                 const reviewModal = document.getElementById(reviewModalID)
                 reviewModal.querySelector('button').style.display = 'none' // hide Dismiss button
-                reviewModal.addEventListener('DOMNodeRemoved', () => modals[modals.stack[0]]?.show() ) // nav back on btn/bg clicks
+                reviewModal.addEventListener('DOMNodeRemoved', () => modals[modals.stack[0]]?.show() ) // nav back
             }
         },
 
@@ -728,12 +740,13 @@
 
             // Create/size/position navicon
             const navicon = document.getElementById('infinity-toggle-navicon')
-                            || dom.create.elem('img', { id: 'infinity-toggle-navicon' })
+                         || dom.create.elem('img', { id: 'infinity-toggle-navicon' })
             navicon.style.cssText = 'width: 1.25rem ; height: 1.25rem ; margin-left: 2px ; margin-right: 4px'
 
             // Create/ID/disable/hide/update checkbox
             const toggleInput = document.getElementById('infinity-toggle-input')
-                                || dom.create.elem('input', { id: 'infinity-toggle-input', type: 'checkbox', disabled: true })
+                             || dom.create.elem(
+                                    'input', { id: 'infinity-toggle-input', type: 'checkbox', disabled: true })
             toggleInput.style.display = 'none' ; toggleInput.checked = config.infinityMode
 
             // Create/ID/stylize switch
@@ -748,7 +761,7 @@
 
             // Create/stylize knob, append to switch
             const knobSpan = document.getElementById('infinity-toggle-knob-span')
-                            || dom.create.elem('span', { id: 'infinity-toggle-knob-span' })
+                          || dom.create.elem('span', { id: 'infinity-toggle-knob-span' })
             Object.assign(knobSpan.style, {
                 position: 'absolute', left: '3px', bottom: '1.25px',
                 width: '12px', height: '12px', content: '""', borderRadius: '28px',
@@ -759,7 +772,7 @@
 
             // Create/stylize/fill label
             const toggleLabel = document.getElementById('infinity-toggle-label')
-                                || dom.create.elem('label', { id: 'infinity-toggle-label' })
+                             || dom.create.elem('label', { id: 'infinity-toggle-label' })
             if (!ui.firstLink) // add font size/weight since no ui.firstLink to borrow from
                 toggleLabel.style.cssText = 'font-size: 0.875rem, font-weight: 600'
             Object.assign(toggleLabel.style, {
@@ -870,7 +883,7 @@
     // Add/update TWEAKS style
     const tweaksStyleUpdated = 20241002 // datestamp of last edit for this file's `tweaksStyle`
     let tweaksStyle = document.getElementById('tweaks-style') // try to select existing style
-    if (!tweaksStyle || parseInt(tweaksStyle.getAttribute('last-updated'), 10) < tweaksStyleUpdated) { // if missing or outdated
+    if (!tweaksStyle || parseInt(tweaksStyle.getAttribute('last-updated'), 10) < tweaksStyleUpdated) {
         if (!tweaksStyle) { // outright missing, create/id/attr/append it first
             tweaksStyle = document.createElement('style') ; tweaksStyle.id = 'tweaks-style'
             tweaksStyle.setAttribute('last-updated', tweaksStyleUpdated.toString())
@@ -880,14 +893,17 @@
             ( chatgpt.isDarkMode() ? '.chatgpt-modal > div { border: 1px solid white }' : '' )
           + '.chatgpt-modal button {'
               + 'font-size: 0.77rem ; text-transform: uppercase ;' // shrink/uppercase labels
-              + `border: 2px dashed ${ chatgpt.isDarkMode() ? 'white' : 'black' } !important ; border-radius: 0 !important ;` // thiccen/square/dash borders
+              + `border: 2px dashed ${ chatgpt.isDarkMode() ? 'white' : 'black' } !important ;` // dash borders
+              + 'border-radius: 0 !important ;' // square borders
               + 'transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out ;' // smoothen hover fx
               + 'cursor: pointer !important ;' // add finger cursor
               + 'padding: 5px !important ; min-width: 102px }' // resize
           + '.chatgpt-modal button:hover {' // add zoom, re-scheme
               + 'transform: scale(1.055) ;'
-              + ( chatgpt.isDarkMode() ? 'background-color: #2cff00 !important ; box-shadow: 2px 1px 54px #38ff00 !important ; color: black !important'
-                                       : 'background-color: #c7ff006b !important ; box-shadow: 2px 1px 30px #97ff006b !important' ) + '}'
+              + ( chatgpt.isDarkMode() ? ( 'background-color: #2cff00 !important ; color: black !important ;'
+                                             + 'box-shadow: 2px 1px 54px #38ff00 !important ;' )
+                                       : ( 'background-color: #c7ff006b !important ;'
+                                             + 'box-shadow: 2px 1px 30px #97ff006b !important' )) + '}'
           + '.modal-buttons { margin-left: -13px !important }'
           + '* { scrollbar-width: thin }' // make FF scrollbar skinny to not crop toggle
         )
@@ -900,8 +916,9 @@
 
     // Monitor NODE CHANGES to maintain sidebar toggle visibility
     new MutationObserver(() => {
-        if (!config.toggleHidden && !document.getElementById('infinity-toggle-navicon') && sidebarToggle.status != 'inserting') {
-            sidebarToggle.status = 'missing' ; sidebarToggle.insert() }
+        if (!config.toggleHidden && !document.getElementById('infinity-toggle-navicon')
+            && sidebarToggle.status != 'inserting') {
+                sidebarToggle.status = 'missing' ; sidebarToggle.insert() }
     }).observe(document.body, { attributes: true, subtree: true })
 
     // Disable distracting SIDEBAR CLICK-ZOOM effect

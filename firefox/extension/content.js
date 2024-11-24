@@ -1,5 +1,5 @@
 // NOTE: This script relies on the powerful chatgpt.js library @ https://chatgpt.js.org
-// © 2023–2024 KudoAI & contributors under the MIT license
+//  © 2023–2024 KudoAI & contributors under the MIT license
 
 (async () => {
 
@@ -36,7 +36,8 @@
 
     // Init SETTINGS
     await settings.load('extensionDisabled', ...Object.keys(settings.controls))
-    if (!config.replyLanguage) settings.save('replyLanguage', (await chrome.i18n.getAcceptLanguages())[0]) // init reply language if unset
+    if (!config.replyLanguage) // init reply language if unset
+        settings.save('replyLanguage', (await chrome.i18n.getAcceptLanguages())[0])
     if (!config.replyTopic) settings.save('replyTopic', 'ALL') // init reply topic if unset
     if (!config.replyInterval) settings.save('replyInterval', 7) // init refresh interval to 7 secs if unset
 
@@ -130,7 +131,8 @@
 
             // Create/ID/disable/hide/update checkbox
             const toggleInput = document.getElementById('infinity-toggle-input')
-                             || dom.create.elem('input', { id: 'infinity-toggle-input', type: 'checkbox', disabled: true })
+                             || dom.create.elem('input',
+                                    { id: 'infinity-toggle-input', type: 'checkbox', disabled: true })
             toggleInput.style.display = 'none' ; toggleInput.checked = config.infinityMode
 
             // Create/ID/stylize switch
@@ -165,8 +167,8 @@
                 width: `${ env.browser.isMobile ? 201 : 148 }px`, // to truncate overflown text
                 overflow: 'hidden', textOverflow: 'ellipsis' // to truncate overflown text
             })
-            toggleLabel.innerText = `${chrome.i18n.getMessage('menuLabel_infinityMode')} ${
-                                       chrome.i18n.getMessage('state_' + ( toggleInput.checked ? 'enabled' : 'disabled' ))}`
+            toggleLabel.innerText = `${chrome.i18n.getMessage('menuLabel_infinityMode')} `
+                                  +    chrome.i18n.getMessage(`state_${ toggleInput.checked ? 'enabled' : 'disabled' }`)
             // Append elements
             sidebarToggle.div.append(navicon, toggleInput, switchSpan, toggleLabel)
 
@@ -261,23 +263,27 @@
     // Add/update TWEAKS style
     const tweaksStyleUpdated = 20241002 // datestamp of last edit for this file's `tweaksStyle`
     let tweaksStyle = document.getElementById('tweaks-style') // try to select existing style
-    if (!tweaksStyle || parseInt(tweaksStyle.getAttribute('last-updated'), 10) < tweaksStyleUpdated) { // if missing or outdated
+    if (!tweaksStyle || parseInt(tweaksStyle.getAttribute('last-updated'), 10) < tweaksStyleUpdated) {
         if (!tweaksStyle) { // outright missing, create/id/attr/append it first
-            tweaksStyle = dom.create.elem('style', { id: 'tweaks-style', 'last-updated': tweaksStyleUpdated.toString() })
+            tweaksStyle = dom.create.elem('style',
+                { id: 'tweaks-style', 'last-updated': tweaksStyleUpdated.toString() })
             document.head.append(tweaksStyle)
         }
         tweaksStyle.innerText = (
             ( chatgpt.isDarkMode() ? '.chatgpt-modal > div { border: 1px solid white }' : '' )
           + '.chatgpt-modal button {'
               + 'font-size: 0.77rem ; text-transform: uppercase ;' // shrink/uppercase labels
-              + `border: 2px dashed ${ chatgpt.isDarkMode() ? 'white' : 'black' } !important ; border-radius: 0 !important ;` // thiccen/square/dash borders
+              + `border: 2px dashed ${ chatgpt.isDarkMode() ? 'white' : 'black' } !important ;` // dash borders
+              + 'border-radius: 0 !important ;' // square borders
               + 'transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out ;' // smoothen hover fx
               + 'cursor: pointer !important ;' // add finger cursor
               + 'padding: 5px !important ; min-width: 102px }' // resize
           + '.chatgpt-modal button:hover {' // add zoom, re-scheme
               + 'transform: scale(1.055) ;'
-              + ( chatgpt.isDarkMode() ? 'background-color: #2cff00 !important ; box-shadow: 2px 1px 54px #38ff00 !important ; color: black !important'
-                                       : 'background-color: #c7ff006b !important ; box-shadow: 2px 1px 30px #97ff006b !important' ) + '}'
+              + ( chatgpt.isDarkMode() ? ( 'background-color: #2cff00 !important ; color: black !important ;'
+                                             + 'box-shadow: 2px 1px 54px #38ff00 !important ;' )
+                                       : ( 'background-color: #c7ff006b !important ;'
+                                             + 'box-shadow: 2px 1px 30px #97ff006b !important' )) + '}'
           + '.modal-buttons { margin-left: -13px !important }'
           + '* { scrollbar-width: thin }' // make FF scrollbar skinny to not crop toggle
         )
@@ -290,8 +296,9 @@
 
     // Monitor <html> to maintain NAV TOGGLE VISIBILITY on node changes
     new MutationObserver(() => {
-        if (!config.toggleHidden && !document.getElementById('infinity-toggle-navicon') && sidebarToggle.status != 'inserting') {
-            sidebarToggle.status = 'missing' ; sidebarToggle.insert() }
+        if (!config.toggleHidden && !document.getElementById('infinity-toggle-navicon')
+            && sidebarToggle.status != 'inserting') {
+                sidebarToggle.status = 'missing' ; sidebarToggle.insert() }
     }).observe(document.body, { attributes: true, subtree: true })
 
     // Disable distracting SIDEBAR CLICK-ZOOM effect

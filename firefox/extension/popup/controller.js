@@ -28,7 +28,8 @@
             action: 'alert', title: title, msg: msg, btns: btns, checkbox: checkbox, width: width })
     }
 
-    async function prompt(msg, defaultVal) { return await sendMsgToActiveTab({ action: 'prompt', msg: msg, defaultVal: defaultVal })}
+    async function prompt(msg, defaultVal) {
+        return await sendMsgToActiveTab({ action: 'prompt', msg: msg, defaultVal: defaultVal })}
 
     const sync = {
         fade() {
@@ -89,7 +90,8 @@
               menuSlider = dom.create.elem('span', { class: 'slider' })
         menuInput.checked = config.infinityMode
         menuLabelSpan.textContent = chrome.i18n.getMessage('menuLabel_infinityMode')
-        menuLabel.append(menuInput, menuSlider) ; menuItemDiv.append(menuLabel, menuLabelSpan) ; togglesDiv.append(menuItemDiv)
+        menuLabel.append(menuInput, menuSlider) ; menuItemDiv.append(menuLabel, menuLabelSpan)
+        togglesDiv.append(menuItemDiv)
         menuItemDiv.onclick = () => menuInput.click()
         menuInput.onclick = menuSlider.onclick = event => // prevent double toggle
             event.stopImmediatePropagation()
@@ -103,7 +105,8 @@
         // Create/insert settings toggles
         const re_all = new RegExp(`^(${chrome.i18n.getMessage('menuLabel_all')}|all|any|every)$`, 'i')
         settings.controls.replyLanguage.status = config.replyLanguage
-        settings.controls.replyTopic.status = re_all.test(config.replyTopic) ? chrome.i18n.getMessage('menuLabel_all') : toTitleCase(config.replyTopic)
+        settings.controls.replyTopic.status = re_all.test(config.replyTopic) ?
+            chrome.i18n.getMessage('menuLabel_all') : toTitleCase(config.replyTopic)
         settings.controls.replyInterval.status = `${config.replyInterval}s`
         Object.keys(settings.controls).forEach(key => {
 
@@ -142,16 +145,18 @@
             } else menuItemDiv.onclick = async () => {
                 if (key == 'replyLanguage') {
                     while (true) {
-                        let replyLanguage = await (await prompt(`${chrome.i18n.getMessage('prompt_updateReplyLang')}:`, config.replyLanguage)).input
-                        if (replyLanguage == null) break // user cancelled so do nothing
-                        else if (!/\d/.test(replyLanguage)) {
-                            replyLanguage = ( // auto-case for menu/alert aesthetics
-                                [2, 3].includes(replyLanguage.length) || replyLanguage.includes('-') ? replyLanguage.toUpperCase()
-                                : replyLanguage.charAt(0).toUpperCase() + replyLanguage.slice(1).toLowerCase() )
-                            settings.save('replyLanguage', replyLanguage || (await chrome.i18n.getAcceptLanguages())[0])
+                        let replyLang = await (await prompt(
+                            `${chrome.i18n.getMessage('prompt_updateReplyLang')}:`, config.replyLanguage)).input
+                        if (replyLang == null) break // user cancelled so do nothing
+                        else if (!/\d/.test(replyLang)) {
+                            replyLang = ( // auto-case for menu/alert aesthetics
+                                replyLang.length < 4 || replyLang.includes('-') ? replyLang.toUpperCase()
+                                    : replyLang.charAt(0).toUpperCase() + replyLang.slice(1).toLowerCase() )
+                            settings.save('replyLanguage', replyLang || (await chrome.i18n.getAcceptLanguages())[0])
                             siteAlert(chrome.i18n.getMessage('alert_replyLangUpdated') + '!',
-                                chrome.i18n.getMessage('appName') + ' ' + chrome.i18n.getMessage('alert_willReplyIn') + ' '
-                                + ( replyLanguage || chrome.i18n.getMessage('alert_yourSysLang') ) + '.')
+                                `${chrome.i18n.getMessage('appName')} ${chrome.i18n.getMessage('alert_willReplyIn')} `
+                                  + `${ replyLang || chrome.i18n.getMessage('alert_yourSysLang') }.`
+                            )
                             if (config.infinityMode) // reboot active session
                                 sendMsgToActiveTab({ action: 'infinity.restart', options: { target: 'new' }})
                             close() // popup
@@ -164,20 +169,23 @@
                     if (replyTopic != null) { // user didn't cancel
                         const str_replyTopic = replyTopic.toString()
                         settings.save('replyTopic', !replyTopic || re_all.test(str_replyTopic) ? 'ALL' : str_replyTopic)
-                        siteAlert(chrome.i18n.getMessage('alert_replyTopicUpdated') + '!',
-                            chrome.i18n.getMessage('appName') + ' ' + chrome.i18n.getMessage('alert_willAnswer') + ' '
-                                + ( !replyTopic || re_all.test(str_replyTopic) ? chrome.i18n.getMessage('alert_onAllTopics')
-                                                                               : chrome.i18n.getMessage('alert_onTopicOf')
-                                                                                   + ' ' + str_replyTopic ) + '!')
+                        siteAlert(`${chrome.i18n.getMessage('alert_replyTopicUpdated')}!`,
+                            `${chrome.i18n.getMessage('appName')} ${chrome.i18n.getMessage('alert_willAnswer')} `
+                                + ( !replyTopic || re_all.test(str_replyTopic) ?
+                                         chrome.i18n.getMessage('alert_onAllTopics')
+                                    : `${chrome.i18n.getMessage('alert_onTopicOf')} ${str_replyTopic}`
+                                ) + '!'
+                        )
                         if (config.infinityMode) // reboot active session
                             sendMsgToActiveTab({ action: 'infinity.restart', options: { target: 'new' }})
                         close() // popup
                     }
                 } else if (key == 'replyInterval') {
                     while (true) {
-                        const replyInterval = await (await prompt(`${chrome.i18n.getMessage('prompt_updateReplyInt')}:`, config.replyInterval)).input
+                        const replyInterval = await (await prompt(
+                            `${chrome.i18n.getMessage('prompt_updateReplyInt')}:`, config.replyInterval)).input
                         if (replyInterval == null) break // user cancelled so do nothing
-                        else if (!isNaN(parseInt(replyInterval, 10)) && parseInt(replyInterval, 10) > 4) { // valid int set
+                        else if (!isNaN(parseInt(replyInterval, 10)) && parseInt(replyInterval, 10) > 4) {
                             settings.save('replyInterval', parseInt(replyInterval, 10))
                             siteAlert(chrome.i18n.getMessage('alert_replyIntUpdated') + '!',
                                 chrome.i18n.getMessage('appName') + ' ' + chrome.i18n.getMessage('alert_willReplyEvery')

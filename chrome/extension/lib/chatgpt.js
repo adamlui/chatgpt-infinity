@@ -63,9 +63,9 @@ const chatgpt = {
                 + '.modal-buttons { display: flex ; justify-content: flex-end ; margin: 20px -5px -3px 0 ;'
                     + ( isMobile ? 'flex-direction: column-reverse' : '' ) + '}'
                 + '.chatgpt-modal button {'
-                    + `margin-left: ${ isMobile ? 0 : 10}px ; padding: ${ isMobile ? 15 : 4}px 18px ; border-radius: 15px ;`
+                    + `margin-left: ${ isMobile ? 0 : 10}px ; padding: ${ isMobile ? 15 : 4}px 18px ;`
                     + ( isMobile ? 'margin-top: 5px ; margin-bottom: 3px ;' : '')
-                    + `border: 1px solid ${ scheme == 'dark' ? 'white' : 'black' }}`
+                    + `border: 1px solid ${ scheme == 'dark' ? 'white' : 'black' }} ; border-radius: 15px`
                 + '.primary-modal-btn {'
                     + `border: 1px solid ${ scheme == 'dark' ? 'white' : 'black' } ;`
                     + `background: ${ scheme == 'dark' ? 'white' : 'black' } ;`
@@ -357,7 +357,7 @@ const chatgpt = {
                 for (const divId of thisQuadrantQueue.slice(0, -1)) { // exclude new div
                     const oldDiv = document.getElementById(divId),
                           offsetProp = oldDiv.style.top ? 'top' : 'bottom', // pick property to change
-                          vOffset = +/\d+/.exec(oldDiv.style[offsetProp])[0] + 5 + oldDiv.getBoundingClientRect().height;
+                          vOffset = +/\d+/.exec(oldDiv.style[offsetProp])[0] + 5 + oldDiv.getBoundingClientRect().height
                     oldDiv.style[offsetProp] = `${ vOffset }px`; // change prop
                 }
             } catch (err) {}
