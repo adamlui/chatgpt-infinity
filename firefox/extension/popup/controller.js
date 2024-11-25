@@ -74,11 +74,11 @@
         Object.keys(sync).forEach(key => sync[key]()) // sync fade + storage to UI
     }
 
-    // Create CHILD toggles on chatgpt.com
+    // Create CHILD entries on chatgpt.com
     if (site == 'chatgpt') {
         await settings.load(Object.keys(settings.controls))
 
-        // Create/insert toggles section
+        // Create/insert child section
         const togglesDiv = dom.create.elem('div', { class: 'menu' })
         document.querySelector('.menu-header').insertAdjacentElement('afterend', togglesDiv)
 
@@ -102,7 +102,7 @@
                       chrome.i18n.getMessage(`state_${ config.infinityMode ? 'on' : 'off' }`).toUpperCase()}`)
         }
 
-        // Create/insert settings toggles
+        // Create/insert other entries
         const re_all = new RegExp(`^(${chrome.i18n.getMessage('menuLabel_all')}|all|any|every)$`, 'i')
         settings.controls.replyLanguage.status = config.replyLanguage
         settings.controls.replyTopic.status = re_all.test(config.replyTopic) ?
@@ -111,9 +111,10 @@
         Object.keys(settings.controls).forEach(key => {
 
             // Init elems
-            const menuItemDiv = dom.create.elem('div', { class: 'menu-item menu-area' }),
-                  menuLabel = dom.create.elem('label', { class: 'menu-icon' }),
-                  menuLabelSpan = document.createElement('span')
+            const menuItemDiv = dom.create.elem('div', {
+                class: 'menu-item menu-area', title: settings.controls[key].helptip || '' })
+            const menuLabel = dom.create.elem('label', { class: 'menu-icon' })
+            const menuLabelSpan = document.createElement('span')
             let menuInput, menuSlider
             menuLabelSpan.textContent = settings.controls[key].label
             if (settings.controls[key].type == 'toggle') {

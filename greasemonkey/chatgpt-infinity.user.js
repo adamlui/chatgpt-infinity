@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.23
+// @version             2024.11.25
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -246,12 +246,15 @@
         browser: {
             language: chatgpt.getUserLanguage(), isMobile: chatgpt.browser.isMobile(), isFF: chatgpt.browser.isFirefox()
         },
-        scriptManager: (() => { try { return GM_info.scriptHandler } catch (err) { return 'unknown' }})()
+        scriptManager: {
+            name: (() => { try { return GM_info.scriptHandler } catch (err) { return 'unknown' }})(),
+            version: (() => { try { return GM_info.version } catch (err) { return 'unknown' }})()
+        }
     }
-    const xhr = env.scriptManager == 'OrangeMonkey' ? GM_xmlhttpRequest : GM.xmlHttpRequest
+    const xhr = env.scriptManager.name == 'OrangeMonkey' ? GM_xmlhttpRequest : GM.xmlHttpRequest
 
     // Init APP data
-    const app = { configKeyPrefix: 'chatGPTinfinity', latestAssetCommitHash: '0f2098f', urls: {} }
+    const app = { configKeyPrefix: 'chatGPTinfinity', latestAssetCommitHash: 'd66e7fd', urls: {} }
     app.urls.assetHost = `https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@${app.latestAssetCommitHash}`
     const appData = await new Promise(resolve => xhr({
         method: 'GET', url: `${app.urls.assetHost}/app.json`,
@@ -282,6 +285,9 @@
         prompt_updateReplyTopic: 'Update reply topic',
         prompt_orEnter: 'or enter',
         prompt_updateReplyInt: 'Update reply interval (minimum 5 secs)',
+        helptip_autoStart: 'Automatically start Infinity Mode when visiting chatgpt.com',
+        helptip_toggleVis: 'Show Infinity Mode toggle in sidebar',
+        helptip_autoScroll: 'Automatically scroll to bottom as replies are generating',
         alert_replyLangUpdated: 'Language updated',
         alert_willReplyIn: 'will reply in',
         alert_yourSysLang: 'your system language',
@@ -353,13 +359,19 @@
     const config = {}
     const settings = {
 
-        controls: {
-            autoStart: { type: 'toggle', label: app.msgs.menuLabel_autoStart },
-            toggleHidden: { type: 'toggle', label: app.msgs.menuLabel_toggleVis },
-            autoScrollDisabled: { type: 'toggle', label: app.msgs.menuLabel_autoScroll },
-            replyLanguage: { type: 'prompt', symbol: '🌐', label: app.msgs.menuLabel_replyLang },
-            replyTopic: { type: 'prompt', symbol: '🧠', label: app.msgs.menuLabel_replyTopic },
-            replyInterval: { type: 'prompt', symbol: '⌚', label: app.msgs.menuLabel_replyInt }
+        controls: { // displays top-to-bottom in toolbar
+            autoStart: { type: 'toggle',
+                label: app.msgs.menuLabel_autoStart, helptip: app.msgs.helptip_autoStart },
+            toggleHidden: { type: 'toggle',
+                label: app.msgs.menuLabel_toggleVis, helptip: app.msgs.helptip_toggleVis },
+            autoScrollDisabled: { type: 'toggle',
+                label: app.msgs.menuLabel_autoScroll, helptip: app.msgs.helptip_autoScroll },
+            replyLanguage: { type: 'prompt', symbol: '🌐',
+                label: app.msgs.menuLabel_replyLang, helptip: app.msgs.prompt_updateReplyLang },
+            replyTopic: { type: 'prompt', symbol: '🧠',
+                label: app.msgs.menuLabel_replyTopic, helptip: app.msgs.prompt_updateReplyTopic },
+            replyInterval: { type: 'prompt', symbol: '⌚',
+                label: app.msgs.menuLabel_replyInt, helptip: app.msgs.prompt_updateReplyInt }
         },
 
         load(...keys) {
@@ -378,11 +390,13 @@
 
     const menu = {
         ids: [], state: {
-            symbols: ['❌', '✔️'], separator: env.scriptManager == 'Tampermonkey' ? ' — ' : ': ',
+            symbols: ['❌', '✔️'], separator: env.scriptManager.name == 'Tampermonkey' ? ' — ' : ': ',
             words: [app.msgs.state_off.toUpperCase(), app.msgs.state_on.toUpperCase()]
         },
 
         register() {
+            const tooltipsSupported = env.scriptManager.name == 'Tampermonkey'
+                                   && parseInt(env.scriptManager.version.split('.')[0]) >= 5
 
             // Init prompt setting status labels
             const re_all = new RegExp(`^(${app.msgs.menuLabel_all}|all|any|every)$`, 'i')
@@ -398,7 +412,7 @@
             menu.ids.push(GM_registerMenuCommand(imLabel, () => {
                 settings.save('infinityMode', !config.infinityMode) ; syncConfigToUI()
                 infinity.toggle()
-            }))
+            }, tooltipsSupported ? { title: ' ' } : undefined))
 
             // Add setting entries
             Object.keys(settings.controls).forEach(key => {
@@ -463,20 +477,22 @@
                         }
                     }
                     syncConfigToUI()
-                }))
+                }, tooltipsSupported ? { title: settings.controls[key].helptip || ' ' } : undefined))
             })
 
             // Add About entry
             const aboutLabel = `💡 ${app.msgs.menuLabel_about} ${app.msgs.appName}`
-            menu.ids.push(GM_registerMenuCommand(aboutLabel, modals.about.show))
+            menu.ids.push(GM_registerMenuCommand(aboutLabel, modals.about.show,
+                tooltipsSupported ? { title: ' ' } : undefined))
 
             // Add Donate entry
             const donateLabel = `💖 ${app.msgs.menuLabel_donate}`
-            menu.ids.push(GM_registerMenuCommand(donateLabel, modals.donate.show))
+            menu.ids.push(GM_registerMenuCommand(donateLabel, modals.donate.show,
+                tooltipsSupported ? { title: ' ' } : undefined))
         },
 
         refresh() {
-            if (env.scriptManager == 'OrangeMonkey') return
+            if (env.scriptManager.name == 'OrangeMonkey') return
             for (const id of menu.ids) { GM_unregisterMenuCommand(id) } menu.register()
         }
     }

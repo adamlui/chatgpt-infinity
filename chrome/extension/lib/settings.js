@@ -1,19 +1,25 @@
 const config = {}
 const settings = {
 
-    controls: {
+    controls: { // displays top-to-bottom in toolbar menu
         autoStart: { type: 'toggle',
-            label: chrome.i18n.getMessage('menuLabel_autoStart') },
+            label: chrome.i18n.getMessage('menuLabel_autoStart'),
+            helptip: chrome.i18n.getMessage('helptip_autoStart') },
         toggleHidden: { type: 'toggle',
-            label: chrome.i18n.getMessage('menuLabel_toggleVis') },
+            label: chrome.i18n.getMessage('menuLabel_toggleVis'),
+            helptip: chrome.i18n.getMessage('helptip_toggleVis') },
         autoScrollDisabled: { type: 'toggle',
-            label: chrome.i18n.getMessage('menuLabel_autoScroll') },
+            label: chrome.i18n.getMessage('menuLabel_autoScroll'),
+            helptip: chrome.i18n.getMessage('helptip_autoScroll') },
         replyLanguage: { type: 'prompt', symbol: '🌐',
-            label: chrome.i18n.getMessage('menuLabel_replyLang') },
+            label: chrome.i18n.getMessage('menuLabel_replyLang'),
+            helptip: chrome.i18n.getMessage('prompt_updateReplyLang') },
         replyTopic: { type: 'prompt', symbol: '🧠',
-            label: chrome.i18n.getMessage('menuLabel_replyTopic') },
+            label: chrome.i18n.getMessage('menuLabel_replyTopic'),
+            helptip: chrome.i18n.getMessage('prompt_updateReplyTopic') },
         replyInterval: { type: 'prompt', symbol: '⌚',
-            label: chrome.i18n.getMessage('menuLabel_replyInt') }
+            label: chrome.i18n.getMessage('menuLabel_replyInt'),
+            helptip: chrome.i18n.getMessage('prompt_updateReplyInt') }
     },
 
     load() {
