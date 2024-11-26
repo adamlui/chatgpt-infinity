@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.25.1
+// @version             2024.11.25.3
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -567,7 +567,7 @@
 
         // Append styled state word
         if (foundState) {
-            const styledStateSpan = document.createElement('span')
+            const styledStateSpan = dom.create.elem('span')
             styledStateSpan.style.cssText = `color: ${
                 foundState == menu.state.words[0] ? '#ef4848 ; text-shadow: rgba(255, 169, 225, 0.44) 2px 1px 5px'
                                                   : '#5cef48 ; text-shadow: rgba(255, 250, 169, 0.38) 2px 1px 5px' }`
@@ -708,7 +708,7 @@
     const sidebarToggle = {
 
         create() {
-            sidebarToggle.div = document.createElement('div')
+            sidebarToggle.div = dom.createElem('div')
             sidebarToggle.update() // create children
 
             // Stylize/classify
@@ -901,8 +901,8 @@
     let tweaksStyle = document.getElementById('tweaks-style') // try to select existing style
     if (!tweaksStyle || parseInt(tweaksStyle.getAttribute('last-updated'), 10) < tweaksStyleUpdated) {
         if (!tweaksStyle) { // outright missing, create/id/attr/append it first
-            tweaksStyle = document.createElement('style') ; tweaksStyle.id = 'tweaks-style'
-            tweaksStyle.setAttribute('last-updated', tweaksStyleUpdated.toString())
+            tweaksStyle = dom.create.elem('style',
+                { id: 'tweaks-style', 'last-updated': tweaksStyleUpdated.toString() })
             document.head.append(tweaksStyle)
         }
         tweaksStyle.innerText = (

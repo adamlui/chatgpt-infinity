@@ -85,7 +85,7 @@
         // Create/insert Infinity Mode toggle
         const menuItemDiv = dom.create.elem('div', { class: 'menu-item menu-area' }),
               menuLabel = dom.create.elem('label', { class: 'toggle-switch menu-icon' }),
-              menuLabelSpan = document.createElement('span'),
+              menuLabelSpan = dom.elem.create('span'),
               menuInput = dom.create.elem('input', { type: 'checkbox' }),
               menuSlider = dom.create.elem('span', { class: 'slider' })
         menuInput.checked = config.infinityMode
@@ -114,7 +114,7 @@
             const menuItemDiv = dom.create.elem('div', {
                 class: 'menu-item menu-area', title: settings.controls[key].helptip || '' })
             const menuLabel = dom.create.elem('label', { class: 'menu-icon' })
-            const menuLabelSpan = document.createElement('span')
+            const menuLabelSpan = dom.elem.create('span')
             let menuInput, menuSlider
             menuLabelSpan.textContent = settings.controls[key].label
             if (settings.controls[key].type == 'toggle') {
@@ -217,7 +217,7 @@
         document.documentElement.lang = chrome.i18n.getUILanguage().split('-')[0]
 
     // Create/append FOOTER container
-    const footer = document.createElement('footer')
+    const footer = dom.elem.create('footer')
     document.body.append(footer)
 
     // Create/append CHATGPT.JS footer logo
