@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.25.7
+// @version             2024.11.25.8
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -713,7 +713,7 @@
     const sidebarToggle = {
 
         create() {
-            sidebarToggle.div = dom.createElem('div')
+            sidebarToggle.div = dom.create.elem('div')
             sidebarToggle.update() // create children
 
             // Stylize/classify
