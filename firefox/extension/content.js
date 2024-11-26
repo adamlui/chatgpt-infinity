@@ -77,7 +77,7 @@
     async function syncStorageToUI(options) { // on toolbar popup toggles + ChatGPT tab activations
         await settings.load('extensionDisabled', ...Object.keys(settings.controls))
         if (options?.reason == 'infinityMode') infinity[config.infinityMode ? 'activate' : 'deactivate']()
-        sidebarToggle.update() // based on config.toggleHidden + config.infinityMode
+        if (/infinityMode|toggleHidden/.test(options?.reason)) sidebarToggle.update()
     }
 
     const sidebarToggle = {
