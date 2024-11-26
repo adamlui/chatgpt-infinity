@@ -28,7 +28,7 @@
     "bump:firefox": "bash utils/bump.sh --ff"
   },
   "devDependencies": {
-    "@eslint/json": "^0.7.0",
+    "@eslint/json": "^0.8.0",
     "@eslint/markdown": "^6.2.1",
     "@stylistic/eslint-plugin-js": "^2.11.0",
     "eslint": "^9.15.0",
