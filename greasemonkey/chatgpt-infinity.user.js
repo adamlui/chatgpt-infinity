@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.26.9
+// @version             2024.11.26.10
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -387,7 +387,8 @@
         save(key, value) { GM_setValue(app.configKeyPrefix + '_' + key, value) ; config[key] = value }
     }
     settings.load(Object.keys(settings.controls)
-        .filter(key => key != 'infinityMode')) // exclude infinityMode to always init as false
+        .filter(key => key != 'infinityMode')) // exclude infinityMode...
+    settings.save('infinityMode', false) // ...to always init as false
     if (!config.replyLanguage) settings.save('replyLanguage', env.browser.language) // init reply language if unset
     if (!config.replyTopic) settings.save('replyTopic', 'ALL') // init reply topic if unset
     if (!config.replyInterval) settings.save('replyInterval', 7) // init refresh interval to 7 secs if unset
