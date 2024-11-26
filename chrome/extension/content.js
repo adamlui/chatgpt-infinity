@@ -9,6 +9,7 @@
     await import(chrome.runtime.getURL('lib/chatgpt.js'))
     await import(chrome.runtime.getURL('lib/dom.js'))
     const { config, settings } = await import(chrome.runtime.getURL('lib/settings.js'))
+    const { modals } = await import(chrome.runtime.getURL('components/modals.js'))
 
     // Import APP data
     const { app } = await chrome.storage.sync.get('app')
@@ -63,7 +64,11 @@
     }
 
     function siteAlert(title = '', msg = '', btns = '', checkbox = '', width = '') {
-        return chatgpt.alert(title, msg, btns, checkbox, width )}
+        const alertID = chatgpt.alert(title, msg, btns, checkbox, width ),
+              alert = document.getElementById(alertID).firstChild
+        modals.init(alert) // add class + starry BG + drag handlers
+        return alert
+    }
 
     // Define UI functions
 
@@ -259,7 +264,7 @@
         document.onvisibilitychange = () => { if (config.infinityMode) infinity.deactivate() }
 
     // Add/update TWEAKS style
-    const tweaksStyleUpdated = 1732589521145  // timestamp of last edit for this file's tweaksStyle
+    const tweaksStyleUpdated = 1732600036095  // timestamp of last edit for this file's tweaksStyle
     let tweaksStyle = document.getElementById('tweaks-style') // try to select existing style
     if (!tweaksStyle || parseInt(tweaksStyle.getAttribute('last-updated')) < tweaksStyleUpdated) {
         if (!tweaksStyle) { // outright missing, create/id/attr/append it first
@@ -268,7 +273,8 @@
             document.head.append(tweaksStyle)
         }
         tweaksStyle.innerText = (
-            ( chatgpt.isDarkMode() ? '.chatgpt-modal > div { border: 1px solid white }' : '' )
+            '[class$="-modal"] { z-index: 13456 ; position: absolute }' // to be click-draggable
+          + ( chatgpt.isDarkMode() ? '.chatgpt-modal > div { border: 1px solid white }' : '' )
           + '.chatgpt-modal button {'
               + 'font-size: 0.77rem ; text-transform: uppercase ;' // shrink/uppercase labels
               + 'border-radius: 0 !important ;' // square borders
@@ -279,7 +285,13 @@
               + 'transform: scale(1.055) ; color: black !important ;'
               + `background-color: #${ chatgpt.isDarkMode() ? '00cfff' : '9cdaff' } !important }`
         )
-    }
+    };
+
+    // Add STARS styles
+    ['black', 'white'].forEach(color => document.head.append(
+        dom.create.elem('link', { rel: 'stylesheet',
+            href: `https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@d751c80/assets/styles/css/${color}-rising-stars.min.css`
+    })))
 
     sidebarToggle.insert()
 
