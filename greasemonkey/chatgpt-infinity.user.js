@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.25.3
+// @version             2024.11.25.4
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -897,9 +897,9 @@
         document.onvisibilitychange = () => { if (config.infinityMode) infinity.deactivate() }
 
     // Add/update TWEAKS style
-    const tweaksStyleUpdated = 20241125 // datestamp of last edit for this file's tweaksStyle
+    const tweaksStyleUpdated = 1732589521145 // datestamp of last edit for this file's tweaksStyle
     let tweaksStyle = document.getElementById('tweaks-style') // try to select existing style
-    if (!tweaksStyle || parseInt(tweaksStyle.getAttribute('last-updated'), 10) < tweaksStyleUpdated) {
+    if (!tweaksStyle || parseInt(tweaksStyle.getAttribute('last-updated')) < tweaksStyleUpdated) {
         if (!tweaksStyle) { // outright missing, create/id/attr/append it first
             tweaksStyle = dom.create.elem('style',
                 { id: 'tweaks-style', 'last-updated': tweaksStyleUpdated.toString() })
@@ -916,7 +916,6 @@
           + '.chatgpt-modal button:hover {' // add zoom, re-scheme
               + 'transform: scale(1.055) ; color: black !important ;'
               + `background-color: #${ chatgpt.isDarkMode() ? '00cfff' : '9cdaff' } !important }`
-          + '.modal-buttons { margin-left: -13px !important }'
           + '* { scrollbar-width: thin }' // make FF scrollbar skinny to not crop toggle
         )
     }
