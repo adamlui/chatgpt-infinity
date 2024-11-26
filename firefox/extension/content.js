@@ -289,7 +289,10 @@
     sidebarToggle.insert()
 
     // Auto-start if enabled
-    if (config.autoStart) infinity.activate()
+    if (config.autoStart) {
+        settings.save('infinityMode', true) ; syncStorageToUI({ reason: 'infinityMode' })
+        notify(`${chrome.i18n.getMessage('menuLabel_autoStart')}: ${chrome.i18n.getMessage('state_on').toUpperCase()}`)
+    }
 
     // Monitor <html> to maintain NAV TOGGLE VISIBILITY on node changes
     new MutationObserver(() => {
