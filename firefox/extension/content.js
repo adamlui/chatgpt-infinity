@@ -85,17 +85,16 @@
         create() {
             sidebarToggle.div = dom.create.elem('div')
 
-            // Create/size/position navicon
+            // Create/ID/size/position navicon
             const navicon = dom.create.elem('img', { id: 'infinity-toggle-navicon' })
             navicon.style.cssText = 'width: 1.25rem ; height: 1.25rem ; margin-left: 2px ; margin-right: 4px'
 
-            // Create/ID/disable/hide/update checkbox
-            const toggleInput = dom.create.elem('input', {
-                id: 'infinity-toggle-input', type: 'checkbox', disabled: true })
+            // Create/disable/hide checkbox
+            const toggleInput = dom.create.elem('input', { type: 'checkbox', disabled: true })
             toggleInput.style.display = 'none'
 
-            // Create/ID/stylize switch
-            const switchSpan = dom.create.elem('span', { id: 'infinity-switch-span' })
+            // Create/stylize switch
+            const switchSpan = dom.create.elem('span')
             Object.assign(switchSpan.style, {
                 position: 'relative', left: `${ env.browser.isMobile ? 169 : !ui.firstLink ? 160 : 154 }px`,
                 backgroundColor: toggleInput.checked ? '#ccc' : '#AD68FF', // init opposite  final color
@@ -114,7 +113,7 @@
             }) ; switchSpan.append(knobSpan)
 
             // Create/stylize/fill label
-            const toggleLabel = dom.create.elem('label', { id: 'infinity-toggle-label' })
+            const toggleLabel = dom.create.elem('label')
             if (!ui.firstLink) // add font size/weight since no ui.firstLink to borrow from
                 toggleLabel.style.cssText = 'font-size: 0.875rem, font-weight: 600'
             Object.assign(toggleLabel.style, {
