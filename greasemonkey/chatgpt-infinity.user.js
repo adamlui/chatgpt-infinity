@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.26.5
+// @version             2024.11.26.6
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -363,6 +363,8 @@
     const settings = {
 
         controls: { // displays top-to-bottom in toolbar
+            infinityMode: { type: 'toggle',
+                label: app.msgs.menuLabel_infinityMode },
             autoStart: { type: 'toggle',
                 label: app.msgs.menuLabel_autoStart, helptip: app.msgs.helptip_autoStart },
             toggleHidden: { type: 'toggle',
@@ -384,7 +386,8 @@
 
         save(key, value) { GM_setValue(app.configKeyPrefix + '_' + key, value) ; config[key] = value }
     }
-    settings.load(Object.keys(settings.controls))
+    settings.load(Object.keys(settings.controls)
+        .filter(key => key != 'infinityMode')) // exclude infinityMode to always init as false
     if (!config.replyLanguage) settings.save('replyLanguage', env.browser.language) // init reply language if unset
     if (!config.replyTopic) settings.save('replyTopic', 'ALL') // init reply topic if unset
     if (!config.replyInterval) settings.save('replyInterval', 7) // init refresh interval to 7 secs if unset
@@ -407,15 +410,6 @@
             settings.controls.replyTopic.status = re_all.test(config.replyTopic) ? app.msgs.menuLabel_all
                                                                                  : toTitleCase(config.replyTopic)
             settings.controls.replyInterval.status = `${config.replyInterval}s`
-
-            // Add Infinity Mode toggle
-            const imLabel = `${menu.state.symbols[+!!config.infinityMode]} `
-                          + `${app.msgs.menuLabel_infinityMode} ∞ `
-                          + menu.state.separator + menu.state.words[+!!config.infinityMode]
-            menu.ids.push(GM_registerMenuCommand(imLabel, () => {
-                settings.save('infinityMode', !config.infinityMode) ; syncConfigToUI()
-                infinity.toggle()
-            }, tooltipsSupported ? { title: ' ' } : undefined))
 
             // Add setting entries
             Object.keys(settings.controls).forEach(key => {
@@ -481,7 +475,7 @@
                             }
                         }
                     }
-                    syncConfigToUI()
+                    syncConfigToUI({ reason: key })
                 }, tooltipsSupported ? { title: settings.controls[key].helptip || ' ' } : undefined))
             })
 
@@ -745,7 +739,8 @@
 
     // Define UI functions
 
-    function syncConfigToUI() {
+    function syncConfigToUI(options) {
+        if (options?.reason == 'infinityMode') infinity[config.infinityMode ? 'activate' : 'deactivate']()
         sidebarToggle.update() // based on config.toggleHidden + config.infinityMode
         menu.refresh() // prefixes/suffixes
     }
@@ -768,8 +763,9 @@
             // Add click listener
             sidebarToggle.div.onclick = () => {
                 const toggleInput = sidebarToggle.div.querySelector('input')
-                toggleInput.checked = !toggleInput.checked ; settings.save('infinityMode', toggleInput.checked)
-                infinity.toggle()
+                toggleInput.checked = !toggleInput.checked
+                settings.save('infinityMode', toggleInput.checked) ; syncConfigToUI({ reason: 'infinityMode' })
+                notify(`${app.msgs.menuLabel_infinityMode}: ${menu.state.words[+config.infinityMode]}`)
             }
         },
 
@@ -869,12 +865,10 @@
     const infinity = {
 
         async activate() {
-            settings.save('infinityMode', true) ; syncConfigToUI()
             const activatePrompt = 'Generate a single random question'
                 + ( config.replyLanguage ? ( ' in ' + config.replyLanguage ) : '' )
                 + ( ' on ' + ( config.replyTopic == 'ALL' ? 'ALL topics' : 'the topic of ' + config.replyTopic ))
                 + ' then answer it. Don\'t type anything else.'
-            notify(`${app.msgs.menuLabel_infinityMode}: ${app.msgs.state_on.toUpperCase()}`)
             if (env.browser.isMobile && chatgpt.sidebar.isOn()) chatgpt.sidebar.hide()
             if (!new URL(location).pathname.startsWith('/g/')) // not on GPT page
                 try { chatgpt.startNewChat() } catch (err) { return } // start new chat
@@ -898,10 +892,8 @@
         },
 
         deactivate() {
-            settings.save('infinityMode', false) ; syncConfigToUI()
             if (chatgpt.getStopBtn()) chatgpt.stop()
             clearTimeout(infinity.isActive) ; infinity.isActive = null
-            notify(`${app.msgs.menuLabel_infinityMode}: ${app.msgs.state_off.toUpperCase()}`)
         },
 
         async restart(options = { target: 'new' }) {
@@ -912,9 +904,7 @@
                 if (config.infinityMode && !infinity.isActive) // double-check in case de-activated before scheduled
                     infinity.isActive = setTimeout(infinity.continue, parseInt(config.replyInterval, 10) * 1000)
             }
-        },
-
-        toggle() { infinity[config.infinityMode ? 'activate' : 'deactivate']() }
+        }
     }
 
     // Run MAIN routine

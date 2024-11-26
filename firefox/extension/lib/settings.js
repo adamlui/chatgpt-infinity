@@ -2,6 +2,8 @@ const config = {}
 const settings = {
 
     controls: { // displays top-to-bottom in toolbar menu
+        infinityMode: { type: 'toggle',
+            label: chrome.i18n.getMessage('menuLabel_infinityMode') },
         autoStart: { type: 'toggle',
             label: chrome.i18n.getMessage('menuLabel_autoStart'),
             helptip: chrome.i18n.getMessage('helptip_autoStart') },

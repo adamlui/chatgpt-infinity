@@ -51,7 +51,7 @@
                 })
         },
 
-        storageToUI() { return sendMsgToActiveTab({ action: 'syncStorageToUI' })}
+        storageToUI(options) { return sendMsgToActiveTab({ action: 'syncStorageToUI', options })}
     }
 
     function toTitleCase(str) {
@@ -78,36 +78,18 @@
     if (site == 'chatgpt') {
         await settings.load(Object.keys(settings.controls))
 
-        // Create/insert child section
-        const togglesDiv = dom.create.elem('div', { class: 'menu' })
-        document.querySelector('.menu-header').insertAdjacentElement('afterend', togglesDiv)
-
-        // Create/insert Infinity Mode toggle
-        const menuItemDiv = dom.create.elem('div', { class: 'menu-item menu-area' }),
-              menuLabel = dom.create.elem('label', { class: 'toggle-switch menu-icon' }),
-              menuLabelSpan = dom.create.elem('span'),
-              menuInput = dom.create.elem('input', { type: 'checkbox' }),
-              menuSlider = dom.create.elem('span', { class: 'slider' })
-        menuInput.checked = config.infinityMode
-        menuLabelSpan.textContent = chrome.i18n.getMessage('menuLabel_infinityMode')
-        menuLabel.append(menuInput, menuSlider) ; menuItemDiv.append(menuLabel, menuLabelSpan)
-        togglesDiv.append(menuItemDiv)
-        menuItemDiv.onclick = () => menuInput.click()
-        menuInput.onclick = menuSlider.onclick = event => // prevent double toggle
-            event.stopImmediatePropagation()
-        menuInput.onchange = async () => {
-            settings.save('infinityMode', !config.infinityMode) ; await sync.storageToUI()
-            sendMsgToActiveTab({ action: 'infinity.toggle' })
-            notify(`${chrome.i18n.getMessage('menuLabel_infinityMode')} ${
-                      chrome.i18n.getMessage(`state_${ config.infinityMode ? 'on' : 'off' }`).toUpperCase()}`)
-        }
-
-        // Create/insert other entries
+        // Init prompt setting status labels
         const re_all = new RegExp(`^(${chrome.i18n.getMessage('menuLabel_all')}|all|any|every)$`, 'i')
         settings.controls.replyLanguage.status = config.replyLanguage
         settings.controls.replyTopic.status = re_all.test(config.replyTopic) ?
             chrome.i18n.getMessage('menuLabel_all') : toTitleCase(config.replyTopic)
         settings.controls.replyInterval.status = `${config.replyInterval}s`
+
+        // Create/insert child section
+        const togglesDiv = dom.create.elem('div', { class: 'menu' })
+        document.querySelector('.menu-header').insertAdjacentElement('afterend', togglesDiv)
+
+        // Create/insert child entries
         Object.keys(settings.controls).forEach(key => {
 
             // Init elems
@@ -139,7 +121,7 @@
                 menuInput.onclick = menuSlider.onclick = event => // prevent double toggle
                     event.stopImmediatePropagation()
                 menuInput.onchange = () => {
-                    settings.save(key, !config[key]) ; sync.storageToUI()
+                    settings.save(key, !config[key]) ; sync.storageToUI({ reason: key })
                     notify(`${settings.controls[key].label} ${chrome.i18n.getMessage(`state_${
                         /disabled|hidden/i.test(key) != config[key] ? 'on' : 'off'}`).toUpperCase()}`)
                 }

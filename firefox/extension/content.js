@@ -22,13 +22,11 @@
         else if (req.action == 'prompt') {
             const userInput = window.prompt(req.msg || 'Please enter your input:', req.defaultVal || '')
             sendResp({ input: userInput })
-        } else if (req.action.startsWith('infinity')) {
-            infinity.muted = true // prevent top-right notif blocked by popup
-            infinity[/\.(\w+)/.exec(req.action)[1]](req.options)
-        } else if (req.action == 'syncStorageToUI') {
+        } else if (req.action.startsWith('infinity')) infinity[/\.(\w+)/.exec(req.action)[1]](req.options)
+        else if (req.action == 'syncStorageToUI') {
             if (req.sender == 'background.js') // disable Infinity mode 1st to not transfer between tabs
                 settings.save('infinityMode', false)
-            syncStorageToUI()
+            syncStorageToUI(req.options)
         }
     })
 
@@ -36,7 +34,8 @@
     const env = { browser: { isMobile: chatgpt.browser.isMobile() }}
 
     // Init SETTINGS
-    await settings.load('extensionDisabled', ...Object.keys(settings.controls))
+    await settings.load('extensionDisabled', ...Object.keys(settings.controls)
+        .filter(key => key != 'infinityMode')) // exclude infinityMode to always init as false
     if (!config.replyLanguage) // init reply language if unset
         settings.save('replyLanguage', (await chrome.i18n.getAcceptLanguages())[0])
     if (!config.replyTopic) settings.save('replyTopic', 'ALL') // init reply topic if unset
@@ -75,8 +74,9 @@
 
     // Define UI functions
 
-    async function syncStorageToUI() { // on toolbar popup toggles + ChatGPT tab activations
-        await settings.load('extensionDisabled', 'infinityMode', ...Object.keys(settings.controls))
+    async function syncStorageToUI(options) { // on toolbar popup toggles + ChatGPT tab activations
+        await settings.load('extensionDisabled', ...Object.keys(settings.controls))
+        if (options?.reason == 'infinityMode') infinity[config.infinityMode ? 'activate' : 'deactivate']()
         sidebarToggle.update() // based on config.toggleHidden + config.infinityMode
     }
 
@@ -98,8 +98,10 @@
             // Add click listener
             sidebarToggle.div.onclick = () => {
                 const toggleInput = sidebarToggle.div.querySelector('input')
-                toggleInput.checked = !toggleInput.checked ; settings.save('infinityMode', toggleInput.checked)
-                infinity.toggle()
+                toggleInput.checked = !toggleInput.checked
+                settings.save('infinityMode', toggleInput.checked) ; syncStorageToUI({ reason: 'infinityMode' })
+                notify(`${chrome.i18n.getMessage('menuLabel_infinityMode')}: ${
+                    chrome.i18n.getMessage(`state_${ config.infinityMode ? 'On' : 'Off' }`).toUpperCase()}`)
             }
         },
 
@@ -199,14 +201,10 @@
     const infinity = {
 
         async activate() {
-            settings.save('infinityMode', true) ; syncStorageToUI()
             const activatePrompt = 'Generate a single random question'
                 + ( config.replyLanguage ? ( ' in ' + config.replyLanguage ) : '' )
                 + ( ' on ' + ( config.replyTopic == 'ALL' ? 'ALL topics' : 'the topic of ' + config.replyTopic ))
                 + ' then answer it. Don\'t type anything else.'
-            if (!infinity.muted) notify(`${chrome.i18n.getMessage('menuLabel_infinityMode')}: ${
-                                           chrome.i18n.getMessage('state_on').toUpperCase()}`)
-            else infinity.muted = false
             if (env.browser.isMobile && chatgpt.sidebar.isOn()) chatgpt.sidebar.hide()
             if (!new URL(location).pathname.startsWith('/g/')) // not on GPT page
                 try { chatgpt.startNewChat() } catch (err) { return } // start new chat
@@ -230,10 +228,6 @@
         },
 
         deactivate() {
-            settings.save('infinityMode', false) ; syncStorageToUI()
-            if (!infinity.muted) notify(`${chrome.i18n.getMessage('menuLabel_infinityMode')}: ${
-                                           chrome.i18n.getMessage('state_off').toUpperCase()}`)
-            else infinity.muted = false
             if (chatgpt.getStopBtn()) chatgpt.stop()
             clearTimeout(infinity.isActive) ; infinity.isActive = null
         },
@@ -249,9 +243,7 @@
                 }
             }
 
-        },
-
-        toggle() { infinity[config.infinityMode ? 'activate' : 'deactivate']() }
+        }
     }
 
     // Run MAIN routine
