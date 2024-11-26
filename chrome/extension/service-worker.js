@@ -17,7 +17,7 @@
     chrome.tabs.onActivated.addListener(activeInfo =>
         chrome.tabs.sendMessage(activeInfo.tabId, {
             action: 'syncStorageToUI',
-            sender: 'background.js' // for content.js to reset config.infinityMode
+            sender: 'service-worker.js' // for content.js to reset config.infinityMode
     }))
 
 })()
