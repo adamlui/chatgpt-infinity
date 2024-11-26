@@ -290,7 +290,7 @@
     // Add STARS styles
     ['black', 'white'].forEach(color => document.head.append(
         dom.create.elem('link', { rel: 'stylesheet',
-            href: `https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@d751c80/assets/styles/css/${color}-rising-stars.min.css`
+            href: `https://assets.aiwebextensions.com/styles/css/${color}-rising-stars.min.css?v=50f457d`
     })))
 
     sidebarToggle.insert()
