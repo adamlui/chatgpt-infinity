@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.26.1
+// @version             2024.11.26.2
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -594,7 +594,7 @@
         init(modal) {
             modal.classList.add('chatgpt-infinity-modal')
             modal.onmousedown = modals.dragHandlers.mousedown
-            fillStarryBG(modal) // add stars
+            dom.fillStarryBG(modal)
         },
 
         dragHandlers: {
@@ -748,19 +748,6 @@
     function syncConfigToUI() {
         sidebarToggle.update() // based on config.toggleHidden + config.infinityMode
         menu.refresh() // prefixes/suffixes
-    }
-
-    function fillStarryBG(targetNode) {
-        const starsDivsContainer = document.createElement('div')
-        starsDivsContainer.style.cssText = 'position: absolute ; top: 0 ; left: 0 ;' // hug targetNode's top-left corner
-          + 'height: 100% ; width: 100% ; border-radius: 15px ; overflow: clip ;' // bound innards exactly by targetNode
-          + 'z-index: -1'; // allow interactive elems to be clicked
-        ['sm', 'med', 'lg'].forEach(starSize => {
-            const starsDiv = document.createElement('div')
-            starsDiv.id = `${ chatgpt.isDarkMode() ? 'white' : 'black' }-stars-${starSize}`
-            starsDivsContainer.append(starsDiv)
-        })
-        targetNode.prepend(starsDivsContainer)
     }
 
     const sidebarToggle = {
