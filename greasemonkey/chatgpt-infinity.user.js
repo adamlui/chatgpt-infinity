@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.26.7
+// @version             2024.11.26.8
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -749,7 +749,48 @@
 
         create() {
             sidebarToggle.div = dom.create.elem('div')
-            sidebarToggle.update() // create children
+
+            // Create/size/position navicon
+            const navicon = dom.create.elem('img', { id: 'infinity-toggle-navicon' })
+            navicon.style.cssText = 'width: 1.25rem ; height: 1.25rem ; margin-left: 2px ; margin-right: 4px'
+
+            // Create/ID/disable/hide/update checkbox
+            const toggleInput = dom.create.elem('input', {
+                id: 'infinity-toggle-input', type: 'checkbox', disabled: true })
+            toggleInput.style.display = 'none'
+
+            // Create/ID/stylize switch
+            const switchSpan = dom.create.elem('span', { id: 'infinity-switch-span' })
+            Object.assign(switchSpan.style, {
+                position: 'relative', left: `${ env.browser.isMobile ? 169 : !ui.firstLink ? 160 : 154 }px`,
+                backgroundColor: toggleInput.checked ? '#ccc' : '#AD68FF', // init opposite  final color
+                bottom: `${ !ui.firstLink ? -0.15 : 0 }em`,
+                width: '30px', height: '15px', '-webkit-transition': '.4s', transition: '0.4s',  borderRadius: '28px'
+            })
+
+            // Create/stylize knob, append to switch
+            const knobSpan = dom.create.elem('span', { id: 'infinity-toggle-knob-span' })
+            Object.assign(knobSpan.style, {
+                position: 'absolute', left: '3px', bottom: '1.25px',
+                width: '12px', height: '12px', content: '""', borderRadius: '28px',
+                transform: toggleInput.checked ? // init opposite final pos
+                    'translateX(0)' : 'translateX(13px) translateY(0)',
+                backgroundColor: 'white',  '-webkit-transition': '0.4s', transition: '0.4s'
+            }) ; switchSpan.append(knobSpan)
+
+            // Create/stylize/fill label
+            const toggleLabel = dom.create.elem('label', { id: 'infinity-toggle-label' })
+            if (!ui.firstLink) // add font size/weight since no ui.firstLink to borrow from
+                toggleLabel.style.cssText = 'font-size: 0.875rem, font-weight: 600'
+            Object.assign(toggleLabel.style, {
+                marginLeft: `-${ !ui.firstLink ? 23 : 41 }px`, // left-shift to navicon
+                cursor: 'pointer', // add finger cursor on hover
+                width: `${ env.browser.isMobile ? 201 : 148 }px`, // to truncate overflown text
+                overflow: 'hidden', textOverflow: 'ellipsis' // to truncate overflown text
+            })
+
+            // Append elements
+            sidebarToggle.div.append(navicon, toggleInput, switchSpan, toggleLabel)
 
             // Stylize/classify
             sidebarToggle.div.style.cssText += 'height: 37px ; margin: 2px 0 ; user-select: none ; cursor: pointer'
@@ -760,11 +801,11 @@
                 sidebarToggle.div.querySelector('img')?.classList.add(...(firstIcon?.classList || []))
             }
 
+            sidebarToggle.update() // to opposite init state for animation on 1st load
+
             // Add click listener
             sidebarToggle.div.onclick = () => {
-                const toggleInput = sidebarToggle.div.querySelector('input')
-                toggleInput.checked = !toggleInput.checked
-                settings.save('infinityMode', toggleInput.checked) ; syncConfigToUI({ reason: 'infinityMode' })
+                settings.save('infinityMode', !toggleInput.checked) ; syncConfigToUI({ reason: 'infinityMode' })
                 notify(`${app.msgs.menuLabel_infinityMode}: ${menu.state.words[+config.infinityMode]}`)
             }
         },
@@ -793,57 +834,14 @@
         },
 
         update() {
+            const toggleLabel = sidebarToggle.div.querySelector('label'),
+                  toggleInput = sidebarToggle.div.querySelector('input'),
+                  switchSpan = sidebarToggle.div.querySelector('span'),
+                  knobSpan = switchSpan.firstChild
             sidebarToggle.div.style.display = config.toggleHidden ? 'none' : 'flex'
-
-            // Create/size/position navicon
-            const navicon = document.getElementById('infinity-toggle-navicon')
-                         || dom.create.elem('img', { id: 'infinity-toggle-navicon' })
-            navicon.style.cssText = 'width: 1.25rem ; height: 1.25rem ; margin-left: 2px ; margin-right: 4px'
-
-            // Create/ID/disable/hide/update checkbox
-            const toggleInput = document.getElementById('infinity-toggle-input')
-                             || dom.create.elem(
-                                    'input', { id: 'infinity-toggle-input', type: 'checkbox', disabled: true })
-            toggleInput.style.display = 'none' ; toggleInput.checked = config.infinityMode
-
-            // Create/ID/stylize switch
-            const switchSpan = document.getElementById('infinity-switch-span')
-                            || dom.create.elem('span', { id: 'infinity-switch-span' })
-            Object.assign(switchSpan.style, {
-                position: 'relative', left: `${ env.browser.isMobile ? 169 : !ui.firstLink ? 160 : 154 }px`,
-                backgroundColor: toggleInput.checked ? '#ccc' : '#AD68FF', // init opposite  final color
-                bottom: `${ !ui.firstLink ? -0.15 : env.browser.isFF ? 0.05 : 0 }em`,
-                width: '30px', height: '15px', '-webkit-transition': '.4s', transition: '0.4s',  borderRadius: '28px'
-            })
-
-            // Create/stylize knob, append to switch
-            const knobSpan = document.getElementById('infinity-toggle-knob-span')
-                          || dom.create.elem('span', { id: 'infinity-toggle-knob-span' })
-            Object.assign(knobSpan.style, {
-                position: 'absolute', left: '3px', bottom: '1.25px',
-                width: '12px', height: '12px', content: '""', borderRadius: '28px',
-                transform: toggleInput.checked ? // init opposite final pos
-                    'translateX(0)' : 'translateX(13px) translateY(0)',
-                backgroundColor: 'white',  '-webkit-transition': '0.4s', transition: '0.4s'
-            }) ; switchSpan.append(knobSpan)
-
-            // Create/stylize/fill label
-            const toggleLabel = document.getElementById('infinity-toggle-label')
-                             || dom.create.elem('label', { id: 'infinity-toggle-label' })
-            if (!ui.firstLink) // add font size/weight since no ui.firstLink to borrow from
-                toggleLabel.style.cssText = 'font-size: 0.875rem, font-weight: 600'
-            Object.assign(toggleLabel.style, {
-                marginLeft: `-${ !ui.firstLink ? 23 : 41 }px`, // left-shift to navicon
-                cursor: 'pointer', // add finger cursor on hover
-                width: `${ env.browser.isMobile ? 201 : 148 }px`, // to truncate overflown text
-                overflow: 'hidden', textOverflow: 'ellipsis' // to truncate overflown text
-            })
+            toggleInput.checked = config.infinityMode
             toggleLabel.innerText = `${app.msgs.menuLabel_infinityMode} ${
-                                       toggleInput.checked ? app.msgs.state_enabled : app.msgs.state_disabled }`
-            // Append elements
-            sidebarToggle.div.append(navicon, toggleInput, switchSpan, toggleLabel)
-
-            // Update visual state
+                app.msgs['state_' + ( toggleInput.checked ? 'enabled' : 'disabled' )]}`
             setTimeout(() => {
                 switchSpan.style.backgroundColor = toggleInput.checked ? '#ad68ff' : '#ccc'
                 switchSpan.style.boxShadow = toggleInput.checked ? '2px 1px 9px #d8a9ff' : 'none'
