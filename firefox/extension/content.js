@@ -35,7 +35,8 @@
 
     // Init SETTINGS
     await settings.load('extensionDisabled', ...Object.keys(settings.controls)
-        .filter(key => key != 'infinityMode')) // exclude infinityMode to always init as false
+        .filter(key => key != 'infinityMode')) // exclude infinityMode...
+    settings.save('infinityMode', false) // ...to always init as false
     if (!config.replyLanguage) // init reply language if unset
         settings.save('replyLanguage', (await chrome.i18n.getAcceptLanguages())[0])
     if (!config.replyTopic) settings.save('replyTopic', 'ALL') // init reply topic if unset
