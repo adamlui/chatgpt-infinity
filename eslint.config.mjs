@@ -13,7 +13,7 @@ export default [
             ecmaVersion: 'latest', sourceType: 'script',
             globals: {
                 ...globals.browser, ...globals.node, ...globals.greasemonkey,
-                chatgpt: 'readonly', chrome: 'readonly', dom: 'readonly'
+                chatgpt: 'readonly', chrome: 'readonly', config: 'writable', dom: 'readonly', settings: 'writable'
             }
         },
         plugins: { regexp, 'js-styles': stylisticJS },
