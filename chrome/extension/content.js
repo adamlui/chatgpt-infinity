@@ -288,7 +288,7 @@
         notify(`${chrome.i18n.getMessage('menuLabel_autoStart')}: ${chrome.i18n.getMessage('state_on').toUpperCase()}`)
     }
 
-    // Monitor <html> to maintain NAV TOGGLE VISIBILITY on node changes
+    // Monitor NODE CHANGES to maintain sidebar toggle visibility
     new MutationObserver(() => {
         if (!config.toggleHidden && !document.getElementById('infinity-toggle-navicon')
             && sidebarToggle.status != 'inserting') {
