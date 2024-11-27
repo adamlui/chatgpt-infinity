@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.27
+// @version             2024.11.27.1
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -219,6 +219,7 @@
 // @compatible          kiwi
 // @require             https://cdn.jsdelivr.net/npm/@kudoai/chatgpt.js@3.3.5/dist/chatgpt.min.js#sha256-rfC4kk8q0byrafp7X0Qf9vaa3JNvkHRwNnUt6uL2hUE=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@c4c41a77a5428691201b6b93516fcb962225de06/chrome/extension/lib/dom.js#sha256-+gYACSJw/QFxziii9gBg0EDWhqpqSy/maA8qUiXBKiU=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@b6c81c835e4ae70ce1e48cb6e9d54240dca58dec/chrome/extension/lib/settings.js#sha256-TOEeJnIaHxqvIxVChLTFeE+B65cs66RFpV3pOSkBqCo=
 // @connect             cdn.jsdelivr.net
 // @connect             update.greasyfork.org
 // @resource bsbgCSS    https://assets.aiwebextensions.com/styles/css/black-rising-stars.min.css?v=50f457d#sha256-RIkvVcaRwwWHMluYKcYeIr1txKkGItLXvdhFo673ST8=
@@ -359,33 +360,7 @@
     }
 
     // Init SETTINGS
-    const config = {}
-    const settings = {
-
-        controls: { // displays top-to-bottom in toolbar
-            infinityMode: { type: 'toggle',
-                label: app.msgs.menuLabel_infinityMode },
-            autoStart: { type: 'toggle',
-                label: app.msgs.menuLabel_autoStart, helptip: app.msgs.helptip_autoStart },
-            toggleHidden: { type: 'toggle',
-                label: app.msgs.menuLabel_toggleVis, helptip: app.msgs.helptip_toggleVis },
-            autoScrollDisabled: { type: 'toggle',
-                label: app.msgs.menuLabel_autoScroll, helptip: app.msgs.helptip_autoScroll },
-            replyLanguage: { type: 'prompt', symbol: '🌐',
-                label: app.msgs.menuLabel_replyLang, helptip: app.msgs.prompt_updateReplyLang },
-            replyTopic: { type: 'prompt', symbol: '🧠',
-                label: app.msgs.menuLabel_replyTopic, helptip: app.msgs.prompt_updateReplyTopic },
-            replyInterval: { type: 'prompt', symbol: '⌚',
-                label: app.msgs.menuLabel_replyInt, helptip: app.msgs.prompt_updateReplyInt }
-        },
-
-        load(...keys) {
-            if (Array.isArray(keys[0])) keys = keys[0] // use 1st array arg, else all comma-separated ones
-            keys.forEach(key => config[key] = GM_getValue(app.configKeyPrefix + '_' + key, false))
-        },
-
-        save(key, val) { GM_setValue(app.configKeyPrefix + '_' + key, val) ; config[key] = val }
-    }
+    settings.appProps = app // for msgs + configKeyPrefix refs
     settings.load(Object.keys(settings.controls)
         .filter(key => key != 'infinityMode')) // exclude infinityMode...
     settings.save('infinityMode', false) // ...to always init as false
