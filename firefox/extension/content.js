@@ -276,7 +276,7 @@
               + `background-color: #${ chatgpt.isDarkMode() ? '00cfff' : '9cdaff' } !important }`
           + '* { scrollbar-width: thin }' // make FF scrollbar skinny to not crop toggle
         )
-    };
+    }; // eslint-disable-line
 
     // Add STARS styles
     ['black', 'white'].forEach(color => document.head.append(

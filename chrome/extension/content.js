@@ -272,7 +272,7 @@
               + 'transform: scale(1.055) ; color: black !important ;'
               + `background-color: #${ chatgpt.isDarkMode() ? '00cfff' : '9cdaff' } !important }`
         )
-    };
+    }; // eslint-disable-line
 
     // Add STARS styles
     ['black', 'white'].forEach(color => document.head.append(
