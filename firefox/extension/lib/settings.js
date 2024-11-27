@@ -39,4 +39,4 @@ const settings = {
     }
 }
 
-export { config, settings }
+window.config = config ; window.settings = settings;
