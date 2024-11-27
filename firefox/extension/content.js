@@ -16,7 +16,6 @@
 
     // Add CHROME MSG listener
     chrome.runtime.onMessage.addListener((req, _, sendResp) => {
-
         if (req.action == 'notify') notify(req.msg, req.pos)
         else if (req.action == 'alert') siteAlert(req.title, req.msg, req.btns)
         else if (req.action == 'prompt') {
@@ -240,7 +239,6 @@
                     infinity.isActive = setTimeout(infinity.continue, parseInt(config.replyInterval, 10) * 1000)
                 }
             }
-
         }
     }
 

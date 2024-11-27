@@ -236,7 +236,6 @@
                     infinity.isActive = setTimeout(infinity.continue, parseInt(config.replyInterval, 10) * 1000)
                 }
             }
-
         }
     }
 
