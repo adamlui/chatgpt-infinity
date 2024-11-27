@@ -34,6 +34,8 @@ export default [
             'no-unused-vars': ['error', { 'caughtErrors': 'none' }] // allow unused named args in catch blocks
         }
     },
+    { files: ['**/chatgpt.js'], languageOptions: { globals: { chatgpt: 'off' }}},
+    { files: ['**/dom.js'], languageOptions: { globals: { dom: 'off' }}},
     { files: ['**/*.mjs'], languageOptions: { sourceType: 'module' }},
     { files: ['**/*.json'], ignores: ['**/package-lock.json'], language: 'json/json', ...json.configs.recommended },
     {
