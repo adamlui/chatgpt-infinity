@@ -71,7 +71,7 @@
         Object.keys(sync).forEach(key => sync[key]()) // sync fade + storage to UI
     }
 
-    // Create CHILD entries on chatgpt.com
+    // Create CHILD menu entries on chatgpt.com
     if (site == 'chatgpt') {
         await settings.load(Object.keys(settings.controls))
 
