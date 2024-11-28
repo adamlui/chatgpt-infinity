@@ -74,7 +74,7 @@
     async function syncStorageToUI(options) { // on toolbar popup toggles + ChatGPT tab activations
         await settings.load('extensionDisabled', ...Object.keys(settings.controls))
         if (options?.reason == 'infinityMode') infinity[config.infinityMode ? 'activate' : 'deactivate']()
-        if (/infinityMode|toggleHidden/.test(options?.reason)) sidebarToggle.update()
+        if (/extensionDisabled|infinityMode|toggleHidden/.test(options?.reason)) sidebarToggle.update()
     }
 
     const sidebarToggle = {
@@ -170,7 +170,7 @@
                   toggleInput = sidebarToggle.div.querySelector('input'),
                   switchSpan = sidebarToggle.div.querySelector('span'),
                   knobSpan = switchSpan.firstChild
-            sidebarToggle.div.style.display = config.toggleHidden ? 'none' : 'flex'
+            sidebarToggle.div.style.display = config.toggleHidden || config.extensionDisabled ? 'none' : 'flex'
             toggleInput.checked = config.infinityMode
             toggleLabel.innerText = `${chrome.i18n.getMessage('menuLabel_infinityMode')} ${
                 chrome.i18n.getMessage('state_' + ( toggleInput.checked ? 'enabled' : 'disabled' ))}`
