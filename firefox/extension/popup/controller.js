@@ -71,7 +71,7 @@
         settings.save('extensionDisabled', !config.extensionDisabled)
         if (config.infinityMode) // always disable Infinity Mode on master toggle
             document.querySelector('.menu-area > .toggle-switch > input')?.click()
-        Object.keys(sync).forEach(key => sync[key]({ reason: 'extensionDisabled' })) // sync fade + storage to UI
+        Object.keys(sync).forEach(key => sync[key]({ updatedKey: 'extensionDisabled' })) // sync fade + storage to UI
     }
 
     // Create CHILD menu entries on chatgpt.com
@@ -121,7 +121,7 @@
                 menuInput.onclick = menuSlider.onclick = event => // prevent double toggle
                     event.stopImmediatePropagation()
                 menuInput.onchange = () => {
-                    settings.save(key, !config[key]) ; sync.storageToUI({ reason: key })
+                    settings.save(key, !config[key]) ; sync.storageToUI({ updatedKey: key })
                     notify(`${settings.controls[key].label} ${chrome.i18n.getMessage(`state_${
                         /disabled|hidden/i.test(key) != config[key] ? 'on' : 'off'}`).toUpperCase()}`)
                 }

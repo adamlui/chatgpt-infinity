@@ -73,8 +73,8 @@
 
     async function syncStorageToUI(options) { // on toolbar popup toggles + ChatGPT tab activations
         await settings.load('extensionDisabled', ...Object.keys(settings.controls))
-        if (options?.reason == 'infinityMode') infinity[config.infinityMode ? 'activate' : 'deactivate']()
-        if (/extensionDisabled|infinityMode|toggleHidden/.test(options?.reason)) sidebarToggle.update()
+        if (options?.updatedKey == 'infinityMode') infinity[config.infinityMode ? 'activate' : 'deactivate']()
+        if (/extensionDisabled|infinityMode|toggleHidden/.test(options?.updatedKey)) sidebarToggle.update()
     }
 
     const sidebarToggle = {
@@ -136,7 +136,7 @@
 
             // Add click listener
             sidebarToggle.div.onclick = () => {
-                settings.save('infinityMode', !toggleInput.checked) ; syncStorageToUI({ reason: 'infinityMode' })
+                settings.save('infinityMode', !toggleInput.checked) ; syncStorageToUI({ updatedKey: 'infinityMode' })
                 notify(`${chrome.i18n.getMessage('menuLabel_infinityMode')}: ${
                     chrome.i18n.getMessage(`state_${ config.infinityMode ? 'On' : 'Off' }`).toUpperCase()}`)
             }
@@ -284,7 +284,7 @@
 
     // Auto-start if enabled
     if (config.autoStart) {
-        settings.save('infinityMode', true) ; syncStorageToUI({ reason: 'infinityMode' })
+        settings.save('infinityMode', true) ; syncStorageToUI({ updatedKey: 'infinityMode' })
         notify(`${chrome.i18n.getMessage('menuLabel_autoStart')}: ${chrome.i18n.getMessage('state_on').toUpperCase()}`)
     }
 

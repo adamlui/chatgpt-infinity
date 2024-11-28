@@ -451,7 +451,7 @@
                             }
                         }
                     }
-                    syncConfigToUI({ reason: key })
+                    syncConfigToUI({ updatedKey: key })
                 }, tooltipsSupported ? { title: settings.controls[key].helptip || ' ' } : undefined))
             })
 
@@ -716,8 +716,8 @@
     // Define UI functions
 
     function syncConfigToUI(options) {
-        if (options?.reason == 'infinityMode') infinity[config.infinityMode ? 'activate' : 'deactivate']()
-        if (/infinityMode|toggleHidden/.test(options?.reason)) sidebarToggle.update()
+        if (options?.updatedKey == 'infinityMode') infinity[config.infinityMode ? 'activate' : 'deactivate']()
+        if (/infinityMode|toggleHidden/.test(options?.updatedKey)) sidebarToggle.update()
         menu.refresh() // prefixes/suffixes
     }
 
@@ -780,7 +780,7 @@
 
             // Add click listener
             sidebarToggle.div.onclick = () => {
-                settings.save('infinityMode', !toggleInput.checked) ; syncConfigToUI({ reason: 'infinityMode' })
+                settings.save('infinityMode', !toggleInput.checked) ; syncConfigToUI({ updatedKey: 'infinityMode' })
                 notify(`${app.msgs.menuLabel_infinityMode}: ${menu.state.words[+config.infinityMode]}`)
             }
         },
@@ -938,7 +938,7 @@
 
     // Auto-start if enabled
     if (config.autoStart) {
-        settings.save('infinityMode', true) ; syncConfigToUI({ reason: 'infinityMode' })
+        settings.save('infinityMode', true) ; syncConfigToUI({ updatedKey: 'infinityMode' })
         notify(`${app.msgs.menuLabel_autoStart}: ${app.msgs.state_on.toUpperCase()}`)
     }
 
