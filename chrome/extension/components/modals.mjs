@@ -26,7 +26,6 @@ const modals = {
                 const newX = event.clientX - modals.dragHandlers.offsetX,
                       newY = event.clientY - modals.dragHandlers.offsetY
                 Object.assign(modals.dragHandlers.draggableElem.style, { left: `${newX}px`, top: `${newY}px` })
-                console.log(newX)
             }
         },
 
