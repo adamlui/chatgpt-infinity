@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.29
+// @version             2024.11.29.1
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -380,80 +380,89 @@
             const tooltipsSupported = env.scriptManager.name == 'Tampermonkey'
                                    && parseInt(env.scriptManager.version.split('.')[0]) >= 5
 
-            // Init prompt setting status labels
-            const re_all = new RegExp(`^(${app.msgs.menuLabel_all}|all|any|every)$`, 'i')
-            settings.controls.replyLanguage.status = config.replyLanguage
-            settings.controls.replyTopic.status = re_all.test(config.replyTopic) ? app.msgs.menuLabel_all
-                                                                                 : toTitleCase(config.replyTopic)
-            settings.controls.replyInterval.status = `${config.replyInterval}s`
+            // Show "Disabled (extension installed)"
+            if (env.extensionInstalled)
+                GM_registerMenuCommand(`${menu.state.symbols[0]} ${app.msgs.menuLabel_disabled}`, modals.about.show,
+                    tooltipsSupported ? { title: ' ' } : undefined)
 
-            // Add setting entries
-            Object.keys(settings.controls).forEach(key => {
-                const settingIsEnabled = config[key] ^ /disabled|hidden/i.test(key)
-                const menuLabel = `${ settings.controls[key].symbol || menu.state.symbols[+settingIsEnabled] } `
-                                + settings.controls[key].label
-                                + ( settings.controls[key].type == 'toggle' ? menu.state.separator
-                                                                            + menu.state.words[+settingIsEnabled]
-                                                                            : `— ${settings.controls[key].status}` )
-                menu.ids.push(GM_registerMenuCommand(menuLabel, () => {
-                    if (settings.controls[key].type == 'toggle') {
-                        settings.save(key, !config[key])
-                        notify(`${settings.controls[key].label}: ${
-                            menu.state.words[+(/disabled|hidden/i.test(key) ^ config[key])]}`)
-                    } else if (key == 'replyLanguage') {
-                        while (true) {
-                            let replyLang = prompt(
-                                `${app.msgs.prompt_updateReplyLang}:`, config.replyLanguage)
-                            if (replyLang == null) break // user cancelled so do nothing
-                            else if (!/\d/.test(replyLang)) {
-                                replyLang = ( // auto-case for menu/alert aesthetics
-                                    replyLang.length < 4 || replyLang.includes('-') ? replyLang.toUpperCase()
-                                        : replyLang.charAt(0).toUpperCase() + replyLang.slice(1).toLowerCase() )
-                                settings.save('replyLanguage', replyLang || env.browser.language)
-                                siteAlert(( app.msgs.alert_replyLangUpdated ) + '!', // title
-                                    ( app.msgs.appName ) + ' ' // msg
-                                        + ( app.msgs.alert_willReplyIn ) + ' '
-                                        + ( replyLang || app.msgs.alert_yourSysLang) + '.'
+            // ...or add settings entries
+            else {
+
+                // Init prompt setting status labels
+                const re_all = new RegExp(`^(${app.msgs.menuLabel_all}|all|any|every)$`, 'i')
+                settings.controls.replyLanguage.status = config.replyLanguage
+                settings.controls.replyTopic.status = re_all.test(config.replyTopic) ? app.msgs.menuLabel_all
+                                                                                        : toTitleCase(config.replyTopic)
+                settings.controls.replyInterval.status = `${config.replyInterval}s`
+
+                // Add setting entries
+                Object.keys(settings.controls).forEach(key => {
+                    const settingIsEnabled = config[key] ^ /disabled|hidden/i.test(key)
+                    const menuLabel = `${ settings.controls[key].symbol || menu.state.symbols[+settingIsEnabled] } `
+                                    + settings.controls[key].label
+                                    + ( settings.controls[key].type == 'toggle' ? menu.state.separator
+                                                                                + menu.state.words[+settingIsEnabled]
+                                                                                : `— ${settings.controls[key].status}` )
+                    menu.ids.push(GM_registerMenuCommand(menuLabel, () => {
+                        if (settings.controls[key].type == 'toggle') {
+                            settings.save(key, !config[key])
+                            notify(`${settings.controls[key].label}: ${
+                                menu.state.words[+(/disabled|hidden/i.test(key) ^ config[key])]}`)
+                        } else if (key == 'replyLanguage') {
+                            while (true) {
+                                let replyLang = prompt(
+                                    `${app.msgs.prompt_updateReplyLang}:`, config.replyLanguage)
+                                if (replyLang == null) break // user cancelled so do nothing
+                                else if (!/\d/.test(replyLang)) {
+                                    replyLang = ( // auto-case for menu/alert aesthetics
+                                        replyLang.length < 4 || replyLang.includes('-') ? replyLang.toUpperCase()
+                                            : replyLang.charAt(0).toUpperCase() + replyLang.slice(1).toLowerCase() )
+                                    settings.save('replyLanguage', replyLang || env.browser.language)
+                                    siteAlert(( app.msgs.alert_replyLangUpdated ) + '!', // title
+                                        ( app.msgs.appName ) + ' ' // msg
+                                            + ( app.msgs.alert_willReplyIn ) + ' '
+                                            + ( replyLang || app.msgs.alert_yourSysLang) + '.'
+                                    )
+                                    if (config.infinityMode) infinity.restart({ target: 'new' }) // using new reply language
+                                    break
+                                }
+                            }
+                        } else if (key == 'replyTopic') {
+                            const replyTopic = prompt(( app.msgs.prompt_updateReplyTopic )
+                                            + ' (' + ( app.msgs.prompt_orEnter ) + ' \'ALL\'):', config.replyTopic)
+                            if (replyTopic != null) { // user didn't cancel
+                                const str_replyTopic = replyTopic.toString()
+                                settings.save('replyTopic', !replyTopic || re_all.test(str_replyTopic) ? 'ALL'
+                                                                                                       : str_replyTopic)
+                                siteAlert(`${app.msgs.alert_replyTopicUpdated}!`,
+                                    `${app.msgs.appName} ${app.msgs.alert_willAnswer} `
+                                        + ( !replyTopic || re_all.test(str_replyTopic) ? app.msgs.alert_onAllTopics
+                                            : `${app.msgs.alert_onTopicOf} ${str_replyTopic}` )
+                                        + '!'
                                 )
-                                if (config.infinityMode) infinity.restart({ target: 'new' }) // using new reply language
-                                break
+                                if (config.infinityMode) infinity.restart({ target: 'new' })
+                            }
+                        } else if (key == 'replyInterval') {
+                            while (true) {
+                                const replyInterval = prompt(
+                                    `${app.msgs.prompt_updateReplyInt}:`, config.replyInterval)
+                                if (replyInterval == null) break // user cancelled so do nothing
+                                else if (!isNaN(parseInt(replyInterval, 10)) && parseInt(replyInterval, 10) > 4) {
+                                    settings.save('replyInterval', parseInt(replyInterval, 10))
+                                    siteAlert(( app.msgs.alert_replyIntUpdated ) + '!', // title
+                                        ( app.msgs.appName ) + ' ' // msg
+                                            + ( app.msgs.alert_willReplyEvery ) + ' '
+                                            + replyInterval + ' ' + ( app.msgs.unit_seconds ) + '.'
+                                    )
+                                    if (config.infinityMode) infinity.restart({ target: 'self' })
+                                    break
+                                }
                             }
                         }
-                    } else if (key == 'replyTopic') {
-                        const replyTopic = prompt(( app.msgs.prompt_updateReplyTopic )
-                                        + ' (' + ( app.msgs.prompt_orEnter ) + ' \'ALL\'):', config.replyTopic)
-                        if (replyTopic != null) { // user didn't cancel
-                            const str_replyTopic = replyTopic.toString()
-                            settings.save('replyTopic', !replyTopic || re_all.test(str_replyTopic) ? 'ALL'
-                                                                                                   : str_replyTopic)
-                            siteAlert(`${app.msgs.alert_replyTopicUpdated}!`,
-                                `${app.msgs.appName} ${app.msgs.alert_willAnswer} `
-                                    + ( !replyTopic || re_all.test(str_replyTopic) ? app.msgs.alert_onAllTopics
-                                        : `${app.msgs.alert_onTopicOf} ${str_replyTopic}` )
-                                    + '!'
-                            )
-                            if (config.infinityMode) infinity.restart({ target: 'new' })
-                        }
-                    } else if (key == 'replyInterval') {
-                        while (true) {
-                            const replyInterval = prompt(
-                                `${app.msgs.prompt_updateReplyInt}:`, config.replyInterval)
-                            if (replyInterval == null) break // user cancelled so do nothing
-                            else if (!isNaN(parseInt(replyInterval, 10)) && parseInt(replyInterval, 10) > 4) {
-                                settings.save('replyInterval', parseInt(replyInterval, 10))
-                                siteAlert(( app.msgs.alert_replyIntUpdated ) + '!', // title
-                                    ( app.msgs.appName ) + ' ' // msg
-                                        + ( app.msgs.alert_willReplyEvery ) + ' '
-                                        + replyInterval + ' ' + ( app.msgs.unit_seconds ) + '.'
-                                )
-                                if (config.infinityMode) infinity.restart({ target: 'self' })
-                                break
-                            }
-                        }
-                    }
-                    syncConfigToUI({ updatedKey: key })
-                }, tooltipsSupported ? { title: settings.controls[key].helptip || ' ' } : undefined))
-            })
+                        syncConfigToUI({ updatedKey: key })
+                    }, tooltipsSupported ? { title: settings.controls[key].helptip || ' ' } : undefined))
+                })
+            }
 
             // Add About entry
             const aboutLabel = `💡 ${app.msgs.menuLabel_about} ${app.msgs.appName}`
@@ -461,9 +470,11 @@
                 tooltipsSupported ? { title: ' ' } : undefined))
 
             // Add Donate entry
-            const donateLabel = `💖 ${app.msgs.menuLabel_donate}`
-            menu.ids.push(GM_registerMenuCommand(donateLabel, modals.donate.show,
-                tooltipsSupported ? { title: ' ' } : undefined))
+            if (!env.extensionInstalled) {
+                const donateLabel = `💖 ${app.msgs.menuLabel_donate}`
+                menu.ids.push(GM_registerMenuCommand(donateLabel, modals.about.show,
+                    tooltipsSupported ? { title: ' ' } : undefined))
+            }
         },
 
         refresh() {
@@ -890,10 +901,8 @@
                 else setTimeout(checkExtensionInstalled, 200)
             })()
         }), new Promise(resolve => setTimeout(() => resolve(false), 1500))])
-    if (env.extensionInstalled) { // disable script/menu
-        GM_registerMenuCommand(`${menu.state.symbols[0]} ${app.msgs.menuLabel_disabled}`, modals.about.show)
-        return // exit script
-    } else menu.register() // create functional menu
+
+    menu.register() ; if (env.extensionInstalled) return
 
     // Init BROWSER/UI props
     await Promise.race([chatgpt.isLoaded(), new Promise(resolve => setTimeout(resolve, 5000))]) // initial UI loaded
