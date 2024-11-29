@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.29.4
+// @version             2024.11.29.5
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -219,7 +219,7 @@
 // @compatible          kiwi
 // @require             https://cdn.jsdelivr.net/npm/@kudoai/chatgpt.js@3.3.5/dist/chatgpt.min.js#sha256-rfC4kk8q0byrafp7X0Qf9vaa3JNvkHRwNnUt6uL2hUE=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@9ea9b5ffad099a9a03e0a9567342a18519c1985d/chrome/extension/lib/dom.js#sha256-+GFiSXl3RrudaIQTco8xO2J49vNGL6Roow5ix9SfYGQ=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@9ea9b5ffad099a9a03e0a9567342a18519c1985d/chrome/extension/lib/settings.js#sha256-1VDozrJShNhv0z6XokopbFsUgdAZJv5cnxrlQJ6ksmI=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@e10a6de1795030dbf6774c58ff834024eb635e0d/chrome/extension/lib/settings.js#sha256-81Cc+qXX5vhbv6/XOSGahkGdac5anceI+tLqBHpwOdg=
 // @connect             cdn.jsdelivr.net
 // @connect             update.greasyfork.org
 // @resource bsbgCSS    https://assets.aiwebextensions.com/styles/css/black-rising-stars.min.css?v=50f457d#sha256-RIkvVcaRwwWHMluYKcYeIr1txKkGItLXvdhFo673ST8=
@@ -387,13 +387,7 @@
 
             // ...or add settings entries
             else {
-
-                // Init prompt setting status labels
                 const re_all = new RegExp(`^(${app.msgs.menuLabel_all}|all|any|every)$`, 'i')
-                settings.controls.replyLanguage.status = config.replyLanguage
-                settings.controls.replyTopic.status = re_all.test(config.replyTopic) ? app.msgs.menuLabel_all
-                                                                                        : toTitleCase(config.replyTopic)
-                settings.controls.replyInterval.status = `${config.replyInterval}s`
 
                 // Add setting entries
                 Object.keys(settings.controls).forEach(key => {
@@ -431,7 +425,7 @@
                             const replyTopic = prompt(( app.msgs.prompt_updateReplyTopic )
                                             + ' (' + ( app.msgs.prompt_orEnter ) + ' \'ALL\'):', config.replyTopic)
                             if (replyTopic != null) { // user didn't cancel
-                                const str_replyTopic = replyTopic.toString()
+                                const str_replyTopic = toTitleCase(replyTopic.toString())
                                 settings.save('replyTopic', !replyTopic || re_all.test(str_replyTopic) ? 'ALL'
                                                                                                        : str_replyTopic)
                                 siteAlert(`${app.msgs.alert_replyTopicUpdated}!`,
