@@ -142,7 +142,9 @@
                         + ' (' + chrome.i18n.getMessage('prompt_orEnter') + ' \'ALL\'):', config.replyTopic)
                     if (replyTopic != null) { // user didn't cancel
                         const str_replyTopic = toTitleCase(replyTopic.toString())
-                        settings.save('replyTopic', !replyTopic || re_all.test(str_replyTopic) ? 'ALL' : str_replyTopic)
+                        settings.save('replyTopic',
+                            !replyTopic || re_all.test(str_replyTopic) ? chrome.i18n.getMessage('menuLabel_all')
+                                                                       : str_replyTopic)
                         siteAlert(`${chrome.i18n.getMessage('alert_replyTopicUpdated')}!`,
                             `${chrome.i18n.getMessage('appName')} ${chrome.i18n.getMessage('alert_willAnswer')} `
                                 + ( !replyTopic || re_all.test(str_replyTopic) ?

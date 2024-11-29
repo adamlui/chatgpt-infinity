@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.29.5
+// @version             2024.11.29.6
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -365,7 +365,7 @@
         .filter(key => key != 'infinityMode')) // exclude infinityMode...
     settings.save('infinityMode', false) // ...to always init as false
     if (!config.replyLanguage) settings.save('replyLanguage', env.browser.language) // init reply language if unset
-    if (!config.replyTopic) settings.save('replyTopic', 'ALL') // init reply topic if unset
+    if (!config.replyTopic) settings.save('replyTopic', app.msgs.menuLabel_all) // init reply topic if unset
     if (!config.replyInterval) settings.save('replyInterval', 7) // init refresh interval to 7 secs if unset
 
     // Define MENU functions
@@ -423,11 +423,12 @@
                             }
                         } else if (key == 'replyTopic') {
                             const replyTopic = prompt(( app.msgs.prompt_updateReplyTopic )
-                                            + ' (' + ( app.msgs.prompt_orEnter ) + ' \'ALL\'):', config.replyTopic)
+                                             + ' (' + ( app.msgs.prompt_orEnter ) + ' \'ALL\'):', config.replyTopic)
                             if (replyTopic != null) { // user didn't cancel
                                 const str_replyTopic = toTitleCase(replyTopic.toString())
-                                settings.save('replyTopic', !replyTopic || re_all.test(str_replyTopic) ? 'ALL'
-                                                                                                       : str_replyTopic)
+                                settings.save('replyTopic',
+                                    !replyTopic || re_all.test(str_replyTopic) ? app.msgs.menuLabel_all
+                                                                               : str_replyTopic)
                                 siteAlert(`${app.msgs.alert_replyTopicUpdated}!`,
                                     `${app.msgs.appName} ${app.msgs.alert_willAnswer} `
                                         + ( !replyTopic || re_all.test(str_replyTopic) ? app.msgs.alert_onAllTopics

@@ -35,7 +35,8 @@
     settings.save('infinityMode', false) // ...to always init as false
     if (!config.replyLanguage) // init reply language if unset
         settings.save('replyLanguage', (await chrome.i18n.getAcceptLanguages())[0])
-    if (!config.replyTopic) settings.save('replyTopic', 'ALL') // init reply topic if unset
+    if (!config.replyTopic) // init reply topic if unset
+        settings.save('replyTopic', chrome.i18n.getMessage('menuLabel_all'))
     if (!config.replyInterval) settings.save('replyInterval', 7) // init refresh interval to 7 secs if unset
 
     // Define FEEDBACK functions
