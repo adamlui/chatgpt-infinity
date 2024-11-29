@@ -1,5 +1,5 @@
-const config = {}
-const settings = {
+window.config = {}
+window.settings = {
 
     controls: { // displays top-to-bottom in toolbar menu
         infinityMode: { type: 'toggle',
@@ -29,14 +29,12 @@ const settings = {
             Array.isArray(arguments[0]) ? arguments[0] : Array.from(arguments))
         return Promise.all(keys.map(key => // resolve promise when all keys load
             new Promise(resolve => // resolve promise when single key value loads
-                chrome.storage.sync.get(key, result => { // load from Chrome
-                    config[key] = result[key] || false ; resolve()
+                chrome.storage.sync.get(key, result => { // load from browser extension storage
+                    window.config[key] = result[key] || false ; resolve()
     }))))},
 
     save(key, val) {
-        chrome.storage.sync.set({ [key]: val }) // save to Chrome
-        config[key] = val // save to memory
+        chrome.storage.sync.set({ [key]: val }) // save to browser extension storage
+        window.config[key] = val // save to memory
     }
-}
-
-window.config = config ; window.settings = settings;
+};
