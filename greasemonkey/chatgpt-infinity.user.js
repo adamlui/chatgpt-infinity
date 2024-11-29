@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.27.1
+// @version             2024.11.29
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -883,14 +883,14 @@
     // Run MAIN routine
 
     // Create browser TOOLBAR MENU or DISABLE SCRIPT if extension installed
-    const extensionInstalled = await Promise.race([
+    env.extensionInstalled = await Promise.race([
         new Promise(resolve => {
             (function checkExtensionInstalled() {
                 if (document.documentElement.hasAttribute('cif-extension-installed')) resolve(true)
                 else setTimeout(checkExtensionInstalled, 200)
             })()
         }), new Promise(resolve => setTimeout(() => resolve(false), 1500))])
-    if (extensionInstalled) { // disable script/menu
+    if (env.extensionInstalled) { // disable script/menu
         GM_registerMenuCommand(`${menu.state.symbols[0]} ${app.msgs.menuLabel_disabled}`, modals.about.show)
         return // exit script
     } else menu.register() // create functional menu
