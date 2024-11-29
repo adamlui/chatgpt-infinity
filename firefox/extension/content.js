@@ -96,9 +96,9 @@
             // Create/stylize switch
             const switchSpan = dom.create.elem('span')
             Object.assign(switchSpan.style, {
-                position: 'relative', left: `${ env.browser.isMobile ? 169 : !ui.firstLink ? 160 : 154 }px`,
+                position: 'relative', left: `${ env.browser.isMobile ? 169 : !env.ui.firstLink ? 160 : 154 }px`,
                 backgroundColor: toggleInput.checked ? '#ccc' : '#AD68FF', // init opposite  final color
-                bottom: `${ !ui.firstLink ? -0.15 : 0 }em`,
+                bottom: `${ !env.ui.firstLink ? -0.15 : 0 }em`,
                 width: '30px', height: '15px', '-webkit-transition': '.4s', transition: '0.4s',  borderRadius: '28px'
             })
 
@@ -114,10 +114,10 @@
 
             // Create/stylize/fill label
             const toggleLabel = dom.create.elem('label')
-            if (!ui.firstLink) // add font size/weight since no ui.firstLink to borrow from
+            if (!env.ui.firstLink) // add font size/weight since no env.ui.firstLink to borrow from
                 toggleLabel.style.cssText = 'font-size: 0.875rem, font-weight: 600'
             Object.assign(toggleLabel.style, {
-                marginLeft: `-${ !ui.firstLink ? 23 : 41 }px`, // left-shift to navicon
+                marginLeft: `-${ !env.ui.firstLink ? 23 : 41 }px`, // left-shift to navicon
                 cursor: 'pointer', // add finger cursor on hover
                 width: `${ env.browser.isMobile ? 201 : 148 }px`, // to truncate overflown text
                 overflow: 'hidden', textOverflow: 'ellipsis' // to truncate overflown text
@@ -128,10 +128,10 @@
 
             // Stylize/classify
             sidebarToggle.div.style.cssText += 'height: 37px ; margin: 2px 0 ; user-select: none ; cursor: pointer'
-            if (ui.firstLink) { // borrow/assign classes from sidebar elems
-                const firstIcon = ui.firstLink.querySelector('div:first-child'),
-                      firstLabel = ui.firstLink.querySelector('div:nth-child(2)')
-                sidebarToggle.div.classList.add(...ui.firstLink.classList, ...(firstLabel?.classList || []))
+            if (env.ui.firstLink) { // borrow/assign classes from sidebar elems
+                const firstIcon = env.ui.firstLink.querySelector('div:first-child'),
+                      firstLabel = env.ui.firstLink.querySelector('div:nth-child(2)')
+                sidebarToggle.div.classList.add(...env.ui.firstLink.classList, ...(firstLabel?.classList || []))
                 sidebarToggle.div.querySelector('img')?.classList.add(...(firstIcon?.classList || []))
             }
 
@@ -247,7 +247,7 @@
     // Init BROWSER/UI props
     await Promise.race([chatgpt.isLoaded(), new Promise(resolve => setTimeout(resolve, 5000))]) // initial UI loaded
     await chatgpt.sidebar.isLoaded()
-    const ui = { firstLink: chatgpt.getNewChatLink() }
+    env.ui = { firstLink: chatgpt.getNewChatLink() }
 
     // Add LISTENER to auto-disable Infinity Mode
     if (document.hidden != undefined) // ...if Page Visibility API supported
