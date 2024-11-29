@@ -15,13 +15,16 @@ window.settings = {
             helptip: window.settings.getMsg('helptip_autoScroll') }},
         get replyLanguage() { return { type: 'prompt', symbol: '🌐',
             label: window.settings.getMsg('menuLabel_replyLang'),
-            helptip: window.settings.getMsg('prompt_updateReplyLang') }},
+            helptip: window.settings.getMsg('prompt_updateReplyLang'),
+            status: window.config.replyLanguage }},
         get replyTopic() { return { type: 'prompt', symbol: '🧠',
             label: window.settings.getMsg('menuLabel_replyTopic'),
-            helptip: window.settings.getMsg('prompt_updateReplyTopic') }},
+            helptip: window.settings.getMsg('prompt_updateReplyTopic'),
+            status: window.config.replyTopic }},
         get replyInterval() { return { type: 'prompt', symbol: '⌚',
             label: window.settings.getMsg('menuLabel_replyInt'),
-            helptip: window.settings.getMsg('prompt_updateReplyInt') }}
+            helptip: window.settings.getMsg('prompt_updateReplyInt'),
+            status: window.config.replyInterval }}
     },
 
     getMsg(key) {

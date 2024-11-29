@@ -74,13 +74,7 @@
     // Create CHILD menu entries on chatgpt.com
     if (site == 'chatgpt') {
         await settings.load(Object.keys(settings.controls))
-
-        // Init prompt setting status labels
         const re_all = new RegExp(`^(${chrome.i18n.getMessage('menuLabel_all')}|all|any|every)$`, 'i')
-        settings.controls.replyLanguage.status = config.replyLanguage
-        settings.controls.replyTopic.status = re_all.test(config.replyTopic) ?
-            chrome.i18n.getMessage('menuLabel_all') : toTitleCase(config.replyTopic)
-        settings.controls.replyInterval.status = `${config.replyInterval}s`
 
         // Create/insert child section
         const togglesDiv = dom.create.elem('div', { class: 'menu' })
@@ -147,7 +141,7 @@
                     const replyTopic = prompt(chrome.i18n.getMessage('prompt_updateReplyTopic')
                         + ' (' + chrome.i18n.getMessage('prompt_orEnter') + ' \'ALL\'):', config.replyTopic)
                     if (replyTopic != null) { // user didn't cancel
-                        const str_replyTopic = replyTopic.toString()
+                        const str_replyTopic = toTitleCase(replyTopic.toString())
                         settings.save('replyTopic', !replyTopic || re_all.test(str_replyTopic) ? 'ALL' : str_replyTopic)
                         siteAlert(`${chrome.i18n.getMessage('alert_replyTopicUpdated')}!`,
                             `${chrome.i18n.getMessage('appName')} ${chrome.i18n.getMessage('alert_willAnswer')} `
