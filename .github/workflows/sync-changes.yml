@@ -3,7 +3,7 @@ name: Sync _locales/ between <chrome|firefox>/extension/, then ** to adamlui/ai-
 on:
   push:
     branches: [main]
-    paths: ["**", "!.*", "!package*json", "!eslint.config*"]
+    paths: ["**", "!.*", "!package*.json", "!eslint.config*"]
 
 jobs:
   build:
@@ -66,7 +66,7 @@ jobs:
 
       - name: Sync ** to adamlui/ai-apps/chatgpt-infinity/
         run: |
-          rsync -avhr --delete --exclude={'.*','eslint*','package*json'} \
+          rsync -avhr --delete --exclude={'.*','eslint*','package*.json'} \
             ${{ github.workspace }}/adamlui/chatgpt-infinity/ \
             ${{ github.workspace }}/adamlui/ai-apps/chatgpt-infinity/
 
