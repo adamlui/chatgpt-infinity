@@ -22,10 +22,10 @@
             const userInput = window.prompt(req.msg || 'Please enter your input:', req.defaultVal || '')
             sendResp({ input: userInput })
         } else if (req.action.startsWith('infinity')) infinity[/\.(\w+)/.exec(req.action)[1]](req.options)
-        else if (req.action == 'syncStorageToUI') {
+        else if (req.action == 'syncConfigToUI') {
             if (req.sender == 'background.js') // disable Infinity mode 1st to not transfer between tabs
                 settings.save('infinityMode', false)
-            syncStorageToUI(req.options)
+            syncConfigToUI(req.options)
         }
     })
 
@@ -74,7 +74,7 @@
 
     // Define UI functions
 
-    async function syncStorageToUI(options) { // on toolbar popup toggles + ChatGPT tab activations
+    async function syncConfigToUI(options) { // on toolbar popup toggles + ChatGPT tab activations
         await settings.load('extensionDisabled', ...Object.keys(settings.controls))
         if (options?.updatedKey == 'infinityMode') infinity[config.infinityMode ? 'activate' : 'deactivate']()
         if (/extensionDisabled|infinityMode|toggleHidden/.test(options?.updatedKey)) sidebarToggle.update()
@@ -139,7 +139,7 @@
 
             // Add click listener
             sidebarToggle.div.onclick = () => {
-                settings.save('infinityMode', !toggleInput.checked) ; syncStorageToUI({ updatedKey: 'infinityMode' })
+                settings.save('infinityMode', !toggleInput.checked) ; syncConfigToUI({ updatedKey: 'infinityMode' })
                 notify(`${chrome.i18n.getMessage('menuLabel_infinityMode')}: ${
                     chrome.i18n.getMessage(`state_${ config.infinityMode ? 'On' : 'Off' }`).toUpperCase()}`)
             }
@@ -288,7 +288,7 @@
 
     // Auto-start if enabled
     if (config.autoStart) {
-        settings.save('infinityMode', true) ; syncStorageToUI({ updatedKey: 'infinityMode' })
+        settings.save('infinityMode', true) ; syncConfigToUI({ updatedKey: 'infinityMode' })
         notify(`${chrome.i18n.getMessage('menuLabel_autoStart')}: ${chrome.i18n.getMessage('state_on').toUpperCase()}`)
     }
 

@@ -48,7 +48,7 @@
                 })
         },
 
-        storageToUI(options) { return sendMsgToActiveTab({ action: 'syncStorageToUI', options })}
+        configToUI(options) { return sendMsgToActiveTab({ action: 'syncConfigToUI', options })}
     }
 
     function toTitleCase(str) {
@@ -118,7 +118,7 @@
                 menuInput.onclick = menuSlider.onclick = event => // prevent double toggle
                     event.stopImmediatePropagation()
                 menuInput.onchange = () => {
-                    settings.save(key, !config[key]) ; sync.storageToUI({ updatedKey: key })
+                    settings.save(key, !config[key]) ; sync.configToUI({ updatedKey: key })
                     notify(`${settings.controls[key].label} ${chrome.i18n.getMessage(`state_${
                         /disabled|hidden/i.test(key) != config[key] ? 'on' : 'off'}`).toUpperCase()}`)
                 }
@@ -177,7 +177,7 @@
                         }
                     }
                 }
-                sync.storageToUI()
+                sync.configToUI()
             }
         })
 

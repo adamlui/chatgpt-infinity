@@ -7,7 +7,7 @@ chrome.runtime.onInstalled.addListener(details => {
 // Sync SETTINGS to activated tabs
 chrome.tabs.onActivated.addListener(activeInfo =>
     chrome.tabs.sendMessage(activeInfo.tabId, {
-        action: 'syncStorageToUI',
+        action: 'syncConfigToUI',
         sender: 'background.js' // for content.js to reset config.infinityMode
 }));
 
