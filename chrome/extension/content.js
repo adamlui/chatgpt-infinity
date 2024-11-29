@@ -65,7 +65,7 @@
     function siteAlert(title = '', msg = '', btns = '', checkbox = '', width = '') {
         const alertID = chatgpt.alert(title, msg, btns, checkbox, width ),
               alert = document.getElementById(alertID).firstChild
-        modals.init(alert) // add class + starry BG + drag handlers
+        modals.setup(alert) // add class + starry BG + drag handlers
         return alert
     }
 
