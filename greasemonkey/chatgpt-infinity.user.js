@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.29.7
+// @version             2024.11.29.8
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -892,7 +892,7 @@
     env.extensionInstalled = await Promise.race([
         new Promise(resolve => {
             (function checkExtensionInstalled() {
-                if (document.head.hasAttribute('chatgpt-infinity-extension-installed')) resolve(true)
+                if (document.documentElement.hasAttribute('chatgpt-infinity-extension-installed')) resolve(true)
                 else setTimeout(checkExtensionInstalled, 200)
             })()
         }), new Promise(resolve => setTimeout(() => resolve(false), 1500))])
@@ -954,14 +954,14 @@
     }).observe(document.body, { attributes: true, subtree: true })
 
     // Disable distracting SIDEBAR CLICK-ZOOM effect
-    if (!document.head.hasAttribute('sidebar-click-zoom-observed')) {
+    if (!document.documentElement.hasAttribute('sidebar-click-zoom-observed')) {
         new MutationObserver(mutations => mutations.forEach(({ target }) => {
             if (target.closest('[class*="sidebar"]') // include sidebar divs
                 && !target.id.endsWith('-knob-span') // exclude our sidebarToggle
                 && target.style.transform != 'none' // click-zoom occurred
             ) target.style.transform = 'none'
         })).observe(document.body, { attributes: true, subtree: true, attributeFilter: [ 'style' ]})
-        document.head.setAttribute('sidebar-click-zoom-observed', true)
+        document.documentElement.setAttribute('sidebar-click-zoom-observed', true)
     }
 
 })()
