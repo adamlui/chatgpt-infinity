@@ -3,28 +3,35 @@ window.settings = {
 
     controls: { // displays top-to-bottom in toolbar menu
         get infinityMode() { return { type: 'toggle',
-            label: window.settings.getMsg('menuLabel_infinityMode') }},
+            label: window.settings.getMsg('menuLabel_infinityMode')
+        }},
         get autoStart() { return { type: 'toggle',
             label: window.settings.getMsg('menuLabel_autoStart'),
-            helptip: window.settings.getMsg('helptip_autoStart') }},
+            helptip: window.settings.getMsg('helptip_autoStart')
+        }},
         get toggleHidden() { return { type: 'toggle',
             label: window.settings.getMsg('menuLabel_toggleVis'),
-            helptip: window.settings.getMsg('helptip_toggleVis') }},
+            helptip: window.settings.getMsg('helptip_toggleVis')
+        }},
         get autoScrollDisabled() { return { type: 'toggle',
             label: window.settings.getMsg('menuLabel_autoScroll'),
-            helptip: window.settings.getMsg('helptip_autoScroll') }},
+            helptip: window.settings.getMsg('helptip_autoScroll')
+        }},
         get replyLanguage() { return { type: 'prompt', symbol: '🌐',
             label: window.settings.getMsg('menuLabel_replyLang'),
             helptip: window.settings.getMsg('prompt_updateReplyLang'),
-            status: window.config.replyLanguage }},
+            status: window.config.replyLanguage
+        }},
         get replyTopic() { return { type: 'prompt', symbol: '🧠',
             label: window.settings.getMsg('menuLabel_replyTopic'),
             helptip: window.settings.getMsg('prompt_updateReplyTopic'),
-            status: window.config.replyTopic }},
+            status: window.config.replyTopic
+        }},
         get replyInterval() { return { type: 'prompt', symbol: '⌚',
             label: window.settings.getMsg('menuLabel_replyInt'),
             helptip: window.settings.getMsg('prompt_updateReplyInt'),
-            status: window.config.replyInterval }}
+            status: window.config.replyInterval
+        }}
     },
 
     getMsg(key) {
