@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.29.9
+// @version             2024.11.29.10
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -407,7 +407,7 @@
                                 let replyLang = prompt(
                                     `${app.msgs.prompt_updateReplyLang}:`, config.replyLanguage)
                                 if (replyLang == null) break // user cancelled so do nothing
-                                else if (!/\d/.test(replyLang)) {
+                                else if (!/\d/.test(replyLang)) { // valid reply language set
                                     replyLang = ( // auto-case for menu/alert aesthetics
                                         replyLang.length < 4 || replyLang.includes('-') ? replyLang.toUpperCase()
                                             : replyLang.charAt(0).toUpperCase() + replyLang.slice(1).toLowerCase() )
@@ -421,17 +421,16 @@
                                 }
                             }
                         } else if (key == 'replyTopic') {
-                            const replyTopic = prompt(( app.msgs.prompt_updateReplyTopic )
-                                             + ' (' + ( app.msgs.prompt_orEnter ) + ' \'ALL\'):', config.replyTopic)
+                            let replyTopic = prompt(( app.msgs.prompt_updateReplyTopic )
+                                + ' (' + ( app.msgs.prompt_orEnter ) + ' \'ALL\'):', config.replyTopic)
                             if (replyTopic != null) { // user didn't cancel
-                                const str_replyTopic = toTitleCase(replyTopic.toString())
+                                replyTopic = toTitleCase(replyTopic.toString()) // for menu/alert aesthetics
                                 settings.save('replyTopic',
-                                    !replyTopic || re_all.test(str_replyTopic) ? app.msgs.menuLabel_all
-                                                                               : str_replyTopic)
+                                    !replyTopic || re_all.test(replyTopic) ? app.msgs.menuLabel_all : replyTopic)
                                 siteAlert(`${app.msgs.alert_replyTopicUpdated}!`,
                                     `${app.msgs.appName} ${app.msgs.alert_willAnswer} `
-                                        + ( !replyTopic || re_all.test(str_replyTopic) ? app.msgs.alert_onAllTopics
-                                            : `${app.msgs.alert_onTopicOf} ${str_replyTopic}` )
+                                        + ( !replyTopic || re_all.test(replyTopic) ? app.msgs.alert_onAllTopics
+                                            : `${app.msgs.alert_onTopicOf} ${replyTopic}` )
                                         + '!'
                                 )
                             }
@@ -524,6 +523,7 @@
     }})}
 
     function toTitleCase(str) {
+        if (!str) return ''
         const words = str.toLowerCase().split(' ')
         for (let i = 0 ; i < words.length ; i++) // for each word
             words[i] = words[i][0].toUpperCase() + words[i].slice(1) // title-case it

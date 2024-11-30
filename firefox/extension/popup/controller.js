@@ -55,6 +55,7 @@
     }
 
     function toTitleCase(str) {
+        if (!str) return ''
         const words = str.toLowerCase().split(' ')
         for (let i = 0 ; i < words.length ; i++)
             words[i] = words[i][0].toUpperCase() + words[i].slice(1)
@@ -125,7 +126,7 @@
                         let replyLang = await (await prompt(
                             `${chrome.i18n.getMessage('prompt_updateReplyLang')}:`, config.replyLanguage)).input
                         if (replyLang == null) break // user cancelled so do nothing
-                        else if (!/\d/.test(replyLang)) {
+                        else if (!/\d/.test(replyLang)) { // valid reply language set
                             replyLang = ( // auto-case for menu/alert aesthetics
                                 replyLang.length < 4 || replyLang.includes('-') ? replyLang.toUpperCase()
                                     : replyLang.charAt(0).toUpperCase() + replyLang.slice(1).toLowerCase() )
@@ -138,18 +139,18 @@
                         }
                     }
                 } else if (key == 'replyTopic') {
-                    const replyTopic = await (await prompt(chrome.i18n.getMessage('prompt_updateReplyTopic')
+                    let replyTopic = await (await prompt(chrome.i18n.getMessage('prompt_updateReplyTopic')
                         + ' (' + chrome.i18n.getMessage('prompt_orEnter') + ' \'ALL\'):', config.replyTopic)).input
                     if (replyTopic != null) { // user didn't cancel
-                        const str_replyTopic = toTitleCase(replyTopic.toString())
+                        replyTopic = toTitleCase(replyTopic.toString()) // for menu/alert aesthetics
                         settings.save('replyTopic',
-                            !replyTopic || re_all.test(str_replyTopic) ? chrome.i18n.getMessage('menuLabel_all')
-                                                                       : str_replyTopic)
+                            !replyTopic || re_all.test(replyTopic) ? chrome.i18n.getMessage('menuLabel_all')
+                                                                   : replyTopic)
                         siteAlert(`${chrome.i18n.getMessage('alert_replyTopicUpdated')}!`,
                             `${chrome.i18n.getMessage('appName')} ${chrome.i18n.getMessage('alert_willAnswer')} `
-                                + ( !replyTopic || re_all.test(str_replyTopic) ?
+                                + ( !replyTopic || re_all.test(replyTopic) ?
                                          chrome.i18n.getMessage('alert_onAllTopics')
-                                    : `${chrome.i18n.getMessage('alert_onTopicOf')} ${str_replyTopic}`
+                                    : `${chrome.i18n.getMessage('alert_onTopicOf')} ${replyTopic}`
                                 ) + '!'
                         )
                     }
