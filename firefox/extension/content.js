@@ -255,7 +255,7 @@
         document.onvisibilitychange = () => { if (config.infinityMode) infinity.deactivate() }
 
     // Add/update TWEAKS style
-    const tweaksStyleUpdated = 1732600036095 // datestamp of last edit for this file's tweaksStyle
+    const tweaksStyleUpdated = 1732600036095  // timestamp of last edit for this file's tweaksStyle
     let tweaksStyle = document.getElementById('tweaks-style') // try to select existing style
     if (!tweaksStyle || parseInt(tweaksStyle.getAttribute('last-updated')) < tweaksStyleUpdated) {
         if (!tweaksStyle) { // outright missing, create/id/attr/append it first
