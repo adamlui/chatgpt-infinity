@@ -21,8 +21,7 @@
         else if (req.action == 'prompt') {
             const userInput = window.prompt(req.msg || 'Please enter your input:', req.defaultVal || '')
             sendResp({ input: userInput })
-        } else if (req.action.startsWith('infinity')) infinity[/\.(\w+)/.exec(req.action)[1]](req.options)
-        else if (req.action == 'syncConfigToUI') {
+        } else if (req.action == 'syncConfigToUI') {
             if (req.sender == 'background.js') // disable Infinity mode 1st to not transfer between tabs
                 settings.save('infinityMode', false)
             syncConfigToUI(req.options)

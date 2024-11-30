@@ -18,7 +18,6 @@
     chrome.runtime.onMessage.addListener(req => {
         if (req.action == 'notify') notify(req.msg, req.pos)
         else if (req.action == 'alert') siteAlert(req.title, req.msg, req.btns)
-        else if (req.action.startsWith('infinity')) infinity[/\.(\w+)/.exec(req.action)[1]](req.options)
         else if (req.action == 'syncConfigToUI') {
             if (req.sender == 'service-worker.js') // disable Infinity mode 1st to not transfer between tabs
                 settings.save('infinityMode', false)
