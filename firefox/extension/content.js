@@ -77,7 +77,7 @@
     async function syncConfigToUI(options) { // on toolbar popup toggles + ChatGPT tab activations
         await settings.load('extensionDisabled', ...Object.keys(settings.controls))
         if (options?.updatedKey == 'infinityMode') infinity[config.infinityMode ? 'activate' : 'deactivate']()
-        else if (settings.controls[options?.updatedKey].type == 'prompt' && config.infinityMode)
+        else if (settings.controls[options?.updatedKey]?.type == 'prompt' && config.infinityMode)
             infinity.restart({ target: options?.updatedKey == 'replyInterval' ? 'self' : 'new' })
         if (/extensionDisabled|infinityMode|toggleHidden/.test(options?.updatedKey)) sidebarToggle.update()
     }
