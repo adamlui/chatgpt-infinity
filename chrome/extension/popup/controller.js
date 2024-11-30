@@ -131,6 +131,7 @@
                                 `${chrome.i18n.getMessage('appName')} ${chrome.i18n.getMessage('alert_willReplyIn')} `
                                   + `${ replyLang || chrome.i18n.getMessage('alert_yourSysLang') }.`
                             )
+                            break
                         }
                     }
                 } else if (key == 'replyTopic') {
@@ -159,6 +160,7 @@
                             siteAlert(chrome.i18n.getMessage('alert_replyIntUpdated') + '!',
                                 chrome.i18n.getMessage('appName') + ' ' + chrome.i18n.getMessage('alert_willReplyEvery')
                                 + ' ' + replyInterval + ' ' + chrome.i18n.getMessage('unit_seconds') + '.')
+                            break
                         }
                     }
                 }
