@@ -16,17 +16,13 @@
 
     // Define FUNCTIONS
 
-    async function sendMsgToActiveTab(req) {
+    async function sendMsgToActiveTab(action, options) {
         const [activeTab] = await chrome.tabs.query({ active: true, currentWindow: true })
-        return await chrome.tabs.sendMessage(activeTab.id, req)
+        return await chrome.tabs.sendMessage(activeTab.id, { action: action, options: { ...options }})
     }
 
-    function notify(msg) { sendMsgToActiveTab({ action: 'notify', msg: msg, pos: 'bottom-right' })}
-
-    function siteAlert(title = '', msg = '', btns = '', checkbox = '', width = '') {
-        sendMsgToActiveTab({
-            action: 'alert', title: title, msg: msg, btns: btns, checkbox: checkbox, width: width })
-    }
+    function notify(msg, pos = 'bottom-right') { sendMsgToActiveTab('notify', { msg, pos }) }
+    function siteAlert(title, msg) { sendMsgToActiveTab('alert', { title, msg }) }
 
     const sync = {
         fade() {
@@ -48,7 +44,7 @@
                 })
         },
 
-        configToUI(options) { return sendMsgToActiveTab({ action: 'syncConfigToUI', options })}
+        configToUI(options) { return sendMsgToActiveTab('syncConfigToUI', options) }
     }
 
     function toTitleCase(str) {

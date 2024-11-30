@@ -16,8 +16,10 @@
 
     // Add CHROME MSG listener
     chrome.runtime.onMessage.addListener(req => {
-        if (req.action == 'notify') notify(req.msg, req.pos)
-        else if (req.action == 'alert') siteAlert(req.title, req.msg, req.btns)
+        if (req.action == 'notify')
+            notify(...['msg', 'pos', 'notifDuration', 'shadow'].map(arg => req.options[arg]))
+        else if (req.action == 'alert')
+            siteAlert(...['title', 'msg', 'btns', 'checkbox', 'width'].map(arg => req.options[arg]))
         else if (req.action == 'syncConfigToUI') {
             if (req.sender == 'service-worker.js') // disable Infinity mode 1st to not transfer between tabs
                 settings.save('infinityMode', false)

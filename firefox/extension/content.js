@@ -16,10 +16,12 @@
 
     // Add CHROME MSG listener
     chrome.runtime.onMessage.addListener((req, _, sendResp) => {
-        if (req.action == 'notify') notify(req.msg, req.pos)
-        else if (req.action == 'alert') siteAlert(req.title, req.msg, req.btns)
+        if (req.action == 'notify')
+            notify(...['msg', 'pos', 'notifDuration', 'shadow'].map(arg => req.options[arg]))
+        else if (req.action == 'alert')
+            siteAlert(...['title', 'msg', 'btns', 'checkbox', 'width'].map(arg => req.options[arg]))
         else if (req.action == 'prompt') {
-            const userInput = window.prompt(req.msg || 'Please enter your input:', req.defaultVal || '')
+            const userInput = window.prompt(req.options.msg || 'Please enter your input:', req.options.defaultVal || '')
             sendResp({ input: userInput })
         } else if (req.action == 'syncConfigToUI') {
             if (req.sender == 'background.js') // disable Infinity mode 1st to not transfer between tabs
