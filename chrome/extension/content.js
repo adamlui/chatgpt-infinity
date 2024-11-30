@@ -3,7 +3,7 @@
 
 (async () => {
 
-    document.head.setAttribute('cif-extension-installed', true) // for userscript auto-disable
+    document.head.setAttribute('chatgpt-infinity-extension-installed', true) // for userscript auto-disable
 
     // Import LIBS
     await import(chrome.runtime.getURL('lib/chatgpt.js'))
