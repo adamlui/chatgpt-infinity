@@ -134,9 +134,6 @@
                                 `${chrome.i18n.getMessage('appName')} ${chrome.i18n.getMessage('alert_willReplyIn')} `
                                   + `${ replyLang || chrome.i18n.getMessage('alert_yourSysLang') }.`
                             )
-                            if (config.infinityMode) // reboot active session
-                                sendMsgToActiveTab({ action: 'infinity.restart', options: { target: 'new' }})
-                            close() // popup
                             break
                         }
                     }
@@ -155,9 +152,6 @@
                                     : `${chrome.i18n.getMessage('alert_onTopicOf')} ${str_replyTopic}`
                                 ) + '!'
                         )
-                        if (config.infinityMode) // reboot active session
-                            sendMsgToActiveTab({ action: 'infinity.restart', options: { target: 'new' }})
-                        close() // popup
                     }
                 } else if (key == 'replyInterval') {
                     while (true) {
@@ -169,14 +163,11 @@
                             siteAlert(chrome.i18n.getMessage('alert_replyIntUpdated') + '!',
                                 chrome.i18n.getMessage('appName') + ' ' + chrome.i18n.getMessage('alert_willReplyEvery')
                                 + ' ' + replyInterval + ' ' + chrome.i18n.getMessage('unit_seconds') + '.')
-                            if (config.infinityMode) // reboot active session
-                                sendMsgToActiveTab({ action: 'infinity.restart', options: { target: 'self' }})
-                            close() // popup
                             break
                         }
                     }
                 }
-                sync.configToUI()
+                sync.configToUI({ updatedKey: key }) ; close() // popup
             }
         })
 

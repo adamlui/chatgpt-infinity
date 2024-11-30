@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.29.8
+// @version             2024.11.29.9
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -417,7 +417,6 @@
                                             + ( app.msgs.alert_willReplyIn ) + ' '
                                             + ( replyLang || app.msgs.alert_yourSysLang) + '.'
                                     )
-                                    if (config.infinityMode) infinity.restart({ target: 'new' }) // using new reply language
                                     break
                                 }
                             }
@@ -435,7 +434,6 @@
                                             : `${app.msgs.alert_onTopicOf} ${str_replyTopic}` )
                                         + '!'
                                 )
-                                if (config.infinityMode) infinity.restart({ target: 'new' })
                             }
                         } else if (key == 'replyInterval') {
                             while (true) {
@@ -449,7 +447,6 @@
                                             + ( app.msgs.alert_willReplyEvery ) + ' '
                                             + replyInterval + ' ' + ( app.msgs.unit_seconds ) + '.'
                                     )
-                                    if (config.infinityMode) infinity.restart({ target: 'self' })
                                     break
                                 }
                             }
@@ -723,6 +720,8 @@
 
     function syncConfigToUI(options) {
         if (options?.updatedKey == 'infinityMode') infinity[config.infinityMode ? 'activate' : 'deactivate']()
+        else if (settings.controls[options?.updatedKey].type == 'prompt' && config.infinityMode)
+            infinity.restart({ target: options?.updatedKey == 'replyInterval' ? 'self' : 'new' })
         if (/infinityMode|toggleHidden/.test(options?.updatedKey)) sidebarToggle.update()
         menu.refresh() // prefixes/suffixes
     }
