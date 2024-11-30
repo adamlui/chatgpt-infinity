@@ -30,7 +30,7 @@ window.settings = {
         get replyInterval() { return { type: 'prompt', symbol: '⌚',
             label: window.settings.getMsg('menuLabel_replyInt'),
             helptip: window.settings.getMsg('prompt_updateReplyInt'),
-            status: window.config.replyInterval
+            status: `${window.config.replyInterval}s`
         }}
     },
 
