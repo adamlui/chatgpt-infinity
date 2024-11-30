@@ -2,7 +2,7 @@
 
 const modals = {
 
-    init(modal) {
+    setup(modal) {
         modal.classList.add('chatgpt-infinity-modal')
         modal.onmousedown = modals.dragHandlers.mousedown
         dom.fillStarryBG(modal) // add stars
