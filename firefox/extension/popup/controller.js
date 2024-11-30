@@ -28,7 +28,7 @@
             action: 'alert', title: title, msg: msg, btns: btns, checkbox: checkbox, width: width })
     }
 
-    async function prompt(msg, defaultVal) {
+    async function sitePrompt(msg, defaultVal) {
         return await sendMsgToActiveTab({ action: 'prompt', msg: msg, defaultVal: defaultVal })}
 
     const sync = {
@@ -123,7 +123,7 @@
             } else menuItemDiv.onclick = async () => {
                 if (key == 'replyLanguage') {
                     while (true) {
-                        let replyLang = await (await prompt(
+                        let replyLang = await (await sitePrompt(
                             `${chrome.i18n.getMessage('prompt_updateReplyLang')}:`, config.replyLanguage)).input
                         if (replyLang == null) break // user cancelled so do nothing
                         else if (!/\d/.test(replyLang)) { // valid reply language set
@@ -139,7 +139,7 @@
                         }
                     }
                 } else if (key == 'replyTopic') {
-                    let replyTopic = await (await prompt(chrome.i18n.getMessage('prompt_updateReplyTopic')
+                    let replyTopic = await (await sitePrompt(chrome.i18n.getMessage('prompt_updateReplyTopic')
                         + ' (' + chrome.i18n.getMessage('prompt_orEnter') + ' \'ALL\'):', config.replyTopic)).input
                     if (replyTopic != null) { // user didn't cancel
                         replyTopic = toTitleCase(replyTopic.toString()) // for menu/alert aesthetics
@@ -156,7 +156,7 @@
                     }
                 } else if (key == 'replyInterval') {
                     while (true) {
-                        const replyInterval = await (await prompt(
+                        const replyInterval = await (await sitePrompt(
                             `${chrome.i18n.getMessage('prompt_updateReplyInt')}:`, config.replyInterval)).input
                         if (replyInterval == null) break // user cancelled so do nothing
                         else if (!isNaN(parseInt(replyInterval, 10)) && parseInt(replyInterval, 10) > 4) {
