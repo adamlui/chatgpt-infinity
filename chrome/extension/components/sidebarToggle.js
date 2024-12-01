@@ -23,7 +23,7 @@ window.sidebarToggle = {
         const switchSpan = document.createElement('span')
         Object.assign(switchSpan.style, {
             position: 'relative', left: `${ this.env.browser.isMobile ? 169 : !this.env.ui.firstLink ? 160 : 154 }px`,
-            backgroundColor: toggleInput.checked ? '#ccc' : '#AD68FF', // init opposite  final color
+            backgroundColor: '#AD68FF', // init opposite  final color
             bottom: `${ !this.env.ui.firstLink ? -0.15 : 0 }em`,
             width: '30px', height: '15px', '-webkit-transition': '.4s', transition: '0.4s',  borderRadius: '28px'
         })
@@ -33,8 +33,7 @@ window.sidebarToggle = {
         Object.assign(knobSpan.style, {
             position: 'absolute', left: '3px', bottom: '1.25px',
             width: '12px', height: '12px', content: '""', borderRadius: '28px',
-            transform: toggleInput.checked ? // init opposite final pos
-                'translateX(0)' : 'translateX(13px) translateY(0)',
+            transform: 'translateX(13px) translateY(0)', // init opposite final pos
             backgroundColor: 'white',  '-webkit-transition': '0.4s', transition: '0.4s'
         }) ; switchSpan.append(knobSpan)
 
