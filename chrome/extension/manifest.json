@@ -18,7 +18,8 @@
   "action": { "default_popup": "popup/index.html" },
   "web_accessible_resources": [{
     "matches": [ "<all_urls>" ],
-    "resources": [ "lib/chatgpt.js", "lib/dom.js", "lib/settings.js", "components/modals.mjs" ]
+    "resources": [
+      "lib/chatgpt.js", "lib/dom.js", "lib/settings.js", "components/modals.mjs", "components/sidebarToggle.js" ]
   }],
   "content_scripts": [{
     "matches": [ "https://chatgpt.com/*" ],
