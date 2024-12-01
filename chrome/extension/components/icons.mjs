@@ -2,6 +2,8 @@
 
 const icons = {
 
+    import(dependencies) { Object.entries(dependencies).forEach(([name, dependency]) => this[name] = dependency) },
+
     create({ name, size = 16, width, height, ...additionalAttrs }) {
         const iconData = icons[name],
               iconAttrs = { width: width || size, height: height || size, ...additionalAttrs }
@@ -22,10 +24,8 @@ const icons = {
 
     questionMark: {
         type: 'png',
-        get src() {
-            return `${icons.appProps.urls.mediaHost}/images/icons/question-mark/icon16.png?${
-                icons.appProps.latestAssetCommitHash}`
-        }
+        get src() { return `${
+            icons.app.urls.mediaHost}/images/icons/question-mark/icon16.png?${icons.app.latestAssetCommitHash}` }
     }
 }
 

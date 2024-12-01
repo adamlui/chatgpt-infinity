@@ -7,12 +7,12 @@
     await import(chrome.runtime.getURL('lib/dom.js'))
     await import(chrome.runtime.getURL('lib/settings.js'))
 
-    // Import APP data
-    const { app } = await chrome.storage.sync.get('app')
-
     // Import ICONS
     const { icons } = await import(chrome.runtime.getURL('components/icons.mjs'))
-    icons.appProps = app // for src's using urls.mediaHost
+
+    // Import APP data
+    const { app } = await chrome.storage.sync.get('app')
+    icons.import({ app }) // for src's using app.urls.mediaHost
 
     // Define FUNCTIONS
 
