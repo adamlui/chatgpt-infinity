@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.11.30
+// @version             2024.11.30.1
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -218,6 +218,7 @@
 // @compatible          whale
 // @compatible          kiwi
 // @require             https://cdn.jsdelivr.net/npm/@kudoai/chatgpt.js@3.3.5/dist/chatgpt.min.js#sha256-rfC4kk8q0byrafp7X0Qf9vaa3JNvkHRwNnUt6uL2hUE=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@d4159bceb347d708c60a8c0945e9f28e5467de24/chrome/extension/components/sidebarToggle.js#sha256-M19965WHu2UK4JJS0Q5P9AGNN8EwRpFRwi8vfmJjepM=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@9ea9b5ffad099a9a03e0a9567342a18519c1985d/chrome/extension/lib/dom.js#sha256-+GFiSXl3RrudaIQTco8xO2J49vNGL6Roow5ix9SfYGQ=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@9e28492b818db303b38abbe8c2dd9006a6fa91c9/chrome/extension/lib/settings.js#sha256-FztyIKRcIF3l/rQibJDBr2eBc1mRmsMfi9mKn0UKkwk=
 // @connect             cdn.jsdelivr.net
@@ -726,110 +727,6 @@
         menu.refresh() // prefixes/suffixes
     }
 
-    const sidebarToggle = {
-
-        create() {
-            sidebarToggle.div = dom.create.elem('div')
-
-            // Create/ID/size/position navicon
-            const navicon = dom.create.elem('img', { id: 'infinity-toggle-navicon' })
-            navicon.style.cssText = 'width: 1.25rem ; height: 1.25rem ; margin-left: 2px ; margin-right: 4px'
-
-            // Create/disable/hide checkbox
-            const toggleInput = dom.create.elem('input', { type: 'checkbox', disabled: true })
-            toggleInput.style.display = 'none'
-
-            // Create/stylize switch
-            const switchSpan = dom.create.elem('span')
-            Object.assign(switchSpan.style, {
-                position: 'relative', left: `${ env.browser.isMobile ? 169 : !env.ui.firstLink ? 160 : 154 }px`,
-                backgroundColor: toggleInput.checked ? '#ccc' : '#AD68FF', // init opposite  final color
-                bottom: `${ !env.ui.firstLink ? -0.15 : 0 }em`,
-                width: '30px', height: '15px', '-webkit-transition': '.4s', transition: '0.4s',  borderRadius: '28px'
-            })
-
-            // Create/stylize knob, append to switch
-            const knobSpan = dom.create.elem('span', { id: 'infinity-toggle-knob-span' })
-            Object.assign(knobSpan.style, {
-                position: 'absolute', left: '3px', bottom: '1.25px',
-                width: '12px', height: '12px', content: '""', borderRadius: '28px',
-                transform: toggleInput.checked ? // init opposite final pos
-                    'translateX(0)' : 'translateX(13px) translateY(0)',
-                backgroundColor: 'white',  '-webkit-transition': '0.4s', transition: '0.4s'
-            }) ; switchSpan.append(knobSpan)
-
-            // Create/stylize/fill label
-            const toggleLabel = dom.create.elem('label')
-            if (!env.ui.firstLink) // add font size/weight since no env.ui.firstLink to borrow from
-                toggleLabel.style.cssText = 'font-size: 0.875rem, font-weight: 600'
-            Object.assign(toggleLabel.style, {
-                marginLeft: `-${ !env.ui.firstLink ? 23 : 41 }px`, // left-shift to navicon
-                cursor: 'pointer', // add finger cursor on hover
-                width: `${ env.browser.isMobile ? 201 : 148 }px`, // to truncate overflown text
-                overflow: 'hidden', textOverflow: 'ellipsis' // to truncate overflown text
-            })
-
-            // Append elements
-            sidebarToggle.div.append(navicon, toggleInput, switchSpan, toggleLabel)
-
-            // Stylize/classify
-            sidebarToggle.div.style.cssText += 'height: 37px ; margin: 2px 0 ; user-select: none ; cursor: pointer'
-            if (env.ui.firstLink) { // borrow/assign classes from sidebar elems
-                const firstIcon = env.ui.firstLink.querySelector('div:first-child'),
-                      firstLabel = env.ui.firstLink.querySelector('div:nth-child(2)')
-                sidebarToggle.div.classList.add(...env.ui.firstLink.classList, ...(firstLabel?.classList || []))
-                sidebarToggle.div.querySelector('img')?.classList.add(...(firstIcon?.classList || []))
-            }
-
-            sidebarToggle.update() // to opposite init state for animation on 1st load
-
-            // Add click listener
-            sidebarToggle.div.onclick = () => {
-                settings.save('infinityMode', !toggleInput.checked) ; syncConfigToUI({ updatedKey: 'infinityMode' })
-                notify(`${app.msgs.menuLabel_infinityMode}: ${menu.state.words[+config.infinityMode]}`)
-            }
-        },
-
-        insert() {
-            if (sidebarToggle.status?.startsWith('insert') || document.getElementById('infinity-toggle-navicon')) return
-            sidebarToggle.status = 'inserting' ; if (!sidebarToggle.div) sidebarToggle.create()
-
-            // Insert toggle
-            const sidebar = document.querySelectorAll('nav')[env.browser.isMobile ? 1 : 0]
-            if (!sidebar) return
-            sidebar.insertBefore(sidebarToggle.div, sidebar.children[1])
-
-            // Tweak styles
-            const knobSpan = document.getElementById('infinity-toggle-knob-span'),
-                  navicon = document.getElementById('infinity-toggle-navicon')
-            sidebarToggle.div.style.flexGrow = 'unset' // overcome OpenAI .grow
-            sidebarToggle.div.style.paddingLeft = '8px'
-            if (knobSpan) knobSpan.style.boxShadow = (
-                'rgba(0, 0, 0, .3) 0 1px 2px 0' + ( chatgpt.isDarkMode() ? ', rgba(0, 0, 0, .15) 0 3px 6px 2px' : '' ))
-            if (navicon) navicon.src = `${ // update navicon color in case scheme changed
-                app.urls.mediaHost}/images/icons/infinity-symbol/`
-              + `${ chatgpt.isDarkMode() ? 'white' : 'black' }/icon32.png?${app.latestAssetCommitHash}`
-
-            sidebarToggle.status = 'inserted'
-        },
-
-        update() {
-            const toggleLabel = sidebarToggle.div.querySelector('label'),
-                  toggleInput = sidebarToggle.div.querySelector('input'),
-                  switchSpan = sidebarToggle.div.querySelector('span'),
-                  knobSpan = switchSpan.firstChild
-            sidebarToggle.div.style.display = config.toggleHidden ? 'none' : 'flex'
-            toggleInput.checked = config.infinityMode
-            toggleLabel.innerText = `${app.msgs.menuLabel_infinityMode} ${
-                app.msgs['state_' + ( toggleInput.checked ? 'enabled' : 'disabled' )]}`
-            setTimeout(() => {
-                switchSpan.style.backgroundColor = toggleInput.checked ? '#ad68ff' : '#ccc'
-                switchSpan.style.boxShadow = toggleInput.checked ? '2px 1px 9px #d8a9ff' : 'none'
-                knobSpan.style.transform = toggleInput.checked ? 'translateX(13px) translateY(0)' : 'translateX(0)'
-            }, 1) // min delay to trigger transition fx
-        }
-    }
-
     chatgpt.isIdle = function() { // replace waiting for chat to start in case of interrupts
         return new Promise(resolve => { // when stop btn missing
             new MutationObserver((_, obs) => {
@@ -937,6 +834,7 @@
     ['wsbg', 'bsbg'].forEach(cssType => // white stars, black stars
         document.head.append(dom.create.style(GM_getResourceText(`${cssType}CSS`))))
 
+    sidebarToggle.import({ app, env, notify, syncConfigToUI })
     sidebarToggle.insert()
 
     // Auto-start if enabled
