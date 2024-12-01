@@ -1,12 +1,13 @@
 (async () => {
 
-    const site = /([^.]+)\.[^.]+$/.exec(new URL((await chrome.tabs.query(
-        { active: true, currentWindow: true }))[0].url).hostname)?.[1]
-
     // Import JS resources
     await import(chrome.runtime.getURL('components/icons.js'))
     await import(chrome.runtime.getURL('lib/dom.js'))
     await import(chrome.runtime.getURL('lib/settings.js'))
+
+    // Init ENV context
+    const env = { site: /([^.]+)\.[^.]+$/.exec(new URL((await chrome.tabs.query(
+        { active: true, currentWindow: true }))[0].url).hostname)?.[1] }
 
     // Import APP data
     const { app } = await chrome.storage.sync.get('app')
@@ -67,7 +68,7 @@
     }
 
     // Create CHILD menu entries on chatgpt.com
-    if (site == 'chatgpt') {
+    if (env.site =='chatgpt') {
         await settings.load(Object.keys(settings.controls))
         const re_all = new RegExp(`^(${chrome.i18n.getMessage('menuLabel_all')}|all|any|every)$`, 'i')
 
