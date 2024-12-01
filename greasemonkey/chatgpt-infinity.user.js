@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.1.1
+// @version             2024.12.1.2
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -259,7 +259,10 @@
     const xhr = env.scriptManager.name == 'OrangeMonkey' ? GM_xmlhttpRequest : GM.xmlHttpRequest
 
     // Init APP data
-    const app = { configKeyPrefix: 'chatGPTinfinity', latestAssetCommitHash: 'd66e7fd', urls: {} }
+    const app = {
+        version: GM_info.script.version, configKeyPrefix: 'chatGPTinfinity',
+        chatgptJSver: /chatgpt\.js@([\d.]+)/.exec(GM_info.script.header)[1], urls: {}, latestAssetCommitHash: 'd66e7fd'
+    }
     app.urls.assetHost = `https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@${app.latestAssetCommitHash}`
     const appData = await new Promise(resolve => xhr({
         method: 'GET', url: `${app.urls.assetHost}/app.json`,
@@ -604,20 +607,21 @@
             show() {
                 modals.stack.unshift('about') ; modals.stack = [...new Set(modals.stack)] // track for nav
 
-                // Show alert
-                const chatgptJSver = (/chatgpt-([\d.]+)\.min/.exec(GM_info.script.header) || [null, ''])[1],
-                      headingStyle = 'font-size: 1.15rem',
+                // Init styles
+                const headingStyle = 'font-size: 1.15rem',
                       pStyle = 'position: relative ; left: 3px',
                       pBrStyle = 'position: relative ; left: 4px ',
                       aStyle = 'color: ' + ( chatgpt.isDarkMode() ? '#c67afb' : '#8325c4' ) // purple
+
+                // Show modal
                 const aboutModal = siteAlert(
                     `${app.symbol} ${app.msgs.appName}`, // title
                     `<span style="${headingStyle}"><b>🏷️ <i>${app.msgs.about_version}</i></b>: </span>`
-                        + `<span style="${pStyle}">${GM_info.script.version}</span>\n`
+                        + `<span style="${pStyle}">${app.version}</span>\n`
                     + `<span style="${headingStyle}"><b>⚡ <i>${app.msgs.about_poweredBy}</i></b>: </span>`
                         + `<span style="${pStyle}">`
                             + `<a style="${aStyle}" href="${app.urls.chatgptJS}" target="_blank" rel="noopener">`
-                                + 'chatgpt.js</a>' + ( chatgptJSver ? ( ' v' + chatgptJSver ) : '' ) + '</span>\n'
+                                + `chatgpt.js</a> v${app.chatgptJSver}</span>\n`
                     + `<span style="${headingStyle}"><b>📜 <i>${app.msgs.about_sourceCode}</i></b>:</span>\n`
                         + `<span style="${pBrStyle}"><a href="${app.urls.gitHub}" target="_blank" rel="nopener">`
                             + app.urls.gitHub + '</a></span>',
