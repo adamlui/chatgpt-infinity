@@ -1,6 +1,6 @@
 // Requires lib/dom.js
 
-const icons = {
+window.icons = {
 
     import(dependencies) { Object.entries(dependencies).forEach(([name, dependency]) => this[name] = dependency) },
 
@@ -27,6 +27,4 @@ const icons = {
         get src() { return `${
             icons.app.urls.mediaHost}/images/icons/question-mark/icon16.png?${icons.app.latestAssetCommitHash}` }
     }
-}
-
-export { icons }
+};

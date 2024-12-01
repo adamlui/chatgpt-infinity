@@ -5,14 +5,12 @@
 
     document.documentElement.setAttribute('chatgpt-infinity-extension-installed', true) // for userscript auto-disable
 
-    // Import LIBS
+    // Import JS resources
+    await import(chrome.runtime.getURL('components/modals.js'))
+    await import(chrome.runtime.getURL('components/sidebarToggle.js'))
     await import(chrome.runtime.getURL('lib/chatgpt.js'))
     await import(chrome.runtime.getURL('lib/dom.js'))
     await import(chrome.runtime.getURL('lib/settings.js'))
-
-    // Import COMPONENTS
-    const { modals } = await import(chrome.runtime.getURL('components/modals.mjs'))
-    await import(chrome.runtime.getURL('components/sidebarToggle.js'))
 
     // Import APP data
     const { app } = await chrome.storage.sync.get('app')

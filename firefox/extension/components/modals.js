@@ -1,6 +1,6 @@
 // Requires lib/dom.js
 
-const modals = {
+window.modals = {
 
     setup(modal) {
         modal.classList.add('chatgpt-infinity-modal')
@@ -26,6 +26,7 @@ const modals = {
                 const newX = event.clientX - modals.dragHandlers.offsetX,
                       newY = event.clientY - modals.dragHandlers.offsetY
                 Object.assign(modals.dragHandlers.draggableElem.style, { left: `${newX}px`, top: `${newY}px` })
+                console.log(newX)
             }
         },
 
@@ -36,6 +37,4 @@ const modals = {
             modals.dragHandlers.draggableElem = null
         }
     }
-}
-
-export { modals }
+};
