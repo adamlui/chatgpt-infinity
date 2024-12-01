@@ -8,18 +8,19 @@ window.sidebarToggle = {
     },
 
     create() {
-        this.div = dom.create.elem('div')
+        this.div = document.createElement('div')
 
         // Create/ID/size/position navicon
-        const navicon = dom.create.elem('img', { id: 'infinity-toggle-navicon' })
+        const navicon = document.createElement('img') ; navicon.id = 'infinity-toggle-navicon'
         navicon.style.cssText = 'width: 1.25rem ; height: 1.25rem ; margin-left: 2px ; margin-right: 4px'
 
         // Create/disable/hide checkbox
-        const toggleInput = dom.create.elem('input', { type: 'checkbox', disabled: true })
+        const toggleInput = document.createElement('input')
+        Object.assign(toggleInput, { type: 'checkbox', disabled: true })
         toggleInput.style.display = 'none'
 
         // Create/stylize switch
-        const switchSpan = dom.create.elem('span')
+        const switchSpan = document.createElement('span')
         Object.assign(switchSpan.style, {
             position: 'relative', left: `${ this.env.browser.isMobile ? 169 : !this.env.ui.firstLink ? 160 : 154 }px`,
             backgroundColor: toggleInput.checked ? '#ccc' : '#AD68FF', // init opposite  final color
@@ -28,7 +29,7 @@ window.sidebarToggle = {
         })
 
         // Create/stylize knob, append to switch
-        const knobSpan = dom.create.elem('span', { id: 'infinity-toggle-knob-span' })
+        const knobSpan = document.createElement('span') ; knobSpan.id = 'infinity-toggle-knob-span'
         Object.assign(knobSpan.style, {
             position: 'absolute', left: '3px', bottom: '1.25px',
             width: '12px', height: '12px', content: '""', borderRadius: '28px',
@@ -38,7 +39,7 @@ window.sidebarToggle = {
         }) ; switchSpan.append(knobSpan)
 
         // Create/stylize/fill label
-        const toggleLabel = dom.create.elem('label')
+        const toggleLabel = document.createElement('label')
         if (!this.env.ui.firstLink) // add font size/weight since no ui.firstLink to borrow from
             toggleLabel.style.cssText = 'font-size: 0.875rem, font-weight: 600'
         Object.assign(toggleLabel.style, {
