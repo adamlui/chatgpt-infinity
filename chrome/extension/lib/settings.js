@@ -1,6 +1,9 @@
 window.config = {}
 window.settings = {
 
+    import(dependencies) { // { app }
+        Object.entries(dependencies).forEach(([name, dependency]) => this[name] = dependency) },
+
     controls: { // displays top-to-bottom in toolbar menu
         get infinityMode() { return { type: 'toggle',
             label: window.settings.getMsg('menuLabel_infinityMode')
@@ -36,10 +39,8 @@ window.settings = {
 
     getMsg(key) {
         return typeof chrome != 'undefined' && chrome.runtime ? chrome.i18n.getMessage(key)
-            : this.app.msgs[key] // assigned from app.msgs in userscript
+            : this.app.msgs[key] // assigned from this.import({ app }) in userscript
     },
-
-    import(dependencies) { Object.entries(dependencies).forEach(([name, dependency]) => this[name] = dependency) },
 
     load() {
         const keys = ( // original array if array, else new array from multiple args

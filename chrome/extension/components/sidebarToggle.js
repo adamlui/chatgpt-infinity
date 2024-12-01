@@ -1,10 +1,11 @@
 window.sidebarToggle = {
 
-    import(dependencies) { Object.entries(dependencies).forEach(([name, dependency]) => this[name] = dependency) },
+    import(dependencies) { // { app, env, notify, syncConfigToUI }
+        Object.entries(dependencies).forEach(([name, dependency]) => this[name] = dependency) },
 
     getMsg(key) {
         return typeof chrome != 'undefined' && chrome.runtime ? chrome.i18n.getMessage(key)
-            : this.app.msgs[key] // assigned from this.load({ app }) in userscript
+            : this.app.msgs[key] // assigned from this.import({ app }) in userscript
     },
 
     create() {

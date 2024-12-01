@@ -2,7 +2,8 @@
 
 window.icons = {
 
-    import(dependencies) { Object.entries(dependencies).forEach(([name, dependency]) => this[name] = dependency) },
+    import(dependencies) { // { app }
+        Object.entries(dependencies).forEach(([name, dependency]) => this[name] = dependency) },
 
     create({ name, size = 16, width, height, ...additionalAttrs }) {
         const iconData = icons[name],
