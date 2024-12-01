@@ -68,7 +68,7 @@
     }
 
     // Create CHILD menu entries on chatgpt.com
-    if (env.site =='chatgpt') {
+    if (env.site == 'chatgpt') {
         await settings.load(Object.keys(settings.controls))
         const re_all = new RegExp(`^(${chrome.i18n.getMessage('menuLabel_all')}|all|any|every)$`, 'i')
 
