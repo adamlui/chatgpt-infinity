@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.1.10
+// @version             2024.12.1.11
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -730,14 +730,25 @@
             show() {
                 const feedbackModal = siteAlert(
                     `${app.msgs.alert_choosePlatform}:`, '', // title
-                    [ // buttons
-                        function greasyFork() { modals.safeWinOpen(app.urls.review.greasyFork) },
-                        function productHunt() { modals.safeWinOpen(app.urls.review.productHunt) },
-                        function alternativeTo() { modals.safeWinOpen(app.urls.review.alternativeTo) }
-                    ]
+                    [ function greasyFork(){}, function productHunt(){}, function alternativeTo(){} ] // buttons
                 )
-                feedbackModal.querySelector('button').style.display = 'none' // hide Dismiss button
-                feedbackModal.addEventListener('DOMNodeRemoved', () => modals[modals.stack[0]]?.show() ) // nav back
+
+                // Hack buttons
+                feedbackModal.querySelectorAll('button').forEach((btn, idx) => {
+                    if (idx == 0) btn.style.display = 'none' // hide Dismiss button
+
+                    // Replace buttons w/ clones that don't dismissAlert()
+                    const btnClone = btn.cloneNode(true)
+                    btn.parentNode.replaceChild(btnClone, btn) ; btn = btnClone
+                    btn.onclick = () => modals.safeWinOpen(app.urls.review[
+                        btn.textContent == 'Greasy Fork' ? 'greasyFork'
+                      : btn.textContent == 'Product Hunt' ? 'productHunt'
+                      : 'alternativeTo'
+                    ])
+                })
+
+                // Nav back
+                feedbackModal.addEventListener('DOMNodeRemoved', () => modals[modals.stack[0]]?.show() )
             }
         },
 
