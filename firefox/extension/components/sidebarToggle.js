@@ -95,6 +95,7 @@ window.sidebarToggle = {
     },
 
     update() {
+        if (!this.div) return // since toggle never created = sidebar missing
         const toggleLabel = this.div.querySelector('label'),
               toggleInput = this.div.querySelector('input'),
               switchSpan = this.div.querySelector('span'),
