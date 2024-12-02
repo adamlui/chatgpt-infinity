@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.1.6
+// @version             2024.12.1.7
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -264,11 +264,9 @@
         chatgptJSver: /chatgpt\.js@([\d.]+)/.exec(GM_info.script.header)[1], urls: {}, latestAssetCommitHash: 'd66e7fd'
     }
     app.urls.assetHost = `https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@${app.latestAssetCommitHash}`
-    const appData = await new Promise(resolve => xhr({
-        method: 'GET', url: `${app.urls.assetHost}/app.json`,
-        onload: resp => resolve(JSON.parse(resp.responseText))
-    }))
-    Object.assign(app, { ...appData, urls: { ...app.urls, ...appData.urls }})
+    const remoteAppData = await new Promise(resolve => xhr({
+        method: 'GET', url: `${app.urls.assetHost}/app.json`, onload: resp => resolve(JSON.parse(resp.responseText)) }))
+    Object.assign(app, { ...remoteAppData, urls: { ...app.urls, ...remoteAppData.urls }})
     app.urls.update = app.urls.greasyFork.replace('https://', 'https://update.')
         .replace(/(\d+)-?([a-z-]*)$/i, (_, id, name) => `${id}/${ name || 'script' }.meta.js`)
     app.msgs = {
