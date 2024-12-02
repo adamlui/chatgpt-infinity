@@ -13,7 +13,7 @@ chrome.tabs.onActivated.addListener(activeInfo =>
 
 // Init APP data
 (async () => {
-    const app = { latestAssetCommitHash: '108447b', urls: {} }
+    const app = { latestAssetCommitHash: '1d83ad2', urls: {} }
     app.urls.assetHost = `https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@${app.latestAssetCommitHash}`
     const remoteAppData = await (await fetch(`${app.urls.assetHost}/app.json`)).json()
     Object.assign(app, { ...remoteAppData, urls: { ...app.urls, ...remoteAppData.urls }})
