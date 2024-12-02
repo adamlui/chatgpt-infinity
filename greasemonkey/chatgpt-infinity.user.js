@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.1.7
+// @version             2024.12.1.8
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -648,14 +648,14 @@
                     }
 
                     // Prepend emoji + localize labels
-                    if (/updates/i.test(btn.textContent)) btn.textContent = (
-                        '🚀 ' + ( app.msgs.btnLabel_updateCheck ))
-                    else if (/support/i.test(btn.textContent)) btn.textContent = (
-                        '🧠 ' + ( app.msgs.btnLabel_getSupport ))
-                    else if (/rate/i.test(btn.textContent)) btn.textContent = (
-                        '⭐ ' + ( app.msgs.btnLabel_rateUs ))
-                    else if (/extensions/i.test(btn.textContent)) btn.textContent = (
-                        '🤖 ' + ( app.msgs.btnLabel_moreAIextensions ))
+                    if (/updates/i.test(btn.textContent))
+                        btn.textContent = `🚀 ${app.msgs.btnLabel_updateCheck}`
+                    else if (/support/i.test(btn.textContent))
+                        btn.textContent = `🧠 ${app.msgs.btnLabel_getSupport}`
+                    else if (/rate/i.test(btn.textContent))
+                        btn.textContent = `⭐ ${app.msgs.btnLabel_rateUs}`
+                    else if (/extensions/i.test(btn.textContent))
+                        btn.textContent = `🤖 ${app.msgs.btnLabel_moreAIextensions}`
 
                     // Hide Dismiss button
                     else btn.style.display = 'none'
