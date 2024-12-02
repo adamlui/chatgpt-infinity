@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.1.5
+// @version             2024.12.1.6
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -627,29 +627,41 @@
                             + app.urls.gitHub + '</a></span>',
                     [ // buttons
                         function checkForUpdates() { updateCheck() },
-                        function getSupport() { modals.safeWinOpen(app.urls.support) },
+                        function getSupport(){},
                         function rateUs() { modals.feedback.show() },
-                        function moreAIextensions() { modals.safeWinOpen(app.urls.relatedExtensions) }
+                        function moreAIextensions(){}
                     ], '', 546 // set width
                 )
 
-                // Re-style text
+                // Format text
                 aboutModal.querySelector('h2').style.cssText = 'text-align: center ; font-size: 37px ; padding: 9px'
                 aboutModal.querySelector('p').style.cssText = 'text-align: center'
 
-                // Re-format buttons to include emoji + localized label + hide Dismiss button
-                for (const button of aboutModal.querySelectorAll('button')) {
-                    button.style.cssText = 'cursor: pointer !important' // since tweaks won't load on auto-disable
-                    if (/updates/i.test(button.textContent)) button.textContent = (
+                // Hack buttons
+                aboutModal.querySelectorAll('button').forEach(btn => {
+                    btn.style.cssText = 'cursor: pointer !important' // since tweaks won't load on script auto-disable
+
+                    // Replace link buttons w/ clones that don't dismissAlert()
+                    if (/support|extensions/i.test(btn.textContent)) {
+                        const btnClone = btn.cloneNode(true)
+                        btn.parentNode.replaceChild(btnClone, btn) ; btn = btnClone
+                        btn.onclick = () => modals.safeWinOpen(app.urls[
+                            btn.textContent.includes(app.msgs.btnLabel_getSupport) ? 'support' : 'relatedExtensions' ])
+                    }
+
+                    // Prepend emoji + localize labels
+                    if (/updates/i.test(btn.textContent)) btn.textContent = (
                         '🚀 ' + ( app.msgs.btnLabel_updateCheck ))
-                    else if (/support/i.test(button.textContent)) button.textContent = (
+                    else if (/support/i.test(btn.textContent)) btn.textContent = (
                         '🧠 ' + ( app.msgs.btnLabel_getSupport ))
-                    else if (/rate/i.test(button.textContent)) button.textContent = (
+                    else if (/rate/i.test(btn.textContent)) btn.textContent = (
                         '⭐ ' + ( app.msgs.btnLabel_rateUs ))
-                    else if (/extensions/i.test(button.textContent)) button.textContent = (
+                    else if (/extensions/i.test(btn.textContent)) btn.textContent = (
                         '🤖 ' + ( app.msgs.btnLabel_moreAIextensions ))
-                    else button.style.display = 'none' // hide Dismiss button
-                }
+
+                    // Hide Dismiss button
+                    else btn.style.display = 'none'
+                })
             }
         },
 
@@ -676,9 +688,9 @@
                       + `<p>—<b><a target="_blank" rel="noopener" href="${app.author.url}">`
                           + `${app.msgs.appAuthor}</a></b>, ${app.msgs.alert_author}</p>`,
                     [ // buttons
-                        function paypal() { modals.safeWinOpen(app.urls.donate.payPal) },
-                        function githubSponsors() { modals.safeWinOpen(app.urls.donate.gitHub) },
-                        function cashApp() { modals.safeWinOpen(app.urls.donate.cashApp) },
+                        function paypal(){},
+                        function githubSponsors(){},
+                        function cashApp(){},
                         function rateUs() { modals.feedback.show() }
                     ], '', 478 // set width
                 )
@@ -687,15 +699,28 @@
                 donateModal.querySelectorAll('p').forEach(p => // v-pad text, shrink line height
                     p.style.cssText = 'padding: 8px 0 ; line-height: 20px')
 
-                // Format buttons
+                // Hack buttons
                 const btns = donateModal.querySelectorAll('button')
                 btns.forEach((btn, idx) => {
+
+                    // Replace link buttons w/ clones that don't dismissAlert()
+                    if (!/dismiss|rate/i.test(btn.textContent)) {
+                        const btnClone = btn.cloneNode(true)
+                        btn.parentNode.replaceChild(btnClone, btn) ; btn = btnClone
+                        btn.onclick = () => modals.safeWinOpen(app.urls.donate[
+                            btnClone.textContent == 'Cash App' ? 'cashApp'
+                          : btnClone.textContent == 'GitHub' ? 'gitHub'
+                          : 'payPal'
+                        ])
+                    }
+
+                    // Format buttons
                     if (idx == 0) btn.style.display = 'none' // hide Dismiss button
                     else {
                         btn.style.cssText = 'padding: 8px 6px !important ; margin-top: -14px ;'
                                           + ' width: 107px ; line-height: 14px'
                         if (idx == btns.length -1) // de-emphasize right-most button
-                            btn.classList.remove('primary-modal-btn')
+                        btn.classList.remove('primary-modal-btn')
                         else if (/rate/i.test(btn.textContent)) // localize 'Rate Us' label
                             btn.textContent = app.msgs.btnLabel_rateUs
                     }
