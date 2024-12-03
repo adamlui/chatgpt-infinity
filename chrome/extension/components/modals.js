@@ -185,8 +185,8 @@ window.modals = {
                 const btnClone = btn.cloneNode(true)
                 btn.parentNode.replaceChild(btnClone, btn) ; btn = btnClone
                 btn.onclick = () => modals.safeWinOpen(this.app.urls.donate[
-                    btnClone.textContent == 'Cash App' ? 'cashApp'
-                  : btnClone.textContent == 'GitHub' ? 'gitHub'
+                    btn.textContent == 'Cash App' ? 'cashApp'
+                  : btn.textContent == 'GitHub' ? 'gitHub'
                   : 'payPal'
                 ])
             }
