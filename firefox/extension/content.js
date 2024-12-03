@@ -15,6 +15,7 @@
 
     // Import APP data
     const { app } = await chrome.storage.sync.get('app')
+    modals.import({ app, siteAlert })
 
     // Add CHROME MSG listener
     chrome.runtime.onMessage.addListener((req, _, sendResp) => {
@@ -22,6 +23,7 @@
             notify(...['msg', 'pos', 'notifDuration', 'shadow'].map(arg => req.options[arg]))
         else if (req.action == 'alert')
             siteAlert(...['title', 'msg', 'btns', 'checkbox', 'width'].map(arg => req.options[arg]))
+        else if (req.action == 'showAbout') chatgpt.isLoaded().then(() => { modals.open('about') })
         else if (req.action == 'prompt') {
             const userInput = window.prompt(req.options.msg || 'Please enter your input:', req.options.defaultVal || '')
             sendResp({ input: userInput })
@@ -67,10 +69,8 @@
     }
 
     function siteAlert(title = '', msg = '', btns = '', checkbox = '', width = '') {
-        const alertID = chatgpt.alert(title, msg, btns, checkbox, width ),
-              alert = document.getElementById(alertID).firstChild
-        modals.setup(alert) // add class + starry BG + drag handlers
-        return alert
+        const alertID = chatgpt.alert(title, msg, btns, checkbox, width)
+        return document.getElementById(alertID).firstChild
     }
 
     // Define UI functions
