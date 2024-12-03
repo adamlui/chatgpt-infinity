@@ -10,6 +10,9 @@
         ['components/modals.js', 'components/sidebarToggle.js', 'lib/chatgpt.js', 'lib/dom.js', 'lib/settings.js'])
             await import(chrome.runtime.getURL(resource))
 
+    // Init ENV context
+    const env = { browser: { isMobile: chatgpt.browser.isMobile() }}
+
     // Import APP data
     const { app } = await chrome.storage.sync.get('app')
 
@@ -28,9 +31,6 @@
             syncConfigToUI(req.options)
         }
     })
-
-    // Init ENV context
-    const env = { browser: { isMobile: chatgpt.browser.isMobile() }}
 
     // Init SETTINGS
     await settings.load('extensionDisabled', ...Object.keys(settings.controls)
