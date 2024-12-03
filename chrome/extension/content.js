@@ -12,7 +12,7 @@
 
     // Import APP data
     const { app } = await chrome.storage.sync.get('app')
-    modals.import({ app, isDarkMode: chatgpt.isDarkMode, siteAlert })
+    modals.import({ app, siteAlert })
 
     // Add CHROME MSG listener
     chrome.runtime.onMessage.addListener(req => {
