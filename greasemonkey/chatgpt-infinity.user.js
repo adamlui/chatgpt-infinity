@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.2.4
+// @version             2024.12.2.5
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -579,10 +579,10 @@
                 mutation.removedNodes.forEach(removedNode => { if (removedNode == modalBG) {
                     if (modals.stack[0] == type) { // new modal not launched, implement nav back logic
                         modals.stack.shift() // remove this modal type from stack
-                        const nextModalType = modals.stack[0]
-                        if (nextModalType) { // queue exists, open next modal
-                            modals.stack.shift() // remove next modal type from stack since re-added on next open
-                            modals.open(nextModalType)
+                        const prevModalType = modals.stack[0]
+                        if (prevModalType) { // open it
+                            modals.stack.shift() // remove type from stack since re-added on open
+                            modals.open(prevModalType)
                         }
                     }
                     obs.disconnect()
