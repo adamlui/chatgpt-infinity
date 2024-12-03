@@ -9,10 +9,8 @@ window.modals = {
     env: {
         get runtime() {
             if (typeof chrome != 'undefined' && chrome.runtime) {
-                 return `Chromium${
-                    navigator.userAgent.includes('Edg') ? ' Edge add-on'
-                      : typeof browser != 'undefined' ? ' Firefox add-on'
-                      : '' }`
+                if (typeof browser != 'undefined') return 'Firefox add-on'
+                else return `Chromium ${ navigator.userAgent.includes('Edg') ? 'Edge add-on' : 'extension' }`
             } else if (typeof GM_info != 'undefined')
                  return 'Greasemonkey userscript'
             else return 'Unknown'
@@ -20,7 +18,7 @@ window.modals = {
     },
 
     getMsg(key) {
-        return this.env.runtime.includes('Chromium') ? chrome.i18n.getMessage(key)
+        return /Chromium|Firefox/.test(this.env.runtime) ? chrome.i18n.getMessage(key)
              : this.app.msgs[key] // assigned from this.import({ app }) in userscript
     },
 
@@ -109,7 +107,7 @@ window.modals = {
                 + `<span style="${pBrStyle}"><a href="${this.app.urls.gitHub}" target="_blank" rel="nopener">`
                     + this.app.urls.gitHub + '</a></span>',
             modalBtns, '',
-            this.env.runtime.includes('Chromium') ? 451 : 546 // set width
+            /Chromium|Firefox/.test(this.env.runtime) ? 451 : 546 // set width
         )
 
         // Format text
