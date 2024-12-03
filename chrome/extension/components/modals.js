@@ -92,7 +92,7 @@ window.modals = {
             function moreAIextensions(){}
         ]
         if (this.env.runtime.includes('Greasemonkey')) modalBtns.unshift(
-            function checkForUpdates(){})
+            function checkForUpdates(){ modals.updateCheck() })
 
         // Show modal
         const aboutModal = this.siteAlert(
