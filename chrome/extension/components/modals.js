@@ -3,7 +3,7 @@
 window.modals = {
     stack: [], // of types of undismissed modals
 
-    import(dependencies) { // { app, siteAlert, updateCheck }
+    import(dependencies) { // { app, siteAlert, updateCheck (userscript only) }
         Object.entries(dependencies).forEach(([name, dependency]) => this[name] = dependency) },
 
     env: {
