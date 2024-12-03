@@ -119,7 +119,8 @@ window.modals = {
         // Hack buttons
         aboutModal.querySelector('.modal-buttons').style.justifyContent = 'center'
         aboutModal.querySelectorAll('button').forEach(btn => {
-            btn.style.cssText = 'height: 43px ; cursor: pointer !important'
+            btn.style.cssText = 'cursor: pointer !important ;'
+                + `height: ${ this.env.runtime.includes('Greasemonkey') ? 50 : 43 }px`
 
             // Replace link buttons w/ clones that don't dismissAlert()
             if (/support|extensions/i.test(btn.textContent)) {
