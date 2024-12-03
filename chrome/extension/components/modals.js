@@ -3,6 +3,9 @@
 window.modals = {
     stack: [], // of types of undismissed modals
 
+    import(dependencies) { // { app, isDarkMode: chatgpt.isDarkMode, siteAlert, updateCheck }
+        Object.entries(dependencies).forEach(([name, dependency]) => this[name] = dependency) },
+
     env: {
         get runtime() {
             if (typeof chrome != 'undefined' && chrome.runtime) {
@@ -15,9 +18,6 @@ window.modals = {
             else return 'Unknown'
         }
     },
-
-    import(dependencies) { // { app, isDarkMode: chatgpt.isDarkMode, siteAlert, updateCheck }
-        Object.entries(dependencies).forEach(([name, dependency]) => this[name] = dependency) },
 
     getMsg(key) {
         return this.env.runtime.includes('Chromium') ? chrome.i18n.getMessage(key)
