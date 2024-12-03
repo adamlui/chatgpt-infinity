@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.3.2
+// @version             2024.12.3.3
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -224,8 +224,8 @@
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@ef190cd4806c142a85ca19115b79b92a8cc28009/chrome/extension/lib/settings.js#sha256-ChfPdM1W2zffrfyqPFnKYYh0PbeJTXQWBj4IDHciR0c=
 // @connect             cdn.jsdelivr.net
 // @connect             update.greasyfork.org
-// @resource bsbgCSS    https://assets.aiwebextensions.com/styles/css/black-rising-stars.min.css?v=ef1de9f#sha256-b3Z9TxmkA546+cyFer2r44hbE1fCSJC42g/Rkgn8Mmk=
-// @resource wsbgCSS    https://assets.aiwebextensions.com/styles/css/white-rising-stars.min.css?v=ef1de9f#sha256-wjoSV4u00KViTF9ostLD6AmsgqFimyVzm0dcfwIDBco=
+// @resource bsbgCSS    https://assets.aiwebextensions.com/styles/css/black-rising-stars.min.css?v=542104c#sha256-GQLnVMub4cpV5A59pvnDe8peGrW1v49u1UbDHHTGBBI=
+// @resource wsbgCSS    https://assets.aiwebextensions.com/styles/css/white-rising-stars.min.css?v=542104c#sha256-UCMygYN1+KOj8pQJonn7CRZ2b+npvyrXJlnarlJGIh4=
 // @grant               GM_setValue
 // @grant               GM_getValue
 // @grant               GM_registerMenuCommand
