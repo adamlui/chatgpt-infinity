@@ -31,16 +31,16 @@ window.modals = {
         this.observeRemoval(modal, modalType) // to maintain stack for proper nav
     },
 
-    observeRemoval(modal, type) { // to maintain stack for proper nav
+    observeRemoval(modal, modalType) { // to maintain stack for proper nav
         const modalBG = modal.parentNode
         new MutationObserver(([mutation], obs) => {
             mutation.removedNodes.forEach(removedNode => { if (removedNode == modalBG) {
-                if (modals.stack[0] == type) { // new modal not launched, implement nav back logic
-                    modals.stack.shift() // remove this modal type from stack
-                    const prevModalType = modals.stack[0]
+                if (this.stack[0] == modalType) { // new modal not launched, implement nav back logic
+                    this.stack.shift() // remove this modal type from stack
+                    const prevModalType = this.stack[0]
                     if (prevModalType) { // open it
-                        modals.stack.shift() // remove type from stack since re-added on open
-                        modals.open(prevModalType)
+                        this.stack.shift() // remove type from stack since re-added on open
+                        this.open(prevModalType)
                     }
                 }
                 obs.disconnect()
@@ -124,7 +124,7 @@ window.modals = {
             if (/support|extensions/i.test(btn.textContent)) {
                 const btnClone = btn.cloneNode(true)
                 btn.parentNode.replaceChild(btnClone, btn) ; btn = btnClone
-                btn.onclick = () => modals.safeWinOpen(this.app.urls[
+                btn.onclick = () => this.safeWinOpen(this.app.urls[
                     btn.textContent.includes(this.getMsg('btnLabel_getSupport')) ? 'support' : 'relatedExtensions' ])
             }
 
@@ -183,7 +183,7 @@ window.modals = {
             if (!/dismiss|rate/i.test(btn.textContent)) {
                 const btnClone = btn.cloneNode(true)
                 btn.parentNode.replaceChild(btnClone, btn) ; btn = btnClone
-                btn.onclick = () => modals.safeWinOpen(this.app.urls.donate[
+                btn.onclick = () => this.safeWinOpen(this.app.urls.donate[
                     btn.textContent == 'Cash App' ? 'cashApp'
                   : btn.textContent == 'GitHub' ? 'gitHub'
                   : 'payPal'
@@ -223,7 +223,7 @@ window.modals = {
             // Replace buttons w/ clones that don't dismissAlert()
             const btnClone = btn.cloneNode(true)
             btn.parentNode.replaceChild(btnClone, btn) ; btn = btnClone
-            btn.onclick = () => modals.safeWinOpen(this.app.urls.review[
+            btn.onclick = () => this.safeWinOpen(this.app.urls.review[
                 btn.textContent == 'Alternativeto' ? 'alternativeTo'
               : btn.textContent == 'Chrome Web Store' ? 'chromeWebStore'
               : btn.textContent == 'Edge Addons' ? 'edgeAddons'
