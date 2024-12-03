@@ -175,7 +175,7 @@
     // Add STARS styles
     ['black', 'white'].forEach(color => document.head.append(
         dom.create.elem('link', { rel: 'stylesheet',
-            href: `https://assets.aiwebextensions.com/styles/css/${color}-rising-stars.min.css?v=50f457d`
+            href: `https://assets.aiwebextensions.com/styles/css/${color}-rising-stars.min.css?v=ef1de9f`
     })))
 
     sidebarToggle.import({ app, env, notify, syncConfigToUI })
