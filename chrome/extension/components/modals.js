@@ -1,9 +1,9 @@
-// Requires lib/dom.js
+// Requires lib/chatgpt.js + lib/dom.js
 
 window.modals = {
     stack: [], // of types of undismissed modals
 
-    import(dependencies) { // { app, isDarkMode: chatgpt.isDarkMode, siteAlert, updateCheck }
+    import(dependencies) { // { app, siteAlert, updateCheck }
         Object.entries(dependencies).forEach(([name, dependency]) => this[name] = dependency) },
 
     env: {
@@ -85,7 +85,7 @@ window.modals = {
         const headingStyle = 'font-size: 1.15rem',
               pStyle = 'position: relative ; left: 3px',
               pBrStyle = 'position: relative ; left: 4px ',
-              aStyle = 'color: ' + ( this.isDarkMode() ? '#c67afb' : '#8325c4' ) // purple
+              aStyle = 'color: ' + ( chatgpt.isDarkMode() ? '#c67afb' : '#8325c4' ) // purple
 
         // Init buttons
         const modalBtns = [
@@ -161,7 +161,7 @@ window.modals = {
                   + `${this.getMsg('alert_directlySupports')}.</p>`
               + `<p>${this.getMsg('alert_tyForSupport')}!</p>`
               + '<img src="https://cdn.jsdelivr.net/gh/adamlui/adamlui/images/siggie/'
-                  + `${ this.isDarkMode() ? 'white' : 'black' }.png" `
+                  + `${ chatgpt.isDarkMode() ? 'white' : 'black' }.png" `
                   + 'style="height: 54px ; margin: 5px 0 -2px 5px"></img>'
               + `<p>—<b><a target="_blank" rel="noopener" href="${this.app.author.url}">`
                   + `${this.getMsg('appAuthor')}</a></b>, ${this.getMsg('alert_author')}</p>`,
