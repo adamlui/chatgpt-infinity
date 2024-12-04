@@ -3,8 +3,11 @@
 window.modals = {
     stack: [], // of types of undismissed modals
 
-    import(dependencies) { // { app, siteAlert, updateCheck (userscript only) }
-        Object.entries(dependencies).forEach(([name, dependency]) => this[name] = dependency) },
+    import(dependencies) {
+        // { app, browserLang: env.browser.language (userscript only), siteAlert,
+        //   updateCheck (userscript only) }
+        Object.entries(dependencies).forEach(([name, dependency]) => this[name] = dependency)
+    },
 
     env: {
         get runtime() {
@@ -22,21 +25,21 @@ window.modals = {
              : this.app.msgs[key] // assigned from this.import({ app }) in userscript
     },
 
-    open(modalType) {
-        this.stack.unshift(modalType) // add to stack
-        const modal = this[modalType]() // show modal
+    open(modalType, modalSubType) {
+        const modal = modalSubType ? this[modalType][modalSubType]() : this[modalType]() // show modal
+        this.stack.unshift(modalSubType ? `${modalType}_${modalSubType}` : modalType) // add to stack
         modal.classList.add('chatgpt-infinity-modal')
         modal.onmousedown = this.dragHandlers.mousedown
         dom.fillStarryBG(modal) // fill BG w/ rising stars
-        this.observeRemoval(modal, modalType) // to maintain stack for proper nav
+        this.observeRemoval(modal, modalType, modalSubType) // to maintain stack for proper nav
     },
 
-    observeRemoval(modal, modalType) { // to maintain stack for proper nav
+    observeRemoval(modal, modalType, modalSubType) { // to maintain stack for proper nav
         const modalBG = modal.parentNode
         new MutationObserver(([mutation], obs) => {
             mutation.removedNodes.forEach(removedNode => { if (removedNode == modalBG) {
-                if (this.stack[0] == modalType) { // new modal not launched, implement nav back logic
-                    this.stack.shift() // remove this modal type from stack
+                if (this.stack[0].includes(modalSubType || modalType)) { // new modal not launched so nav back
+                    this.stack.shift() // remove this modal type from stack 1st
                     const prevModalType = this.stack[0]
                     if (prevModalType) { // open it
                         this.stack.shift() // remove type from stack since re-added on open
@@ -92,7 +95,7 @@ window.modals = {
             function moreAIextensions(){}
         ]
         if (this.env.runtime.includes('Greasemonkey')) modalBtns.unshift(
-            function checkForUpdates(){})
+            function checkForUpdates(){ modals.updateCheck() })
 
         // Show modal
         const aboutModal = this.siteAlert(
@@ -234,6 +237,42 @@ window.modals = {
         })
 
         return feedbackModal
+    },
+
+    update: {
+        width: 377,
+
+        available() {
+
+            // Show modal
+            const updateAvailModal = modals.siteAlert(`🚀 ${modals.getMsg('alert_updateAvail')}!`, // title
+                `${modals.getMsg('alert_newerVer')} ${modals.getMsg('appName')} `
+                    + `(v${modals.app.latestVer}) ${modals.getMsg('alert_isAvail')}!  `
+                    + '<a target="_blank" rel="noopener" style="font-size: 0.7rem" href="'
+                        + modals.app.urls.update.replace(/.+\/([^/]+)meta\.js/,
+                            `${modals.app.urls.gitHub}/blob/main/greasemonkey/$1user.js`)
+                    + `">${modals.getMsg('link_viewChanges')}</a>`,
+                function update() { // button
+                    modals.safeWinOpen(modals.app.urls.update.replace('meta.js', 'user.js') + '?t=' + Date.now())
+                }, '', modals.update.width
+            )
+
+            // Localize button labels if needed
+            if (!modals.browserLang.startsWith('en')) {
+                const updateBtns = updateAvailModal.querySelectorAll('button')
+                updateBtns[1].textContent = modals.getMsg('btnLabel_update')
+                updateBtns[0].textContent = modals.getMsg('btnLabel_dismiss')
+            }
+
+            return updateAvailModal
+        },
+
+        unavailable() {
+            return modals.siteAlert(`${modals.getMsg('alert_upToDate')}!`, // title
+                `${modals.getMsg('appName')} (v${modals.app.version}) ${modals.getMsg('alert_isUpToDate')}!`, // msg
+                '', '', modals.update.width
+            )
+        }
     },
 
     safeWinOpen(url) { open(url, '_blank', 'noopener') } // to prevent backdoor vulnerabilities
