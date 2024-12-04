@@ -32,7 +32,7 @@ chrome.runtime.onMessage.addListener(async req => {
 (async () => {
     const app = {
         version: chrome.runtime.getManifest().version, latestAssetCommitHash: '1d83ad2', urls: {},
-        chatgptJSver: (await (await fetch(chrome.runtime.getURL('lib/chatgpt.js'))).text()).match(/v(\d+\.\d+\.\d+)/)[1]
+        chatgptJSver: /v(\d+\.\d+\.\d+)/.exec(await (await fetch(chrome.runtime.getURL('lib/chatgpt.js'))).text())[1]
     }
     app.urls.assetHost = `https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@${app.latestAssetCommitHash}`
     const remoteAppData = await (await fetch(`${app.urls.assetHost}/app.json`)).json()
