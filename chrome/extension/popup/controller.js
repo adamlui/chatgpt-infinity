@@ -190,7 +190,7 @@
 
     // Create/append ABOUT footer button
     const aboutSpan = dom.create.elem('span', {
-        title: chrome.i18n.getMessage('menuLabel_about'),
+        title: `${chrome.i18n.getMessage('menuLabel_about')} ${chrome.i18n.getMessage('appName')}`,
         class: 'menu-icon menu-area', style: 'right:30px ; padding-top: 2px' })
     const aboutIcon = icons.create({ name: 'questionMark', width: 15, height: 13, style: 'margin-bottom: 0.04rem' })
     aboutSpan.onclick = () => { chrome.runtime.sendMessage({ action: 'showAbout' }) ; close() }
