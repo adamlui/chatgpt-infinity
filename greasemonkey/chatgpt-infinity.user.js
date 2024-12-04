@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.3.5
+// @version             2024.12.4
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -218,7 +218,7 @@
 // @compatible          whale
 // @compatible          kiwi
 // @require             https://cdn.jsdelivr.net/npm/@kudoai/chatgpt.js@3.3.5/dist/chatgpt.min.js#sha256-rfC4kk8q0byrafp7X0Qf9vaa3JNvkHRwNnUt6uL2hUE=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@db3fa0c8c4dcc98cfa278c01c93361a9a78fcc37/chrome/extension/components/modals.js#sha256-3QxYxZ0MSx6JUxu1oABBmYeNpeb91IvqYe6buIgkISA=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@713f02a36904b63d71218c687c30a5fa675eed6d/chrome/extension/components/modals.js#sha256-t5cWUjt10FyZ9MQkZN2JtqAGn3ADLSpmQ9Cmh2NwzWg=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@75bd2d5efef4b582dd6e6a0a2a74513ecdf1a358/chrome/extension/components/sidebarToggle.js#sha256-NT/55iZU2mWhri40sY87N7gZqpPU2iBfEZr4W0enV/w=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@9ea9b5ffad099a9a03e0a9567342a18519c1985d/chrome/extension/lib/dom.js#sha256-+GFiSXl3RrudaIQTco8xO2J49vNGL6Roow5ix9SfYGQ=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@ef190cd4806c142a85ca19115b79b92a8cc28009/chrome/extension/lib/settings.js#sha256-ChfPdM1W2zffrfyqPFnKYYh0PbeJTXQWBj4IDHciR0c=
@@ -363,7 +363,7 @@
     }
 
     // Init MODALS dependencies
-    modals.import({ app, siteAlert, updateCheck })
+    modals.import({ app, browserLang: env.browser.language, siteAlert, updateCheck })
 
     // Init SETTINGS
     settings.import({ app }) // for app.msgs + app.configKeyPrefix refs
@@ -481,52 +481,25 @@
     }
 
     function updateCheck() {
-
-        // Fetch latest meta
-        const currentVer = GM_info.script.version
         xhr({
             method: 'GET', url: app.urls.update + '?t=' + Date.now(),
             headers: { 'Cache-Control': 'no-cache' },
-            onload: resp => { const updateAlertWidth = 377
+            onload: resp => {
 
-                // Compare versions
-                const latestVer = /@version +(.*)/.exec(resp.responseText)[1]
+                // Compare versions, alert if update found
+                app.latestVer = /@version +(.*)/.exec(resp.responseText)[1]
                 for (let i = 0 ; i < 4 ; i++) { // loop thru subver's
-                    const currentSubVer = parseInt(currentVer.split('.')[i], 10) || 0,
-                          latestSubVer = parseInt(latestVer.split('.')[i], 10) || 0
+                    const currentSubVer = parseInt(app.version.split('.')[i], 10) || 0,
+                          latestSubVer = parseInt(app.latestVer.split('.')[i], 10) || 0
                     if (currentSubVer > latestSubVer) break // out of comparison since not outdated
-                    else if (latestSubVer > currentSubVer) { // if outdated
+                    else if (latestSubVer > currentSubVer) // if outdated
+                        return modals.open('update', 'available')
+                }
 
-                        // Alert to update
-                        const updateModal = siteAlert(`🚀 ${app.msgs.alert_updateAvail}!`, // title
-                            `${app.msgs.alert_newerVer} ${app.msgs.appName} `
-                                + `(v${latestVer}) ${app.msgs.alert_isAvail}!  `
-                                + '<a target="_blank" rel="noopener" style="font-size: 0.7rem" href="'
-                                    + app.urls.update.replace(/.+\/([^/]+)meta\.js/,
-                                        `${app.urls.gitHub}/blob/main/greasemonkey/$1user.js`)
-                                + `">${app.msgs.link_viewChanges}</a>`,
-                            function update() { // button
-                                modals.safeWinOpen(app.urls.update.replace('meta.js', 'user.js') + '?t=' + Date.now())
-                            }, '', updateAlertWidth
-                        )
-
-                        // Localize button labels if needed
-                        if (!env.browser.language.startsWith('en')) {
-                            const updateBtns = updateModal.querySelectorAll('button')
-                            updateBtns[1].textContent = app.msgs.btnLabel_update
-                            updateBtns[0].textContent = app.msgs.btnLabel_dismiss
-                        }
-
-                        return
-                }}
-
-                // Alert to no update, return to About modal
-                siteAlert(`${app.msgs.alert_upToDate}!`, // title
-                    `${app.msgs.appName} (v${currentVer}) ${app.msgs.alert_isUpToDate}!`, // msg
-                    '', '', updateAlertWidth
-                )
-                modals.open('about')
-    }})}
+                // Alert to no update found, nav back to About
+                modals.open('update', 'unavailable')
+        }})
+    }
 
     function toTitleCase(str) {
         if (!str) return ''
