@@ -205,4 +205,7 @@
     moreExtensionsSpan.onclick = () => { chrome.tabs.create({ url: app.urls.relatedExtensions }) ; close() }
     moreExtensionsSpan.append(moreExtensionsIcon) ; footer.append(moreExtensionsSpan)
 
+    // Hide loading spinner
+    document.querySelectorAll('[class^="loading"]').forEach(elem => elem.style.display = 'none')
+
 })()
