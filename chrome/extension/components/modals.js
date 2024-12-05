@@ -7,7 +7,7 @@ window.modals = {
         import(dependencies) {
             // { app, browserLang: env.browser.language (userscript only), siteAlert,
             //   checkForUpdates (userscript only) }
-            Object.entries(dependencies).forEach(([name, dependency]) => this[name] = dependency) }
+            for (const name in dependencies) this[name] = dependencies[name] }
     },
 
     env: {

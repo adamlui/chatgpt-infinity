@@ -2,7 +2,7 @@ window.sidebarToggle = {
 
     dependencies: {
         import(dependencies) { // { app, env, notify, syncConfigToUI }
-            Object.entries(dependencies).forEach(([name, dependency]) => this[name] = dependency) }
+            for (const name in dependencies) this[name] = dependencies[name] }
     },
 
     getMsg(key) {
