@@ -1,11 +1,13 @@
 window.sidebarToggle = {
 
-    import(dependencies) { // { app, env, notify, syncConfigToUI }
-        Object.entries(dependencies).forEach(([name, dependency]) => this[name] = dependency) },
+    dependencies: {
+        import(dependencies) { // { app, env, notify, syncConfigToUI }
+            Object.entries(dependencies).forEach(([name, dependency]) => this[name] = dependency) }
+    },
 
     getMsg(key) {
         return typeof chrome != 'undefined' && chrome.runtime ? chrome.i18n.getMessage(key)
-            : this.app.msgs[key] // assigned from this.import({ app }) in userscript
+            : this.dependencies.app.msgs[key] // assigned from this.import({ app }) in userscript
     },
 
     create() {
@@ -23,9 +25,11 @@ window.sidebarToggle = {
         // Create/stylize switch
         const switchSpan = document.createElement('span')
         Object.assign(switchSpan.style, {
-            position: 'relative', left: `${ this.env.browser.isMobile ? 169 : !this.env.ui.firstLink ? 160 : 154 }px`,
+            position: 'relative',
+            left: `${ this.dependencies.env.browser.isMobile ? 169
+                       : !this.dependencies.env.ui.firstLink ? 160 : 154 }px`,
+            bottom: `${ !this.dependencies.env.ui.firstLink ? -0.15 : 0 }em`,
             backgroundColor: '#AD68FF', // init opposite  final color
-            bottom: `${ !this.env.ui.firstLink ? -0.15 : 0 }em`,
             width: '30px', height: '15px', '-webkit-transition': '.4s', transition: '0.4s',  borderRadius: '28px'
         })
 
@@ -40,12 +44,12 @@ window.sidebarToggle = {
 
         // Create/stylize/fill label
         const toggleLabel = document.createElement('label')
-        if (!this.env.ui.firstLink) // add font size/weight since no ui.firstLink to borrow from
+        if (!this.dependencies.env.ui.firstLink) // add font size/weight since no ui.firstLink to borrow from
             toggleLabel.style.cssText = 'font-size: 0.875rem, font-weight: 600'
         Object.assign(toggleLabel.style, {
-            marginLeft: `-${ !this.env.ui.firstLink ? 23 : 41 }px`, // left-shift to navicon
+            marginLeft: `-${ !this.dependencies.env.ui.firstLink ? 23 : 41 }px`, // left-shift to navicon
             cursor: 'pointer', // add finger cursor on hover
-            width: `${ this.env.browser.isMobile ? 201 : 148 }px`, // to truncate overflown text
+            width: `${ this.dependencies.env.browser.isMobile ? 201 : 148 }px`, // to truncate overflown text
             overflow: 'hidden', textOverflow: 'ellipsis' // to truncate overflown text
         })
 
@@ -54,10 +58,10 @@ window.sidebarToggle = {
 
         // Stylize/classify
         this.div.style.cssText += 'height: 37px ; margin: 2px 0 ; user-select: none ; cursor: pointer'
-        if (this.env.ui.firstLink) { // borrow/assign classes from sidebar elems
-            const firstIcon = this.env.ui.firstLink.querySelector('div:first-child'),
-                  firstLabel = this.env.ui.firstLink.querySelector('div:nth-child(2)')
-            this.div.classList.add(...this.env.ui.firstLink.classList, ...(firstLabel?.classList || []))
+        if (this.dependencies.env.ui.firstLink) { // borrow/assign classes from sidebar elems
+            const firstIcon = this.dependencies.env.ui.firstLink.querySelector('div:first-child'),
+                  firstLabel = this.dependencies.env.ui.firstLink.querySelector('div:nth-child(2)')
+            this.div.classList.add(...this.dependencies.env.ui.firstLink.classList, ...(firstLabel?.classList || []))
             this.div.querySelector('img')?.classList.add(...(firstIcon?.classList || []))
         }
 
@@ -65,8 +69,9 @@ window.sidebarToggle = {
 
         // Add click listener
         this.div.onclick = () => {
-            settings.save('infinityMode', !toggleInput.checked) ; this.syncConfigToUI({ updatedKey: 'infinityMode' })
-            this.notify(`${this.getMsg('menuLabel_infinityMode')}: ${
+            settings.save('infinityMode', !toggleInput.checked)
+            this.dependencies.syncConfigToUI({ updatedKey: 'infinityMode' })
+            this.dependencies.notify(`${this.getMsg('menuLabel_infinityMode')}: ${
                 this.getMsg(`state_${ config.infinityMode ? 'on' : 'off' }`).toUpperCase()}`)
         }
     },
@@ -76,7 +81,7 @@ window.sidebarToggle = {
         this.status = 'inserting' ; if (!this.div) this.create()
 
         // Insert toggle
-        const sidebar = document.querySelectorAll('nav')[this.env.browser.isMobile ? 1 : 0]
+        const sidebar = document.querySelectorAll('nav')[this.dependencies.env.browser.isMobile ? 1 : 0]
         if (!sidebar) return
         sidebar.insertBefore(this.div, sidebar.children[1])
 
@@ -88,8 +93,8 @@ window.sidebarToggle = {
         if (knobSpan) knobSpan.style.boxShadow = (
             'rgba(0, 0, 0, .3) 0 1px 2px 0' + ( chatgpt.isDarkMode() ? ', rgba(0, 0, 0, .15) 0 3px 6px 2px' : '' ))
         if (navicon) navicon.src = `${ // update navicon color in case scheme changed
-            this.app.urls.mediaHost}/images/icons/infinity-symbol/`
-          + `${ chatgpt.isDarkMode() ? 'white' : 'black' }/icon32.png?${this.app.latestAssetCommitHash}`
+            this.dependencies.app.urls.mediaHost}/images/icons/infinity-symbol/`
+          + `${ chatgpt.isDarkMode() ? 'white' : 'black' }/icon32.png?${this.dependencies.app.latestAssetCommitHash}`
 
         this.status = 'inserted'
     },

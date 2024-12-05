@@ -15,7 +15,7 @@
 
     // Import APP data
     const { app } = await chrome.storage.sync.get('app')
-    modals.import({ app, siteAlert })
+    modals.dependencies.import({ app, siteAlert })
 
     // Add CHROME MSG listener
     chrome.runtime.onMessage.addListener(req => {
@@ -177,7 +177,7 @@
             href: `https://assets.aiwebextensions.com/styles/css/${color}-rising-stars.min.css?v=542104c`
     })))
 
-    sidebarToggle.import({ app, env, notify, syncConfigToUI })
+    sidebarToggle.dependencies.import({ app, env, notify, syncConfigToUI })
     sidebarToggle.insert()
 
     // Auto-start if enabled

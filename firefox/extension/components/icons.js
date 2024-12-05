@@ -1,9 +1,10 @@
 // Requires lib/dom.js
 
 window.icons = {
-
-    import(dependencies) { // { app }
-        Object.entries(dependencies).forEach(([name, dependency]) => this[name] = dependency) },
+    dependencies: {
+        import(dependencies) { // { app }
+            Object.entries(dependencies).forEach(([name, dependency]) => this[name] = dependency) }
+    },
 
     create({ name, size = 16, width, height, ...additionalAttrs }) {
         const iconData = icons[name],
@@ -25,7 +26,9 @@ window.icons = {
 
     questionMark: {
         type: 'png',
-        get src() { return `${
-            icons.app.urls.mediaHost}/images/icons/question-mark/icon16.png?${icons.app.latestAssetCommitHash}` }
+        get src() {
+            return `${icons.dependencies.app.urls.mediaHost}/images/icons/question-mark/icon16.png?${
+                      icons.dependencies.app.latestAssetCommitHash}`
+        }
     }
 };
