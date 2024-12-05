@@ -6,9 +6,7 @@ window.sidebarToggle = {
     },
 
     getMsg(key) {
-        return typeof chrome != 'undefined' && chrome.runtime ? chrome.i18n.getMessage(key)
-            : this.dependencies.app.msgs[key] // assigned from this.import({ app }) in userscript
-    },
+        return typeof GM_info != 'undefined' ? this.dependencies.app.msgs[key] : chrome.i18n.getMessage(key) },
 
     create() {
         this.div = document.createElement('div')

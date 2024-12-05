@@ -12,12 +12,11 @@ window.modals = {
 
     env: {
         get runtime() {
-            if (typeof chrome != 'undefined' && chrome.runtime) {
+            if (typeof GM_info != 'undefined') return 'Greasemonkey userscript'
+            else if (typeof chrome != 'undefined' && chrome.runtime) {
                 if (typeof browser != 'undefined') return 'Firefox add-on'
                 else return `Chromium ${ navigator.userAgent.includes('Edg') ? 'Edge add-on' : 'extension' }`
-            } else if (typeof GM_info != 'undefined')
-                 return 'Greasemonkey userscript'
-            else return 'Unknown'
+            } else return 'Unknown'
         }
     },
 
