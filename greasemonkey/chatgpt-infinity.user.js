@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.5.2
+// @version             2024.12.5.3
 // @license             MIT
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
@@ -218,10 +218,10 @@
 // @compatible          whale
 // @compatible          kiwi
 // @require             https://cdn.jsdelivr.net/npm/@kudoai/chatgpt.js@3.3.5/dist/chatgpt.min.js#sha256-rfC4kk8q0byrafp7X0Qf9vaa3JNvkHRwNnUt6uL2hUE=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@c8cd8fa44ad01710e9eefdbd3f206d9225878231/chrome/extension/components/modals.js#sha256-6Cgkq2DFhK5mrfZaNp9PkQp12z3ixLfhskrmoaO+J5E=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@de1280704f67ce83467b8a9420c715906ea56f6e/chrome/extension/components/modals.js#sha256-1vGe4Rujad3D4uQaNZYY6OwX77XoeIlVUKtd3cOEKGg=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@75bd2d5efef4b582dd6e6a0a2a74513ecdf1a358/chrome/extension/components/sidebarToggle.js#sha256-NT/55iZU2mWhri40sY87N7gZqpPU2iBfEZr4W0enV/w=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@498bca25f41e9ea16c5e387682fbdeb588d3d6d0/chrome/extension/lib/dom.js#sha256-RV5ZNK9lGH9IC1sPNNflDj+fOuC97le/ac6rrezdNos=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@ef190cd4806c142a85ca19115b79b92a8cc28009/chrome/extension/lib/settings.js#sha256-ChfPdM1W2zffrfyqPFnKYYh0PbeJTXQWBj4IDHciR0c=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@de1280704f67ce83467b8a9420c715906ea56f6e/chrome/extension/lib/settings.js#sha256-bH1flGEDDrEwDAbtUqeXO5khmIvuAGr5vEXGgp9Hy9w=
 // @connect             cdn.jsdelivr.net
 // @connect             update.greasyfork.org
 // @resource bsbgCSS    https://assets.aiwebextensions.com/styles/css/black-rising-stars.min.css?v=542104c#sha256-GQLnVMub4cpV5A59pvnDe8peGrW1v49u1UbDHHTGBBI=
@@ -363,10 +363,10 @@
     }
 
     // Init MODALS dependencies
-    modals.import({ app, browserLang: env.browser.language, siteAlert, checkForUpdates })
+    modals.dependencies.import({ app, browserLang: env.browser.language, siteAlert, checkForUpdates })
 
     // Init SETTINGS
-    settings.import({ app }) // for app.msgs + app.configKeyPrefix refs
+    settings.dependencies.import({ app }) // for app.msgs + app.configKeyPrefix refs
     settings.load(Object.keys(settings.controls).filter(key => key != 'infinityMode')) // exclude infinityMode...
     settings.save('infinityMode', false) // ...to always init as false
     if (!config.replyLanguage) settings.save('replyLanguage', env.browser.language) // init reply language if unset
