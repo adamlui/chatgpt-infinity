@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Isubiramo" },
   "btnLabel_rateUs": { "message": "Gupima" },
   "btnLabel_getSupport": { "message": "Gushigikira" },
-  "btnLabel_updateCheck": { "message": "Emeza guhindura" },
+  "btnLabel_checkForUpdates": { "message": "Emeza guhindura" },
   "btnLabel_update": { "message": "Hindura" },
   "btnLabel_dismiss": { "message": "Emeza" },
   "link_viewChanges": { "message": "Reba ibigendecacrus" },

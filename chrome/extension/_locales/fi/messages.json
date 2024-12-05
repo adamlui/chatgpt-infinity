@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Jätä arvostelu" },
   "btnLabel_rateUs": { "message": "Anna meille arvostelu" },
   "btnLabel_getSupport": { "message": "Ota yhteyttä" },
-  "btnLabel_updateCheck": { "message": "Tarkista päivitykset" },
+  "btnLabel_checkForUpdates": { "message": "Tarkista päivitykset" },
   "btnLabel_update": { "message": "Päivitä" },
   "btnLabel_dismiss": { "message": "Hylkää" },
   "link_viewChanges": { "message": "Näytä muutokset" },

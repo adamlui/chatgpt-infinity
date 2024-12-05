@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Aneggaru yeǧǧa-d" },
   "btnLabel_rateUs": { "message": "Rmed-aɣ" },
   "btnLabel_getSupport": { "message": "Awi tallalt" },
-  "btnLabel_updateCheck": { "message": "Senqed ma llan ileqman" },
+  "btnLabel_checkForUpdates": { "message": "Senqed ma llan ileqman" },
   "btnLabel_update": { "message": "Leqqem" },
   "btnLabel_dismiss": { "message": "Agi" },
   "link_viewChanges": { "message": "Wali ibeddilen" },

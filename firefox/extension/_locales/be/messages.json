@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Пакінуць водгук" },
   "btnLabel_rateUs": { "message": "Ацаніць нас" },
   "btnLabel_getSupport": { "message": "Атрымаць падтрымку" },
-  "btnLabel_updateCheck": { "message": "Праверыць абнаўленьні" },
+  "btnLabel_checkForUpdates": { "message": "Праверыць абнаўленьні" },
   "btnLabel_update": { "message": "Абноўлена" },
   "btnLabel_dismiss": { "message": "Адхіліць" },
   "link_viewChanges": { "message": "Прагледзець змены" },

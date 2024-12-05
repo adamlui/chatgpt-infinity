@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "ግምገማ ሓዲግካ" },
   "btnLabel_rateUs": { "message": "ተመዝገብና" },
   "btnLabel_getSupport": { "message": "ደገፍ ርኸቡ" },
-  "btnLabel_updateCheck": { "message": "ምምሕያሻት መርምር" },
+  "btnLabel_checkForUpdates": { "message": "ምምሕያሻት መርምር" },
   "btnLabel_update": { "message": "ኣሐድስ" },
   "btnLabel_dismiss": { "message": "ምጥፋእ" },
   "link_viewChanges": { "message": "ለውጢ ርአ" },

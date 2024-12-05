@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Թողնել ակնարկ" },
   "btnLabel_rateUs": { "message": "Գնահատեք մեզ" },
   "btnLabel_getSupport": { "message": "Ստանալ աջակցում" },
-  "btnLabel_updateCheck": { "message": "Ստուգել թարմացումները" },
+  "btnLabel_checkForUpdates": { "message": "Ստուգել թարմացումները" },
   "btnLabel_update": { "message": "Թարմացնել" },
   "btnLabel_dismiss": { "message": "Փակել" },
   "link_viewChanges": { "message": "Դիտել փոփոխությունները" },

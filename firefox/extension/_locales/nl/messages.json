@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Beoordeling Plaatsen" },
   "btnLabel_rateUs": { "message": "Beoordeel Ons" },
   "btnLabel_getSupport": { "message": "Neem contact op" },
-  "btnLabel_updateCheck": { "message": "Controleren op Updates" },
+  "btnLabel_checkForUpdates": { "message": "Controleren op Updates" },
   "btnLabel_update": { "message": "Bijwerken" },
   "btnLabel_dismiss": { "message": "Sluiten" },
   "link_viewChanges": { "message": "Bekijk wijzigingen" },

@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Deje opinión" },
   "btnLabel_rateUs": { "message": "Valóranos" },
   "btnLabel_getSupport": { "message": "Obtener asistencia" },
-  "btnLabel_updateCheck": { "message": "Buscar actualizaciones" },
+  "btnLabel_checkForUpdates": { "message": "Buscar actualizaciones" },
   "btnLabel_update": { "message": "Actualizar" },
   "btnLabel_dismiss": { "message": "Descartar" },
   "link_viewChanges": { "message": "Ver cambios" },

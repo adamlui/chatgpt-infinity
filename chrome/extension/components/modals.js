@@ -133,7 +133,7 @@ window.modals = {
 
             // Prepend emoji + localize labels
             if (/updates/i.test(btn.textContent))
-                btn.textContent = `🚀 ${this.getMsg('btnLabel_updateCheck')}`
+                btn.textContent = `🚀 ${this.getMsg('btnLabel_checkForUpdates')}`
             else if (/support/i.test(btn.textContent))
                 btn.textContent = `🧠 ${this.getMsg('btnLabel_getSupport')}`
             else if (/rate/i.test(btn.textContent))

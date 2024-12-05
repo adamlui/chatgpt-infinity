@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "ਸਮੀਖਿਆ ਛੱਡੋ" },
   "btnLabel_rateUs": { "message": "ਸਾਡੇ ਨਾਲ ਰੇਟ ਕਰੋ" },
   "btnLabel_getSupport": { "message": "ਸਹਾਇਤਾ ਪ੍ਰਾਪਤ ਕਰੋ" },
-  "btnLabel_updateCheck": { "message": "ਨਵੇਂ ਐਪੀਸੋਡ ਲਈ ਚੈੱਕ ਕਰੋ" },
+  "btnLabel_checkForUpdates": { "message": "ਨਵੇਂ ਐਪੀਸੋਡ ਲਈ ਚੈੱਕ ਕਰੋ" },
   "btnLabel_update": { "message": "ਅੱਪਡੇਟ ਕਰੋ" },
   "btnLabel_dismiss": { "message": "ਖਾਰਜ ਕਰੋ" },
   "link_viewChanges": { "message": "ਤਬਦੀਲੀਆਂ ਵੇਖੋ" },

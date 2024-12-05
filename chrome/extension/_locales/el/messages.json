@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Αφήστε μια Kριτική" },
   "btnLabel_rateUs": { "message": "Βαθμολογήστε μας" },
   "btnLabel_getSupport": { "message": "Λάβετε υποστήριξη" },
-  "btnLabel_updateCheck": { "message": "Έλεγχος για ενημερώσεις" },
+  "btnLabel_checkForUpdates": { "message": "Έλεγχος για ενημερώσεις" },
   "btnLabel_update": { "message": "Ενημέρωση" },
   "btnLabel_dismiss": { "message": "Κλείσιμο" },
   "link_viewChanges": { "message": "Εμφάνιση αλλαγών" },

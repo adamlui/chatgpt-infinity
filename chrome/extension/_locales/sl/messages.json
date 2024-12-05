@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Dodajte oceno" },
   "btnLabel_rateUs": { "message": "Ocenite nas" },
   "btnLabel_getSupport": { "message": "Podpora" },
-  "btnLabel_updateCheck": { "message": "Preveri stanje posodobitev" },
+  "btnLabel_checkForUpdates": { "message": "Preveri stanje posodobitev" },
   "btnLabel_update": { "message": "Update" },
   "btnLabel_dismiss": { "message": "Opusti" },
   "link_viewChanges": { "message": "Poglej spremembe" },

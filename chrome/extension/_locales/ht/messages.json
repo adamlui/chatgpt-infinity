@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Kite Revizyon" },
   "btnLabel_rateUs": { "message": "Evalye nou" },
   "btnLabel_getSupport": { "message": "Jwenn Sipò" },
-  "btnLabel_updateCheck": { "message": "Tcheke pou Updates" },
+  "btnLabel_checkForUpdates": { "message": "Tcheke pou Updates" },
   "btnLabel_update": { "message": "Update" },
   "btnLabel_dismiss": { "message": "Demisyon" },
   "link_viewChanges": { "message": "Gade chanjman yo" },

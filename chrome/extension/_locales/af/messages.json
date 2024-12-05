@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Los Kommentaar" },
   "btnLabel_rateUs": { "message": "Gradeer ons" },
   "btnLabel_getSupport": { "message": "Kry Ondersteuning" },
-  "btnLabel_updateCheck": { "message": "Kontroleer vir bywerkings" },
+  "btnLabel_checkForUpdates": { "message": "Kontroleer vir bywerkings" },
   "btnLabel_update": { "message": "Opdateer" },
   "btnLabel_dismiss": { "message": "Laat vaar" },
   "link_viewChanges": { "message": "Besigtig veranderinge" },

@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Lasă o recenzie" },
   "btnLabel_rateUs": { "message": "Evaluați-ne" },
   "btnLabel_getSupport": { "message": "Primește asistență" },
-  "btnLabel_updateCheck": { "message": "Caută actualizări" },
+  "btnLabel_checkForUpdates": { "message": "Caută actualizări" },
   "btnLabel_update": { "message": "Actualizare" },
   "btnLabel_dismiss": { "message": "Respingeți" },
   "link_viewChanges": { "message": "Vizualizează modificările" },

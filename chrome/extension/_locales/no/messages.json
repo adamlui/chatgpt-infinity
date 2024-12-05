@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Skriv en omtale" },
   "btnLabel_rateUs": { "message": "Vurder oss" },
   "btnLabel_getSupport": { "message": "Brukerstøtte" },
-  "btnLabel_updateCheck": { "message": "Se etter oppdateringer" },
+  "btnLabel_checkForUpdates": { "message": "Se etter oppdateringer" },
   "btnLabel_update": { "message": "Oppdater" },
   "btnLabel_dismiss": { "message": "Ignorer" },
   "link_viewChanges": { "message": "Vis endringer" },

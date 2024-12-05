@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "ସମୀକ୍ଷା ଛାଡନ୍ତୁ" },
   "btnLabel_rateUs": { "message": "ଆମକୁ ମୂଲ୍ୟାଙ୍କନ କରନ୍ତୁ" },
   "btnLabel_getSupport": { "message": "ସପୋର୍ଟ ପାଆନ୍ତୁ" },
-  "btnLabel_updateCheck": { "message": "ଅପଡେଟ୍ ପରୀକ୍ଷା କରନ୍ତୁ" },
+  "btnLabel_checkForUpdates": { "message": "ଅପଡେଟ୍ ପରୀକ୍ଷା କରନ୍ତୁ" },
   "btnLabel_update": { "message": "ଅପଡେଟ୍" },
   "btnLabel_dismiss": { "message": "ପ୍ରସ୍ଥାନ କରନ୍ତୁ" },
   "link_viewChanges": { "message": "ବଦଳାଇ ଦେଖନ୍ତୁ" },

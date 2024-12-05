@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Оставить Отзыв" },
   "btnLabel_rateUs": { "message": "Оцените нас" },
   "btnLabel_getSupport": { "message": "Получить поддержку" },
-  "btnLabel_updateCheck": { "message": "Проверить наличие обновлений" },
+  "btnLabel_checkForUpdates": { "message": "Проверить наличие обновлений" },
   "btnLabel_update": { "message": "Обновить" },
   "btnLabel_dismiss": { "message": "Пропустить" },
   "link_viewChanges": { "message": "Просмотреть изменения" },

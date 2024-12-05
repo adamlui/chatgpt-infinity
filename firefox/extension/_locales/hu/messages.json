@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Írj értékelést" },
   "btnLabel_rateUs": { "message": "Értékeljen minket" },
   "btnLabel_getSupport": { "message": "Kérj támogatást" },
-  "btnLabel_updateCheck": { "message": "Frissítések keresése" },
+  "btnLabel_checkForUpdates": { "message": "Frissítések keresése" },
   "btnLabel_update": { "message": "Frissítés" },
   "btnLabel_dismiss": { "message": "Elvetés" },
   "link_viewChanges": { "message": "Módosítások megtekintése" },

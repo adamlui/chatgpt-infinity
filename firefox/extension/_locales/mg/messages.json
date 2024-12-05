@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Fandaozana ny famerenana" },
   "btnLabel_rateUs": { "message": "Omeo isa izahay" },
   "btnLabel_getSupport": { "message": "Mitadiava fanampiana" },
-  "btnLabel_updateCheck": { "message": "Hanova ny Fanovana" },
+  "btnLabel_checkForUpdates": { "message": "Hanova ny Fanovana" },
   "btnLabel_update": { "message": "Hanova" },
   "btnLabel_dismiss": { "message": "Ampiray" },
   "link_viewChanges": { "message": "Hijery ny Fomban'ny Vokatra" },

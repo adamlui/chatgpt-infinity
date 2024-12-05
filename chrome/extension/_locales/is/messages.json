@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Skildu eftir umsögn" },
   "btnLabel_rateUs": { "message": "Gefðu okkur einkunn" },
   "btnLabel_getSupport": { "message": "Fá stuðning" },
-  "btnLabel_updateCheck": { "message": "Leita að uppfærslum" },
+  "btnLabel_checkForUpdates": { "message": "Leita að uppfærslum" },
   "btnLabel_update": { "message": "Uppfæra" },
   "btnLabel_dismiss": { "message": "Hafna" },
   "link_viewChanges": { "message": "Skoða breytingar" },

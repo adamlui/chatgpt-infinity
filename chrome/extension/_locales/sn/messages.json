@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Taura nesu" },
   "btnLabel_rateUs": { "message": "Taura nesu" },
   "btnLabel_getSupport": { "message": "Kuwana Rutsigiro" },
-  "btnLabel_updateCheck": { "message": "Ongorora Updates" },
+  "btnLabel_checkForUpdates": { "message": "Ongorora Updates" },
   "btnLabel_update": { "message": "Gadzirisa" },
   "btnLabel_dismiss": { "message": "Bvisa" },
   "link_viewChanges": { "message": "Ona shanduko" },

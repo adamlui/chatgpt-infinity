@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Utzi Iritzia" },
   "btnLabel_rateUs": { "message": "Baloratu gaitzazu" },
   "btnLabel_getSupport": { "message": "Laguntza lortu" },
-  "btnLabel_updateCheck": { "message": "Begiratu eguneraketak" },
+  "btnLabel_checkForUpdates": { "message": "Begiratu eguneraketak" },
   "btnLabel_update": { "message": "Eguneratu" },
   "btnLabel_dismiss": { "message": "Bistatik kendu" },
   "link_viewChanges": { "message": "Ikusi aldaketak" },

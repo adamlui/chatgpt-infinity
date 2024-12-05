@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "اترك مراجعة" },
   "btnLabel_rateUs": { "message": "التقييم" },
   "btnLabel_getSupport": { "message": "احصل على الدعم" },
-  "btnLabel_updateCheck": { "message": "مرابة التحديثات" },
+  "btnLabel_checkForUpdates": { "message": "مرابة التحديثات" },
   "btnLabel_update": { "message": "تحديث" },
   "btnLabel_dismiss": { "message": "إغلاق" },
   "link_viewChanges": { "message": "عرض سجل التغييرات" },

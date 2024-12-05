@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Biyai ang Review" },
   "btnLabel_rateUs": { "message": "I-rate Kanato" },
   "btnLabel_getSupport": { "message": "Kuhaa ang Suporta" },
-  "btnLabel_updateCheck": { "message": "Tsekahi ang mga Update" },
+  "btnLabel_checkForUpdates": { "message": "Tsekahi ang mga Update" },
   "btnLabel_update": { "message": "Usbongi" },
   "btnLabel_dismiss": { "message": "Ayaw'g Pansina" },
   "link_viewChanges": { "message": "Tan-awa ang mga Nabag-o" },

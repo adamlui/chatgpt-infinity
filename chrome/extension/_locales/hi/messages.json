@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "समीक्षा छोड़ें" },
   "btnLabel_rateUs": { "message": "हमें रेटिंग दें" },
   "btnLabel_getSupport": { "message": "सपोर्ट प्राप्त करें" },
-  "btnLabel_updateCheck": { "message": "अद्यतन के लिए जाँचें" },
+  "btnLabel_checkForUpdates": { "message": "अद्यतन के लिए जाँचें" },
   "btnLabel_update": { "message": "अपडेट" },
   "btnLabel_dismiss": { "message": "खारिज करना" },
   "link_viewChanges": { "message": "बदलाव देखें" },

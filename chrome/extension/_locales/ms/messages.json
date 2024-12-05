@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Tinggalkan ulasan" },
   "btnLabel_rateUs": { "message": "Nilaikan kami" },
   "btnLabel_getSupport": { "message": "Dapatkan Sokongan" },
-  "btnLabel_updateCheck": { "message": "Semak Kemaskini" },
+  "btnLabel_checkForUpdates": { "message": "Semak Kemaskini" },
   "btnLabel_update": { "message": "Saya ingin membuat susulan" },
   "btnLabel_dismiss": { "message": "Singkir" },
   "link_viewChanges": { "message": "Lihat perubahan" },

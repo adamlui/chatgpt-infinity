@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Leave Review" },
   "btnLabel_rateUs": { "message": "Taksi nin" },
   "btnLabel_getSupport": { "message": "Akiri subtenon" },
-  "btnLabel_updateCheck": { "message": "Kontroli por novaj epizodoj" },
+  "btnLabel_checkForUpdates": { "message": "Kontroli por novaj epizodoj" },
   "btnLabel_update": { "message": "Ĝisdatigi" },
   "btnLabel_dismiss": { "message": "Malakcepti" },
   "link_viewChanges": { "message": "Montri ŝanĝojn" },

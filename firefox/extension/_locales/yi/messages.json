@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "לאָזן איבערבליק" },
   "btnLabel_rateUs": { "message": "קורס אונדז" },
   "btnLabel_getSupport": { "message": "באַקומען שטיצן" },
-  "btnLabel_updateCheck": { "message": "זוך נייע ווערסיעס" },
+  "btnLabel_checkForUpdates": { "message": "זוך נייע ווערסיעס" },
   "btnLabel_update": { "message": "דערהייַנטיקן" },
   "btnLabel_dismiss": { "message": "אָפּזאָגן" },
   "link_viewChanges": { "message": "קוק ענדערונגען" },

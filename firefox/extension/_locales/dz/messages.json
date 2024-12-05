@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "བསྐྱར་ཞིབ་བཀོག་བཞག་" },
   "btnLabel_rateUs": { "message": "ང་བཅས་ལུ་བཀག་སྡོམ་འབད་" },
   "btnLabel_getSupport": { "message": "རྒྱབ་སྐྱོར་ཐོབ་ནི་" },
-  "btnLabel_updateCheck": { "message": "བརྟག་ཞིབ་སྣོད་འཛིན་ཚུ་ དུས་མཐུན་བཟོ་ནི་ཨིན་ན" },
+  "btnLabel_checkForUpdates": { "message": "བརྟག་ཞིབ་སྣོད་འཛིན་ཚུ་ དུས་མཐུན་བཟོ་ནི་ཨིན་ན" },
   "btnLabel_update": { "message": "གསར་བསྐྲུན་འབད་མ་ཚུགས།" },
   "btnLabel_dismiss": { "message": "ཌིསིཊི།" },
   "link_viewChanges": { "message": "བསྒྱུར་བཅོས་ཚུ་རྩ་བསྐྲད་གཏང་།" },

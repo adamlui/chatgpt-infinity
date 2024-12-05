@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Leave Review" },
   "btnLabel_rateUs": { "message": "Rèitich sinn" },
   "btnLabel_getSupport": { "message": "Faigh Taic" },
-  "btnLabel_updateCheck": { "message": "Seall air Ùrachaidhean" },
+  "btnLabel_checkForUpdates": { "message": "Seall air Ùrachaidhean" },
   "btnLabel_update": { "message": "Ùrachadh" },
   "btnLabel_dismiss": { "message": "Fàg air an taobh" },
   "link_viewChanges": { "message": "Seall atharrachaidhean" },

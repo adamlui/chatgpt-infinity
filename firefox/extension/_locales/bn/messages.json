@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "একটি রিভিউ লিখুন" },
   "btnLabel_rateUs": { "message": "আমাদের রেটিং দিন" },
   "btnLabel_getSupport": { "message": "সহায়তা পান" },
-  "btnLabel_updateCheck": { "message": "হালনাগাদের জন্য চেক করুন" },
+  "btnLabel_checkForUpdates": { "message": "হালনাগাদের জন্য চেক করুন" },
   "btnLabel_update": { "message": "আপডেট করুন" },
   "btnLabel_dismiss": { "message": "খারিজ করুন" },
   "link_viewChanges": { "message": "পরিবর্তনগুলি দেখুন" },

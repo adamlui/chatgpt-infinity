@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Palikite atsiliepimą" },
   "btnLabel_rateUs": { "message": "Įvertinkite mus" },
   "btnLabel_getSupport": { "message": "Gauti palaikymą" },
-  "btnLabel_updateCheck": { "message": "Ieškoti atnaujinimų" },
+  "btnLabel_checkForUpdates": { "message": "Ieškoti atnaujinimų" },
   "btnLabel_update": { "message": "Naujinti" },
   "btnLabel_dismiss": { "message": "Atšaukti" },
   "link_viewChanges": { "message": "Peržiūrėti failo pakeitimus" },

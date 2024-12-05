@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Tuua Iloiloga" },
   "btnLabel_rateUs": { "message": "Faatusatusaina i Tatou" },
   "btnLabel_getSupport": { "message": "Maua Lagolago" },
-  "btnLabel_updateCheck": { "message": "Susi mo Afe" },
+  "btnLabel_checkForUpdates": { "message": "Susi mo Afe" },
   "btnLabel_update": { "message": "Afe" },
   "btnLabel_dismiss": { "message": "Tapuni" },
   "link_viewChanges": { "message": "Vaega Vaega" },

@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Dib u eegista Ka tag" },
   "btnLabel_rateUs": { "message": "Nagu Qiimee" },
   "btnLabel_getSupport": { "message": "Tageero raadso" },
-  "btnLabel_updateCheck": { "message": "Hubi Cusbooneysiinta" },
+  "btnLabel_checkForUpdates": { "message": "Hubi Cusbooneysiinta" },
   "btnLabel_update": { "message": "Cusboonaysiinta" },
   "btnLabel_dismiss": { "message": "Xil ka qaad" },
   "link_viewChanges": { "message": "Eeg isbeddelada" },

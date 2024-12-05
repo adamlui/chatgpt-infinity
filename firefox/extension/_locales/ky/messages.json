@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Сын-пикир калтыруу" },
   "btnLabel_rateUs": { "message": "Бизди баалоо" },
   "btnLabel_getSupport": { "message": "Колдоо алуу" },
-  "btnLabel_updateCheck": { "message": "Жаңы чыгаруулар бар экендигин текшерүү" },
+  "btnLabel_checkForUpdates": { "message": "Жаңы чыгаруулар бар экендигин текшерүү" },
   "btnLabel_update": { "message": "Жаңыртуу" },
   "btnLabel_dismiss": { "message": "Дисплейлер" },
   "link_viewChanges": { "message": "Өзгөрүүлөрдү көрүү" },

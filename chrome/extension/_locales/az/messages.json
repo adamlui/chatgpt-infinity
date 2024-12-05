@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Rəy bildirin" },
   "btnLabel_rateUs": { "message": "Bizi qiymətləndirin" },
   "btnLabel_getSupport": { "message": "Dəstək Əldə Edin" },
-  "btnLabel_updateCheck": { "message": "Yeniləmələri yoxla" },
+  "btnLabel_checkForUpdates": { "message": "Yeniləmələri yoxla" },
   "btnLabel_update": { "message": "Yenilə" },
   "btnLabel_dismiss": { "message": "Bağla" },
   "link_viewChanges": { "message": "Dəyişikliklərə bax" },

@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Acha Tathmini" },
   "btnLabel_rateUs": { "message": "Tupe kadirio" },
   "btnLabel_getSupport": { "message": "Pata Usaidizi" },
-  "btnLabel_updateCheck": { "message": "Angalia Masasisho" },
+  "btnLabel_checkForUpdates": { "message": "Angalia Masasisho" },
   "btnLabel_update": { "message": "Sasisho" },
   "btnLabel_dismiss": { "message": "Puuza" },
   "link_viewChanges": { "message": "Angalia mabadiliko" },

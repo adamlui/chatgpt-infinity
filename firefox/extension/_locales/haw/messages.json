@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Haʻalele Nānā" },
   "btnLabel_rateUs": { "message": "E helu iā mākou" },
   "btnLabel_getSupport": { "message": "Loaʻa Kākoʻo" },
-  "btnLabel_updateCheck": { "message": "E nānā i nā mea hou" },
+  "btnLabel_checkForUpdates": { "message": "E nānā i nā mea hou" },
   "btnLabel_update": { "message": "Hōʻano hou" },
   "btnLabel_dismiss": { "message": "Hoʻokuʻu" },
   "link_viewChanges": { "message": "Nānā i nā hoʻololi" },

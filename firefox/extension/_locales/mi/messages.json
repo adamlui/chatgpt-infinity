@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Waiho i te arotake" },
   "btnLabel_rateUs": { "message": "Te utu ki a tatou" },
   "btnLabel_getSupport": { "message": "Tautoko" },
-  "btnLabel_updateCheck": { "message": "Tirohia ngā whakahōu" },
+  "btnLabel_checkForUpdates": { "message": "Tirohia ngā whakahōu" },
   "btnLabel_update": { "message": "Whakahou" },
   "btnLabel_dismiss": { "message": "Muku" },
   "link_viewChanges": { "message": "Tirohia ngā panoni" },

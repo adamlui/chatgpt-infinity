@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Laga revision" },
   "btnLabel_rateUs": { "message": "Rate Nos" },
   "btnLabel_getSupport": { "message": "Recibí Apoyo" },
-  "btnLabel_updateCheck": { "message": "Buska Actualisashon" },
+  "btnLabel_checkForUpdates": { "message": "Buska Actualisashon" },
   "btnLabel_update": { "message": "Actualisá" },
   "btnLabel_dismiss": { "message": "Pon Duru" },
   "link_viewChanges": { "message": "Mira kambio" },

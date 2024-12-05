@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "REVISORUM EXAMINATIS" },
   "btnLabel_rateUs": { "message": "Próximo Us" },
   "btnLabel_getSupport": { "message": "Supportum" },
-  "btnLabel_updateCheck": { "message": "Conquire de Actualizationibus" },
+  "btnLabel_checkForUpdates": { "message": "Conquire de Actualizationibus" },
   "btnLabel_update": { "message": "Actualiza" },
   "btnLabel_dismiss": { "message": "Omitte" },
   "link_viewChanges": { "message": "Mutationes Vide" },

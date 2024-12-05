@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Lusim toksave" },
   "btnLabel_rateUs": { "message": "Toksave long mipela" },
   "btnLabel_getSupport": { "message": "Kisim helpim" },
-  "btnLabel_updateCheck": { "message": "Chakim Sosopen" },
+  "btnLabel_checkForUpdates": { "message": "Chakim Sosopen" },
   "btnLabel_update": { "message": "Sosopen" },
   "btnLabel_dismiss": { "message": "Bai go" },
   "link_viewChanges": { "message": "Lukim ol senis" },

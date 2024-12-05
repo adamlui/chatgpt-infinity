@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Shiya Uluvo" },
   "btnLabel_rateUs": { "message": "Silinganise" },
   "btnLabel_getSupport": { "message": "Fumana Uncedo" },
-  "btnLabel_updateCheck": { "message": "Jonga Izinto Ezihlaziyiweyo" },
+  "btnLabel_checkForUpdates": { "message": "Jonga Izinto Ezihlaziyiweyo" },
   "btnLabel_update": { "message": "Hlaziya" },
   "btnLabel_dismiss": { "message": "Gxotha" },
   "link_viewChanges": { "message": "Jonga izinto ezitshintshiweyo" },

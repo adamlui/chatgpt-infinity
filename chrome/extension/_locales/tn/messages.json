@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Leave Review" },
   "btnLabel_rateUs": { "message": "Maemo a Rona" },
   "btnLabel_getSupport": { "message": "Bona Kemonokeng" },
-  "btnLabel_updateCheck": { "message": "Tlhagisa Boitsebiso" },
+  "btnLabel_checkForUpdates": { "message": "Tlhagisa Boitsebiso" },
   "btnLabel_update": { "message": "Leetiša" },
   "btnLabel_dismiss": { "message": "Leka go thubegela" },
   "link_viewChanges": { "message": "Nyaletsa boitsebiso" },

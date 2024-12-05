@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "د رخصتۍ بیاکتنه" },
   "btnLabel_rateUs": { "message": "موږ ته رتبه راکړئ" },
   "btnLabel_getSupport": { "message": "مرسته ترلاسه کړئ" },
-  "btnLabel_updateCheck": { "message": "تازه کړه ورکړئ" },
+  "btnLabel_checkForUpdates": { "message": "تازه کړه ورکړئ" },
   "btnLabel_update": { "message": "تازه کړه" },
   "btnLabel_dismiss": { "message": "د لوستل" },
   "link_viewChanges": { "message": "تغییرات وګورئ" },

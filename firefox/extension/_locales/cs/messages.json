@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Přidat Hodnocení" },
   "btnLabel_rateUs": { "message": "Ohodnoťte nás" },
   "btnLabel_getSupport": { "message": "Získat podporu" },
-  "btnLabel_updateCheck": { "message": "Zjistit novější verzi" },
+  "btnLabel_checkForUpdates": { "message": "Zjistit novější verzi" },
   "btnLabel_update": { "message": "Aktualizovat" },
   "btnLabel_dismiss": { "message": "Zamítnout" },
   "link_viewChanges": { "message": "Zobrazit změny" },

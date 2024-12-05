@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Bihêle Review" },
   "btnLabel_rateUs": { "message": "Me binirxînin" },
   "btnLabel_getSupport": { "message": "پشتگیری بگرە" },
-  "btnLabel_updateCheck": { "message": "پشکنینی نوێکردنەوە" },
+  "btnLabel_checkForUpdates": { "message": "پشکنینی نوێکردنەوە" },
   "btnLabel_update": { "message": "نوێکردنەوە" },
   "btnLabel_dismiss": { "message": "ردکردنەوە" },
   "link_viewChanges": { "message": "گۆرانی بینینەکان" },

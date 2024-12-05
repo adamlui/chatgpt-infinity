@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Pošalji recenziju" },
   "btnLabel_rateUs": { "message": "Ocijenite nas" },
   "btnLabel_getSupport": { "message": "Zatražite podršku" },
-  "btnLabel_updateCheck": { "message": "Provjeri ima li ažuriranja" },
+  "btnLabel_checkForUpdates": { "message": "Provjeri ima li ažuriranja" },
   "btnLabel_update": { "message": "Nadogradi" },
   "btnLabel_dismiss": { "message": "Otkaži" },
   "link_viewChanges": { "message": "Vidi promjene" },

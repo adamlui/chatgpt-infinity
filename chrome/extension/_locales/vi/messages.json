@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Gửi phản hồi" },
   "btnLabel_rateUs": { "message": "Đánh giá chúng tôi" },
   "btnLabel_getSupport": { "message": "Đề nghị hỗ trợ" },
-  "btnLabel_updateCheck": { "message": "Kiểm tra cập nhật" },
+  "btnLabel_checkForUpdates": { "message": "Kiểm tra cập nhật" },
   "btnLabel_update": { "message": "Cập nhật" },
   "btnLabel_dismiss": { "message": "Bỏ qua" },
   "link_viewChanges": { "message": "Xem thay đổi" },

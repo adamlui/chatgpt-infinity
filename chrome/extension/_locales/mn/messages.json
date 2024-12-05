@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Сэтгэгдэл үлдээх" },
   "btnLabel_rateUs": { "message": "Биднийг үнэлэх" },
   "btnLabel_getSupport": { "message": "Тусламж авах" },
-  "btnLabel_updateCheck": { "message": "Шинэчлэл хянах" },
+  "btnLabel_checkForUpdates": { "message": "Шинэчлэл хянах" },
   "btnLabel_update": { "message": "Шинэчлэлт" },
   "btnLabel_dismiss": { "message": "Хасах" },
   "link_viewChanges": { "message": "Засагдсан зүйлсийг үзэх" },

@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Shiya Okushiwo Abanye" },
   "btnLabel_rateUs": { "message": "Silinganise" },
   "btnLabel_getSupport": { "message": "Thola Usizo" },
-  "btnLabel_updateCheck": { "message": "Hlola Izibuyekezo" },
+  "btnLabel_checkForUpdates": { "message": "Hlola Izibuyekezo" },
   "btnLabel_update": { "message": "Buyekeza" },
   "btnLabel_dismiss": { "message": "Susa" },
   "link_viewChanges": { "message": "Buka izinguquko" },

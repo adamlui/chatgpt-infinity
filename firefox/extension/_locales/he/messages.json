@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "השארת חוות דעת" },
   "btnLabel_rateUs": { "message": "דרג אותנו" },
   "btnLabel_getSupport": { "message": "קבל תמיכה" },
-  "btnLabel_updateCheck": { "message": "חפש עדכונים" },
+  "btnLabel_checkForUpdates": { "message": "חפש עדכונים" },
   "btnLabel_update": { "message": "עדכון" },
   "btnLabel_dismiss": { "message": "שחרור" },
   "link_viewChanges": { "message": "הצגת השינויים" },

@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Sharh qoldiring" },
   "btnLabel_rateUs": { "message": "Bizni baholash" },
   "btnLabel_getSupport": { "message": "Yordam oling" },
-  "btnLabel_updateCheck": { "message": "Yangilanishlarni tekshirish" },
+  "btnLabel_checkForUpdates": { "message": "Yangilanishlarni tekshirish" },
   "btnLabel_update": { "message": "Yangilash" },
   "btnLabel_dismiss": { "message": "Rad etish" },
   "link_viewChanges": { "message": "O'zgarishlarni ko'rish" },

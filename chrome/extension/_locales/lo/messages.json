@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "ໃຫ້ການທົບທວນຄືນ" },
   "btnLabel_rateUs": { "message": "ປະເມີນພວກເຮົາ" },
   "btnLabel_getSupport": { "message": "ໄດ້ຮັບການສະໜັບສະໜູນ" },
-  "btnLabel_updateCheck": { "message": "ກວດສອບການອັບເດດ" },
+  "btnLabel_checkForUpdates": { "message": "ກວດສອບການອັບເດດ" },
   "btnLabel_update": { "message": "ອັບເດດ" },
   "btnLabel_dismiss": { "message": "ຂ້າມໄປ" },
   "link_viewChanges": { "message": "ເບິ່ງການປ່ຽນແປງ" },

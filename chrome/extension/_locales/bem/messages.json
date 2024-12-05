@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "Lekeni ukupituluka" },
   "btnLabel_rateUs": { "message": "Rate Twine" },
   "btnLabel_getSupport": { "message": "Peeleniko bambi Peeleni" },
-  "btnLabel_updateCheck": { "message": "Chinsopelelako Update" },
+  "btnLabel_checkForUpdates": { "message": "Chinsopelelako Update" },
   "btnLabel_update": { "message": "Kulanda" },
   "btnLabel_dismiss": { "message": "Ponya" },
   "link_viewChanges": { "message": "Yangasa maboko" },

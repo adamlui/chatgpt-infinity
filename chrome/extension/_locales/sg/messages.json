@@ -54,7 +54,7 @@
   "btnLabel_leaveReview": { "message": "A kiri a bâ ni" },
   "btnLabel_rateUs": { "message": "Rate E ti" },
   "btnLabel_getSupport": { "message": "Gi ti wara mungo maboko" },
-  "btnLabel_updateCheck": { "message": "Ṣe igbésílẹ̀ fún Àtúmọ̀" },
+  "btnLabel_checkForUpdates": { "message": "Ṣe igbésílẹ̀ fún Àtúmọ̀" },
   "btnLabel_update": { "message": "Ṣe Àtúmọ̀" },
   "btnLabel_dismiss": { "message": "Wàbò" },
   "link_viewChanges": { "message": "Wò èdá" },
