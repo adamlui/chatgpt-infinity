@@ -199,10 +199,8 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.5.4
+// @version             2024.12.5.5
 // @license             MIT
-// @match               *://chatgpt.com/*
-// @match               *://chat.openai.com/*
 // @icon                https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?f196818
 // @icon64              https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?f196818
 // @compatible          chrome
@@ -217,15 +215,17 @@
 // @compatible          qq
 // @compatible          whale
 // @compatible          kiwi
+// @match               *://chatgpt.com/*
+// @match               *://chat.openai.com/*
+// @connect             cdn.jsdelivr.net
+// @connect             update.greasyfork.org
 // @require             https://cdn.jsdelivr.net/npm/@kudoai/chatgpt.js@3.3.5/dist/chatgpt.min.js#sha256-rfC4kk8q0byrafp7X0Qf9vaa3JNvkHRwNnUt6uL2hUE=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@de1280704f67ce83467b8a9420c715906ea56f6e/chrome/extension/components/modals.js#sha256-1vGe4Rujad3D4uQaNZYY6OwX77XoeIlVUKtd3cOEKGg=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@de1280704f67ce83467b8a9420c715906ea56f6e/chrome/extension/components/sidebarToggle.js#sha256-c/MgL+wg8vNFKNGWPdUCEORPYpePvo0Ortls6uV4WRM=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@498bca25f41e9ea16c5e387682fbdeb588d3d6d0/chrome/extension/lib/dom.js#sha256-RV5ZNK9lGH9IC1sPNNflDj+fOuC97le/ac6rrezdNos=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@de1280704f67ce83467b8a9420c715906ea56f6e/chrome/extension/lib/settings.js#sha256-bH1flGEDDrEwDAbtUqeXO5khmIvuAGr5vEXGgp9Hy9w=
-// @connect             cdn.jsdelivr.net
-// @connect             update.greasyfork.org
-// @resource bsbgCSS    https://assets.aiwebextensions.com/styles/css/black-rising-stars.min.css?v=542104c#sha256-GQLnVMub4cpV5A59pvnDe8peGrW1v49u1UbDHHTGBBI=
-// @resource wsbgCSS    https://assets.aiwebextensions.com/styles/css/white-rising-stars.min.css?v=542104c#sha256-UCMygYN1+KOj8pQJonn7CRZ2b+npvyrXJlnarlJGIh4=
+// @resource brsCSS     https://assets.aiwebextensions.com/styles/css/black-rising-stars.min.css?v=542104c#sha256-GQLnVMub4cpV5A59pvnDe8peGrW1v49u1UbDHHTGBBI=
+// @resource wrsCSS     https://assets.aiwebextensions.com/styles/css/white-rising-stars.min.css?v=542104c#sha256-UCMygYN1+KOj8pQJonn7CRZ2b+npvyrXJlnarlJGIh4=
 // @grant               GM_setValue
 // @grant               GM_getValue
 // @grant               GM_registerMenuCommand
@@ -649,8 +649,7 @@
     }; // eslint-disable-line
 
     // Add STARS styles
-    ['wsbg', 'bsbg'].forEach(cssType => // white stars, black stars
-        document.head.append(dom.create.style(GM_getResourceText(`${cssType}CSS`))))
+    ['brs', 'wrs'].forEach(cssType => document.head.append(dom.create.style(GM_getResourceText(`${cssType}CSS`))))
 
     sidebarToggle.dependencies.import({ app, env, notify, syncConfigToUI })
     sidebarToggle.insert()
