@@ -24,6 +24,7 @@
     "lint:fix-all": "eslint . --fix",
     "bump": "bash utils/bump/manifests.sh",
     "bump:js": "node utils/bump/jsResources",
+    "bump:manifests": "bash utils/bump/manifests.sh",
     "bump:chrome": "bash utils/bump/manifests.sh --chrome",
     "bump:chromium": "bash utils/bump/manifests.sh --chrome",
     "bump:ff": "bash utils/bump/manifests.sh --ff",
