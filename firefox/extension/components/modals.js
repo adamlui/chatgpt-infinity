@@ -110,8 +110,7 @@ window.modals = {
                 + `<span style="${pBrStyle}"><a href="${this.dependencies.app.urls.gitHub}" target="_blank"`
                     + ` rel="noopener">${this.dependencies.app.urls.gitHub}</a></span>`,
             modalBtns, '',
-            modalBtns, '',
-            /Chromium|Firefox/.test(this.env.runtime) ? 451 : 546 // set width
+            /Chromium|Firefox/.test(this.env.runtime) ? 434 : 546 // set width
         )
 
         // Format text
