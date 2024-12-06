@@ -109,7 +109,7 @@ window.modals = {
             function checkForUpdates(){ modals.dependencies.checkForUpdates() })
 
         // Show modal
-        const aboutModal = this.alert(
+        const aboutModal = modals.alert(
             `${this.dependencies.app.symbol} ${this.getMsg('appName')}`, // title
             `<span style="${headingStyle}"><b>🏷️ <i>${this.getMsg('about_version')}</i></b>: </span>`
                 + `<span style="${pStyle}">${this.dependencies.app.version}</span>\n`
@@ -162,7 +162,7 @@ window.modals = {
     donate() {
 
         // Show modal
-        const donateModal = this.alert(
+        const donateModal = modals.alert(
             `💖 ${this.getMsg('alert_showYourSupport')}`, // title
                 `<p>${this.getMsg('appName')} ${this.getMsg('alert_isOSS')}.</p>`
               + `<p>${this.getMsg('alert_despiteAffliction')} `
@@ -228,7 +228,7 @@ window.modals = {
                         : this.env.runtime.includes('Chromium') ? function chromeWebStore(){}
                         : function greasyFork(){} )
         // Show modal
-        const feedbackModal = this.alert(`${this.getMsg('alert_choosePlatform')}:`, '', modalBtns)
+        const feedbackModal = modals.alert(`${this.getMsg('alert_choosePlatform')}:`, '', modalBtns)
 
         // Hack buttons
         feedbackModal.querySelectorAll('button').forEach((btn, idx) => {
