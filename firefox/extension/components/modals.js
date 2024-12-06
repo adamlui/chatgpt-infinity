@@ -258,13 +258,14 @@ window.modals = {
             // Show modal
             const updateAvailModal = modals.alert(`🚀 ${modals.getMsg('alert_updateAvail')}!`, // title
                 `${modals.getMsg('alert_newerVer')} ${modals.getMsg('appName')} `
-                    + `(v${modals.app.latestVer}) ${modals.getMsg('alert_isAvail')}!  `
+                    + `(v${modals.dependencies.app.latestVer}) ${modals.getMsg('alert_isAvail')}!  `
                     + '<a target="_blank" rel="noopener" style="font-size: 0.7rem" href="'
-                        + modals.app.urls.update.replace(/.+\/([^/]+)meta\.js/,
-                            `${modals.app.urls.gitHub}/blob/main/greasemonkey/$1user.js`)
+                        + modals.dependencies.app.urls.update.replace(/.+\/([^/]+)meta\.js/,
+                            `${modals.dependencies.app.urls.gitHub}/blob/main/greasemonkey/$1user.js`)
                     + `">${modals.getMsg('link_viewChanges')}</a>`,
                 function update() { // button
-                    modals.safeWinOpen(modals.app.urls.update.replace('meta.js', 'user.js') + '?t=' + Date.now())
+                    modals.safeWinOpen(
+                        modals.dependencies.app.urls.update.replace('meta.js', 'user.js') + '?t=' + Date.now())
                 }, '', modals.update.width
             )
 
@@ -280,7 +281,7 @@ window.modals = {
 
         unavailable() {
             return modals.alert(`${modals.getMsg('alert_upToDate')}!`, // title
-                `${modals.getMsg('appName')} (v${modals.app.version}) ${modals.getMsg('alert_isUpToDate')}!`, // msg
+                `${modals.getMsg('appName')} (v${modals.dependencies.app.version}) ${modals.getMsg('alert_isUpToDate')}!`, // msg
                 '', '', modals.update.width
             )
         }
