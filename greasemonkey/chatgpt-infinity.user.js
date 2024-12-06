@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.5.7
+// @version             2024.12.6
 // @license             MIT
 // @icon                https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?f196818
 // @icon64              https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?f196818
@@ -220,10 +220,10 @@
 // @connect             cdn.jsdelivr.net
 // @connect             update.greasyfork.org
 // @require             https://cdn.jsdelivr.net/npm/@kudoai/chatgpt.js@3.3.5/dist/chatgpt.min.js#sha256-rfC4kk8q0byrafp7X0Qf9vaa3JNvkHRwNnUt6uL2hUE=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@38e73011b9b1c9b5eb1c73547eeb20d844eb3330/chrome/extension/components/modals.js#sha256-r4pSjdldAvcqepZtzTuBqqOKvbnxuXUyeHrTnXd5+lw=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@38e73011b9b1c9b5eb1c73547eeb20d844eb3330/chrome/extension/components/sidebarToggle.js#sha256-z+oSOXsNR277SYhFftp2ccnJ0ijrBDsWVN8EMYOgDC4=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@498bca25f41e9ea16c5e387682fbdeb588d3d6d0/chrome/extension/lib/dom.js#sha256-RV5ZNK9lGH9IC1sPNNflDj+fOuC97le/ac6rrezdNos=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@38e73011b9b1c9b5eb1c73547eeb20d844eb3330/chrome/extension/lib/settings.js#sha256-8YrNwWDfo8mh/IvscOP+gxkUgVqKAwH3X6AIUr2auAQ=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@704858dafc0915cb67367ea949e6997408aaa29c/chrome/extension/components/modals.js#sha256-2hUnQdsg3YEcRvXiy4Y/D+byWeG46Dh/lDf6t3lmjCo=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@704858dafc0915cb67367ea949e6997408aaa29c/chrome/extension/components/sidebarToggle.js#sha256-HfotTTGHUWGxyLieTxSvHSfdDw381tsk+NebdzPwt74=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@704858dafc0915cb67367ea949e6997408aaa29c/chrome/extension/lib/dom.js#sha256-RV5ZNK9lGH9IC1sPNNflDj+fOuC97le/ac6rrezdNos=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@704858dafc0915cb67367ea949e6997408aaa29c/chrome/extension/lib/settings.js#sha256-xuu3HlQPLCQLCjRi2noGBdcpCZkt38L8jGhM2EvPSGE=
 // @resource brsCSS     https://assets.aiwebextensions.com/styles/css/black-rising-stars.min.css?v=542104c#sha256-GQLnVMub4cpV5A59pvnDe8peGrW1v49u1UbDHHTGBBI=
 // @resource wrsCSS     https://assets.aiwebextensions.com/styles/css/white-rising-stars.min.css?v=542104c#sha256-UCMygYN1+KOj8pQJonn7CRZ2b+npvyrXJlnarlJGIh4=
 // @grant               GM_setValue
@@ -363,7 +363,7 @@
     }
 
     // Init MODALS dependencies
-    modals.dependencies.import({ app, browserLang: env.browser.language, siteAlert, updateCheck })
+    modals.dependencies.import({ app, browserLang: env.browser.language, updateCheck })
 
     // Init SETTINGS
     settings.dependencies.import({ app }) // for app.msgs + app.configKeyPrefix refs
@@ -417,7 +417,7 @@
                                         replyLang.length < 4 || replyLang.includes('-') ? replyLang.toUpperCase()
                                             : replyLang.charAt(0).toUpperCase() + replyLang.slice(1).toLowerCase() )
                                     settings.save('replyLanguage', replyLang || env.browser.language)
-                                    siteAlert(( app.msgs.alert_replyLangUpdated ) + '!', // title
+                                    modals.alert(( app.msgs.alert_replyLangUpdated ) + '!', // title
                                         ( app.msgs.appName ) + ' ' // msg
                                             + ( app.msgs.alert_willReplyIn ) + ' '
                                             + ( replyLang || app.msgs.alert_yourSysLang) + '.'
@@ -432,7 +432,7 @@
                                 replyTopic = toTitleCase(replyTopic.toString()) // for menu/alert aesthetics
                                 settings.save('replyTopic',
                                     !replyTopic || re_all.test(replyTopic) ? app.msgs.menuLabel_all : replyTopic)
-                                siteAlert(`${app.msgs.alert_replyTopicUpdated}!`,
+                                modals.alert(`${app.msgs.alert_replyTopicUpdated}!`,
                                     `${app.msgs.appName} ${app.msgs.alert_willAnswer} `
                                         + ( !replyTopic || re_all.test(replyTopic) ? app.msgs.alert_onAllTopics
                                             : `${app.msgs.alert_onTopicOf} ${replyTopic}` )
@@ -446,7 +446,7 @@
                                 if (replyInterval == null) break // user cancelled so do nothing
                                 else if (!isNaN(parseInt(replyInterval, 10)) && parseInt(replyInterval, 10) > 4) {
                                     settings.save('replyInterval', parseInt(replyInterval, 10))
-                                    siteAlert(( app.msgs.alert_replyIntUpdated ) + '!', // title
+                                    modals.alert(( app.msgs.alert_replyIntUpdated ) + '!', // title
                                         ( app.msgs.appName ) + ' ' // msg
                                             + ( app.msgs.alert_willReplyEvery ) + ' '
                                             + replyInterval + ' ' + ( app.msgs.unit_seconds ) + '.'
@@ -528,11 +528,6 @@
                                                   : '#5cef48 ; text-shadow: rgba(255, 250, 169, 0.38) 2px 1px 5px' }`
             styledStateSpan.append(foundState) ; notif.append(styledStateSpan)
         }
-    }
-
-    function siteAlert(title = '', msg = '', btns = '', checkbox = '', width = '') {
-        const alertID = chatgpt.alert(title, msg, btns, checkbox, width)
-        return document.getElementById(alertID).firstChild
     }
 
     // Define UI functions
