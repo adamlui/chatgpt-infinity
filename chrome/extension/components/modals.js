@@ -6,7 +6,7 @@ window.modals = {
 
     dependencies: {
         import(dependencies) {
-            // { app, browserLang: env.browser.language (userscript only), checkForUpdates (userscript only) }
+            // { app, browserLang: env.browser.language (userscript only), updateCheck (userscript only) }
             for (const name in dependencies) this[name] = dependencies[name] }
     },
 
@@ -106,7 +106,7 @@ window.modals = {
             function moreAIextensions(){}
         ]
         if (this.env.runtime.includes('Greasemonkey')) modalBtns.unshift(
-            function checkForUpdates(){ modals.dependencies.checkForUpdates() })
+            function checkForUpdates(){ modals.dependencies.updateCheck() })
 
         // Show modal
         const aboutModal = modals.alert(

@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.5.6
+// @version             2024.12.5.7
 // @license             MIT
 // @icon                https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?f196818
 // @icon64              https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?f196818
@@ -363,7 +363,7 @@
     }
 
     // Init MODALS dependencies
-    modals.dependencies.import({ app, browserLang: env.browser.language, siteAlert, checkForUpdates })
+    modals.dependencies.import({ app, browserLang: env.browser.language, siteAlert, updateCheck })
 
     // Init SETTINGS
     settings.dependencies.import({ app }) // for app.msgs + app.configKeyPrefix refs
@@ -479,7 +479,7 @@
         }
     }
 
-    function checkForUpdates() {
+    function updateCheck() {
         xhr({
             method: 'GET', url: app.urls.update + '?t=' + Date.now(),
             headers: { 'Cache-Control': 'no-cache' },
