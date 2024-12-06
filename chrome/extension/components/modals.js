@@ -2,6 +2,7 @@
 
 window.modals = {
     stack: [], // of types of undismissed modals
+    get class() { return `${this.dependencies.app.name.replace(/ /g, '-').toLowerCase()}-modal` },
 
     dependencies: {
         import(dependencies) {
@@ -28,7 +29,7 @@ window.modals = {
     open(modalType, modalSubType) {
         const modal = modalSubType ? this[modalType][modalSubType]() : this[modalType]() // show modal
         this.stack.unshift(modalSubType ? `${modalType}_${modalSubType}` : modalType) // add to stack
-        modal.classList.add('chatgpt-infinity-modal')
+        modal.classList.add(this.class)
         modal.onmousedown = this.dragHandlers.mousedown
         dom.fillStarryBG(modal) // fill BG w/ rising stars
         this.observeRemoval(modal, modalType, modalSubType) // to maintain stack for proper nav
