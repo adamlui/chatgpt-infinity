@@ -6,8 +6,7 @@ window.modals = {
 
     dependencies: {
         import(dependencies) {
-            // { app, browserLang: env.browser.language (userscript only), siteAlert,
-            //   checkForUpdates (userscript only) }
+            // { app, browserLang: env.browser.language (userscript only), checkForUpdates (userscript only) }
             for (const name in dependencies) this[name] = dependencies[name] }
     },
 
@@ -26,12 +25,23 @@ window.modals = {
             : this.dependencies.app.msgs[key] // assigned from modals.dependencies.import({ app }) in userscript
     },
 
+    alert(title = '', msg = '', btns = '', checkbox = '', width = '') { // generic one from chatgpt.alert()
+        const alertID = chatgpt.alert(title, msg, btns, checkbox, width),
+              alert = document.getElementById(alertID).firstChild
+        this.init(alert) // add class/listener/starry bg
+        return alert
+    },
+
+    init(modal) {
+        modal.classList.add(this.class)
+        modal.onmousedown = this.dragHandlers.mousedown
+        dom.fillStarryBG(modal)
+    },
+
     open(modalType, modalSubType) {
         const modal = modalSubType ? this[modalType][modalSubType]() : this[modalType]() // show modal
         this.stack.unshift(modalSubType ? `${modalType}_${modalSubType}` : modalType) // add to stack
-        modal.classList.add(this.class)
-        modal.onmousedown = this.dragHandlers.mousedown
-        dom.fillStarryBG(modal) // fill BG w/ rising stars
+        this.init(modal) // add class/listener/starry bg
         this.observeRemoval(modal, modalType, modalSubType) // to maintain stack for proper nav
     },
 
@@ -99,7 +109,7 @@ window.modals = {
             function checkForUpdates(){ modals.dependencies.checkForUpdates() })
 
         // Show modal
-        const aboutModal = this.dependencies.siteAlert(
+        const aboutModal = this.alert(
             `${this.dependencies.app.symbol} ${this.getMsg('appName')}`, // title
             `<span style="${headingStyle}"><b>🏷️ <i>${this.getMsg('about_version')}</i></b>: </span>`
                 + `<span style="${pStyle}">${this.dependencies.app.version}</span>\n`
@@ -152,7 +162,7 @@ window.modals = {
     donate() {
 
         // Show modal
-        const donateModal = this.dependencies.siteAlert(
+        const donateModal = this.alert(
             `💖 ${this.getMsg('alert_showYourSupport')}`, // title
                 `<p>${this.getMsg('appName')} ${this.getMsg('alert_isOSS')}.</p>`
               + `<p>${this.getMsg('alert_despiteAffliction')} `
@@ -218,7 +228,7 @@ window.modals = {
                         : this.env.runtime.includes('Chromium') ? function chromeWebStore(){}
                         : function greasyFork(){} )
         // Show modal
-        const feedbackModal = this.dependencies.siteAlert(`${this.getMsg('alert_choosePlatform')}:`, '', modalBtns)
+        const feedbackModal = this.alert(`${this.getMsg('alert_choosePlatform')}:`, '', modalBtns)
 
         // Hack buttons
         feedbackModal.querySelectorAll('button').forEach((btn, idx) => {
@@ -246,7 +256,7 @@ window.modals = {
         available() {
 
             // Show modal
-            const updateAvailModal = modals.dependencies.siteAlert(`🚀 ${modals.getMsg('alert_updateAvail')}!`, // title
+            const updateAvailModal = modals.alert(`🚀 ${modals.getMsg('alert_updateAvail')}!`, // title
                 `${modals.getMsg('alert_newerVer')} ${modals.getMsg('appName')} `
                     + `(v${modals.app.latestVer}) ${modals.getMsg('alert_isAvail')}!  `
                     + '<a target="_blank" rel="noopener" style="font-size: 0.7rem" href="'
@@ -269,7 +279,7 @@ window.modals = {
         },
 
         unavailable() {
-            return modals.dependencies.siteAlert(`${modals.getMsg('alert_upToDate')}!`, // title
+            return modals.alert(`${modals.getMsg('alert_upToDate')}!`, // title
                 `${modals.getMsg('appName')} (v${modals.app.version}) ${modals.getMsg('alert_isUpToDate')}!`, // msg
                 '', '', modals.update.width
             )

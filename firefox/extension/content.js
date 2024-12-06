@@ -15,14 +15,14 @@
 
     // Import APP data
     const { app } = await chrome.storage.sync.get('app')
-    modals.dependencies.import({ app, siteAlert })
+    modals.dependencies.import({ app })
 
     // Add CHROME MSG listener
     chrome.runtime.onMessage.addListener((req, _, sendResp) => {
         if (req.action == 'notify')
             notify(...['msg', 'pos', 'notifDuration', 'shadow'].map(arg => req.options[arg]))
         else if (req.action == 'alert')
-            siteAlert(...['title', 'msg', 'btns', 'checkbox', 'width'].map(arg => req.options[arg]))
+            modals.alert(...['title', 'msg', 'btns', 'checkbox', 'width'].map(arg => req.options[arg]))
         else if (req.action == 'showAbout') chatgpt.isLoaded().then(() => { modals.open('about') })
         else if (req.action == 'prompt') {
             const userInput = window.prompt(req.options.msg || 'Please enter your input:', req.options.defaultVal || '')
@@ -44,7 +44,7 @@
         settings.save('replyTopic', chrome.i18n.getMessage('menuLabel_all'))
     if (!config.replyInterval) settings.save('replyInterval', 7) // init refresh interval to 7 secs if unset
 
-    // Define FEEDBACK functions
+    // Define FUNCTIONS
 
     function notify(msg, pos = '', notifDuration = '', shadow = '') {
 
@@ -68,13 +68,6 @@
         }
     }
 
-    function siteAlert(title = '', msg = '', btns = '', checkbox = '', width = '') {
-        const alertID = chatgpt.alert(title, msg, btns, checkbox, width)
-        return document.getElementById(alertID).firstChild
-    }
-
-    // Define UI functions
-
     async function syncConfigToUI(options) { // on toolbar popup toggles + ChatGPT tab activations
         await settings.load('extensionDisabled', ...Object.keys(settings.controls))
         if (options?.updatedKey == 'infinityMode') infinity[config.infinityMode ? 'activate' : 'deactivate']()
@@ -90,8 +83,6 @@
             }).observe(document.body, { childList: true, subtree: true })
         })
     }
-
-    // Define INFINITY MODE functions
 
     const infinity = {
 
