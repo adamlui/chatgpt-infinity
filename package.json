@@ -23,6 +23,7 @@
     "lint:fix": "eslint . --fix --cache",
     "lint:fix-all": "eslint . --fix",
     "bump": "bash utils/bump.sh",
+    "bump:js": "node utils/bumpJSresources",
     "bump:chrome": "bash utils/bump.sh --chrome",
     "bump:chromium": "bash utils/bump.sh --chrome",
     "bump:ff": "bash utils/bump.sh --ff",
@@ -35,6 +36,7 @@
     "eslint": "^9.16.0",
     "eslint-plugin-regexp": "^2.7.0",
     "eslint-plugin-yml": "^1.16.0",
-    "husky": "^9.1.7"
+    "husky": "^9.1.7",
+    "ssri": "^12.0.0"
   }
 }
