@@ -30,6 +30,7 @@ if $multi_bump
     else version_label="version in ${MANIFESTS_TO_EDIT[0]}"
 fi
 echo -e "${BY}\nBumping ${version_label}...${NC}\n"
+bumped_cnt=0
 TODAY=$(date +'%Y.%-m.%-d') # YYYY.M.D format
 new_versions=() # for dynamic commit msg
 for manifest in "${MANIFESTS_TO_EDIT[@]}" ; do
@@ -56,6 +57,7 @@ for manifest in "${MANIFESTS_TO_EDIT[@]}" ; do
     else
         echo -e "${BW}v${old_ver}${NC} → ${BG}v${new_ver}${NC}"
     fi
+    ((bumped_cnt++))
 done
 
 # Define commit msg
@@ -65,10 +67,10 @@ if [[ ${#unique_versions[@]} -eq 1 ]] ; then
     COMMIT_MSG+=" to \`${unique_versions[0]}\`" ; fi
 
 # Commit/push bump(s)
-echo -e "${BY}\nCommitting $( [[ $multi_bump == true ]] && echo bumps || echo bump) to Git...\n${NC}"
+echo -e "${BY}\nCommitting $((( $bumped_cnt > 1 )) && echo bumps || echo bump) to Git...\n${NC}"
 git add ./**/manifest.json && git commit -n -m "$COMMIT_MSG"
 git push
 
 # Print final summary
-manifest_label=$( [[ $multi_bump == true ]] && echo "Manifests" || echo "${MANIFESTS_TO_EDIT[0]}")
+manifest_label=$((( $bumped_cnt > 1 )) && echo "${bumped_cnt} manifests" || echo "${MANIFESTS_TO_EDIT[0]}")
 echo -e "\n${BG}Success! ${manifest_label} updated/committed/pushed to GitHub${NC}"
