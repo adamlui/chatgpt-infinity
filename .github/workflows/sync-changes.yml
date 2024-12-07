@@ -66,7 +66,7 @@ jobs:
 
       - name: Sync ** to adamlui/ai-apps/chatgpt-infinity/
         run: |
-          rsync -avhr --delete --exclude={'.*','eslint*','package*.json'} \
+          rsync -avhr --delete --exclude={'.*'} \
             ${{ github.workspace }}/adamlui/chatgpt-infinity/ \
             ${{ github.workspace }}/adamlui/ai-apps/chatgpt-infinity/
 
