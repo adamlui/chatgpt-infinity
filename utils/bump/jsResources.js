@@ -20,7 +20,8 @@
 
     const log = {
         success(msg) { console.log(bg + msg + nc) },
-        working(msg) { console.log(by + msg + nc) }
+        working(msg) { console.log(by + msg + nc) },
+        info(msg) { console.log(bw + msg + nc) }
     }
 
     function fetchData(url) {
@@ -104,5 +105,7 @@
     }
 
     // Log final summary
-    log.success(`${jsrUpdatedCnt} resource(s) bumped.`)
+    log[jsrUpdatedCnt > 0 ? 'success' : 'info'](
+        `${ jsrUpdatedCnt > 0 ? 'Success! ' : '' }${jsrUpdatedCnt} resource(s) bumped.`)
+
 })()
