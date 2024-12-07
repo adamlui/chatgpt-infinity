@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Bumps extension manifests + git commit/push
+
 # Init UI colors
 NC="\033[0m"    # no color
 BR="\033[1;91m" # bright red
