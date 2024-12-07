@@ -59,7 +59,7 @@
             newVer = today
         userJScontent = userJScontent.replace(re_version, `$1${newVer}`)
         fs.writeFileSync(userJSfilePath, userJScontent, 'utf-8')
-        console.log(`Version bumped from ${bw + currentVer + nc} to ${bw + newVer + nc}\n`)
+        console.log(`Updated: ${bw}v${currentVer}${nc} → ${bg}v${newVer}${nc}\n`)
     }
 
     // Run MAIN routine
