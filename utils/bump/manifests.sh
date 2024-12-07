@@ -66,8 +66,7 @@ if [[ ${#unique_versions[@]} -eq 1 ]] ; then
 
 # Commit/push bump(s)
 echo -e "${BY}\nCommitting $( [[ $multi_bump == true ]] && echo bumps || echo bump) to Git...\n${NC}"
-git add ./**/manifest.json
-git commit -n -m "$COMMIT_MSG"
+git add ./**/manifest.json && git commit -n -m "$COMMIT_MSG"
 git push
 
 # Print final summary
