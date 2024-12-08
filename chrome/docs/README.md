@@ -5,7 +5,7 @@
 <div align="center">
 
 <a href="#">
-    <img height=31 src="https://img.shields.io/chrome-web-store/users/amikeononomkhphopbflomhnmdijjpmb?logo=weightsandbiases&logoColor=white&labelColor=464646&color=af68ff&style=for-the-badge"></img></a>
+    <img height=31 src="https://img.shields.io/chrome-web-store/users/amikeononomkhphopbflomhnmdijjpmb?logo=weightsandbiases&logoColor=white&labelColor=464646&color=blue&style=for-the-badge"></img></a>
 <a href="https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=featured-by-google-shield">
     <img alt="[Featured by Google]" height=31 src="https://img.shields.io/badge/Featured_by-Google-8afc25?logo=googlechrome&logoColor=white&labelColor=464646&style=for-the-badge"></img></a>
 <a href="https://edge.chatgptinfinity.com">

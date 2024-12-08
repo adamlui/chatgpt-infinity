@@ -5,7 +5,7 @@
 <div align="center">
 
 <a href="https://gm.chatgptinfinity.com">
-    <img alt="[Greasy Fork]" height=31 src="https://img.shields.io/greasyfork/dt/465051?label=Users&logo=weightsandbiases&logoColor=white&labelColor=464646&color=af68ff&style=for-the-badge"></img></a>
+    <img alt="[Greasy Fork]" height=31 src="https://img.shields.io/greasyfork/dt/465051?label=Users&logo=weightsandbiases&logoColor=white&labelColor=464646&color=blue&style=for-the-badge"></img></a>
 <a href="../LICENSE.md">
     <img alt="[License: MIT]" height=31 src="https://img.shields.io/badge/License-MIT-orange.svg?logo=internetarchive&logoColor=white&labelColor=464646&style=for-the-badge"></img></a>
 <a href="https://gm.chatgptinfinity.com/versions">
