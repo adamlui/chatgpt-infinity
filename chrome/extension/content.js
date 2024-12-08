@@ -7,7 +7,7 @@
 
     // Import JS resources
     for (const resource of
-        ['components/modals.js', 'components/sidebarToggle.js', 'lib/chatgpt.js', 'lib/dom.js', 'lib/settings.js'])
+        ['components/modals.js', 'components/toggles.js', 'lib/chatgpt.js', 'lib/dom.js', 'lib/settings.js'])
             await import(chrome.runtime.getURL(resource))
 
     // Init ENV context
@@ -70,7 +70,7 @@
         if (options?.updatedKey == 'infinityMode') infinity[config.infinityMode ? 'activate' : 'deactivate']()
         else if (settings.controls[options?.updatedKey]?.type == 'prompt' && config.infinityMode)
             infinity.restart({ target: options?.updatedKey == 'replyInterval' ? 'self' : 'new' })
-        if (/extensionDisabled|infinityMode|toggleHidden/.test(options?.updatedKey)) sidebarToggle.updateState()
+        if (/extensionDisabled|infinityMode|toggleHidden/.test(options?.updatedKey)) toggles.sidebar.updateState()
     }
 
     chatgpt.isIdle = function() { // replace waiting for chat to start in case of interrupts
@@ -168,8 +168,8 @@
             href: `https://assets.aiwebextensions.com/styles/css/${color}-rising-stars.min.css?v=542104c`
     })))
 
-    sidebarToggle.dependencies.import({ app, env, notify, syncConfigToUI })
-    sidebarToggle.insert()
+    toggles.dependencies.import({ app, env, notify, syncConfigToUI })
+    toggles.sidebar.insert()
 
     // Auto-start if enabled
     if (config.autoStart) {
@@ -180,15 +180,15 @@
     // Monitor NODE CHANGES to maintain sidebar toggle visibility
     new MutationObserver(() => {
         if (!config.toggleHidden && !document.getElementById('infinity-toggle-navicon')
-            && sidebarToggle.status != 'inserting') {
-                sidebarToggle.status = 'missing' ; sidebarToggle.insert() }
+            && toggles.sidebar.status != 'inserting') {
+                toggles.sidebar.status = 'missing' ; toggles.sidebar.insert() }
     }).observe(document.body, { attributes: true, subtree: true })
 
     // Disable distracting SIDEBAR CLICK-ZOOM effect
     if (!document.documentElement.hasAttribute('sidebar-click-zoom-observed')) {
         new MutationObserver(mutations => mutations.forEach(({ target }) => {
             if (target.closest('[class*="sidebar"]') // include sidebar divs
-                && !target.id.endsWith('-knob-span') // exclude our sidebarToggle
+                && !target.id.endsWith('-knob-span') // exclude our toggles.sidebar
                 && target.style.transform != 'none' // click-zoom occurred
             ) target.style.transform = 'none'
         })).observe(document.body, { attributes: true, subtree: true, attributeFilter: [ 'style' ]})
