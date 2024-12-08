@@ -27,7 +27,6 @@
 [![\[SonarCloud 脆弱性\]](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fsonarcloud.io%2Fapi%2Fmeasures%2Fcomponent%3Fcomponent%3Dadamlui_chatgpt-infinity%26metricKeys%3Dvulnerabilities&query=%24.component.measures.0.value&style=for-the-badge&logo=sonarcloud&logoColor=white&labelColor=464646&label=%E8%84%86%E5%BC%B1%E6%80%A7&color=gold)](https://sonarcloud.io/component_measures?metric=new_vulnerabilities&id=adamlui_chatgpt-infinity)
 [![\[Awesome で言及される\]](https://img.shields.io/badge/%E3%81%A7%E8%A8%80%E5%8F%8A%E3%81%95%E3%82%8C%E3%82%8B-Awesome-cb48dc?logo=awesomelists&logoColor=white&labelColor=464646&style=for-the-badge)](https://github.com/awesome-scripts/awesome-userscripts#chatgpt)
 <a href="https://www.jsdelivr.com/package/gh/adamlui/chatgpt-infinity?tab=stats"><img alt="jsDelivr 統計" src="https://img.shields.io/jsdelivr/gh/hm/adamlui/chatgpt-infinity?style=for-the-badge&logo=jsdelivr&logoColor=white&label=jsDelivr%20%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88&labelColor=464646&color=2bbbd8"></a>
-[![\[www.chatgptinfinity.com\]](https://img.shields.io/badge/%E3%82%A6%E3%82%A7%E3%83%96-www.chatgptinfinity.com-lightgrey?logo=dribbble&logoColor=white&labelColor=464646&style=for-the-badge)](https://chatgptinfinity.com?utm_source=chatgpt_infinity&utm_content=github_shield)
 
 <br>
 
