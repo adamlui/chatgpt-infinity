@@ -14,7 +14,7 @@ export default [
             globals: {
                 ...globals.browser, ...globals.greasemonkey, ...globals.node, chatgpt: 'readonly', chrome: 'readonly',
                 config: 'writable', dom: 'readonly', icons: 'writable', modals: 'writable', settings: 'writable',
-                sidebarToggle: 'writable', toggles: 'writable'
+                toggles: 'writable'
             }
         },
         plugins: { regexp, 'js-styles': stylisticJS },
