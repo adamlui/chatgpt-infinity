@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Bumps extension manifests + git commit/push
+# NOTE: Pass --chrome or --chromium to only affect Chromium manifests
+# NOTE: Pass --firefox or --ff to only affect Firefox manifests
 
 # Init UI colors
 NC="\033[0m"    # no color
