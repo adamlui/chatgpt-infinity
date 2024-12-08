@@ -19,7 +19,7 @@
 <a href="https://sonarcloud.io/component_measures?metric=new_vulnerabilities&id=adamlui_chatgpt-infinity">
     <img alt="[SonarCloud vulnerabiliities]" height=31 src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fsonarcloud.io%2Fapi%2Fmeasures%2Fcomponent%3Fcomponent%3Dadamlui_chatgpt-infinity%26metricKeys%3Dvulnerabilities&query=%24.component.measures.0.value&style=for-the-badge&logo=sonarcloud&logoColor=white&labelColor=464646&label=Vulnerabilities&color=gold"></img></a>
 <a href="https://github.com/awesome-scripts/awesome-userscripts#chatgpt">
-    <img alt="[Mentioned in Awesome]" height=31 src="https://img.shields.io/badge/Mentioned_in-Awesome-fc7bb7?logo=awesomelists&logoColor=white&labelColor=464646&style=for-the-badge"></img></a>
+    <img alt="[Mentioned in Awesome]" height=31 src="https://img.shields.io/badge/Mentioned_in-Awesome-cb48dc?logo=awesomelists&logoColor=white&labelColor=464646&style=for-the-badge"></img></a>
 <a href="https://www.jsdelivr.com/package/gh/adamlui/chatgpt-infinity?tab=stats">
     <img alt="jsDelivr stats" height=31 src="https://img.shields.io/jsdelivr/gh/hm/adamlui/chatgpt-infinity?style=for-the-badge&logo=jsdelivr&logoColor=white&label=jsDelivr%20Requests&labelColor=464646&color=2bbbd8"></img></a>
 <br><br>
