@@ -73,7 +73,7 @@
         if (options?.updatedKey == 'infinityMode') infinity[config.infinityMode ? 'activate' : 'deactivate']()
         else if (settings.controls[options?.updatedKey]?.type == 'prompt' && config.infinityMode)
             infinity.restart({ target: options?.updatedKey == 'replyInterval' ? 'self' : 'new' })
-        if (/extensionDisabled|infinityMode|toggleHidden/.test(options?.updatedKey)) sidebarToggle.update()
+        if (/extensionDisabled|infinityMode|toggleHidden/.test(options?.updatedKey)) sidebarToggle.updateState()
     }
 
     chatgpt.isIdle = function() { // replace waiting for chat to start in case of interrupts

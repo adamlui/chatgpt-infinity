@@ -63,7 +63,7 @@ window.sidebarToggle = {
             this.div.querySelector('img')?.classList.add(...(firstIcon?.classList || []))
         }
 
-        this.update() // to opposite init state for animation on 1st load
+        this.updateState() // to opposite init state for animation on 1st load
 
         // Add click listener
         this.div.onclick = () => {
@@ -97,7 +97,7 @@ window.sidebarToggle = {
         this.status = 'inserted'
     },
 
-    update() {
+    updateState() {
         if (!this.div) return // since toggle never created = sidebar missing
         const toggleLabel = this.div.querySelector('label'),
               toggleInput = this.div.querySelector('input'),
