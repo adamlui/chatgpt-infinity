@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.6
+// @version             2024.12.7
 // @license             MIT
 // @icon                https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?f196818
 // @icon64              https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?f196818
@@ -221,7 +221,7 @@
 // @connect             update.greasyfork.org
 // @require             https://cdn.jsdelivr.net/npm/@kudoai/chatgpt.js@3.3.5/dist/chatgpt.min.js#sha256-rfC4kk8q0byrafp7X0Qf9vaa3JNvkHRwNnUt6uL2hUE=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@704858dafc0915cb67367ea949e6997408aaa29c/chrome/extension/components/modals.js#sha256-2hUnQdsg3YEcRvXiy4Y/D+byWeG46Dh/lDf6t3lmjCo=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@704858dafc0915cb67367ea949e6997408aaa29c/chrome/extension/components/sidebarToggle.js#sha256-HfotTTGHUWGxyLieTxSvHSfdDw381tsk+NebdzPwt74=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@587e086d4379bcac604b99b6b1c4c9cb928b4b1a/chrome/extension/components/toggles.js#sha256-ztpquy4AF8IH4PtaEGJOatULsc4Qvc77Zsd4YOF6YbY=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@704858dafc0915cb67367ea949e6997408aaa29c/chrome/extension/lib/dom.js#sha256-RV5ZNK9lGH9IC1sPNNflDj+fOuC97le/ac6rrezdNos=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@704858dafc0915cb67367ea949e6997408aaa29c/chrome/extension/lib/settings.js#sha256-xuu3HlQPLCQLCjRi2noGBdcpCZkt38L8jGhM2EvPSGE=
 // @resource brsCSS     https://assets.aiwebextensions.com/styles/css/black-rising-stars.min.css?v=542104c#sha256-GQLnVMub4cpV5A59pvnDe8peGrW1v49u1UbDHHTGBBI=
@@ -536,7 +536,7 @@
         if (options?.updatedKey == 'infinityMode') infinity[config.infinityMode ? 'activate' : 'deactivate']()
         else if (settings.controls[options?.updatedKey].type == 'prompt' && config.infinityMode)
             infinity.restart({ target: options?.updatedKey == 'replyInterval' ? 'self' : 'new' })
-        if (/infinityMode|toggleHidden/.test(options?.updatedKey)) sidebarToggle.update()
+        if (/infinityMode|toggleHidden/.test(options?.updatedKey)) toggles.sidebar.updateState()
         menu.refresh() // prefixes/suffixes
     }
 
@@ -646,8 +646,8 @@
     // Add STARS styles
     ['brs', 'wrs'].forEach(cssType => document.head.append(dom.create.style(GM_getResourceText(`${cssType}CSS`))))
 
-    sidebarToggle.dependencies.import({ app, env, notify, syncConfigToUI })
-    sidebarToggle.insert()
+    toggles.dependencies.import({ app, env, notify, syncConfigToUI })
+    toggles.sidebar.insert()
 
     // Auto-start if enabled
     if (config.autoStart) {
@@ -658,15 +658,15 @@
     // Monitor NODE CHANGES to maintain sidebar toggle visibility
     new MutationObserver(() => {
         if (!config.toggleHidden && !document.getElementById('infinity-toggle-navicon')
-            && sidebarToggle.status != 'inserting') {
-                sidebarToggle.status = 'missing' ; sidebarToggle.insert() }
+            && toggles.sidebar.status != 'inserting') {
+                toggles.sidebar.status = 'missing' ; toggles.sidebar.insert() }
     }).observe(document.body, { attributes: true, subtree: true })
 
     // Disable distracting SIDEBAR CLICK-ZOOM effect
     if (!document.documentElement.hasAttribute('sidebar-click-zoom-observed')) {
         new MutationObserver(mutations => mutations.forEach(({ target }) => {
             if (target.closest('[class*="sidebar"]') // include sidebar divs
-                && !target.id.endsWith('-knob-span') // exclude our sidebarToggle
+                && !target.id.endsWith('-knob-span') // exclude our toggles.sidebar
                 && target.style.transform != 'none' // click-zoom occurred
             ) target.style.transform = 'none'
         })).observe(document.body, { attributes: true, subtree: true, attributeFilter: [ 'style' ]})
