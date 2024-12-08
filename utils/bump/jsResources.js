@@ -82,27 +82,35 @@
         `git ls-remote https://github.com/adamlui/${repoName}.git HEAD`).toString().split('\t')[0]
     console.log(latestCommitHash + '\n')
 
-    // Process each resource in the userscript
+    // Process each resource
     const re_commitHash = /@([^/]+)/ ; let fileUpdated = false
     for (const jsrURL of jsrURLs) {
         const resourceName = jsrURL.match(/\w+\/\w+\.js(?=#|$)/)[0] // dir/filename.js for logs
 
-        // Update hashes
-        if ((jsrURL.match(re_commitHash) || [])[1] != latestCommitHash) {
-            console.log(`Updating commit hash for ${resourceName}...`)
-            let updatedURL = jsrURL.replace(re_commitHash, `@${latestCommitHash}`)
-            console.log(`Updating SRI hash for ${resourceName}...`)
-            updatedURL = updatedURL.replace(/#sha.+/, `#${await getSRIhash(updatedURL)}`)
+        // Compare commit hashes
+        if ((jsrURL.match(re_commitHash) || [])[1] == latestCommitHash) { // commit hash didn't change...
+            console.log(`${resourceName} already up-to-date!\n`) ; continue } // ...so skip resource
+        let updatedURL = jsrURL.replace(re_commitHash, `@${latestCommitHash}`) // othrwise update commit hash
 
-            // Write updated URL to userscript
-            let userJScontent = fs.readFileSync(userJSfilePath, 'utf-8')
-            userJScontent = userJScontent.replace(jsrURL, updatedURL)
-            fs.writeFileSync(userJSfilePath, userJScontent, 'utf-8')
-            jsrUpdatedCnt++ ; fileUpdated = true
-        }
+        // Generate/compare SRI hash
+        console.log(`Generating SHA-256 hash for ${resourceName}...`)
+        const newSRIhash = await getSRIhash(updatedURL)
+        console.log(`${newSRIhash}\n`)
+        const oldSRIhash = (/[^#]+$/.exec(jsrURL) || [])[0]
+        if (oldSRIhash == newSRIhash) { // SRI hash didn't change
+            console.log(`${resourceName} already up-to-date!\n`) ; continue } // ...so skip resource
+        updatedURL = updatedURL.replace(/#sha.+/, newSRIhash) // otherwise update SRI hash
+
+        // Write updated URL to userscript
+        console.log(`Writing updated URL for ${resourceName}...`)
+        let userJScontent = fs.readFileSync(userJSfilePath, 'utf-8')
+        userJScontent = userJScontent.replace(jsrURL, updatedURL)
+        fs.writeFileSync(userJSfilePath, userJScontent, 'utf-8')
+        log.success(`${resourceName} bumped!\n`)
+        jsrUpdatedCnt++ ; fileUpdated = true
     }
     if (fileUpdated) {
-        console.log('\nBumping userscript version...')
+        console.log('Bumping userscript version...')
         bumpUserJSver(userJSfilePath)
     }
 
