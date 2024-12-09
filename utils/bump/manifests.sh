@@ -14,14 +14,14 @@ BG="\033[1;92m" # bright green
 BW="\033[1;97m" # bright white
 
 # Init manifest paths
-chrome_manifest="chrome/extension/manifest.json"
+chromium_manifest="chrome/extension/manifest.json"
 ff_manifest="firefox/extension/manifest.json"
 
 # Determine manifests to edit
 case "$arg" in
-    chrome|chromium) MANIFESTS_TO_EDIT=("$chrome_manifest") ;;
+    chrome|chromium) MANIFESTS_TO_EDIT=("$chromium_manifest") ;;
     firefox|ff) MANIFESTS_TO_EDIT=("$ff_manifest") ;;
-    "") MANIFESTS_TO_EDIT=("$chrome_manifest" "$ff_manifest") ;;
+    "") MANIFESTS_TO_EDIT=("$chromium_manifest" "$ff_manifest") ;;
     *) echo -e "${BR}Invalid argument. Use 'chrome', 'chromium', 'firefox', 'ff', or leave empty.${NC}" ; exit 1 ;;
 esac
 multi_bump=$( # flag for echos/git commit msg
