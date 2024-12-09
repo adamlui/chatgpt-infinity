@@ -4,8 +4,6 @@
 # NOTE: Pass --chrome or --chromium to only affect Chromium manifest
 # NOTE: Pass --firefox or --ff to only affect Firefox manifest
 
-arg=${1#-} ; arg=${arg#-} # strip leading dash(es) from args
-
 # Init UI COLORS
 NC="\033[0m"    # no color
 BR="\033[1;91m" # bright red
