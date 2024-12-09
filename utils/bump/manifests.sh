@@ -13,19 +13,23 @@ BY="\033[1;33m" # bright yellow
 BG="\033[1;92m" # bright green
 BW="\033[1;97m" # bright white
 
+# Parse ARGS
+if [[ "$1" == *chrom* ]] ; then chromium_only=true
+elif [[ "$1" == *f*f* ]] ; then ff_only=true
+elif [[ -n "$1" ]] ; then
+    echo -e "${BR}Invalid argument. Use '--chrome', '--chromium', '--firefox', '--ff', or omit arg.${NC}" ; exit 1 ; fi
+
 # Init manifest PATHS
 chromium_manifest="chrome/extension/manifest.json"
 ff_manifest="firefox/extension/manifest.json"
-case "$arg" in
-    chrome|chromium) MANIFEST_PATHS=("$chromium_manifest") ;;
-    firefox|ff) MANIFEST_PATHS=("$ff_manifest") ;;
-    "") MANIFEST_PATHS=("$chromium_manifest" "$ff_manifest") ;;
-    *) echo -e "${BR}Invalid argument. Use '--chrome', '--chromium', '--firefox', '--ff', or omit arg.${NC}" ; exit 1 ;;
-esac
-multi_bump=$( # flag for echos/git commit msg
-    [[ ${#MANIFEST_PATHS[@]} -gt 1 ]] && echo true || echo false)
+if [ "$chromium_only" = true ] ; then MANIFEST_PATHS=$(echo "$chromium_manifest" | grep -i 'chrom')
+elif [ "$ff_only" = true ] ; then MANIFEST_PATHS=$(echo "$ff_manifest" | grep -i 'firefox')
+else MANIFEST_PATHS=("$chromium_manifest" "$ff_manifest") ; fi
+for manifest_path in $MANIFEST_PATHS ; do echo "$manifest_path" ; done
 
 # BUMP versions
+multi_bump=$( # flag for echos/git commit msg
+    [[ ${#MANIFEST_PATHS[@]} -gt 1 ]] && echo true || echo false)
 if $multi_bump
     then version_label="versions in manifests"
     else version_label="version in ${MANIFEST_PATHS[0]}"
