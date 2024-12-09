@@ -52,6 +52,7 @@
         const sriHash = ssri.fromData(
             Buffer.from(await (await fetchData(url)).arrayBuffer()), { algorithms: [algorithm] }).toString()
         console.log(`${sriHash}\n`)
+        return sriHash
     }
 
     function bumpUserJSver(userJSfilePath) {
