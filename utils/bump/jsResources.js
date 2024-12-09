@@ -90,8 +90,8 @@
 
     // Fetch latest commit hash
     console.log('Fetching latest commit hash...')
-    const latestCommitHash = require('child_process').execSync(
-        `git ls-remote https://github.com/adamlui/${repoName}.git HEAD`).toString().split('\t')[0]
+    const latestCommitHash = require('child_process').execFileSync(
+        'git', ['ls-remote', `https://github.com/adamlui/${repoName}.git`, 'HEAD']).toString().split('\t')[0]
     console.log(latestCommitHash + '\n')
 
     // Process each resource
