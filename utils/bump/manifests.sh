@@ -1,8 +1,10 @@
 #!/bin/bash
 
 # Bumps extension manifests + git commit/push
-# NOTE: Pass --chrome or --chromium to only affect Chromium manifest
-# NOTE: Pass --firefox or --ff to only affect Firefox manifest
+# NOTE: Pass --chrome or --chromium to forcibly bump Chromium manifest only
+# NOTE: Pass --firefox or --ff to forcibly bump Firefox manifest only
+
+shopt -s nocasematch # enable case-insensitive matching (to flexibly check commit msg for bumps)
 
 # Init UI COLORS
 NC="\033[0m"    # no color
@@ -33,6 +35,21 @@ TODAY=$(date +'%Y.%-m.%-d') # YYYY.M.D format
 new_versions=() # for dynamic commit msg
 for manifest_path in "${MANIFEST_PATHS[@]}" ; do
 
+    # Check latest commit for extension changes if forcible platform flag not set
+    platform_manifest_path=$(dirname "$manifest_path" | sed 's|^\./||')
+    if [ "$chromium_only" != true ] && [ "$ff_only" != true ] ; then
+        echo "Checking last commit details for $platform_manifest_path..."
+        latest_platform_commit_msg=$(git log -1 --format=%s -- "$platform_manifest_path")
+        if [[ $latest_platform_commit_msg == sump*(version|manifest)* ]] ; then
+            echo -e "No changes found. Skipping...\n" ; continue ; fi
+    fi
+
+    # Echo begin bump
+    manifest_prefix=""
+    if [ "$chromium_only" = true ] ; then manifest_prefix="Chromium "
+    elif [ "$ff_only" = true ] ; then manifest_prefix="Firefox " ; fi
+    echo -e "Bumping version in ${manifest_prefix}manifest..."
+
     # Determine old/new versions
     old_ver=$(sed -n 's/.*"version": *"\([0-9.]*\)".*/\1/p' "$manifest_path")
     if [[ $old_ver == "$TODAY" ]] ; then
@@ -45,16 +62,15 @@ for manifest_path in "${MANIFEST_PATHS[@]}" ; do
 
     # Bump old version
     sed -i "s/\"version\": \"$old_ver\"/\"version\": \"$new_ver\"/" "$manifest_path"
-    ver_change_msg="${BW}v${old_ver}${NC} → ${BG}v${new_ver}${NC}"
-    if [[ ${#MANIFEST_PATHS[@]} -gt 1 ]] ; then bumped_msg="${manifest_path}: ${ver_change_msg}"
-    else bumped_msg="Updated: ${ver_change_msg}" ; fi
-    echo -e "$bumped_msg" ; ((bumped_cnt++))
+    echo -e "Updated: ${BW}v${old_ver}${NC} → ${BG}v${new_ver}${NC}\n"
+    ((bumped_cnt++))
+
 done
 
 # COMMIT/PUSH bump(s)
 if [[ $bumped_cnt -eq 0 ]] ; then echo -e "${BW}Completed. No manifests bumped.${NC}"
 else
-    echo -e "\n${BY}Committing $( (( bumped_cnt > 1 )) && echo bumps || echo bump) to Git...${NC}"
+    echo -e "${BY}Committing $( (( bumped_cnt > 1 )) && echo bumps || echo bump) to Git...${NC}"
 
     # Define commit msg
     COMMIT_MSG="Bumped \`version\`"
