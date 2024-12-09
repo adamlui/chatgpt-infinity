@@ -101,9 +101,8 @@
 
         // Generate/compare SRI hash
         console.log(`Generating SHA-256 hash for ${resourceName}...`)
-        const newSRIhash = await getSRIhash(updatedURL),
-              oldSRIhash = (/[^#]+$/.exec(jsrURL) || [])[0]
-        if (oldSRIhash == newSRIhash) { // SRI hash didn't change
+        const newSRIhash = await getSRIhash(updatedURL)
+        if (newSRIhash == (/[^#]+$/.exec(jsrURL) || [])[0]) { // SRI hash didn't change
             console.log(`${resourceName} already up-to-date!\n`) ; continue } // ...so skip resource
         updatedURL = updatedURL.replace(/#sha.+/, newSRIhash) // otherwise update SRI hash
 
