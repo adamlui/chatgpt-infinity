@@ -23,7 +23,6 @@ ff_manifest_path="firefox/extension/manifest.json"
 if [ "$chromium_only" = true ] ; then MANIFEST_PATHS=$(echo "$chromium_manifest_path" | grep -i 'chrom')
 elif [ "$ff_only" = true ] ; then MANIFEST_PATHS=$(echo "$ff_manifest_path" | grep -i 'firefox')
 else MANIFEST_PATHS=("$chromium_manifest_path" "$ff_manifest_path") ; fi
-for manifest_path in $MANIFEST_PATHS ; do echo "$manifest_path" ; done
 
 # BUMP versions
 if [[ ${#MANIFEST_PATHS[@]} -gt 1 ]] ; then manifest_label="manifests"
