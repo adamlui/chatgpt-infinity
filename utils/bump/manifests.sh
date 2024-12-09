@@ -16,27 +16,25 @@ BW="\033[1;97m" # bright white
 # Init manifest PATHS
 chromium_manifest="chrome/extension/manifest.json"
 ff_manifest="firefox/extension/manifest.json"
-
-# Determine manifests to EDIT
 case "$arg" in
-    chrome|chromium) MANIFESTS_TO_EDIT=("$chromium_manifest") ;;
-    firefox|ff) MANIFESTS_TO_EDIT=("$ff_manifest") ;;
-    "") MANIFESTS_TO_EDIT=("$chromium_manifest" "$ff_manifest") ;;
+    chrome|chromium) MANIFEST_PATHS=("$chromium_manifest") ;;
+    firefox|ff) MANIFEST_PATHS=("$ff_manifest") ;;
+    "") MANIFEST_PATHS=("$chromium_manifest" "$ff_manifest") ;;
     *) echo -e "${BR}Invalid argument. Use '--chrome', '--chromium', '--firefox', '--ff', or omit arg.${NC}" ; exit 1 ;;
 esac
 multi_bump=$( # flag for echos/git commit msg
-    [[ ${#MANIFESTS_TO_EDIT[@]} -gt 1 ]] && echo true || echo false)
+    [[ ${#MANIFEST_PATHS[@]} -gt 1 ]] && echo true || echo false)
 
 # BUMP versions
 if $multi_bump
     then version_label="versions in manifests"
-    else version_label="version in ${MANIFESTS_TO_EDIT[0]}"
+    else version_label="version in ${MANIFEST_PATHS[0]}"
 fi
 echo -e "${BY}\nBumping ${version_label}...${NC}\n"
 bumped_cnt=0
 TODAY=$(date +'%Y.%-m.%-d') # YYYY.M.D format
 new_versions=() # for dynamic commit msg
-for manifest in "${MANIFESTS_TO_EDIT[@]}" ; do
+for manifest in "${MANIFEST_PATHS[@]}" ; do
 
     # Determine old/new versions
     old_ver=$(sed -n 's/.*"version": *"\([0-9.]*\)".*/\1/p' "$manifest")
@@ -55,7 +53,7 @@ for manifest in "${MANIFESTS_TO_EDIT[@]}" ; do
 
     # Bump old version
     sed -i "s/\"version\": \"$old_ver\"/\"version\": \"$new_ver\"/" "$manifest"
-    if [[ ${#MANIFESTS_TO_EDIT[@]} -gt 1 ]]; then
+    if [[ ${#MANIFEST_PATHS[@]} -gt 1 ]]; then
         echo -e "${manifest}: ${BW}v${old_ver}${NC} → ${BG}v${new_ver}${NC}"
     else
         echo -e "${BW}v${old_ver}${NC} → ${BG}v${new_ver}${NC}"
@@ -75,5 +73,5 @@ git add ./**/manifest.json && git commit -n -m "$COMMIT_MSG"
 git push
 
 # Print FINAL summary
-manifest_label=$((( $bumped_cnt > 1 )) && echo "${bumped_cnt} manifests" || echo "${MANIFESTS_TO_EDIT[0]}")
+manifest_label=$((( $bumped_cnt > 1 )) && echo "${bumped_cnt} manifests" || echo "${MANIFEST_PATHS[0]}")
 echo -e "\n${BG}Success! ${manifest_label} updated/committed/pushed to GitHub${NC}"
