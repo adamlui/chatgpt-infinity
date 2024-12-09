@@ -18,11 +18,11 @@ elif [[ -n "$1" ]] ; then
     echo -e "${BR}Invalid argument. Use '--chrome', '--chromium', '--firefox', '--ff', or omit arg.${NC}" ; exit 1 ; fi
 
 # Init manifest PATHS
-chromium_manifest="chrome/extension/manifest.json"
-ff_manifest="firefox/extension/manifest.json"
-if [ "$chromium_only" = true ] ; then MANIFEST_PATHS=$(echo "$chromium_manifest" | grep -i 'chrom')
-elif [ "$ff_only" = true ] ; then MANIFEST_PATHS=$(echo "$ff_manifest" | grep -i 'firefox')
-else MANIFEST_PATHS=("$chromium_manifest" "$ff_manifest") ; fi
+chromium_manifest_path="chrome/extension/manifest.json"
+ff_manifest_path="firefox/extension/manifest.json"
+if [ "$chromium_only" = true ] ; then MANIFEST_PATHS=$(echo "$chromium_manifest_path" | grep -i 'chrom')
+elif [ "$ff_only" = true ] ; then MANIFEST_PATHS=$(echo "$ff_manifest_path" | grep -i 'firefox')
+else MANIFEST_PATHS=("$chromium_manifest_path" "$ff_manifest_path") ; fi
 for manifest_path in $MANIFEST_PATHS ; do echo "$manifest_path" ; done
 
 # BUMP versions
@@ -32,7 +32,7 @@ echo -e "${BY}\nBumping version in ${manifest_label}...${NC}\n"
 bumped_cnt=0
 TODAY=$(date +'%Y.%-m.%-d') # YYYY.M.D format
 new_versions=() # for dynamic commit msg
-for manifest in "${MANIFEST_PATHS[@]}" ; do
+for manifest_path in "${MANIFEST_PATHS[@]}" ; do
 
     # Determine old/new versions
     old_ver=$(sed -n 's/.*"version": *"\([0-9.]*\)".*/\1/p' "$manifest_path")
@@ -45,9 +45,9 @@ for manifest in "${MANIFEST_PATHS[@]}" ; do
     new_versions+=("$new_ver")
 
     # Bump old version
-    sed -i "s/\"version\": \"$old_ver\"/\"version\": \"$new_ver\"/" "$manifest"
+    sed -i "s/\"version\": \"$old_ver\"/\"version\": \"$new_ver\"/" "$manifest_path"
     ver_change_msg="${BW}v${old_ver}${NC} → ${BG}v${new_ver}${NC}"
-    if [[ ${#MANIFEST_PATHS[@]} -gt 1 ]] ; then bumped_msg="${manifest}: ${ver_change_msg}"
+    if [[ ${#MANIFEST_PATHS[@]} -gt 1 ]] ; then bumped_msg="${manifest_path}: ${ver_change_msg}"
     else bumped_msg="Updated: ${ver_change_msg}" ; fi
     echo -e "$bumped_msg" ; ((bumped_cnt++))
 done
