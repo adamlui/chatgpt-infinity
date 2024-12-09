@@ -22,7 +22,7 @@ case "$arg" in
     chrome|chromium) MANIFESTS_TO_EDIT=("$chromium_manifest") ;;
     firefox|ff) MANIFESTS_TO_EDIT=("$ff_manifest") ;;
     "") MANIFESTS_TO_EDIT=("$chromium_manifest" "$ff_manifest") ;;
-    *) echo -e "${BR}Invalid argument. Use 'chrome', 'chromium', 'firefox', 'ff', or leave empty.${NC}" ; exit 1 ;;
+    *) echo -e "${BR}Invalid argument. Use '--chrome', '--chromium', '--firefox', '--ff', or omit arg.${NC}" ; exit 1 ;;
 esac
 multi_bump=$( # flag for echos/git commit msg
     [[ ${#MANIFESTS_TO_EDIT[@]} -gt 1 ]] && echo true || echo false)
