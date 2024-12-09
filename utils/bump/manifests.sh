@@ -48,8 +48,9 @@ for manifest in "${MANIFEST_PATHS[@]}" ; do
 
     # Bump old version
     sed -i "s/\"version\": \"$old_ver\"/\"version\": \"$new_ver\"/" "$manifest"
-    bumped_msg="${BW}v${old_ver}${NC} → ${BG}v${new_ver}${NC}"
-    if [[ ${#MANIFEST_PATHS[@]} -gt 1 ]] ; then bumped_msg="${manifest}: ${bumped_msg}" ; fi
+    ver_change_msg="${BW}v${old_ver}${NC} → ${BG}v${new_ver}${NC}"
+    if [[ ${#MANIFEST_PATHS[@]} -gt 1 ]] ; then bumped_msg="${manifest}: ${ver_change_msg}"
+    else bumped_msg="Updated: ${ver_change_msg}" ; fi
     echo -e "$bumped_msg" ; ((bumped_cnt++))
 done
 
