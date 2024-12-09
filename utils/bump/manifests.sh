@@ -48,12 +48,9 @@ for manifest in "${MANIFEST_PATHS[@]}" ; do
 
     # Bump old version
     sed -i "s/\"version\": \"$old_ver\"/\"version\": \"$new_ver\"/" "$manifest"
-    if [[ ${#MANIFEST_PATHS[@]} -gt 1 ]]; then
-        echo -e "${manifest}: ${BW}v${old_ver}${NC} → ${BG}v${new_ver}${NC}"
-    else
-        echo -e "${BW}v${old_ver}${NC} → ${BG}v${new_ver}${NC}"
-    fi
-    ((bumped_cnt++))
+    bumped_msg="${BW}v${old_ver}${NC} → ${BG}v${new_ver}${NC}"
+    if [[ ${#MANIFEST_PATHS[@]} -gt 1 ]] ; then bumped_msg="${manifest}: ${bumped_msg}" ; fi
+    echo -e "$bumped_msg" ; ((bumped_cnt++))
 done
 
 # Define COMMIT MSG
