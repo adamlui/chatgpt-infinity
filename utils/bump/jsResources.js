@@ -49,8 +49,9 @@
     }
 
     async function getSRIhash(url, algorithm = 'sha256') {
-        return ssri.fromData(
+        const sriHash = ssri.fromData(
             Buffer.from(await (await fetchData(url)).arrayBuffer()), { algorithms: [algorithm] }).toString()
+        console.log(`${sriHash}\n`)
     }
 
     function bumpUserJSver(userJSfilePath) {
@@ -99,9 +100,8 @@
 
         // Generate/compare SRI hash
         console.log(`Generating SHA-256 hash for ${resourceName}...`)
-        const newSRIhash = await getSRIhash(updatedURL)
-        console.log(`${newSRIhash}\n`)
-        const oldSRIhash = (/[^#]+$/.exec(jsrURL) || [])[0]
+        const newSRIhash = await getSRIhash(updatedURL),
+              oldSRIhash = (/[^#]+$/.exec(jsrURL) || [])[0]
         if (oldSRIhash == newSRIhash) { // SRI hash didn't change
             console.log(`${resourceName} already up-to-date!\n`) ; continue } // ...so skip resource
         updatedURL = updatedURL.replace(/#sha.+/, newSRIhash) // otherwise update SRI hash
