@@ -78,7 +78,7 @@
     const userJScontent = fs.readFileSync(userJSfilePath, 'utf-8'),
           re_jsrURL = /^\/\/ @require\s+(https:\/\/cdn\.jsdelivr\.net\/gh\/.+$)/gm,
           jsrURLs = [...userJScontent.matchAll(re_jsrURL)].map(match => match[1])
-    log.success(`${jsrURLs.length} bumpable resource(s) found.`)
+    log.success(`${jsrURLs.length} potentially bumpable resource(s) found.`)
 
     log.working('\nProcessing resource(s)...\n')
     let jsrUpdatedCnt = 0
