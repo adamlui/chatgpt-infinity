@@ -43,7 +43,7 @@
                         res.on('end', () => resolve({ json: () => JSON.parse(rawData) }))
                     }).on('error', err => reject(new Error(err.message)))
                 } catch (err) { reject(new Error('Environment not supported.'))
-            }});
+            }})
         else // use fetch() from Node.js v21+
             return fetch(url)
     }
