@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Bumps extension manifests + git commit/push
+# Bumps extension manifests if changes detected + git commit/push
 # NOTE: Pass --chrome or --chromium to forcibly bump Chromium manifest only
 # NOTE: Pass --firefox or --ff to forcibly bump Firefox manifest only
 
