@@ -90,7 +90,7 @@
     console.log(latestCommitHash + '\n')
 
     // Process each resource
-    const re_commitHash = /@([^/]+)/ ; let fileUpdated = false
+    const re_commitHash = /@([^/]+)/, re_sriHash = /[^#]+$/ ; let fileUpdated = false
     for (const jsrURL of jsrURLs) {
         const resourceName = jsrURL.match(/\w+\/\w+\.js(?=#|$)/)[0] // dir/filename.js for logs
 
@@ -102,9 +102,9 @@
         // Generate/compare SRI hash
         console.log(`Generating SHA-256 hash for ${resourceName}...`)
         const newSRIhash = await getSRIhash(updatedURL)
-        if (newSRIhash == (/[^#]+$/.exec(jsrURL) || [])[0]) { // SRI hash didn't change
+        if (newSRIhash == (re_sriHash.exec(jsrURL) || [])[0]) { // SRI hash didn't change
             console.log(`${resourceName} already up-to-date!\n`) ; continue } // ...so skip resource
-        updatedURL = updatedURL.replace(/#sha.+/, newSRIhash) // otherwise update SRI hash
+        updatedURL = updatedURL.replace(re_sriHash, newSRIhash) // otherwise update SRI hash
 
         // Write updated URL to userscript
         console.log(`Writing updated URL for ${resourceName}...`)
