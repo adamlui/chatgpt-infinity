@@ -35,17 +35,14 @@ new_versions=() # for dynamic commit msg
 for manifest in "${MANIFEST_PATHS[@]}" ; do
 
     # Determine old/new versions
-    old_ver=$(sed -n 's/.*"version": *"\([0-9.]*\)".*/\1/p' "$manifest")
-    if [[ $old_ver == "$TODAY" ]]  # exact match for $TODAY
-        then # bump to $TODAY.1
-            new_ver="$TODAY.1"
-    elif [[ $old_ver == "$TODAY."* ]] # partial match for $TODAY
-        then # bump to $TODAY.n+1
-            LAST_NUMBER=$(echo "$old_ver" | awk -F '.' '{print $NF}')
-            new_ver="$TODAY.$((LAST_NUMBER + 1))"
-    else # no match for $TODAY
-        # bump to $TODAY
-            new_ver="$TODAY"
+    old_ver=$(sed -n 's/.*"version": *"\([0-9.]*\)".*/\1/p' "$manifest_path")
+    if [[ $old_ver == "$TODAY" ]] ; then
+        new_ver="$TODAY.1"
+    elif [[ $old_ver == "$TODAY."* ]] ; then
+        LAST_NUMBER=$(echo "$old_ver" | awk -F '.' '{print $NF}')
+        new_ver="$TODAY.$((LAST_NUMBER + 1))"
+    else
+        new_ver="$TODAY"
     fi
     new_versions+=("$new_ver")
 
