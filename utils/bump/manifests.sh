@@ -6,18 +6,18 @@
 
 arg=${1#-} ; arg=${arg#-} # strip leading dash(es) from args
 
-# Init UI colors
+# Init UI COLORS
 NC="\033[0m"    # no color
 BR="\033[1;91m" # bright red
 BY="\033[1;33m" # bright yellow
 BG="\033[1;92m" # bright green
 BW="\033[1;97m" # bright white
 
-# Init manifest paths
+# Init manifest PATHS
 chromium_manifest="chrome/extension/manifest.json"
 ff_manifest="firefox/extension/manifest.json"
 
-# Determine manifests to edit
+# Determine manifests to EDIT
 case "$arg" in
     chrome|chromium) MANIFESTS_TO_EDIT=("$chromium_manifest") ;;
     firefox|ff) MANIFESTS_TO_EDIT=("$ff_manifest") ;;
@@ -27,7 +27,7 @@ esac
 multi_bump=$( # flag for echos/git commit msg
     [[ ${#MANIFESTS_TO_EDIT[@]} -gt 1 ]] && echo true || echo false)
 
-# Bump versions
+# BUMP versions
 if $multi_bump
     then version_label="versions in manifests"
     else version_label="version in ${MANIFESTS_TO_EDIT[0]}"
@@ -63,17 +63,17 @@ for manifest in "${MANIFESTS_TO_EDIT[@]}" ; do
     ((bumped_cnt++))
 done
 
-# Define commit msg
+# Define COMMIT MSG
 COMMIT_MSG="Bumped \`version\`"
 unique_versions=($(printf "%s\n" "${new_versions[@]}" | sort -u))
 if [[ ${#unique_versions[@]} -eq 1 ]] ; then
     COMMIT_MSG+=" to \`${unique_versions[0]}\`" ; fi
 
-# Commit/push bump(s)
+# COMMIT/PUSH bump(s)
 echo -e "${BY}\nCommitting $((( $bumped_cnt > 1 )) && echo bumps || echo bump) to Git...\n${NC}"
 git add ./**/manifest.json && git commit -n -m "$COMMIT_MSG"
 git push
 
-# Print final summary
+# Print FINAL summary
 manifest_label=$((( $bumped_cnt > 1 )) && echo "${bumped_cnt} manifests" || echo "${MANIFESTS_TO_EDIT[0]}")
 echo -e "\n${BG}Success! ${manifest_label} updated/committed/pushed to GitHub${NC}"
