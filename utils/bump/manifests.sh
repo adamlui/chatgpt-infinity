@@ -26,13 +26,9 @@ else MANIFEST_PATHS=("$chromium_manifest" "$ff_manifest") ; fi
 for manifest_path in $MANIFEST_PATHS ; do echo "$manifest_path" ; done
 
 # BUMP versions
-multi_bump=$( # flag for echos/git commit msg
-    [[ ${#MANIFEST_PATHS[@]} -gt 1 ]] && echo true || echo false)
-if $multi_bump
-    then version_label="versions in manifests"
-    else version_label="version in ${MANIFEST_PATHS[0]}"
-fi
-echo -e "${BY}\nBumping ${version_label}...${NC}\n"
+if [[ ${#MANIFEST_PATHS[@]} -gt 1 ]] ; then manifest_label="manifests"
+else manifest_label="${MANIFEST_PATHS[0]}" ; fi
+echo -e "${BY}\nBumping version in ${manifest_label}...${NC}\n"
 bumped_cnt=0
 TODAY=$(date +'%Y.%-m.%-d') # YYYY.M.D format
 new_versions=() # for dynamic commit msg
