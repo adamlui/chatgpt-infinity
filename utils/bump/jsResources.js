@@ -56,17 +56,17 @@
     function bumpUserJSver(userJSfilePath) {
         const date = new Date(),
               today = `${date.getFullYear()}.${date.getMonth() +1}.${date.getDate()}`, // YYYY.M.D format
-              re_version = /(@version\s+)([\d.]+)/
-        let userJScontent = fs.readFileSync(userJSfilePath, 'utf-8')
-        const currentVer = userJScontent.match(re_version)[2] ; let newVer
+              re_version = /(@version\s+)([\d.]+)/,
+              userJScontent = fs.readFileSync(userJSfilePath, 'utf-8'),
+              currentVer = userJScontent.match(re_version)[2]
+        let newVer
         if (currentVer.startsWith(today)) { // bump sub-ver
             const verParts = currentVer.split('.'),
                   subVer = verParts.length > 3 ? parseInt(verParts[3], 10) +1 : 1
             newVer = `${today}.${subVer}`
         } else // bump to today
             newVer = today
-        userJScontent = userJScontent.replace(re_version, `$1${newVer}`)
-        fs.writeFileSync(userJSfilePath, userJScontent, 'utf-8')
+        fs.writeFileSync(userJSfilePath, userJScontent.replace(re_version, `$1${newVer}`), 'utf-8')
         console.log(`Updated: ${bw}v${currentVer}${nc} → ${bg}v${newVer}${nc}\n`)
     }
 
