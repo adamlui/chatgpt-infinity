@@ -82,7 +82,7 @@
 
     log.working('\nCollecting JS resources...\n')
     const userJScontent = fs.readFileSync(userJSfilePath, 'utf-8'),
-          jsrURLs = [...userJScontent.matchAll(rePatterns.jsURL)].map(match => match[1])
+          jsrURLs = [...userJScontent.matchAll(rePatterns.jsrURL)].map(match => match[1])
     log.success(`${jsrURLs.length} potentially bumpable resource(s) found.`)
 
     log.working('\nProcessing resource(s)...\n')
