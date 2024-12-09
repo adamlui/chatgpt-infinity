@@ -52,17 +52,21 @@ for manifest in "${MANIFEST_PATHS[@]}" ; do
     echo -e "$bumped_msg" ; ((bumped_cnt++))
 done
 
-# Define COMMIT MSG
-COMMIT_MSG="Bumped \`version\`"
-unique_versions=($(printf "%s\n" "${new_versions[@]}" | sort -u))
-if [[ ${#unique_versions[@]} -eq 1 ]] ; then
-    COMMIT_MSG+=" to \`${unique_versions[0]}\`" ; fi
-
 # COMMIT/PUSH bump(s)
-echo -e "${BY}\nCommitting $((( $bumped_cnt > 1 )) && echo bumps || echo bump) to Git...\n${NC}"
-git add ./**/manifest.json && git commit -n -m "$COMMIT_MSG"
-git push
+if [[ $bumped_cnt -eq 0 ]] ; then echo -e "${BW}Completed. No manifests bumped.${NC}"
+else
+    echo -e "\n${BY}Committing $( (( bumped_cnt > 1 )) && echo bumps || echo bump) to Git...${NC}"
 
-# Print FINAL summary
-manifest_label=$((( $bumped_cnt > 1 )) && echo "${bumped_cnt} manifests" || echo "${MANIFEST_PATHS[0]}")
-echo -e "\n${BG}Success! ${manifest_label} updated/committed/pushed to GitHub${NC}"
+    # Define commit msg
+    COMMIT_MSG="Bumped \`version\`"
+    unique_versions=($(printf "%s\n" "${new_versions[@]}" | sort -u))
+    if [[ ${#unique_versions[@]} -eq 1 ]] ; then COMMIT_MSG+=" to \`${unique_versions[0]}\`" ; fi
+
+    # Commit/push bump(s)
+    git add ./**/manifest.json && git commit -n -m "$COMMIT_MSG"
+    git push
+
+    # Print final summary
+    manifest_label=$( [[ $bumped_cnt -gt 1 ]] && echo "manifests" || echo "manifest")
+    echo -e "\n${BG}Success! ${bumped_cnt} ${manifest_label} updated/committed/pushed to GitHub${NC}"
+fi
