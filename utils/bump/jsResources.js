@@ -95,7 +95,7 @@
         const resourceName = jsrURL.match(/\w+\/\w+\.js(?=#|$)/)[0] // dir/filename.js for logs
 
         // Compare commit hashes
-        if ((jsrURL.match(re_commitHash) || [])[1] == latestCommitHash) { // commit hash didn't change...
+        if ((re_commitHash.exec(jsrURL) || [])[1] == latestCommitHash) { // commit hash didn't change...
             console.log(`${resourceName} already up-to-date!\n`) ; continue } // ...so skip resource
         let updatedURL = jsrURL.replace(re_commitHash, `@${latestCommitHash}`) // othrwise update commit hash
 
