@@ -22,15 +22,15 @@
     "lint:all": "eslint .",
     "lint:fix": "eslint . --fix --cache",
     "lint:fix-all": "eslint . --fix",
-    "bump": "bash utils/bump/manifests.sh",
+    "bump": "bash utils/bump/extension-manifests.sh",
     "bump:js": "node utils/bump/jsResources",
-    "bump:ext": "bash utils/bump/manifests.sh",
-    "bump:extensions": "bash utils/bump/manifests.sh",
-    "bump:manifests": "bash utils/bump/manifests.sh",
-    "bump:chrome": "bash utils/bump/manifests.sh --chrome",
-    "bump:chromium": "bash utils/bump/manifests.sh --chrome",
-    "bump:ff": "bash utils/bump/manifests.sh --ff",
-    "bump:firefox": "bash utils/bump/manifests.sh --ff"
+    "bump:ext": "bash utils/bump/extension-manifests.sh",
+    "bump:extensions": "bash utils/bump/extension-manifests.sh",
+    "bump:manifests": "bash utils/bump/extension-manifests.sh",
+    "bump:chrome": "bash utils/bump/extension-manifests.sh --chrome",
+    "bump:chromium": "bash utils/bump/extension-manifests.sh --chrome",
+    "bump:ff": "bash utils/bump/extension-manifests.sh --ff",
+    "bump:firefox": "bash utils/bump/extension-manifests.sh --ff"
   },
   "devDependencies": {
     "@eslint/json": "^0.8.0",
