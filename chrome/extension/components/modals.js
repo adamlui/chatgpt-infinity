@@ -2,7 +2,7 @@
 
 window.modals = {
     stack: [], // of types of undismissed modals
-    get class() { return `${this.dependencies.app.name.replace(/ /g, '-').toLowerCase()}-modal` },
+    get class() { return `${this.dependencies.app.cssPrefix}-modal` },
 
     dependencies: {
         import(dependencies) {
