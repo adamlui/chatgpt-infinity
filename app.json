@@ -1,5 +1,5 @@
 {
-  "name": "ChatGPT Infinity", "symbol": "∞",
+  "name": "ChatGPT Infinity", "symbol": "∞", "cssPrefix": "chatgpt-infinity",
   "author": { "name": "Adam Lui", "url": "https://github.com/adamlui" },
   "urls": {
     "chatgptJS": "https://chatgpt.js.org",
