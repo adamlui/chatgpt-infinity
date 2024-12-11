@@ -27,9 +27,9 @@ window.toggles = {
             const switchSpan = document.createElement('span')
             Object.assign(switchSpan.style, {
                 position: 'relative',
-                left: `${ window.toggles.dependencies.env.browser.isMobile ? 169
-                           : !window.toggles.dependencies.env.ui.firstLink ? 160 : 154 }px`,
-                bottom: `${ !window.toggles.dependencies.env.ui.firstLink ? -0.15 : 0 }em`,
+                left: `${ toggles.dependencies.env.browser.isMobile ? 169
+                           : !toggles.dependencies.env.ui.firstLink ? 160 : 154 }px`,
+                bottom: `${ !toggles.dependencies.env.ui.firstLink ? -0.15 : 0 }em`,
                 backgroundColor: '#AD68FF', // init opposite  final color
                 width: '30px', height: '15px', '-webkit-transition': '.4s', transition: '0.4s',  borderRadius: '28px'
             })
@@ -46,12 +46,12 @@ window.toggles = {
 
             // Create/stylize/fill label
             const toggleLabel = document.createElement('label')
-            if (!window.toggles.dependencies.env.ui.firstLink) // add font size/weight since no ui.firstLink to borrow from
+            if (!toggles.dependencies.env.ui.firstLink) // add font size/weight since no ui.firstLink to borrow from
                 toggleLabel.style.cssText = 'font-size: 0.875rem, font-weight: 600'
             Object.assign(toggleLabel.style, {
-                marginLeft: `-${ !window.toggles.dependencies.env.ui.firstLink ? 23 : 41 }px`, // left-shift to navicon
+                marginLeft: `-${ !toggles.dependencies.env.ui.firstLink ? 23 : 41 }px`, // left-shift to navicon
                 cursor: 'pointer', // add finger cursor on hover
-                width: `${ window.toggles.dependencies.env.browser.isMobile ? 201 : 148 }px`, // to truncate overflown text
+                width: `${ toggles.dependencies.env.browser.isMobile ? 201 : 148 }px`, // to truncate overflown text
                 overflow: 'hidden', textOverflow: 'ellipsis' // to truncate overflown text
             })
 
@@ -60,11 +60,11 @@ window.toggles = {
 
             // Stylize/classify
             this.div.style.cssText += 'height: 37px ; margin: 2px 0 ; user-select: none ; cursor: pointer'
-            if (window.toggles.dependencies.env.ui.firstLink) { // borrow/assign classes from sidebar elems
-                const firstIcon = window.toggles.dependencies.env.ui.firstLink.querySelector('div:first-child'),
-                      firstLabel = window.toggles.dependencies.env.ui.firstLink.querySelector('div:nth-child(2)')
+            if (toggles.dependencies.env.ui.firstLink) { // borrow/assign classes from sidebar elems
+                const firstIcon = toggles.dependencies.env.ui.firstLink.querySelector('div:first-child'),
+                      firstLabel = toggles.dependencies.env.ui.firstLink.querySelector('div:nth-child(2)')
                 this.div.classList.add(
-                    ...window.toggles.dependencies.env.ui.firstLink.classList, ...(firstLabel?.classList || []))
+                    ...toggles.dependencies.env.ui.firstLink.classList, ...(firstLabel?.classList || []))
                 this.div.querySelector('img')?.classList.add(...(firstIcon?.classList || []))
             }
 
@@ -73,9 +73,9 @@ window.toggles = {
             // Add click listener
             this.div.onclick = () => {
                 settings.save('infinityMode', !toggleInput.checked)
-                window.toggles.dependencies.syncConfigToUI({ updatedKey: 'infinityMode' })
-                window.toggles.dependencies.notify(`${window.toggles.getMsg('menuLabel_infinityMode')}: ${
-                    window.toggles.getMsg(`state_${ config.infinityMode ? 'on' : 'off' }`).toUpperCase()}`)
+                toggles.dependencies.syncConfigToUI({ updatedKey: 'infinityMode' })
+                toggles.dependencies.notify(`${toggles.getMsg('menuLabel_infinityMode')}: ${
+                    toggles.getMsg(`state_${ config.infinityMode ? 'on' : 'off' }`).toUpperCase()}`)
             }
         },
 
@@ -86,7 +86,7 @@ window.toggles = {
             this.status = 'inserting' ; if (!this.div) this.create()
 
             // Insert toggle
-            const sidebar = document.querySelectorAll('nav')[window.toggles.dependencies.env.browser.isMobile ? 1 : 0]
+            const sidebar = document.querySelectorAll('nav')[toggles.dependencies.env.browser.isMobile ? 1 : 0]
             if (!sidebar) return
             sidebar.insertBefore(this.div, sidebar.children[1])
 
@@ -98,9 +98,9 @@ window.toggles = {
             if (knobSpan) knobSpan.style.boxShadow = (
                 'rgba(0, 0, 0, .3) 0 1px 2px 0' + ( chatgpt.isDarkMode() ? ', rgba(0, 0, 0, .15) 0 3px 6px 2px' : '' ))
             if (navicon) navicon.src = `${ // update navicon color in case scheme changed
-                window.toggles.dependencies.app.urls.mediaHost}/images/icons/infinity-symbol/`
+                toggles.dependencies.app.urls.mediaHost}/images/icons/infinity-symbol/`
               + `${ chatgpt.isDarkMode() ? 'white' : 'black' }/icon32.png?${
-                    window.toggles.dependencies.app.latestAssetCommitHash}`
+                    toggles.dependencies.app.latestAssetCommitHash}`
 
             this.status = 'inserted'
         },
@@ -113,8 +113,8 @@ window.toggles = {
                   knobSpan = switchSpan.firstChild
             this.div.style.display = config.toggleHidden || config.extensionDisabled ? 'none' : 'flex'
             toggleInput.checked = config.infinityMode
-            toggleLabel.innerText = `${window.toggles.getMsg('menuLabel_infinityMode')} ${
-                window.toggles.getMsg('state_' + ( toggleInput.checked ? 'enabled' : 'disabled' ))}`
+            toggleLabel.innerText = `${toggles.getMsg('menuLabel_infinityMode')} ${
+                toggles.getMsg('state_' + ( toggleInput.checked ? 'enabled' : 'disabled' ))}`
             setTimeout(() => {
                 switchSpan.style.backgroundColor = toggleInput.checked ? '#ad68ff' : '#ccc'
                 switchSpan.style.boxShadow = toggleInput.checked ? '2px 1px 9px #d8a9ff' : 'none'
