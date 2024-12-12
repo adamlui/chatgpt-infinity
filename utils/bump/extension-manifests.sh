@@ -70,7 +70,9 @@ done
 # COMMIT/PUSH bump(s)
 if (( $bumped_cnt == 0 )) ; then echo -e "${BW}Completed. No manifests bumped.${NC}"
 else
-    echo -e "${BY}Committing $((( bumped_cnt > 1 )) && echo bumps || echo bump) to Git...${NC}"
+    manifest_label=$((( $bumped_cnt > 1 )) && echo "manifests" || echo "manifest")
+    echo -e "\n${BG + bumped_cnt} ${manifest_label} bumped!${NC}"
+    echo -e "\n${BY}Committing $((( bumped_cnt > 1 )) && echo bumps || echo bump) to Git...${NC}"
 
     # Define commit msg
     COMMIT_MSG="Bumped \`version\`"
@@ -80,8 +82,5 @@ else
     # Commit/push bump(s)
     git add ./**/manifest.json && git commit -n -m "$COMMIT_MSG"
     git push
-
-    # Print final summary
-    manifest_label=$((( $bumped_cnt > 1 )) && echo "manifests" || echo "manifest")
     echo -e "\n${BG}Success! ${bumped_cnt} ${manifest_label} updated/committed/pushed to GitHub${NC}"
 fi
