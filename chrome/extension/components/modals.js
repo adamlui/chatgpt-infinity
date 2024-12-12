@@ -32,17 +32,17 @@ window.modals = {
         return alert
     },
 
-    init(modal) {
-        modal.classList.add(this.class)
-        modal.onmousedown = this.dragHandlers.mousedown
-        dom.fillStarryBG(modal)
-    },
-
     open(modalType, modalSubType) {
         const modal = modalSubType ? this[modalType][modalSubType]() : this[modalType]() // show modal
         this.stack.unshift(modalSubType ? `${modalType}_${modalSubType}` : modalType) // add to stack
         this.init(modal) // add class/listener/starry bg
         this.observeRemoval(modal, modalType, modalSubType) // to maintain stack for proper nav
+    },
+
+    init(modal) {
+        modal.classList.add(this.class)
+        modal.onmousedown = this.dragHandlers.mousedown
+        dom.fillStarryBG(modal)
     },
 
     observeRemoval(modal, modalType, modalSubType) { // to maintain stack for proper nav
