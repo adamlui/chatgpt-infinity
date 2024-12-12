@@ -72,7 +72,11 @@ window.toggles = {
 
             this.updateState() // to opposite init state for animation on 1st load
 
-            // Add click listener
+            // Add listeners
+            this.div.onmouseover = () =>
+                this.div.style.setProperty('--item-background-color', 'var(--sidebar-surface-secondary)')
+            this.div.onmouseout = () =>
+                this.div.style.setProperty('--item-background-color', 'var(--sidebar-surface-primary)')
             this.div.onclick = () => {
                 settings.save('infinityMode', !toggleInput.checked)
                 toggles.dependencies.syncConfigToUI({ updatedKey: 'infinityMode' })
