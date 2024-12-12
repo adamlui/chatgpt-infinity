@@ -60,8 +60,11 @@ window.toggles = {
             // Append elements
             this.div.append(navicon, toggleInput, switchSpan, toggleLabel)
 
-            // Stylize/classify
-            this.div.style.cssText += 'height: 37px ; margin: 2px 0 ; user-select: none ; cursor: pointer'
+            // Stylize/classify master div
+            this.div.style.cssText += (
+                'max-height: 37px ; margin: 2px 0 ; user-select: none ; cursor: pointer'
+              + 'flex-grow: unset' // overcome OpenAI .grow
+            )
             if (toggles.dependencies.env.ui.firstLink) { // borrow/assign classes from sidebar elems
                 const firstIcon = toggles.dependencies.env.ui.firstLink.querySelector('div:first-child'),
                       firstLabel = toggles.dependencies.env.ui.firstLink.querySelector('div:nth-child(2)')
@@ -70,7 +73,8 @@ window.toggles = {
                 this.div.querySelector('img')?.classList.add(...(firstIcon?.classList || []))
             }
 
-            this.updateState() // to opposite init state for animation on 1st load
+            // Update color/state
+            this.updateColor() ; this.updateState() // to opposite init state for animation on 1st load
 
             // Add listeners
             this.div.onmouseover = this.div.onmouseout = event =>
@@ -86,26 +90,19 @@ window.toggles = {
 
         insert() {
             if (this.status?.startsWith('insert') || document.getElementById(this.ids.navicon)) return
-            this.status = 'inserting' ; if (!this.div) this.create()
-
-            // Insert toggle
             const sidebar = document.querySelectorAll('nav')[toggles.dependencies.env.browser.isMobile ? 1 : 0]
             if (!sidebar) return
-            sidebar.insertBefore(this.div, sidebar.children[1])
+            this.status = 'inserting' ; if (!this.div) this.create()
+            sidebar.insertBefore(this.div, sidebar.children[1]) ; this.status = 'inserted'
+        },
 
-            // Tweak styles
-            const knobSpan = document.getElementById(this.ids.knobSpan),
-                  navicon = document.getElementById(this.ids.navicon)
-            this.div.style.flexGrow = 'unset' // overcome OpenAI .grow
-            this.div.style.paddingLeft = '8px'
-            if (knobSpan) knobSpan.style.boxShadow = (
+        updateColor() {
+            const knobSpan = this.div.querySelector(`#${this.ids.knobSpan}`),
+                  navicon = this.div.querySelector(`#${this.ids.navicon}`)
+            knobSpan.style.boxShadow = (
                 'rgba(0, 0, 0, .3) 0 1px 2px 0' + ( chatgpt.isDarkMode() ? ', rgba(0, 0, 0, .15) 0 3px 6px 2px' : '' ))
-            if (navicon) navicon.src = `${ // update navicon color in case scheme changed
-                toggles.dependencies.app.urls.mediaHost}/images/icons/infinity-symbol/`
-              + `${ chatgpt.isDarkMode() ? 'white' : 'black' }/icon32.png?${
-                    toggles.dependencies.app.latestAssetCommitHash}`
-
-            this.status = 'inserted'
+            navicon.src = `${toggles.dependencies.app.urls.mediaHost}/images/icons/infinity-symbol/${
+                chatgpt.isDarkMode() ? 'white' : 'black' }/icon32.png?${toggles.dependencies.app.latestAssetCommitHash}`
         },
 
         updateState() {

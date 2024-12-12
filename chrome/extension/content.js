@@ -160,6 +160,10 @@
                 toggles.sidebar.status = 'missing' ; toggles.sidebar.insert() }
     }).observe(document.body, { attributes: true, subtree: true })
 
+    // Monitor SCHEME CHANGES to update sidebar toggle color
+    new MutationObserver(() => toggles.sidebar.updateColor())
+        .observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
+
     // Disable distracting SIDEBAR CLICK-ZOOM effect
     if (!document.documentElement.hasAttribute('sidebar-click-zoom-observed')) {
         new MutationObserver(mutations => mutations.forEach(({ target }) => {
@@ -167,7 +171,7 @@
                 && !target.id.endsWith('-knob-span') // exclude our toggles.sidebar
                 && target.style.transform != 'none' // click-zoom occurred
             ) target.style.transform = 'none'
-        })).observe(document.body, { attributes: true, subtree: true, attributeFilter: [ 'style' ]})
+        })).observe(document.body, { attributes: true, subtree: true, attributeFilter: ['style'] })
         document.documentElement.setAttribute('sidebar-click-zoom-observed', true)
     }
 
