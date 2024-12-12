@@ -9,13 +9,16 @@ window.toggles = {
         return typeof GM_info != 'undefined' ? this.dependencies.app.msgs[key] : chrome.i18n.getMessage(key) },
 
     sidebar: {
+        ids: {
+            get navicon() { return `${toggles.dependencies.app.cssPrefix}-toggle-navicon` },
+            get knobSpan() { return `${toggles.dependencies.app.cssPrefix}-toggle-knob-span` }
+        },
 
         create() {
             this.div = document.createElement('div')
 
             // Create/ID/size/position navicon
-            const navicon = document.createElement('img')
-            navicon.id = `${toggles.dependencies.app.cssPrefix}-toggle-navicon`
+            const navicon = document.createElement('img') ; navicon.id = this.ids.navicon
             navicon.style.cssText = 'width: 1.25rem ; height: 1.25rem ; margin-left: 2px ; margin-right: 4px'
 
             // Create/disable/hide checkbox
@@ -35,8 +38,7 @@ window.toggles = {
             })
 
             // Create/stylize knob, append to switch
-            const knobSpan = document.createElement('span')
-            knobSpan.id = `${toggles.dependencies.app.cssPrefix}-toggle-knob-span`
+            const knobSpan = document.createElement('span') ; knobSpan.id = this.ids.knobSpan
             Object.assign(knobSpan.style, {
                 position: 'absolute', left: '3px', bottom: '1.25px',
                 width: '12px', height: '12px', content: '""', borderRadius: '28px',
@@ -80,9 +82,7 @@ window.toggles = {
         },
 
         insert() {
-            if (this.status?.startsWith('insert')
-                || document.getElementById(`${toggles.dependencies.app.cssPrefix}-toggle-navicon`)
-            ) return
+            if (this.status?.startsWith('insert') || document.getElementById(this.ids.navicon)) return
             this.status = 'inserting' ; if (!this.div) this.create()
 
             // Insert toggle
@@ -91,8 +91,8 @@ window.toggles = {
             sidebar.insertBefore(this.div, sidebar.children[1])
 
             // Tweak styles
-            const knobSpan = document.getElementById(`${toggles.dependencies.app.cssPrefix}-toggle-knob-span`),
-                  navicon = document.getElementById(`${toggles.dependencies.app.cssPrefix}-toggle-navicon`)
+            const knobSpan = document.getElementById(this.ids.knobSpan),
+                  navicon = document.getElementById(this.ids.navicon)
             this.div.style.flexGrow = 'unset' // overcome OpenAI .grow
             this.div.style.paddingLeft = '8px'
             if (knobSpan) knobSpan.style.boxShadow = (
