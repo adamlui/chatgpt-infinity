@@ -6,8 +6,10 @@ window.modals = {
 
     dependencies: {
         import(dependencies) {
-            // { app, browserLang: env.browser.language (userscript only), updateCheck (userscript only) }
-            for (const name in dependencies) this[name] = dependencies[name] }
+            // { app, env, browserLang: env.browser.language (userscript only), isMobile: env.browser.isMobile,
+            //   updateCheck (userscript only) }
+            for (const name in dependencies) this[name] = dependencies[name]
+        }
     },
 
     env: {
@@ -40,9 +42,30 @@ window.modals = {
     },
 
     init(modal) {
-        modal.classList.add(this.class)
-        modal.onmousedown = this.dragHandlers.mousedown
+        if (!this.styles) this.stylize() // to init/append stylesheet
+        modal.classList.add(this.class) ; modal.onmousedown = this.dragHandlers.mousedown // add class/listener
         dom.fillStarryBG(modal)
+    },
+
+    stylize() {
+        if (!this.styles) {
+            this.styles = document.createElement('style') ; this.styles.id = `${this.class}-styles`
+            document.head.append(this.styles)
+        }
+        this.styles.innerText = (
+            `.${this.class} { z-index: 13456 ; position: absolute }` // to be click-draggable
+          + ( chatgpt.isDarkMode() ? '.chatgpt-modal > div { border: 1px solid white }' : '' )
+          + `.${this.class} button {`
+              + 'font-size: 0.77rem ; text-transform: uppercase ;' // shrink/uppercase labels
+              + 'border-radius: 0 !important ;' // square borders
+              + 'transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out ;' // smoothen hover fx
+              + 'cursor: pointer !important ;' // add finger cursor
+              + 'padding: 5px !important ; min-width: 102px }' // resize
+          + `.${this.class} button:hover {` // add zoom, re-scheme
+              + 'transform: scale(1.055) ; color: black !important ;'
+              + `background-color: #${ chatgpt.isDarkMode() ? '00cfff' : '9cdaff' } !important }`
+          + ( !this.dependencies.isMobile ? `.${this.class} .modal-buttons { margin-left: -13px !important }` : '' )
+        )
     },
 
     observeRemoval(modal, modalType, modalSubType) { // to maintain stack for proper nav
