@@ -71,8 +71,8 @@ done
 if (( $bumped_cnt == 0 )) ; then echo -e "${BW}Completed. No manifests bumped.${NC}"
 else
     plural_suffix=$((( $bumped_cnt > 1 )) && echo "s")
-    echo -e "\n${BG}${bumped_cnt} manifest${plural_suffix} bumped!${NC}"
-    echo -e "\n${BY}Committing bump${plural_suffix} to Git...${NC}"
+    echo -e "${BG}${bumped_cnt} manifest${plural_suffix} bumped!\n${NC}"
+    echo -e "${BY}Committing bump${plural_suffix} to Git...\n${NC}"
 
     # Define commit msg
     COMMIT_MSG="Bumped \`version\`"
