@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.12
+// @version             2024.12.12.1
 // @license             MIT
 // @icon                https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?f196818
 // @icon64              https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?f196818
@@ -221,7 +221,7 @@
 // @connect             update.greasyfork.org
 // @require             https://cdn.jsdelivr.net/npm/@kudoai/chatgpt.js@3.3.5/dist/chatgpt.min.js#sha256-rfC4kk8q0byrafp7X0Qf9vaa3JNvkHRwNnUt6uL2hUE=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@ea98e40ac9fc7a7291066fd37cec18c686f0527a/chrome/extension/components/modals.js#sha256-JNz+PE08K/hzGKr/kUqugf5OmAlncZPqLDXbLWsi3u8=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@d96903d39f81e3321dfa9f7c02f1959911e8f9fd/chrome/extension/components/toggles.js#sha256-7jzzFq8E/mkQz5dMLWTJAEpEErjWo9sC+ekq0HMo2vE=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@31ca0e0c4f1977187bcfa994b235c52c6148611a/chrome/extension/components/toggles.js#sha256-w8Oi+Av2chPcwtBIT5zLsILP3X0C6K/U4r4DDw26MZs=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@ea98e40ac9fc7a7291066fd37cec18c686f0527a/chrome/extension/lib/dom.js#sha256-J71PBNlBQlpHR47s12FlrFmNWORj6/U8usOYvC/gWu4=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@704858dafc0915cb67367ea949e6997408aaa29c/chrome/extension/lib/settings.js#sha256-xuu3HlQPLCQLCjRi2noGBdcpCZkt38L8jGhM2EvPSGE=
 // @resource brsCSS     https://assets.aiwebextensions.com/styles/rising-stars/css/black.min.css?v=891df10#sha256-XXTVJUEWrx/FwnEXbj5DcnIjwJtFAEAp0CdT6pV1+n8=
@@ -644,7 +644,7 @@
 
     // Monitor NODE CHANGES to maintain sidebar toggle visibility
     new MutationObserver(() => {
-        if (!config.toggleHidden && !document.getElementById('infinity-toggle-navicon')
+        if (!config.toggleHidden && !document.getElementById(toggles.sidebar.ids.navicon)
             && toggles.sidebar.status != 'inserting') {
                 toggles.sidebar.status = 'missing' ; toggles.sidebar.insert() }
     }).observe(document.body, { attributes: true, subtree: true })
