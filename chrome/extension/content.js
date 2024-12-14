@@ -136,7 +136,10 @@
     env.ui = { firstLink: chatgpt.getNewChatLink() }
 
     // Add LISTENER to auto-disable Infinity Mode
-    document.onvisibilitychange = () => { if (config.infinityMode) infinity.deactivate() };
+    document.onvisibilitychange = () => {
+        if (config.infinityMode) {
+            settings.save('infinityMode', false) ; syncConfigToUI({ updatedKey: 'infinityMode' }) }
+    }
 
     // Add STARS styles
     ['black', 'white'].forEach(color => document.head.append(

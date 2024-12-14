@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.12.2
+// @version             2024.12.13
 // @license             MIT
 // @icon                https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?f196818
 // @icon64              https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?f196818
@@ -616,7 +616,10 @@
 
     // Add LISTENER to auto-disable Infinity Mode
     if ('hidden' in document) // ...if Page Visibility API supported
-        document.onvisibilitychange = () => { if (config.infinityMode) infinity.deactivate() }
+        document.onvisibilitychange = () => {
+            if (config.infinityMode) {
+                settings.save('infinityMode', false) ; syncConfigToUI({ updatedKey: 'infinityMode' }) }
+        }
 
     // Add/update TWEAKS style
     const tweaksStyleUpdated = 1733992854076 // timestamp of last edit for this file's tweaksStyle

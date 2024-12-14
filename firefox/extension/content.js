@@ -139,7 +139,10 @@
     env.ui = { firstLink: chatgpt.getNewChatLink() }
 
     // Add LISTENER to auto-disable Infinity Mode
-    document.onvisibilitychange = () => { if (config.infinityMode) infinity.deactivate() }
+    document.onvisibilitychange = () => {
+        if (config.infinityMode) {
+            settings.save('infinityMode', false) ; syncConfigToUI({ updatedKey: 'infinityMode' }) }
+    }
 
     // Add/update TWEAKS style
     const tweaksStyleUpdated = 1733992854076  // timestamp of last edit for this file's tweaksStyle
