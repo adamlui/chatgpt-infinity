@@ -154,7 +154,7 @@
             document.head.append(tweaksStyle)
         }
         tweaksStyle.innerText = '* { scrollbar-width: thin }' // make FF scrollbar skinny to not crop toggle
-    }; // eslint-disable-line
+    }
 
     // Add STARS styles
     ['black', 'white'].forEach(color => document.head.append(
