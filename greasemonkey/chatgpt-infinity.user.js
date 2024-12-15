@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.15
+// @version             2024.12.15.1
 // @license             MIT
 // @icon                https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?f196818
 // @icon64              https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?f196818
@@ -620,18 +620,6 @@
             if (config.infinityMode) {
                 settings.save('infinityMode', false) ; syncConfigToUI({ updatedKey: 'infinityMode' }) }
         }
-
-    // Add/update TWEAKS style
-    const tweaksStyleUpdated = 1733992854076 // timestamp of last edit for this file's tweaksStyle
-    let tweaksStyle = document.getElementById('tweaks-style') // try to select existing style
-    if (!tweaksStyle || parseInt(tweaksStyle.getAttribute('last-updated')) < tweaksStyleUpdated) {
-        if (!tweaksStyle) { // outright missing, create/id/attr/append it first
-            tweaksStyle = dom.create.elem('style',
-                { id: 'tweaks-style', 'last-updated': tweaksStyleUpdated.toString() })
-            document.head.append(tweaksStyle)
-        }
-        tweaksStyle.innerText = '* { scrollbar-width: thin }' // make FF scrollbar skinny to not crop toggle
-    }
 
     // Add STARS styles
     ['brs', 'wrs'].forEach(cssType => document.head.append(dom.create.style(GM_getResourceText(`${cssType}CSS`))))

@@ -144,18 +144,6 @@
             settings.save('infinityMode', false) ; syncConfigToUI({ updatedKey: 'infinityMode' }) }
     }
 
-    // Add/update TWEAKS style
-    const tweaksStyleUpdated = 1733992854076  // timestamp of last edit for this file's tweaksStyle
-    let tweaksStyle = document.getElementById('tweaks-style') // try to select existing style
-    if (!tweaksStyle || parseInt(tweaksStyle.getAttribute('last-updated')) < tweaksStyleUpdated) {
-        if (!tweaksStyle) { // outright missing, create/id/attr/append it first
-            tweaksStyle = dom.create.elem('style',
-                { id: 'tweaks-style', 'last-updated': tweaksStyleUpdated.toString() })
-            document.head.append(tweaksStyle)
-        }
-        tweaksStyle.innerText = '* { scrollbar-width: thin }' // make FF scrollbar skinny to not crop toggle
-    }
-
     // Add STARS styles
     ['black', 'white'].forEach(color => document.head.append(
         dom.create.elem('link', { rel: 'stylesheet',
