@@ -25,8 +25,9 @@
 
     // Init REGEX
     const rePatterns = {
-        commitHash: /@([^/]+)/, jsrURL: /^\/\/ @require\s+(https:\/\/cdn\.jsdelivr\.net\/gh\/.+$)/gm,
-        resourceName: /\w+\/\w+\.js(?=#|$)/, sriHash: /[^#]+$/
+        resourceName: /\w+\/\w+\.js(?=#|$)/,
+        jsrURL: /^\/\/ @require\s+(https:\/\/cdn\.jsdelivr\.net\/gh\/.+$)/gm,
+        commitHash: /@([^/]+)/, sriHash: /[^#]+$/
     }
 
     // Define FUNCTIONS
