@@ -3,7 +3,7 @@ name: Sync _locales/ between <chrome|firefox>/extension/, then ** to adamlui/ai-
 on:
   push:
     branches: [main]
-    paths: ["**", "!.*", "!package*.json", "!eslint.config*"]
+    paths: ["**", "!.*"]
 
 jobs:
   build:
