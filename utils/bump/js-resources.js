@@ -101,14 +101,14 @@
         const resourceName = (rePatterns.resourceName.exec(jsrURL) || ['resource'])[0] // dir/filename.js for logs
 
         // Compare commit hashes
-        if ((rePatterns.commitHash.exec(jsrURL) || [])[1] == latestCommitHash) { // commit hash didn't change...
+        if (rePatterns.commitHash.exec(jsrURL)?.[1] == latestCommitHash) { // commit hash didn't change...
             console.log(`${resourceName} already up-to-date!\n`) ; continue } // ...so skip resource
         let updatedURL = jsrURL.replace(rePatterns.commitHash, `@${latestCommitHash}`) // othrwise update commit hash
 
         // Generate/compare SRI hash
         console.log(`Generating SHA-256 hash for ${resourceName}...`)
         const newSRIhash = await getSRIhash(updatedURL)
-        if ((rePatterns.sriHash.exec(jsrURL) || [])[0] == newSRIhash) { // SRI hash didn't change
+        if (rePatterns.sriHash.exec(jsrURL)?.[0] == newSRIhash) { // SRI hash didn't change
             console.log(`${resourceName} already up-to-date!\n`) ; continue } // ...so skip resource
         updatedURL = updatedURL.replace(rePatterns.sriHash, newSRIhash) // otherwise update SRI hash
 
