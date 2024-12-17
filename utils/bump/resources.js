@@ -59,13 +59,13 @@
             return fetch(url)
     }
 
-    async function isValidURL(url) {
+    async function isValidResource(resourceURL) {
         try {
-            const urlIsValid = !(await (await fetch(url)).text()).startsWith('Package size exceeded')
-            if (!urlIsValid) log.error(`\nInvalid URL: ${url}\n`)
-            return urlIsValid
+            const resourceIsValid = !(await (await fetchData(resourceURL)).text()).startsWith('Package size exceeded')
+            if (!resourceIsValid) log.error(`\nInvalid resource: ${resourceURL}\n`)
+            return resourceIsValid
         } catch (err) {
-            log.error(`\nCannot validate URL: ${url}\n`)
+            log.error(`\nCannot validate resource: ${resourceURL}\n`)
             return false
         }
     }
@@ -125,7 +125,7 @@
 
     // Process each resource
     for (const resourceURL of resourceURLs) {
-        if (!await isValidURL(resourceURL)) continue
+        if (!await isValidResource(resourceURL)) continue
         const resourceName = rePatterns.resourceName.exec(resourceURL)?.[0] || 'resource' // dir/filename for logs
 
         // Compare commit hashes
@@ -137,7 +137,7 @@
                 continue // ...so skip resource
             }
         let updatedURL = resourceURL.replace(rePatterns.commitHash, `$1${resourceLatestCommitHash}`) // otherwise update commit hash
-        if (!await isValidURL(updatedURL)) continue
+        if (!await isValidResource(updatedURL)) continue
 
         // Generate/compare SRI hash
         console.log(`${ !log.endedWithLineBreak ? '\n' : '' }Generating SHA-256 hash for ${resourceName}...`)
@@ -147,7 +147,7 @@
             continue // ...so skip resource
         }
         updatedURL = updatedURL.replace(rePatterns.sriHash, newSRIhash) // otherwise update SRI hash
-        if (!await isValidURL(updatedURL)) continue
+        if (!await isValidResource(updatedURL)) continue
 
         // Write updated URL to userscript
         console.log(`Writing updated URL for ${resourceName}...`)
