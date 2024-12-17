@@ -45,10 +45,10 @@
                 try { // to use http or https module
                     const protocol = url.match(/^([^:]+):\/\//)[1]
                     if (!/^https?$/.test(protocol)) reject(new Error('Invalid fetchData() URL.'))
-                    require(protocol).get(url, res => {
+                    require(protocol).get(url, resp => {
                         let rawData = ''
-                        res.on('data', chunk => rawData += chunk)
-                        res.on('end', () => resolve({ json: () => JSON.parse(rawData) }))
+                        resp.on('data', chunk => rawData += chunk)
+                        resp.on('end', () => resolve({ json: () => JSON.parse(rawData) }))
                     }).on('error', err => reject(new Error(err.message)))
                 } catch (err) { reject(new Error('Environment not supported.'))
             }})
