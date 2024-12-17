@@ -23,6 +23,7 @@
     "lint:fix": "eslint . --fix --cache",
     "lint:fix-all": "eslint . --fix",
     "bump": "bash utils/bump/extension-manifests.sh",
+    "bump:res": "node utils/bump/resources",
     "bump:resources": "node utils/bump/resources",
     "bump:ext": "bash utils/bump/extension-manifests.sh",
     "bump:extensions": "bash utils/bump/extension-manifests.sh",
