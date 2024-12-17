@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // Bumps @require'd JS in userscript
-// NOTE: Doesn't git commit to allow potentially required script editing
+// NOTE: Doesn't git commit to allow potentially required script editing from breaking changes
 
 (async () => {
 
