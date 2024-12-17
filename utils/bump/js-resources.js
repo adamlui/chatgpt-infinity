@@ -100,7 +100,7 @@
         const resourceName = rePatterns.resourceName.exec(jsrURL)?.[0] || 'resource' // dir/filename.js for logs
 
         // Compare commit hashes
-        if (!latestCommitHash.startsWith(rePatterns.commitHash.exec(jsrURL)?.[1] || '')) { // commit hash didn't change...
+        if (latestCommitHash.startsWith(rePatterns.commitHash.exec(jsrURL)?.[1] || '')) { // commit hash didn't change...
             console.log(`${resourceName} already up-to-date!\n`) ; continue } // ...so skip resource
         let updatedURL = jsrURL.replace(rePatterns.commitHash, `@${latestCommitHash}`) // othrwise update commit hash
 
