@@ -37,7 +37,7 @@
     const log = {};
     ['info', 'working', 'success'].forEach(lvl => log[lvl] = function(msg) {
         const logColor = lvl == 'info' ? bw : lvl == 'working' ? by : lvl == 'success' ? bg : ''
-        console.log(logColor + msg + nc) ; log.endedWithLineBreak = msg.toString().endsWith('\n')
+        console.log(logColor + ( log.endedWithLineBreak ? msg.trimStart() : msg ) + nc) ; log.endedWithLineBreak = msg.toString().endsWith('\n')
     })
 
     function fetchData(url) {
