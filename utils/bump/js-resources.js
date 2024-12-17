@@ -97,7 +97,7 @@
 
     // Process each resource
     for (const jsrURL of jsrURLs) {
-        const resourceName = (rePatterns.resourceName.exec(jsrURL) || ['resource'])[0] // dir/filename.js for logs
+        const resourceName = rePatterns.resourceName.exec(jsrURL)?.[0] || 'resource' // dir/filename.js for logs
 
         // Compare commit hashes
         if (rePatterns.commitHash.exec(jsrURL)?.[1] == latestCommitHash) { // commit hash didn't change...
