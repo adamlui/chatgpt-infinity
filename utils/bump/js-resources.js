@@ -87,7 +87,7 @@
     log.success(`${jsURLs.length} potentially bumpable resource(s) found.`)
 
     log.working('\nProcessing resource(s)...\n')
-    let jsrUpdatedCnt = 0
+    let urlsUpdatedCnt = 0
 
     // Fetch latest commit hash
     console.log('Fetching latest commit hash...')
@@ -115,15 +115,15 @@
         console.log(`Writing updated URL for ${resourceName}...`)
         fs.writeFileSync(userJSfilePath, userJScontent.replace(jsURL, updatedURL), 'utf-8')
         log.success(`${resourceName} bumped!\n`)
-        jsrUpdatedCnt++
+        urlsUpdatedCnt++
     }
-    if (jsrUpdatedCnt > 0) {
+    if (urlsUpdatedCnt > 0) {
         console.log('Bumping userscript version...')
         bumpUserJSver(userJSfilePath)
     }
 
     // Log final summary
-    log[jsrUpdatedCnt > 0 ? 'success' : 'info'](
-        `${ jsrUpdatedCnt > 0 ? 'Success! ' : '' }${jsrUpdatedCnt} resource(s) bumped.`)
+    log[urlsUpdatedCnt > 0 ? 'success' : 'info'](
+        `${ urlsUpdatedCnt > 0 ? 'Success! ' : '' }${urlsUpdatedCnt} resource(s) bumped.`)
 
 })()
