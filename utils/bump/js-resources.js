@@ -25,9 +25,10 @@
 
     // Init REGEX
     const rePatterns = {
-        resourceName: /\w+\/\w+\.js(?=#|$)/,
+        resourceName: /[^/]+\/(?:css|dist)?\/?[^/]+\.(?:css|js)(?=[?#]|$)/,
+        cssURL: /^\/\/ @resource.+(https:\/\/assets.+\.css.+)$/gm,
         jsURL: /^\/\/ @require\s+(https:\/\/cdn\.jsdelivr\.net\/gh\/.+$)/gm,
-        commitHash: /@([^/]+)/, sriHash: /[^#]+$/
+        commitHash: /(@|\?v=)([^/#]+)/, sriHash: /[^#]+$/
     }
 
     // Define FUNCTIONS
@@ -76,39 +77,58 @@
         } else // bump to today
             newVer = today
         fs.writeFileSync(userJSfilePath, userJScontent.replace(re_version, `$1${newVer}`), 'utf-8')
-        console.log(`Updated: ${bw}v${currentVer}${nc} → ${bg}v${newVer}${nc}\n`)
+        console.log(`Updated: ${bw}v${currentVer}${nc} → ${bg}v${newVer}${nc}`)
     }
 
     // Run MAIN routine
 
-    log.working('\nCollecting JS resources...\n')
+    // Collect resourcs
+    log.working('\nCollecting resources...\n')
     const userJScontent = fs.readFileSync(userJSfilePath, 'utf-8'),
-          resourceURLs = [...userJScontent.matchAll(rePatterns.jsURL)].map(match => match[1])
+          reResourceURL = new RegExp(`(?:${rePatterns.cssURL.source})|(?:${rePatterns.jsURL.source})`, 'gm'),
+          resourceURLs = [...userJScontent.matchAll(reResourceURL)].map(match => match[1] || match[2])
     log.success(`${resourceURLs.length} potentially bumpable resource(s) found.`)
+
+    // Fetch latest commit hash for adamlui/ai-web-extensions/assets/styles/rising-stars
+    const ghEndpoint = 'https://api.github.com/repos/adamlui/ai-web-extensions/commits',
+          risingStarsPath = 'assets/styles/rising-stars'
+    log.working(`\nFetching latest commit hash for ${risingStarsPath}...\n`)
+    const latestCommitHashes = {
+        risingStars: (await (await fetch(`${ghEndpoint}?path=${risingStarsPath}`)).json())[0]?.sha }
+    console.log(`${latestCommitHashes.risingStars}`)
 
     log.working('\nProcessing resource(s)...\n')
     let urlsUpdatedCnt = 0
 
     // Fetch latest commit hash
-    console.log('Fetching latest commit hash...')
-    const latestCommitHash = require('child_process').execFileSync(
-        'git', ['ls-remote', `https://github.com/adamlui/${repoName}.git`, 'HEAD']).toString().split('\t')[0]
-    console.log(latestCommitHash + '\n')
+    if (resourceURLs.some(url => url.includes(repoName))) {
+        console.log('Fetching latest commit hash for repo...')
+        latestCommitHashes.repoResources = require('child_process').execFileSync(
+            'git', ['ls-remote', `https://github.com/adamlui/${repoName}.git`, 'HEAD']).toString().split('\t')[0]
+        console.log(`${latestCommitHashes.repoResources}\n`)
+    }
 
     // Process each resource
     for (const resourceURL of resourceURLs) {
-        const resourceName = rePatterns.resourceName.exec(resourceURL)?.[0] || 'resource' // dir/filename.js for logs
+        const resourceName = rePatterns.resourceName.exec(resourceURL)?.[0] || 'resource' // dir/filename for logs
 
         // Compare commit hashes
-        if (latestCommitHash.startsWith(rePatterns.commitHash.exec(resourceURL)?.[1] || '')) { // commit hash didn't change...
-            console.log(`${resourceName} already up-to-date!\n`) ; continue } // ...so skip resource
-        let updatedURL = resourceURL.replace(rePatterns.commitHash, `@${latestCommitHash}`) // othrwise update commit hash
+        const resourceLatestCommitHash = latestCommitHashes[
+            resourceURL.includes(repoName) ? 'repoResources' : 'risingStars']
+        if (resourceLatestCommitHash.startsWith(
+            rePatterns.commitHash.exec(resourceURL)?.[2] || '')) { // commit hash didn't change...
+                console.log(`${resourceName} already up-to-date!`) ; log.hadLineBreak = false
+                continue // ...so skip resource
+            }
+        let updatedURL = resourceURL.replace(rePatterns.commitHash, `$1${resourceLatestCommitHash}`) // otherwise update commit hash
 
         // Generate/compare SRI hash
-        console.log(`Generating SHA-256 hash for ${resourceName}...`)
+        console.log(`${ !log.hadLineBreak ? '\n' : '' }Generating SHA-256 hash for ${resourceName}...`)
         const newSRIhash = await getSRIhash(updatedURL)
         if (rePatterns.sriHash.exec(resourceURL)?.[0] == newSRIhash) { // SRI hash didn't change
-            console.log(`${resourceName} already up-to-date!\n`) ; continue } // ...so skip resource
+            console.log(`${resourceName} already up-to-date!`) ; log.hadLineBreak = false
+            continue // ...so skip resource
+        }
         updatedURL = updatedURL.replace(rePatterns.sriHash, newSRIhash) // otherwise update SRI hash
 
         // Write updated URL to userscript
@@ -119,12 +139,12 @@
         urlsUpdatedCnt++
     }
     if (urlsUpdatedCnt > 0) {
-        console.log('Bumping userscript version...')
+        console.log(`${ !log.hadLineBreak ? '\n' : '' }Bumping userscript version...`)
         bumpUserJSver(userJSfilePath)
     }
 
     // Log final summary
     log[urlsUpdatedCnt > 0 ? 'success' : 'info'](
-        `${ urlsUpdatedCnt > 0 ? 'Success! ' : '' }${urlsUpdatedCnt} resource(s) bumped.`)
+        `\n${ urlsUpdatedCnt > 0 ? 'Success! ' : '' }${urlsUpdatedCnt} resource(s) bumped.`)
 
 })()
