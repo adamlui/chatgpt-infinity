@@ -33,11 +33,9 @@
     // Define FUNCTIONS
 
     const log = {};
-    ['info', 'working', 'success'].forEach(lvl => {
-        log[lvl] = function(msg) {
-            const logColor = lvl == 'info' ? bw : lvl == 'working' ? by : lvl == 'success' ? bg : ''
-            console.log(logColor + msg + nc) ; log.hadLineBreak = msg.toString().endsWith('\n')
-        }
+    ['info', 'working', 'success'].forEach(lvl => log[lvl] = function(msg) {
+        const logColor = lvl == 'info' ? bw : lvl == 'working' ? by : lvl == 'success' ? bg : ''
+        console.log(logColor + msg + nc) ; log.hadLineBreak = msg.toString().endsWith('\n')
     })
 
     function fetchData(url) {
