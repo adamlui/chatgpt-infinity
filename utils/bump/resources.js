@@ -27,7 +27,7 @@
     const rePatterns = {
         resourceName: /[^/]+\/(?:css|dist)?\/?[^/]+\.(?:css|js)(?=[?#]|$)/,
         cssURL: /^\/\/ @resource.+(https:\/\/assets.+\.css.+)$/,
-        jsURL: /^\/\/ @require\s+(https:\/\/cdn\.jsdelivr\.net\/gh\/.+$)/,
+        jsURL: /^\/\/ @require\s+(https:\/\/cdn\.jsdelivr\.net\/gh\/.+)$/,
         commitHash: /(@|\?v=)([^/#]+)/, sriHash: /[^#]+$/
     }
 
