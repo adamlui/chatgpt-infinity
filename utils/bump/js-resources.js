@@ -83,8 +83,8 @@
 
     log.working('\nCollecting JS resources...\n')
     const userJScontent = fs.readFileSync(userJSfilePath, 'utf-8'),
-          jsURLs = [...userJScontent.matchAll(rePatterns.jsURL)].map(match => match[1])
-    log.success(`${jsURLs.length} potentially bumpable resource(s) found.`)
+          resourceURLs = [...userJScontent.matchAll(rePatterns.jsURL)].map(match => match[1])
+    log.success(`${resourceURLs.length} potentially bumpable resource(s) found.`)
 
     log.working('\nProcessing resource(s)...\n')
     let urlsUpdatedCnt = 0
@@ -96,24 +96,24 @@
     console.log(latestCommitHash + '\n')
 
     // Process each resource
-    for (const jsURL of jsURLs) {
-        const resourceName = rePatterns.resourceName.exec(jsURL)?.[0] || 'resource' // dir/filename.js for logs
+    for (const resourceURL of resourceURLs) {
+        const resourceName = rePatterns.resourceName.exec(resourceURL)?.[0] || 'resource' // dir/filename.js for logs
 
         // Compare commit hashes
-        if (latestCommitHash.startsWith(rePatterns.commitHash.exec(jsURL)?.[1] || '')) { // commit hash didn't change...
+        if (latestCommitHash.startsWith(rePatterns.commitHash.exec(resourceURL)?.[1] || '')) { // commit hash didn't change...
             console.log(`${resourceName} already up-to-date!\n`) ; continue } // ...so skip resource
-        let updatedURL = jsURL.replace(rePatterns.commitHash, `@${latestCommitHash}`) // othrwise update commit hash
+        let updatedURL = resourceURL.replace(rePatterns.commitHash, `@${latestCommitHash}`) // othrwise update commit hash
 
         // Generate/compare SRI hash
         console.log(`Generating SHA-256 hash for ${resourceName}...`)
         const newSRIhash = await getSRIhash(updatedURL)
-        if (rePatterns.sriHash.exec(jsURL)?.[0] == newSRIhash) { // SRI hash didn't change
+        if (rePatterns.sriHash.exec(resourceURL)?.[0] == newSRIhash) { // SRI hash didn't change
             console.log(`${resourceName} already up-to-date!\n`) ; continue } // ...so skip resource
         updatedURL = updatedURL.replace(rePatterns.sriHash, newSRIhash) // otherwise update SRI hash
 
         // Write updated URL to userscript
         console.log(`Writing updated URL for ${resourceName}...`)
-        fs.writeFileSync(userJSfilePath, userJScontent.replace(jsURL, updatedURL), 'utf-8')
+        fs.writeFileSync(userJSfilePath, userJScontent.replace(resourceURL, updatedURL), 'utf-8')
         log.success(`${resourceName} bumped!\n`)
         urlsUpdatedCnt++
     }
