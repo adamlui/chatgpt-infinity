@@ -35,7 +35,7 @@
     // Define FUNCTIONS
 
     const log = {};
-    ['info', 'working', 'success'].forEach(lvl => log[lvl] = function(msg) {
+    ['hash', 'info', 'working', 'success'].forEach(lvl => log[lvl] = function(msg) {
         const logColor = lvl == 'info' ? bw : lvl == 'working' ? by : lvl == 'success' ? bg : ''
         console.log(logColor + ( log.endedWithLineBreak ? msg.trimStart() : msg ) + nc) ; log.endedWithLineBreak = msg.toString().endsWith('\n')
     })
@@ -60,7 +60,7 @@
     async function getSRIhash(url, algorithm = 'sha256') {
         const sriHash = ssri.fromData(
             Buffer.from(await (await fetchData(url)).arrayBuffer()), { algorithms: [algorithm] }).toString()
-        console.log(`${dg + sriHash + nc}\n`)
+        log.hash(`${sriHash}\n`)
         return sriHash
     }
 
@@ -97,7 +97,7 @@
     log.working(`\nFetching latest commit hash for ${risingStarsPath}...\n`)
     const latestCommitHashes = {
         risingStars: (await (await fetch(`${ghEndpoint}?path=${risingStarsPath}`)).json())[0]?.sha }
-    console.log(`${dg + latestCommitHashes.risingStars + nc}`)
+    log.hash(latestCommitHashes.risingStars)
 
     log.working('\nProcessing resource(s)...\n')
     let urlsUpdatedCnt = 0
