@@ -113,6 +113,7 @@
 
         // Write updated URL to userscript
         console.log(`Writing updated URL for ${resourceName}...`)
+        const userJScontent = fs.readFileSync(userJSfilePath, 'utf-8')
         fs.writeFileSync(userJSfilePath, userJScontent.replace(resourceURL, updatedURL), 'utf-8')
         log.success(`${resourceName} bumped!\n`)
         urlsUpdatedCnt++
