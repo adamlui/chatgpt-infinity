@@ -84,9 +84,10 @@
 
     // Collect resourcs
     log.working('\nCollecting resources...\n')
-    const userJScontent = fs.readFileSync(userJSfilePath, 'utf-8'),
-          reResourceURL = new RegExp(`(?:${rePatterns.cssURL.source})|(?:${rePatterns.jsURL.source})`, 'gm'),
-          resourceURLs = [...userJScontent.matchAll(reResourceURL)].map(match => match[1] || match[2])
+    const userJScontent = fs.readFileSync(userJSfilePath, 'utf-8')
+    const reResourceURL = new RegExp( // eslint-disable-next-line
+        `(?:${rePatterns.cssURL.source})|(?:${rePatterns.jsURL.source})`, 'gm')
+    const resourceURLs = [...userJScontent.matchAll(reResourceURL)].map(match => match[1] || match[2])
     log.success(`${resourceURLs.length} potentially bumpable resource(s) found.`)
 
     // Fetch latest commit hash for adamlui/ai-web-extensions/assets/styles/rising-stars
