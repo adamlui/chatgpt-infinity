@@ -147,7 +147,7 @@
     // Add STARS styles
     ['black', 'white'].forEach(color => document.head.append(
         dom.create.elem('link', { rel: 'stylesheet',
-            href: `https://assets.aiwebextensions.com/styles/rising-stars/css/${color}.min.css?v=891df10`
+            href: `https://assets.aiwebextensions.com/styles/rising-stars/css/${color}.min.css?v=0cde30f9ae3ce99ae998141f6e7a36de9b0cc2e7`
     })))
 
     toggles.dependencies.import({ app, env, notify, syncConfigToUI })

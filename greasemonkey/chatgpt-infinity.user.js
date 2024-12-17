@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.15.1
+// @version             2024.12.17
 // @license             MIT
 // @icon                https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?f196818
 // @icon64              https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?f196818
@@ -222,10 +222,10 @@
 // @require             https://cdn.jsdelivr.net/npm/@kudoai/chatgpt.js@3.3.5/dist/chatgpt.min.js#sha256-rfC4kk8q0byrafp7X0Qf9vaa3JNvkHRwNnUt6uL2hUE=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@da009bdb76f075b0639c7f35aad391021dc4956b/chrome/extension/components/modals.js#sha256-eEHUKQOY7b7yxk49YBUxhPm2D34ERqnWFT8eyjrWI9w=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@22a9c7a1f491853d48d02455651d150f9c1cdfa4/chrome/extension/components/toggles.js#sha256-DXOR/IvjPnKqORnmWCNDrW79IQOtWzHXsicGzECXrQg=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@ea98e40ac9fc7a7291066fd37cec18c686f0527a/chrome/extension/lib/dom.js#sha256-J71PBNlBQlpHR47s12FlrFmNWORj6/U8usOYvC/gWu4=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@e05e2ccd6cd3890e782a17bd47519700a35e0091/chrome/extension/lib/dom.js#sha256-D5SNzWGIPvOEh7mTFWdEuLQWftXlGUoqFwij+1wOws0=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@704858dafc0915cb67367ea949e6997408aaa29c/chrome/extension/lib/settings.js#sha256-xuu3HlQPLCQLCjRi2noGBdcpCZkt38L8jGhM2EvPSGE=
-// @resource brsCSS     https://assets.aiwebextensions.com/styles/rising-stars/css/black.min.css?v=891df10#sha256-XXTVJUEWrx/FwnEXbj5DcnIjwJtFAEAp0CdT6pV1+n8=
-// @resource wrsCSS     https://assets.aiwebextensions.com/styles/rising-stars/css/white.min.css?v=891df10#sha256-7epqkWDhCgDP7Lv/ASLvlqbOn4D5GpnGolOUl65e9j8=
+// @resource brsCSS     https://assets.aiwebextensions.com/styles/rising-stars/dist/black.min.css?v=0cde30f9ae3ce99ae998141f6e7a36de9b0cc2e7#sha256-4nbm81/JSas4wmxFIdliBBzoEEHRZ057TpzNX1PoQIs=
+// @resource wrsCSS     https://assets.aiwebextensions.com/styles/rising-stars/dist/white.min.css?v=0cde30f9ae3ce99ae998141f6e7a36de9b0cc2e7#sha256-pW8xWWV6tm8Q6Ms+HWZv6+QzzTLJPyL1DyE18ywpVaE=
 // @grant               GM_setValue
 // @grant               GM_getValue
 // @grant               GM_registerMenuCommand
