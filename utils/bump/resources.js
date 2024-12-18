@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // Bumps @require'd JS + rising-stars CSS @resource's in userscript
-// NOTE: Doesn't git commit to allow script editing from breaking changes
+// NOTE: Doesn't git commit to allow potentially required script editing from breaking changes
 
 (async () => {
 
@@ -80,9 +80,9 @@
     function bumpUserJSver(userJSfilePath) {
         const date = new Date(),
               today = `${date.getFullYear()}.${date.getMonth() +1}.${date.getDate()}`, // YYYY.M.D format
-              re_version = /(@version\s+)([\d.]+)/,
+              reVersion = /(@version\s+)([\d.]+)/,
               userJScontent = fs.readFileSync(userJSfilePath, 'utf-8'),
-              currentVer = userJScontent.match(re_version)[2]
+              currentVer = userJScontent.match(reVersion)[2]
         let newVer
         if (currentVer.startsWith(today)) { // bump sub-ver
             const verParts = currentVer.split('.'),
@@ -90,7 +90,7 @@
             newVer = `${today}.${subVer}`
         } else // bump to today
             newVer = today
-        fs.writeFileSync(userJSfilePath, userJScontent.replace(re_version, `$1${newVer}`), 'utf-8')
+        fs.writeFileSync(userJSfilePath, userJScontent.replace(reVersion, `$1${newVer}`), 'utf-8')
         console.log(`Updated: ${bw}v${currentVer}${nc} → ${bg}v${newVer}${nc}`)
     }
 
