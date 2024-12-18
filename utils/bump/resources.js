@@ -77,9 +77,9 @@
         return latestCommitHash
     }
 
-    async function getSRIhash(url, algorithm = 'sha256') {
+    async function generateSRIhash(resURL, algorithm = 'sha256') {
         const sriHash = ssri.fromData(
-            Buffer.from(await (await fetchData(url)).arrayBuffer()), { algorithms: [algorithm] }).toString()
+            Buffer.from(await (await fetchData(resURL)).arrayBuffer()), { algorithms: [algorithm] }).toString()
         log.hash(`${sriHash}\n`)
         return sriHash
     }
@@ -148,7 +148,7 @@
 
         // Generate/compare/update SRI hash
         console.log(`${ !log.endedWithLineBreak ? '\n' : '' }Generating SHA-256 hash for ${resName}...`)
-        const newSRIhash = await getSRIhash(updatedURL)
+        const newSRIhash = await generateSRIhash(updatedURL)
         if (rePatterns.sriHash.exec(resURL)?.[0] == newSRIhash) { // SRI hash didn't change
             console.log(`${resName} already up-to-date!`) ; log.endedWithLineBreak = false
             continue // ...so skip resource
