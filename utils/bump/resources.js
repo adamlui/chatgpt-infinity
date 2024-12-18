@@ -27,7 +27,7 @@
 
     // Init REGEX
     const rePatterns = {
-        resourceName: /[^/]+\/(?:css|dist)?\/?[^/]+\.(?:css|js)(?=[?#]|$)/,
+        resName: /[^/]+\/(?:css|dist)?\/?[^/]+\.(?:css|js)(?=[?#]|$)/,
         cssURL: /^\/\/ @resource.+(https:\/\/assets.+\.css.+)$/,
         jsURL: /^\/\/ @require\s+(https:\/\/cdn\.jsdelivr\.net\/gh\/.+)$/,
         commitHash: /(@|\?v=)([^/#]+)/, sriHash: /[^#]+$/
@@ -59,13 +59,13 @@
             return fetch(url)
     }
 
-    async function isValidResource(resourceURL) {
+    async function isValidResource(resURL) {
         try {
-            const resourceIsValid = !(await (await fetchData(resourceURL)).text()).startsWith('Package size exceeded')
-            if (!resourceIsValid) log.error(`\nInvalid resource: ${resourceURL}\n`)
-            return resourceIsValid
+            const resIsValid = !(await (await fetchData(resURL)).text()).startsWith('Package size exceeded')
+            if (!resIsValid) log.error(`\nInvalid resource: ${resURL}\n`)
+            return resIsValid
         } catch (err) {
-            log.error(`\nCannot validate resource: ${resourceURL}\n`)
+            log.error(`\nCannot validate resource: ${resURL}\n`)
             return null
         }
     }
@@ -106,10 +106,10 @@
     // Collect resourcs
     log.working('\nCollecting resources...\n')
     const userJScontent = fs.readFileSync(userJSfilePath, 'utf-8')
-    const reResourceURL = new RegExp( // eslint-disable-next-line
+    const reResURL = new RegExp( // eslint-disable-next-line
         `(?:${rePatterns.cssURL.source})|(?:${rePatterns.jsURL.source})`, 'gm')
-    const resourceURLs = [...userJScontent.matchAll(reResourceURL)].map(match => match[1] || match[2])
-    log.success(`${resourceURLs.length} potentially bumpable resource(s) found.`)
+    const resURLs = [...userJScontent.matchAll(reResURL)].map(match => match[1] || match[2])
+    log.success(`${resURLs.length} potentially bumpable resource(s) found.`)
 
     // Fetch latest commit hash for adamlui/ai-web-extensions/assets/styles/rising-stars
     const risingStarsPath = 'assets/styles/rising-stars'
@@ -120,46 +120,46 @@
     let urlsUpdatedCnt = 0
 
     // Fetch latest commit hash for repo/chrom<e|ium>/extension
-    if (resourceURLs.some(url => url.includes(repoName))) {
+    if (resURLs.some(url => url.includes(repoName))) {
         console.log('Fetching latest commit hash for Chromium extension...')
         for (const chrDirName of ['chromium', 'chrome']) {
-            latestCommitHashes.repoResources = await getLatestCommitHash(
+            latestCommitHashes.repoRes = await getLatestCommitHash(
                 `adamlui/${repoName}`, `${chrDirName}/extension`)
-            if (latestCommitHashes.repoResources) break
+            if (latestCommitHashes.repoRes) break
         }
     }
 
     // Process each resource
-    for (const resourceURL of resourceURLs) {
-        if (!await isValidResource(resourceURL)) continue
-        const resourceName = rePatterns.resourceName.exec(resourceURL)?.[0] || 'resource' // dir/filename for logs
+    for (const resURL of resURLs) {
+        if (!await isValidResource(resURL)) continue
+        const resName = rePatterns.resName.exec(resURL)?.[0] || 'resource' // dir/filename for logs
 
         // Compare commit hashes
-        const resourceLatestCommitHash = latestCommitHashes[
-            resourceURL.includes(repoName) ? 'repoResources' : 'risingStars']
-        if (resourceLatestCommitHash.startsWith(
-            rePatterns.commitHash.exec(resourceURL)?.[2] || '')) { // commit hash didn't change...
-                console.log(`${resourceName} already up-to-date!`) ; log.endedWithLineBreak = false
+        const resLatestCommitHash = latestCommitHashes[
+            resURL.includes(repoName) ? 'repoRes' : 'risingStars']
+        if (resLatestCommitHash.startsWith(
+            rePatterns.commitHash.exec(resURL)?.[2] || '')) { // commit hash didn't change...
+                console.log(`${resName} already up-to-date!`) ; log.endedWithLineBreak = false
                 continue // ...so skip resource
             }
-        let updatedURL = resourceURL.replace(rePatterns.commitHash, `$1${resourceLatestCommitHash}`) // otherwise update commit hash
+        let updatedURL = resURL.replace(rePatterns.commitHash, `$1${resLatestCommitHash}`) // otherwise update commit hash
         if (!await isValidResource(updatedURL)) continue
 
         // Generate/compare SRI hash
-        console.log(`${ !log.endedWithLineBreak ? '\n' : '' }Generating SHA-256 hash for ${resourceName}...`)
+        console.log(`${ !log.endedWithLineBreak ? '\n' : '' }Generating SHA-256 hash for ${resName}...`)
         const newSRIhash = await getSRIhash(updatedURL)
-        if (rePatterns.sriHash.exec(resourceURL)?.[0] == newSRIhash) { // SRI hash didn't change
-            console.log(`${resourceName} already up-to-date!`) ; log.endedWithLineBreak = false
+        if (rePatterns.sriHash.exec(resURL)?.[0] == newSRIhash) { // SRI hash didn't change
+            console.log(`${resName} already up-to-date!`) ; log.endedWithLineBreak = false
             continue // ...so skip resource
         }
         updatedURL = updatedURL.replace(rePatterns.sriHash, newSRIhash) // otherwise update SRI hash
         if (!await isValidResource(updatedURL)) continue
 
         // Write updated URL to userscript
-        console.log(`Writing updated URL for ${resourceName}...`)
+        console.log(`Writing updated URL for ${resName}...`)
         const userJScontent = fs.readFileSync(userJSfilePath, 'utf-8')
-        fs.writeFileSync(userJSfilePath, userJScontent.replace(resourceURL, updatedURL), 'utf-8')
-        log.success(`${resourceName} bumped!\n`)
+        fs.writeFileSync(userJSfilePath, userJScontent.replace(resURL, updatedURL), 'utf-8')
+        log.success(`${resName} bumped!\n`)
         urlsUpdatedCnt++
     }
     if (urlsUpdatedCnt > 0) {
