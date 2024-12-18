@@ -72,7 +72,7 @@
 
     async function getLatestCommitHash(repo, path) {
         const endpoint = `https://api.github.com/repos/${repo}/commits`,
-              latestCommitHash = (await (await fetch(`${endpoint}?path=${ path || '' }`)).json())[0]?.sha
+              latestCommitHash = (await (await fetchData(`${endpoint}?path=${ path || '' }`)).json())[0]?.sha
         if (latestCommitHash) log.hash(`${latestCommitHash}\n`)
         return latestCommitHash
     }
