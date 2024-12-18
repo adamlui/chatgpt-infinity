@@ -131,29 +131,30 @@
 
     // Process each resource
     for (const resURL of resURLs) {
-        if (!await isValidResource(resURL)) continue
+        if (!await isValidResource(resURL)) continue // to next resource
         const resName = rePatterns.resName.exec(resURL)?.[0] || 'resource' // dir/filename for logs
 
-        // Compare commit hashes
-        const resLatestCommitHash = latestCommitHashes[
-            resURL.includes(repoName) ? 'repoRes' : 'risingStars']
-        if (resLatestCommitHash.startsWith(
+        // Compare/update commit hash
+        let resLatestCommitHash = latestCommitHashes[resURL.includes(repoName) ? 'repoRes' : 'risingStars']
+        if (resLatestCommitHash.startsWith( // compare hashes
             rePatterns.commitHash.exec(resURL)?.[2] || '')) { // commit hash didn't change...
                 console.log(`${resName} already up-to-date!`) ; log.endedWithLineBreak = false
                 continue // ...so skip resource
             }
-        let updatedURL = resURL.replace(rePatterns.commitHash, `$1${resLatestCommitHash}`) // otherwise update commit hash
-        if (!await isValidResource(updatedURL)) continue
+        if (resURL.includes('?v=')) // full hash wasn't required for URL whitelisting
+            resLatestCommitHash = resLatestCommitHash.substring(0, 7) // ...so abbr it
+        let updatedURL = resURL.replace(rePatterns.commitHash, `$1${resLatestCommitHash}`) // update hash
+        if (!await isValidResource(updatedURL)) continue // to next resource
 
-        // Generate/compare SRI hash
+        // Generate/compare/update SRI hash
         console.log(`${ !log.endedWithLineBreak ? '\n' : '' }Generating SHA-256 hash for ${resName}...`)
         const newSRIhash = await getSRIhash(updatedURL)
         if (rePatterns.sriHash.exec(resURL)?.[0] == newSRIhash) { // SRI hash didn't change
             console.log(`${resName} already up-to-date!`) ; log.endedWithLineBreak = false
             continue // ...so skip resource
         }
-        updatedURL = updatedURL.replace(rePatterns.sriHash, newSRIhash) // otherwise update SRI hash
-        if (!await isValidResource(updatedURL)) continue
+        updatedURL = updatedURL.replace(rePatterns.sriHash, newSRIhash) // update hash
+        if (!await isValidResource(updatedURL)) continue // to next resource
 
         // Write updated URL to userscript
         console.log(`Writing updated URL for ${resName}...`)
