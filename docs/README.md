@@ -87,7 +87,7 @@
 
 </div>
 
-### <img height=17 src="https://media.chatgptinfinity.com/images/icons/platforms/tampermonkey/icon28.png"><img height=17.5 src="https://media.chatgptinfinity.com/images/icons/platforms/violentmonkey/icon25.png"><img height=16 src="https://cdn.jsdelivr.net/gh/adamlui/ai-web-extensions/assets/images/icons/platforms/scriptcat/icon16.png"> Greasemonkey userscript:
+### <img height=17 src="https://media.chatgptinfinity.com/images/icons/platforms/tampermonkey/icon28.png"><img height=17.5 src="https://media.chatgptinfinity.com/images/icons/platforms/violentmonkey/icon25.png"><img height=16 src="https://assets.aiwebextensions.com/images/icons/platforms/scriptcat/icon16.png"> Greasemonkey userscript:
 
 1. Install a userscript manager:
     - ScriptCat for [Chrome](https://chromewebstore.google.com/detail/scriptcat/ndcooeababalnlpkfedmmbbbgkljhpjf), [Firefox](https://addons.mozilla.org/firefox/addon/scriptcat/) or [Edge](https://microsoftedge.microsoft.com/addons/detail/scriptcat/liilgpjgabokdklappibcjfablkpcekh)
