@@ -160,8 +160,7 @@
         console.log(`Writing updated URL for ${resName}...`)
         const userJScontent = fs.readFileSync(userJSfilePath, 'utf-8')
         fs.writeFileSync(userJSfilePath, userJScontent.replace(resURL, updatedURL), 'utf-8')
-        log.success(`${resName} bumped!\n`)
-        urlsUpdatedCnt++
+        log.success(`${resName} bumped!\n`) ; urlsUpdatedCnt++
     }
     if (urlsUpdatedCnt > 0) {
         console.log(`${ !log.endedWithLineBreak ? '\n' : '' }Bumping userscript version...`)
