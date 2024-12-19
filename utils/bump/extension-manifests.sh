@@ -7,11 +7,12 @@
 shopt -s nocasematch # enable case-insensitive matching (to flexibly check commit msg for bumps)
 
 # Init UI COLORS
-NC="\033[0m"    # no color
-BR="\033[1;91m" # bright red
-BY="\033[1;33m" # bright yellow
-BG="\033[1;92m" # bright green
-BW="\033[1;97m" # bright white
+NC="\033[0m"        # no color
+DG="\033[38;5;243m" # dim gray
+BR="\033[1;91m"     # bright red
+BY="\033[1;33m"     # bright yellow
+BG="\033[1;92m"     # bright green
+BW="\033[1;97m"     # bright white
 
 # Parse ARGS
 if [[ "$1" == *chrom* ]] ; then chromium_only=true
@@ -40,6 +41,7 @@ for manifest_path in "${MANIFEST_PATHS[@]}" ; do
     if [ "$chromium_only" != true ] && [ "$ff_only" != true ] ; then
         echo "Checking last commit details for $platform_manifest_path..."
         latest_platform_commit_msg=$(git log -1 --format=%s -- "$platform_manifest_path")
+        echo -e "${DG}${latest_platform_commit_msg}${NC}\n"
         if [[ $latest_platform_commit_msg =~ bump.*(ersion|manifest) ]] ; then
             echo -e "No changes found. Skipping...\n" ; continue ; fi
     fi
