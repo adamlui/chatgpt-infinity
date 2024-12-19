@@ -40,7 +40,7 @@ for manifest_path in "${MANIFEST_PATHS[@]}" ; do
     if [ "$chromium_only" != true ] && [ "$ff_only" != true ] ; then
         echo "Checking last commit details for $platform_manifest_path..."
         latest_platform_commit_msg=$(git log -1 --format=%s -- "$platform_manifest_path")
-        if [[ $latest_platform_commit_msg =~ bump.*(version|manifest) ]] ; then
+        if [[ $latest_platform_commit_msg =~ bump.*(ersion|manifest) ]] ; then
             echo -e "No changes found. Skipping...\n" ; continue ; fi
     fi
 
