@@ -7,7 +7,7 @@ window.modals = {
     dependencies: {
         import(dependencies) {
             // { app, env, browserLang: env.browser.language (userscript only), isMobile: env.browser.isMobile,
-            //   updateCheck (userscript only) }
+            //   isPortrait: env.browser.isPortrait, updateCheck (userscript only) }
             for (const name in dependencies) this[name] = dependencies[name]
         }
     },
@@ -43,8 +43,14 @@ window.modals = {
 
     init(modal) {
         if (!this.styles) this.stylize() // to init/append stylesheet
-        modal.classList.add(this.class) ; modal.onmousedown = this.dragHandlers.mousedown // add class/listener
-        dom.fillStarryBG(modal)
+        modal.classList.add(this.class) ; modal.parentNode.classList.add(`${this.class}-bg`) // add classes
+        modal.onmousedown = this.dragHandlers.mousedown // add drag handler
+        dom.fillStarryBG(modal) // add Rising Stars bg
+        setTimeout(() => {
+            modal.parentNode.style.backgroundColor = ( // dim bg
+                `rgba(67, 70, 72, ${ chatgpt.isDarkMode() ? 0.62 : 0.33 })` )
+            modal.parentNode.classList.add('animated') // to trigger modal fade/translate-in
+        }, 100) // delay for transition fx
     },
 
     stylize() {
@@ -53,18 +59,41 @@ window.modals = {
             document.head.append(this.styles)
         }
         this.styles.innerText = (
-            `.${this.class} { z-index: 13456 ; position: absolute }` // to be click-draggable
-          + ( chatgpt.isDarkMode() ? '.chatgpt-modal > div { border: 1px solid white }' : '' )
+            `.${this.class} {`
+              + 'padding: 20px 25px 24px 25px !important ; font-size: 20px ;'
+              + 'position: absolute ;' // to be click-draggable
+              + `border: 1px solid ${ chatgpt.isDarkMode() ? 'white' : '#b5b5b5' } !important ;`
+              + `background-image: linear-gradient(180deg, ${
+                   chatgpt.isDarkMode() ? '#99a8a6 -200px, black 200px' : '#b6ebff -296px, white 171px' }) ;`
+              + 'opacity: 0 ;' // to fade-in
+              + 'transform: translateX(-4px) translateY(7px) !important ;' // offset to move-in from
+              + 'transition: opacity 0.65s cubic-bezier(.165,.84,.44,1),' // for fade-ins
+                          + 'transform 0.55s cubic-bezier(.165,.84,.44,1) !important }' // for move-ins
+          + `.${this.class}-bg { transition: background-color .25s ease }` // speed to show dim bg
+          + `.${this.class}-bg.animated > div {` // modal fade/translate-in
+              + 'z-index: 13456 ; opacity: 0.98 ; transform: translate(0,0) !important }'
+          + `.${this.class} [class*="modal-close-btn"] {`
+              + 'position: absolute !important ; float: right ; top: 14px !important ; right: 16px !important ;'
+              + 'cursor: pointer ; width: 33px ; height: 33px ; border-radius: 20px }'
+          + `.${this.class} [class*="modal-close-btn"] path {`
+              + `${ chatgpt.isDarkMode() ? 'stroke: white ; fill: white' : 'stroke: #9f9f9f ; fill: #9f9f9f' }}`
+          + ( chatgpt.isDarkMode() ?  // invert dark mode hover paths
+                `.${this.class} [class*="modal-close-btn"]:hover path { stroke: black ; fill: black }` : '' )
+          + `.${this.class} [class*="modal-close-btn"]:hover { background-color: #f2f2f2 }` // hover underlay
+          + `.${this.class} [class*="modal-close-btn"] svg { margin: 11.5px }` // center SVG for hover underlay
+          + `.${this.class} a { color: #${ chatgpt.isDarkMode() ? '00cfff' : '1e9ebb' } !important }`
           + `.${this.class} button {`
-              + 'font-size: 0.77rem ; text-transform: uppercase ;' // shrink/uppercase labels
+              + 'font-size: 14px ; text-transform: uppercase ;' // shrink/uppercase labels
               + 'border-radius: 0 !important ;' // square borders
               + 'transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out ;' // smoothen hover fx
               + 'cursor: pointer !important ;' // add finger cursor
-              + 'padding: 5px !important ; min-width: 102px }' // resize
+              + `border: 1px solid ${ chatgpt.isDarkMode() ? 'white' : 'black' } !important ;`
+              + 'padding: 8px !important ; min-width: 102px }' // resize
           + `.${this.class} button:hover {` // add zoom, re-scheme
               + 'transform: scale(1.055) ; color: black !important ;'
               + `background-color: #${ chatgpt.isDarkMode() ? '00cfff' : '9cdaff' } !important }`
           + ( !this.dependencies.isMobile ? `.${this.class} .modal-buttons { margin-left: -13px !important }` : '' )
+          + `.about-em { color: ${ chatgpt.isDarkMode() ? 'white' : 'green' } !important }`
         )
     },
 
@@ -116,12 +145,6 @@ window.modals = {
 
     about() {
 
-        // Init styles
-        const headingStyle = 'font-size: 1.15rem',
-              pStyle = 'position: relative ; left: 3px',
-              pBrStyle = 'position: relative ; left: 4px ',
-              aStyle = 'color: ' + ( chatgpt.isDarkMode() ? '#c67afb' : '#8325c4' ) // purple
-
         // Init buttons
         const modalBtns = [
             function getSupport(){},
@@ -134,28 +157,28 @@ window.modals = {
         // Show modal
         const aboutModal = modals.alert(
             `${this.dependencies.app.symbol} ${this.getMsg('appName')}`, // title
-            `<span style="${headingStyle}"><b>🏷️ <i>${this.getMsg('about_version')}</i></b>: </span>`
-                + `<span style="${pStyle}">${this.dependencies.app.version}</span>\n`
-            + `<span style="${headingStyle}"><b>⚡ <i>${this.getMsg('about_poweredBy')}</i></b>: </span>`
-                + `<span style="${pStyle}">`
-                    + `<a style="${aStyle}" href="${this.dependencies.app.urls.chatgptJS}" target="_blank"`
-                        + ` rel="noopener">chatgpt.js</a> v${this.dependencies.app.chatgptJSver}</span>\n`
-            + `<span style="${headingStyle}"><b>📜 <i>${this.getMsg('about_sourceCode')}</i></b>:</span>\n`
-                + `<span style="${pBrStyle}"><a href="${this.dependencies.app.urls.gitHub}" target="_blank"`
-                    + ` rel="noopener">${this.dependencies.app.urls.gitHub}</a></span>`,
-            modalBtns, '',
-            /Chromium|Firefox/.test(this.env.runtime) ? 434 : 546 // set width
+            `🏷️ ${this.getMsg('about_version')}: <span class="about-em">${this.dependencies.app.version}</span>\n`
+                + `⚡ ${this.getMsg('about_poweredBy')}: `
+                    + `<a href="${this.dependencies.app.urls.chatgptJS}" target="_blank" rel="noopener">chatgpt.js</a>`
+                        + ` v${this.dependencies.app.chatgptJSver}\n`
+                + `📜 ${this.getMsg('about_sourceCode')}: `
+                    + `<a href="${this.dependencies.app.urls.gitHub}" target="_blank" rel="nopener">`
+                        + this.dependencies.app.urls.gitHub + '</a>',
+            modalBtns, '', 656
         )
 
         // Format text
-        aboutModal.querySelector('h2').style.cssText = 'text-align: center ; font-size: 37px ; padding: 9px'
-        aboutModal.querySelector('p').style.cssText = 'text-align: center'
+        aboutModal.querySelector('h2').style.cssText = (
+            'text-align: center ; font-size: 51px ; line-height: 46px ; padding: 15px 0' )
+        aboutModal.querySelector('p').style.cssText = (
+            'text-align: center ; overflow-wrap: anywhere ;'
+          + `margin: ${ this.dependencies.isPortrait ? '6px 0 -16px' : '3px 0 0' }` )
 
         // Hack buttons
         aboutModal.querySelector('.modal-buttons').style.justifyContent = 'center'
         aboutModal.querySelectorAll('button').forEach(btn => {
-            btn.style.cssText = 'cursor: pointer !important ;'
-                + `height: ${ this.env.runtime.includes('Greasemonkey') ? 50 : 43 }px`
+            btn.style.cssText = 'min-width: 136px ; text-align: center ;'
+                + `height: ${ this.env.runtime.includes('Greasemonkey') ? 58 : 55 }px`
 
             // Replace link buttons w/ clones that don't dismiss modal
             if (/support|extensions/i.test(btn.textContent)) {

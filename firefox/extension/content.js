@@ -12,10 +12,11 @@
 
     // Init ENV context
     const env = { browser: { isMobile: chatgpt.browser.isMobile() }}
+    env.browser.isPortrait = env.browser.isMobile && (window.innerWidth < window.innerHeight)
 
     // Import APP data
     const { app } = await chrome.storage.sync.get('app')
-    modals.dependencies.import({ app, isMobile: env.browser.isMobile })
+    modals.dependencies.import({ app, isMobile: env.browser.isMobile, isPortrait: env.browser.isPortrait })
 
     // Add CHROME MSG listener
     chrome.runtime.onMessage.addListener((req, _, sendResp) => {
@@ -166,8 +167,8 @@
                 toggles.sidebar.status = 'missing' ; toggles.sidebar.insert() }
     }).observe(document.body, { attributes: true, subtree: true })
 
-    // Monitor SCHEME CHANGES to update sidebar toggle color
-    new MutationObserver(() => toggles.sidebar.updateColor())
+    // Monitor SCHEME CHANGES to update sidebar toggle + modal colors
+    new MutationObserver(() => { toggles.sidebar.updateColor() ; modals.stylize() })
         .observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
 
     // Disable distracting SIDEBAR CLICK-ZOOM effect
