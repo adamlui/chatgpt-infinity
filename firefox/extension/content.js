@@ -74,7 +74,7 @@
         if (options?.updatedKey == 'infinityMode') infinity[config.infinityMode ? 'activate' : 'deactivate']()
         else if (settings.controls[options?.updatedKey]?.type == 'prompt' && config.infinityMode)
             infinity.restart({ target: options?.updatedKey == 'replyInterval' ? 'self' : 'new' })
-        if (/extensionDisabled|infinityMode|toggleHidden/.test(options?.updatedKey)) toggles.sidebar.updateState()
+        if (/extensionDisabled|infinityMode|toggleHidden/.test(options?.updatedKey)) toggles.sidebar.update.state()
     }
 
     chatgpt.isIdle = function() { // replace waiting for chat to start in case of interrupts
@@ -169,7 +169,7 @@
     }).observe(document.body, { attributes: true, subtree: true })
 
     // Monitor SCHEME CHANGES to update sidebar toggle + modal colors
-    new MutationObserver(() => { toggles.sidebar.updateColor() ; modals.stylize() })
+    new MutationObserver(() => { toggles.sidebar.update.color() ; modals.stylize() })
         .observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
 
     // Disable distracting SIDEBAR CLICK-ZOOM effect

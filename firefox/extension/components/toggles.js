@@ -74,7 +74,7 @@ window.toggles = {
             }
 
             // Update color/state
-            this.updateColor() ; this.updateState() // to opposite init state for animation on 1st load
+            this.update.color() ; this.update.state() // to opposite init state for animation on 1st load
 
             // Add listeners
             this.div.onmouseover = this.div.onmouseout = event =>
@@ -96,30 +96,32 @@ window.toggles = {
             sidebar.insertBefore(this.div, sidebar.children[1]) ; this.status = 'inserted'
         },
 
-        updateColor() {
-            const knobSpan = this.div.querySelector(`#${this.ids.knobSpan}`),
-                  navicon = this.div.querySelector(`#${this.ids.navicon}`)
-            knobSpan.style.boxShadow = (
-                'rgba(0, 0, 0, .3) 0 1px 2px 0' + ( chatgpt.isDarkMode() ? ', rgba(0, 0, 0, .15) 0 3px 6px 2px' : '' ))
-            navicon.src = `${toggles.dependencies.app.urls.mediaHost}/images/icons/infinity-symbol/${
-                chatgpt.isDarkMode() ? 'white' : 'black' }/icon32.png?${toggles.dependencies.app.latestAssetCommitHash}`
-        },
+        update: {
+            color() {
+                const knobSpan = toggles.sidebar.div.querySelector(`#${toggles.sidebar.ids.knobSpan}`),
+                      navicon = toggles.sidebar.div.querySelector(`#${toggles.sidebar.ids.navicon}`)
+                knobSpan.style.boxShadow = (
+                    'rgba(0, 0, 0, .3) 0 1px 2px 0' + ( chatgpt.isDarkMode() ? ', rgba(0, 0, 0, .15) 0 3px 6px 2px' : '' ))
+                navicon.src = `${toggles.dependencies.app.urls.mediaHost}/images/icons/infinity-symbol/${
+                    chatgpt.isDarkMode() ? 'white' : 'black' }/icon32.png?${toggles.dependencies.app.latestAssetCommitHash}`
+            },
 
-        updateState() {
-            if (!this.div) return // since toggle never created = sidebar missing
-            const toggleLabel = this.div.querySelector('label'),
-                  toggleInput = this.div.querySelector('input'),
-                  switchSpan = this.div.querySelector('span'),
-                  knobSpan = switchSpan.firstChild
-            this.div.style.display = config.toggleHidden || config.extensionDisabled ? 'none' : 'flex'
-            toggleInput.checked = config.infinityMode
-            toggleLabel.innerText = `${toggles.getMsg('menuLabel_infinityMode')} ${
-                toggles.getMsg('state_' + ( toggleInput.checked ? 'enabled' : 'disabled' ))}`
-            setTimeout(() => {
-                switchSpan.style.backgroundColor = toggleInput.checked ? '#ad68ff' : '#ccc'
-                switchSpan.style.boxShadow = toggleInput.checked ? '2px 1px 9px #d8a9ff' : 'none'
-                knobSpan.style.transform = toggleInput.checked ? 'translateX(13px) translateY(0)' : 'translateX(0)'
-            }, 1) // min delay to trigger transition fx
+            state() {
+                if (!toggles.sidebar.div) return // since toggle never created = sidebar missing
+                const toggleLabel = toggles.sidebar.div.querySelector('label'),
+                      toggleInput = toggles.sidebar.div.querySelector('input'),
+                      switchSpan = toggles.sidebar.div.querySelector('span'),
+                      knobSpan = switchSpan.firstChild
+                toggles.sidebar.div.style.display = config.toggleHidden || config.extensionDisabled ? 'none' : 'flex'
+                toggleInput.checked = config.infinityMode
+                toggleLabel.innerText = `${toggles.getMsg('menuLabel_infinityMode')} ${
+                    toggles.getMsg('state_' + ( toggleInput.checked ? 'enabled' : 'disabled' ))}`
+                setTimeout(() => {
+                    switchSpan.style.backgroundColor = toggleInput.checked ? '#ad68ff' : '#ccc'
+                    switchSpan.style.boxShadow = toggleInput.checked ? '2px 1px 9px #d8a9ff' : 'none'
+                    knobSpan.style.transform = toggleInput.checked ? 'translateX(13px) translateY(0)' : 'translateX(0)'
+                }, 1) // min delay to trigger transition fx
+            }
         }
     }
 };
