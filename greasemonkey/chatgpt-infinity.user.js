@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.19.1
+// @version             2024.12.20
 // @license             MIT
 // @icon                https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?f196818
 // @icon64              https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?f196818
@@ -219,9 +219,9 @@
 // @match               *://chat.openai.com/*
 // @connect             cdn.jsdelivr.net
 // @connect             update.greasyfork.org
-// @require             https://cdn.jsdelivr.net/npm/@kudoai/chatgpt.js@3.3.5/dist/chatgpt.min.js#sha256-rfC4kk8q0byrafp7X0Qf9vaa3JNvkHRwNnUt6uL2hUE=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@d6dbabf50fa4b583d46a9fb968633ea12b89fe4c/chrome/extension/components/modals.js#sha256-vYp32xX8ADXE+DYOg6ds164janinHx8Q71CbhrJ/ga4=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@22a9c7a1f491853d48d02455651d150f9c1cdfa4/chrome/extension/components/toggles.js#sha256-DXOR/IvjPnKqORnmWCNDrW79IQOtWzHXsicGzECXrQg=
+// @require             https://cdn.jsdelivr.net/npm/@kudoai/chatgpt.js@3.4.0/dist/chatgpt.min.js#sha256-LfB3mqeB6Xiq2BDub1tn3BtvEiMcaWEp+I094MFpA+Q=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@7cc4e99081a87d5a48dca03ee1d04bca5a66d234/chrome/extension/components/modals.js#sha256-Ap/MFrpYVamNqmJlaYS4x938NP5nm/4KQPAA540X5GI=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@18a073638eb709af491d308bf4e28f82d7158740/chrome/extension/components/toggles.js#sha256-mwqlbhGOHYUwevb4IKq9gfPqEtDpyGk/1Nz6QfP+4FA=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@e05e2ccd6cd3890e782a17bd47519700a35e0091/chrome/extension/lib/dom.js#sha256-D5SNzWGIPvOEh7mTFWdEuLQWftXlGUoqFwij+1wOws0=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@704858dafc0915cb67367ea949e6997408aaa29c/chrome/extension/lib/settings.js#sha256-xuu3HlQPLCQLCjRi2noGBdcpCZkt38L8jGhM2EvPSGE=
 // @resource brsCSS     https://assets.aiwebextensions.com/styles/rising-stars/dist/black.min.css?v=0cde30f9ae3ce99ae998141f6e7a36de9b0cc2e7#sha256-4nbm81/JSas4wmxFIdliBBzoEEHRZ057TpzNX1PoQIs=
@@ -538,7 +538,7 @@
         if (options?.updatedKey == 'infinityMode') infinity[config.infinityMode ? 'activate' : 'deactivate']()
         else if (settings.controls[options?.updatedKey].type == 'prompt' && config.infinityMode)
             infinity.restart({ target: options?.updatedKey == 'replyInterval' ? 'self' : 'new' })
-        if (/infinityMode|toggleHidden/.test(options?.updatedKey)) toggles.sidebar.updateState()
+        if (/infinityMode|toggleHidden/.test(options?.updatedKey)) toggles.sidebar.update.state()
         menu.refresh() // prefixes/suffixes
     }
 
@@ -642,7 +642,7 @@
     }).observe(document.body, { attributes: true, subtree: true })
 
     // Monitor SCHEME CHANGES to update sidebar toggle + modal colors
-    new MutationObserver(() => { toggles.sidebar.updateColor() ; modals.stylize() })
+    new MutationObserver(() => { toggles.sidebar.update.color() ; modals.stylize() })
         .observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
 
     // Disable distracting SIDEBAR CLICK-ZOOM effect
