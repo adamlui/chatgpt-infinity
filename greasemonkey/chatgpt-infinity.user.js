@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.19
+// @version             2024.12.19.1
 // @license             MIT
 // @icon                https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?f196818
 // @icon64              https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?f196818
@@ -220,7 +220,7 @@
 // @connect             cdn.jsdelivr.net
 // @connect             update.greasyfork.org
 // @require             https://cdn.jsdelivr.net/npm/@kudoai/chatgpt.js@3.3.5/dist/chatgpt.min.js#sha256-rfC4kk8q0byrafp7X0Qf9vaa3JNvkHRwNnUt6uL2hUE=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@cbb370316b43a40bafb2da35ea6646b1ac49eab9/chrome/extension/components/modals.js#sha256-mtsEHDs8i0TqC80DfR/BpQLSdqgaepflm3gcN3AhIKM=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@d6dbabf50fa4b583d46a9fb968633ea12b89fe4c/chrome/extension/components/modals.js#sha256-vYp32xX8ADXE+DYOg6ds164janinHx8Q71CbhrJ/ga4=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@22a9c7a1f491853d48d02455651d150f9c1cdfa4/chrome/extension/components/toggles.js#sha256-DXOR/IvjPnKqORnmWCNDrW79IQOtWzHXsicGzECXrQg=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@e05e2ccd6cd3890e782a17bd47519700a35e0091/chrome/extension/lib/dom.js#sha256-D5SNzWGIPvOEh7mTFWdEuLQWftXlGUoqFwij+1wOws0=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@704858dafc0915cb67367ea949e6997408aaa29c/chrome/extension/lib/settings.js#sha256-xuu3HlQPLCQLCjRi2noGBdcpCZkt38L8jGhM2EvPSGE=
@@ -365,10 +365,7 @@
     }
 
     // Init MODALS dependencies
-    modals.dependencies.import({
-        app, browserLang: env.browser.language, isMobile: env.browser.isMobile,
-        isPortrait: env.browser.isPortrait, updateCheck
-    })
+    modals.dependencies.import({ app, env, updateCheck })
 
     // Init SETTINGS
     settings.dependencies.import({ app }) // for app.msgs + app.configKeyPrefix refs
