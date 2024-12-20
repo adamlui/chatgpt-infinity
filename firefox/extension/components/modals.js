@@ -5,25 +5,20 @@ window.modals = {
     get class() { return `${this.dependencies.app.cssPrefix}-modal` },
 
     dependencies: {
-        import(dependencies) {
-            // { app, env, browserLang: env.browser.language (userscript only), isMobile: env.browser.isMobile,
-            //   isPortrait: env.browser.isPortrait, updateCheck (userscript only) }
-            for (const name in dependencies) this[name] = dependencies[name]
-        }
+        import(dependencies) { // { app, env, updateCheck (userscript only) }
+            for (const name in dependencies) this[name] = dependencies[name] }
     },
 
-    env: {
-        get runtime() {
-            if (typeof GM_info != 'undefined') return 'Greasemonkey userscript'
-            else if (typeof chrome != 'undefined' && chrome.runtime) {
-                if (typeof browser != 'undefined') return 'Firefox add-on'
-                else return `Chromium ${ navigator.userAgent.includes('Edg') ? 'Edge add-on' : 'extension' }`
-            } else return 'Unknown'
-        }
+    get runtime() {
+        if (typeof GM_info != 'undefined') return 'Greasemonkey userscript'
+        else if (typeof chrome != 'undefined' && chrome.runtime) {
+            if (typeof browser != 'undefined') return 'Firefox add-on'
+            else return `Chromium ${ navigator.userAgent.includes('Edg') ? 'Edge add-on' : 'extension' }`
+        } else return 'Unknown'
     },
 
     getMsg(key) {
-        return /Chromium|Firefox/.test(this.env.runtime) ? chrome.i18n.getMessage(key)
+        return /Chromium|Firefox/.test(this.runtime) ? chrome.i18n.getMessage(key)
             : this.dependencies.app.msgs[key] // assigned from modals.dependencies.import({ app }) in userscript
     },
 
@@ -92,7 +87,8 @@ window.modals = {
           + `.${this.class} button:hover {` // add zoom, re-scheme
               + 'transform: scale(1.055) ; color: black !important ;'
               + `background-color: #${ chatgpt.isDarkMode() ? '00cfff' : '9cdaff' } !important }`
-          + ( !this.dependencies.isMobile ? `.${this.class} .modal-buttons { margin-left: -13px !important }` : '' )
+          + ( !this.dependencies.env.browser.isMobile ?
+                `.${this.class} .modal-buttons { margin-left: -13px !important }` : '' )
           + `.about-em { color: ${ chatgpt.isDarkMode() ? 'white' : 'green' } !important }`
         )
     },
@@ -151,7 +147,7 @@ window.modals = {
             function rateUs() { modals.open('feedback') },
             function moreAIextensions(){}
         ]
-        if (this.env.runtime.includes('Greasemonkey')) modalBtns.unshift(
+        if (this.runtime.includes('Greasemonkey')) modalBtns.unshift(
             function checkForUpdates(){ modals.dependencies.updateCheck() })
 
         // Show modal
@@ -172,13 +168,13 @@ window.modals = {
             'text-align: center ; font-size: 51px ; line-height: 46px ; padding: 15px 0' )
         aboutModal.querySelector('p').style.cssText = (
             'text-align: center ; overflow-wrap: anywhere ;'
-          + `margin: ${ this.dependencies.isPortrait ? '6px 0 -16px' : '3px 0 0' }` )
+          + `margin: ${ this.dependencies.env.browser.isPortrait ? '6px 0 -16px' : '3px 0 0' }` )
 
         // Hack buttons
         aboutModal.querySelector('.modal-buttons').style.justifyContent = 'center'
         aboutModal.querySelectorAll('button').forEach(btn => {
             btn.style.cssText = 'min-width: 136px ; text-align: center ;'
-                + `height: ${ this.env.runtime.includes('Greasemonkey') ? 58 : 55 }px`
+                + `height: ${ this.runtime.includes('Greasemonkey') ? 58 : 55 }px`
 
             // Replace link buttons w/ clones that don't dismiss modal
             if (/support|extensions/i.test(btn.textContent)) {
@@ -269,9 +265,9 @@ window.modals = {
 
         // Init buttons
         const modalBtns = [ function productHunt(){}, function alternativeto(){} ]
-        modalBtns.unshift(this.env.runtime.includes('Firefox') ? function firefoxAddons(){}
-                        : this.env.runtime.includes('Edge') ? function edgeAddons(){}
-                        : this.env.runtime.includes('Chromium') ? function chromeWebStore(){}
+        modalBtns.unshift(this.runtime.includes('Firefox') ? function firefoxAddons(){}
+                        : this.runtime.includes('Edge') ? function edgeAddons(){}
+                        : this.runtime.includes('Chromium') ? function chromeWebStore(){}
                         : function greasyFork(){} )
         // Show modal
         const feedbackModal = modals.alert(`${this.getMsg('alert_choosePlatform')}:`, '', modalBtns)
@@ -316,7 +312,7 @@ window.modals = {
             )
 
             // Localize button labels if needed
-            if (!modals.dependencies.browserLang.startsWith('en')) {
+            if (!modals.dependencies.env.browser.language.startsWith('en')) {
                 const updateBtns = updateAvailModal.querySelectorAll('button')
                 updateBtns[1].textContent = modals.getMsg('btnLabel_update')
                 updateBtns[0].textContent = modals.getMsg('btnLabel_dismiss')

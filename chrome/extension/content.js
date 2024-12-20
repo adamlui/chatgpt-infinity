@@ -16,7 +16,7 @@
 
     // Import APP data
     const { app } = await chrome.storage.sync.get('app')
-    modals.dependencies.import({ app, isMobile: env.browser.isMobile, isPortrait: env.browser.isPortrait })
+    modals.dependencies.import({ app, env })
 
     // Add CHROME MSG listener
     chrome.runtime.onMessage.addListener(req => {
