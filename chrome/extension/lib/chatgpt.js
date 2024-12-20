@@ -234,7 +234,10 @@ const chatgpt = {
     },
 
     getChatBox() { return document.getElementById('prompt-textarea'); },
-    getNewChatButton() { return document.querySelector('button[data-testid*="new-chat-button"]'); },
+
+    getNewChatButton() {
+        return document.querySelector('button[data-testid*="new-chat-button"], button:has([d^="M15.6729"])'); },
+
     getNewChatLink() { return document.querySelector('nav a[href="/"]'); },
     getScrollToBottomButton() { return document.querySelector('button:has([d^="M12 21C11.7348"])'); },
     getSendButton() { return document.querySelector('[data-testid="send-button"]'); },
