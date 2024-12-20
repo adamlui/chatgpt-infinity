@@ -14,8 +14,62 @@ const chatgpt = {
     // [ title/msg = strings, btns = [named functions], checkbox = named function, width (px) = int ] = optional
     // * Spaces are inserted into button labels by parsing function names in camel/kebab/snake case
 
+        // Init env context
         const scheme = chatgpt.isDarkMode() ? 'dark' : 'light',
               isMobile = chatgpt.browser.isMobile();
+
+        // Define event handlers
+        const handlers = {
+
+            dismiss: {
+                click(event) {
+                    if (event.target == event.currentTarget || event.target.closest('[class*="-close-btn]'))
+                        dismissAlert()
+                },
+
+                key(event) {
+                    if (!/^(?: |Space|Enter|Return|Esc)/.test(event.key) || ![32, 13, 27].includes(event.keyCode))
+                        return
+                    for (const alertId of alertQueue) { // look to handle only if triggering alert is active
+                        const alert = document.getElementById(alertId)
+                        if (!alert || alert.style.display == 'none') return
+                        if (event.key.startsWith('Esc') || event.keyCode == 27) dismissAlert() // and do nothing
+                        else { // Space/Enter pressed
+                            const mainButton = alert.querySelector('.modal-buttons').lastChild // look for main button
+                            if (mainButton) { mainButton.click() ; event.preventDefault() } // click if found
+                        }
+                    }
+                }
+            },
+
+            drag: {
+                mousedown(event) { // find modal, attach listeners, init XY offsets
+                    if (event.button != 0) return // prevent non-left-click drag
+                    if (getComputedStyle(event.target).cursor == 'pointer') return // prevent drag on interactive elems
+                    chatgpt.draggableElem = event.currentTarget
+                    chatgpt.draggableElem.style.cursor = 'grabbing'
+                    event.preventDefault(); // prevent sub-elems like icons being draggable
+                    ['mousemove', 'mouseup'].forEach(event => document.addEventListener(event, handlers.drag[event]))
+                    const draggableElemRect = chatgpt.draggableElem.getBoundingClientRect()
+                    handlers.drag.offsetX = event.clientX - draggableElemRect.left +21
+                    handlers.drag.offsetY = event.clientY - draggableElemRect.top +12
+                },
+
+                mousemove(event) { // drag modal
+                    if (!chatgpt.draggableElem) return
+                    const newX = event.clientX - handlers.drag.offsetX,
+                          newY = event.clientY - handlers.drag.offsetY
+                    Object.assign(chatgpt.draggableElem.style, { left: `${newX}px`, top: `${newY}px` })
+                },
+
+                mouseup() { // remove listeners, reset chatgpt.draggableElem
+                    chatgpt.draggableElem.style.cursor = 'inherit';
+                    ['mousemove', 'mouseup'].forEach(event =>
+                        document.removeEventListener(event, handlers.drag[event]))
+                    chatgpt.draggableElem = null
+                }
+            }
+        }
 
         // Create modal parent/children elements
         const modalContainer = document.createElement('div');
@@ -26,7 +80,7 @@ const chatgpt = {
               modalMessage = document.createElement('p');
 
         // Create/append/update modal style (if missing or outdated)
-        const thisUpdated = 20231203; // datestamp of last edit for this file's `modalStyle`
+        const thisUpdated = 1734685032942; // timestamp of last edit for this file's `modalStyle`
         let modalStyle = document.querySelector('#chatgpt-modal-style'); // try to select existing style
         if (!modalStyle || parseInt(modalStyle.getAttribute('last-updated'), 10) < thisUpdated) { // if missing or outdated
             if (!modalStyle) { // outright missing, create/id/attr/append it first
@@ -39,33 +93,38 @@ const chatgpt = {
 
                 // Background styles
                 + '.chatgpt-modal {'
+                    + 'pointer-events: auto ;' // override any disabling from site modals (like guest login spam)
                     + 'position: fixed ; top: 0 ; left: 0 ; width: 100% ; height: 100% ;' // expand to full view-port
-                    + 'background-color: rgba(67, 70, 72, 0) ;' // init dim bg but no opacity
-                    + 'transition: background-color 0.05s ease ;' // speed to transition in show alert routine
+                    + 'transition: background-color 0.25s ease !important ;' // speed to show bg dim
                     + 'display: flex ; justify-content: center ; align-items: center ; z-index: 9999 }' // align
 
                 // Alert styles
                 + '.chatgpt-modal > div {'
-                    + 'opacity: 0 ; transform: translateX(-2px) translateY(5px) ; max-width: 75vw ; word-wrap: break-word ;'
-                    + 'transition: opacity 0.1s cubic-bezier(.165,.84,.44,1), transform 0.2s cubic-bezier(.165,.84,.44,1) ;'
-                    + `background-color: ${ scheme == 'dark' ? 'black' : 'white' } ;`
-                    + ( scheme != 'dark' ? 'border: 1px solid rgba(0, 0, 0, 0.3) ;' : '' )
+                    + 'position: absolute ;' // to be click-draggable
+                    + 'opacity: 0 ;' // to fade-in
+                    + `border: 1px solid ${ scheme == 'dark' ? 'white' : '#b5b5b5' };`
+                    + `color: ${ scheme == 'dark' ? 'white' : 'black' };`
+                    + `background-color: ${ scheme == 'dark' ? 'black' : 'white' };`
+                    + 'transform: translateX(-3px) translateY(7px) ;' // offset to move-in from
+                    + 'transition: opacity 0.65s cubic-bezier(.165,.84,.44,1),' // for fade-ins
+                                + 'transform 0.55s cubic-bezier(.165,.84,.44,1) ;' // for move-ins
+                    + 'max-width: 75vw ; word-wrap: break-word ;'
                     + 'padding: 20px ; margin: 12px 23px ; border-radius: 15px ; box-shadow: 0 30px 60px rgba(0, 0, 0, .12) ;'
                     + ' -webkit-user-select: none ; -moz-user-select: none ; -ms-user-select: none ; user-select: none ; }'
                 + '.chatgpt-modal h2 { margin-bottom: 9px }'
                 + `.chatgpt-modal a { color: ${ scheme == 'dark' ? '#00cfff' : '#1e9ebb' }}`
-                + '.chatgpt-modal.animated > div { opacity: 1 ; transform: translateX(0) translateY(0) }'
-                + '@keyframes alert-zoom-fade-out { 0% { opacity: 1 ; transform: scale(1) }'
-                    + '50% { opacity: 0.25 ; transform: scale(1.05) }'
-                    + '100% { opacity: 0 ; transform: scale(1.35) }}'
+                + '.chatgpt-modal.animated > div { z-index: 13456 ; opacity: 0.98 ; transform: translateX(0) translateY(0) }'
+                + '@keyframes alert-zoom-fade-out {'
+                  + '0% { opacity: 1 } 50% { opacity: 0.25 ; transform: scale(1.05) }'
+                  + '100% { opacity: 0 ; transform: scale(1.35) }}'
 
                 // Button styles
                 + '.modal-buttons { display: flex ; justify-content: flex-end ; margin: 20px -5px -3px 0 ;'
                     + ( isMobile ? 'flex-direction: column-reverse' : '' ) + '}'
                 + '.chatgpt-modal button {'
-                    + `margin-left: ${ isMobile ? 0 : 10}px ; padding: ${ isMobile ? 15 : 4}px 18px ;`
+                    + `margin-left: ${ isMobile ? 0 : 10}px ; padding: ${ isMobile ? 15 : 4}px 18px ; border-radius: 15px ;`
                     + ( isMobile ? 'margin-top: 5px ; margin-bottom: 3px ;' : '')
-                    + `border: 1px solid ${ scheme == 'dark' ? 'white' : 'black' }} ; border-radius: 15px`
+                    + `border: 1px solid ${ scheme == 'dark' ? 'white' : 'black' }}`
                 + '.primary-modal-btn {'
                     + `border: 1px solid ${ scheme == 'dark' ? 'white' : 'black' } ;`
                     + `background: ${ scheme == 'dark' ? 'white' : 'black' } ;`
@@ -171,39 +230,22 @@ const chatgpt = {
         modalContainer.style.display = 'none';
         if (alertQueue.length === 1) {
             modalContainer.style.display = '';
-            setTimeout(() => { // delay non-0 opacity's for transition fx
-                modalContainer.style.backgroundColor = (
-                    `rgba(67, 70, 72, ${ scheme === 'dark' ? 0.62 : 0.1 })`);
-                modalContainer.classList.add('animated'); }, 100);
+            setTimeout(() => { // dim bg
+                modal.parentNode.style.backgroundColor = `rgba(67, 70, 72, ${ scheme == 'dark' ? 0.62 : 0.33 })`
+                modal.parentNode.classList.add('animated')
+            }, 100) // delay for transition fx
         }
 
-        // Define click/key handlers
-        const clickHandler = event => { // explicitly defined to support removal post-dismissal
-            if (event.target == event.currentTarget || event.target instanceof SVGPathElement) dismissAlert(); };
-        const keyHandler = event => { // to dismiss active alert
-            const dismissKeys = [' ', 'Spacebar', 'Enter', 'Return', 'Escape', 'Esc'],
-                  dismissKeyCodes = [32, 13, 27];
-            if (dismissKeys.includes(event.key) || dismissKeyCodes.includes(event.keyCode)) {
-                for (const alertId of alertQueue) { // look to handle only if triggering alert is active
-                    const alert = document.getElementById(alertId);
-                    if (alert && alert.style.display !== 'none') { // active alert found
-                        if (event.key.includes('Esc') || event.keyCode == 27) // esc pressed
-                            dismissAlert(); // dismiss alert & do nothing
-                        else if ([' ', 'Spacebar', 'Enter', 'Return'].includes(event.key) || [32, 13].includes(event.keyCode)) { // space/enter pressed
-                            const mainButton = alert.querySelector('.modal-buttons').lastChild; // look for main button
-                            if (mainButton) { mainButton.click(); event.preventDefault(); } // click if found
-                        } return;
-        }}}};
-
-        // Add listeners to dismiss alert
+        // Add listeners
         const dismissElems = [modalContainer, closeBtn, closeSVG, dismissBtn];
-        dismissElems.forEach(elem => elem.onclick = clickHandler);
-        document.addEventListener('keydown', keyHandler);
+        dismissElems.forEach(elem => elem.onclick = handlers.dismiss.click);
+        document.addEventListener('keydown', handlers.dismiss.key);
+        modal.onmousedown = handlers.drag.mousedown // enable click-dragging
 
         // Define alert dismisser
         const dismissAlert = () => {
             modalContainer.style.backgroundColor = 'transparent';
-            modal.style.animation = 'alert-zoom-fade-out 0.075s ease-out';
+            modal.style.animation = 'alert-zoom-fade-out 0.135s ease-out';
             setTimeout(() => { // delay removal for fade-out
 
                 // Remove alert
@@ -211,7 +253,7 @@ const chatgpt = {
                 alertQueue = JSON.parse(localStorage.alertQueue);
                 alertQueue.shift(); // + memory
                 localStorage.alertQueue = JSON.stringify(alertQueue); // + storage
-                document.removeEventListener('keydown', keyHandler); // prevent memory leaks
+                document.removeEventListener('keydown', handlers.dismiss.key); // prevent memory leaks
 
                 // Check for pending alerts in queue
                 if (alertQueue.length > 0) {
@@ -222,7 +264,7 @@ const chatgpt = {
                     }, 500);
                 }
 
-            }, 50);
+            }, 135);
         };
 
         return modalContainer.id; // if assignment used

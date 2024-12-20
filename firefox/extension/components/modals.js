@@ -39,13 +39,7 @@ window.modals = {
     init(modal) {
         if (!this.styles) this.stylize() // to init/append stylesheet
         modal.classList.add(this.class) ; modal.parentNode.classList.add(`${this.class}-bg`) // add classes
-        modal.onmousedown = this.dragHandlers.mousedown // add drag handler
         dom.fillStarryBG(modal) // add Rising Stars bg
-        setTimeout(() => {
-            modal.parentNode.style.backgroundColor = ( // dim bg
-                `rgba(67, 70, 72, ${ chatgpt.isDarkMode() ? 0.62 : 0.33 })` )
-            modal.parentNode.classList.add('animated') // to trigger modal fade/translate-in
-        }, 100) // delay for transition fx
     },
 
     stylize() {
@@ -58,19 +52,8 @@ window.modals = {
               + 'font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,'
                   + 'Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif ;'
               + 'padding: 20px 25px 24px 25px !important ; font-size: 20px ;'
-              + 'position: absolute ;' // to be click-draggable
-              + `border: 1px solid ${ chatgpt.isDarkMode() ? 'white' : '#b5b5b5' } !important ;`
               + `background-image: linear-gradient(180deg, ${
-                   chatgpt.isDarkMode() ? '#99a8a6 -200px, black 200px' : '#b6ebff -296px, white 171px' }) ;`
-              + 'opacity: 0 ;' // to fade-in
-              + 'transform: translateX(-4px) translateY(7px) !important ;' // offset to move-in from
-              + 'transition: opacity 0.65s cubic-bezier(.165,.84,.44,1),' // for fade-ins
-                          + 'transform 0.55s cubic-bezier(.165,.84,.44,1) !important }' // for move-ins
-          + `.${this.class}-bg {` // modal BGs
-              + 'pointer-events: auto ;' // override any disabling from site modals (e.g. chatgpt.com guest login spam)
-              + 'transition: background-color .25s ease }' // speed to show dim bg
-          + `.${this.class}-bg.animated > div {` // modal fade/translate-in
-              + 'z-index: 13456 ; opacity: 0.98 ; transform: translate(0,0) !important }'
+                  chatgpt.isDarkMode() ? '#99a8a6 -200px, black 200px' : '#b6ebff -296px, white 171px' }) }`
           + `.${this.class} [class*="modal-close-btn"] {`
               + 'position: absolute !important ; float: right ; top: 14px !important ; right: 16px !important ;'
               + 'cursor: pointer ; width: 33px ; height: 33px ; border-radius: 20px }'
