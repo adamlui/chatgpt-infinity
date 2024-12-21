@@ -21,10 +21,7 @@
     "resources": [
       "lib/chatgpt.js", "lib/dom.js", "lib/settings.js", "components/modals.js", "components/toggles.js" ]
   }],
-  "content_scripts": [{
-    "matches": [ "https://chatgpt.com/*" ],
-    "run_at": "document_end", "js": [ "content.js" ]
-  }],
+  "content_scripts": [{ "matches": [ "https://chatgpt.com/*" ], "run_at": "document_end", "js": [ "content.js" ] }],
   "background": { "service_worker": "service-worker.js" },
   "minimum_chrome_version": "88"
 }
