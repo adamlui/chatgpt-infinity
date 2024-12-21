@@ -178,8 +178,7 @@
         document.documentElement.lang = chrome.i18n.getUILanguage().split('-')[0]
 
     // Create/append FOOTER container
-    const footer = dom.create.elem('footer')
-    document.body.append(footer)
+    const footer = dom.create.elem('footer') ; document.body.append(footer)
 
     // Create/append CHATGPT.JS footer logo
     const cjsDiv = dom.create.elem('div', { class: 'chatgpt-js' })
