@@ -208,6 +208,6 @@
     moreExtensionsSpan.append(moreExtensionsIcon) ; footer.append(moreExtensionsSpan)
 
     // Remove loading spinner
-    document.querySelectorAll('[class^="loading"]').forEach(elem => elem.remove())
+    document.querySelectorAll('[class^=loading]').forEach(elem => elem.remove())
 
 })()

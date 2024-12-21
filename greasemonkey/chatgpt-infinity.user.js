@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.21.2
+// @version             2024.12.21.3
 // @license             MIT
 // @icon                https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?f196818
 // @icon64              https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?f196818
@@ -655,7 +655,7 @@
     // Disable distracting SIDEBAR CLICK-ZOOM effect
     if (!document.documentElement.hasAttribute('sidebar-click-zoom-observed')) {
         new MutationObserver(mutations => mutations.forEach(({ target }) => {
-            if (target.closest('[class*="sidebar"]') // include sidebar divs
+            if (target.closest('[class*=sidebar]') // include sidebar divs
                 && !target.id.endsWith('-knob-span') // exclude our toggles.sidebar
                 && target.style.transform != 'none' // click-zoom occurred
             ) target.style.transform = 'none'
