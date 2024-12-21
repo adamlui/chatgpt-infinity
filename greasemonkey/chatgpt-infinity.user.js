@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.21.3
+// @version             2024.12.21.4
 // @license             MIT
 // @icon                https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?f196818
 // @icon64              https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?f196818
@@ -220,9 +220,9 @@
 // @connect             cdn.jsdelivr.net
 // @connect             update.greasyfork.org
 // @require             https://cdn.jsdelivr.net/npm/@kudoai/chatgpt.js@3.4.0/dist/chatgpt.min.js#sha256-LfB3mqeB6Xiq2BDub1tn3BtvEiMcaWEp+I094MFpA+Q=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@0db7b911ce52966a22a620dfb1e7f91f144259cc/chrome/extension/components/modals.js#sha256-oIhx/Hk06fG5KJe2obxWlmJMsj09MkORuN5/R5hn9bI=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@8dcd26ab5d84ba50229f4e0e37deb28e4a3435a3/chrome/extension/components/modals.js#sha256-WLvMd3J6wlGYJ3c5R/OHRXx7bdgvg1zmaImkL77bk+I=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@18a073638eb709af491d308bf4e28f82d7158740/chrome/extension/components/toggles.js#sha256-mwqlbhGOHYUwevb4IKq9gfPqEtDpyGk/1Nz6QfP+4FA=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@0db7b911ce52966a22a620dfb1e7f91f144259cc/chrome/extension/lib/dom.js#sha256-ZwFQlFS1H6S+zWTNiNBlcL7JKkCsHAKR0WuUHEmETa0=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@8dcd26ab5d84ba50229f4e0e37deb28e4a3435a3/chrome/extension/lib/dom.js#sha256-kNvqFW2SkhKh6oBwkfKyJbjNAped4c1mF3uSQhkUWjI=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@704858dafc0915cb67367ea949e6997408aaa29c/chrome/extension/lib/settings.js#sha256-xuu3HlQPLCQLCjRi2noGBdcpCZkt38L8jGhM2EvPSGE=
 // @resource brsCSS     https://assets.aiwebextensions.com/styles/rising-stars/dist/black.min.css?v=0cde30f9ae3ce99ae998141f6e7a36de9b0cc2e7#sha256-4nbm81/JSas4wmxFIdliBBzoEEHRZ057TpzNX1PoQIs=
 // @resource wrsCSS     https://assets.aiwebextensions.com/styles/rising-stars/dist/white.min.css?v=0cde30f9ae3ce99ae998141f6e7a36de9b0cc2e7#sha256-pW8xWWV6tm8Q6Ms+HWZv6+QzzTLJPyL1DyE18ywpVaE=
