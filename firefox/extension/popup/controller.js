@@ -92,7 +92,7 @@
                 menuSlider = dom.create.elem('span', { class: 'slider' })
                 menuLabel.append(menuInput, menuSlider)
                 menuLabel.classList.add('toggle-switch')
-            } else { // prompt settings
+            } else if (settings.controls[key].type == 'prompt') {
                 menuLabel.innerText = settings.controls[key].symbol
                 menuLabel.classList.add('menu-prompt')
                 menuLabelSpan.innerText +=  `— ${settings.controls[key].status}`
