@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.20
+// @version             2024.12.21
 // @license             MIT
 // @icon                https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?f196818
 // @icon64              https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?f196818
@@ -258,6 +258,7 @@
         }
     }
     env.browser.isPortrait = env.browser.isMobile && (window.innerWidth < window.innerHeight)
+    env.scheme = getScheme()
     const xhr = typeof GM != 'undefined' && GM.xmlHttpRequest || GM_xmlhttpRequest
 
     // Init APP data
@@ -519,7 +520,7 @@
         if (foundState) msg = msg.replace(foundState, '')
 
         // Show notification
-        chatgpt.notify(`${app.symbol} ${msg}`, pos, notifDuration, shadow || chatgpt.isDarkMode() ? '' : 'shadow')
+        chatgpt.notify(`${app.symbol} ${msg}`, pos, notifDuration, shadow || env.scheme == 'dark' ? '' : 'shadow')
         const notif = document.querySelector('.chatgpt-notif:last-child')
 
         // Append styled state word
@@ -540,6 +541,11 @@
             infinity.restart({ target: options?.updatedKey == 'replyInterval' ? 'self' : 'new' })
         if (/infinityMode|toggleHidden/.test(options?.updatedKey)) toggles.sidebar.update.state()
         menu.refresh() // prefixes/suffixes
+    }
+
+    function getScheme() {
+        return document.documentElement.className
+            || (window.matchMedia?.('(prefers-color-scheme: dark)')?.matches ? 'dark' : 'light')
     }
 
     chatgpt.isIdle = function() { // replace waiting for chat to start in case of interrupts
@@ -642,7 +648,7 @@
     }).observe(document.body, { attributes: true, subtree: true })
 
     // Monitor SCHEME CHANGES to update sidebar toggle + modal colors
-    new MutationObserver(() => { toggles.sidebar.update.color() ; modals.stylize() })
+    new MutationObserver(() => { env.scheme == getScheme() ; toggles.sidebar.update.color() ; modals.stylize() })
         .observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
 
     // Disable distracting SIDEBAR CLICK-ZOOM effect

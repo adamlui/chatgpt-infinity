@@ -13,10 +13,14 @@
     // Init ENV context
     const env = { browser: { isMobile: chatgpt.browser.isMobile() }}
     env.browser.isPortrait = env.browser.isMobile && (window.innerWidth < window.innerHeight)
+    env.scheme = getScheme()
 
     // Import APP data
     const { app } = await chrome.storage.sync.get('app')
-    modals.dependencies.import({ app, env })
+
+    // Export DEPENDENCIES to resources
+    dom.dependencies.import({ env }) // for env.scheme
+    modals.dependencies.import({ app, env }) // for app data + env.scheme
 
     // Add CHROME MSG listener
     chrome.runtime.onMessage.addListener((req, _, sendResp) => {
@@ -56,7 +60,7 @@
         if (foundState) msg = msg.replace(foundState, '')
 
         // Show notification
-        chatgpt.notify(`${app.symbol} ${msg}`, pos, notifDuration, shadow || chatgpt.isDarkMode() ? '' : 'shadow')
+        chatgpt.notify(`${app.symbol} ${msg}`, pos, notifDuration, shadow || env.scheme == 'dark' ? '' : 'shadow')
         const notif = document.querySelector('.chatgpt-notif:last-child')
 
         // Append styled state word
@@ -75,6 +79,11 @@
         else if (settings.controls[options?.updatedKey]?.type == 'prompt' && config.infinityMode)
             infinity.restart({ target: options?.updatedKey == 'replyInterval' ? 'self' : 'new' })
         if (/extensionDisabled|infinityMode|toggleHidden/.test(options?.updatedKey)) toggles.sidebar.update.state()
+    }
+
+    function getScheme() {
+        return document.documentElement.className
+            || (window.matchMedia?.('(prefers-color-scheme: dark)')?.matches ? 'dark' : 'light')
     }
 
     chatgpt.isIdle = function() { // replace waiting for chat to start in case of interrupts
@@ -169,7 +178,7 @@
     }).observe(document.body, { attributes: true, subtree: true })
 
     // Monitor SCHEME CHANGES to update sidebar toggle + modal colors
-    new MutationObserver(() => { toggles.sidebar.update.color() ; modals.stylize() })
+    new MutationObserver(() => { env.scheme = getScheme() ; toggles.sidebar.update.color() ; modals.stylize() })
         .observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
 
     // Disable distracting SIDEBAR CLICK-ZOOM effect
