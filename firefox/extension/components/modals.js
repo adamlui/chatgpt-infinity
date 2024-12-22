@@ -149,7 +149,7 @@ window.modals = {
                 + `⚡ ${this.getMsg('about_poweredBy')}: `
                     + `<a href="${this.dependencies.app.urls.chatgptJS}" target="_blank" rel="noopener">chatgpt.js</a>`
                         + ` v${this.dependencies.app.chatgptJSver}\n`
-                + `📜 ${this.getMsg('about_sourceCode')}: `
+                + `📜 ${this.getMsg('about_openSourceCode')}: `
                     + `<a href="${this.dependencies.app.urls.gitHub}" target="_blank" rel="nopener">`
                         + this.dependencies.app.urls.gitHub + '</a>',
             modalBtns, '', 656

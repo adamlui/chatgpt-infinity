@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "(kengaytma o'rnatilgan) O'chirilgan" },
   "about_version": { "message": "Versiya" },
   "about_poweredBy": { "message": "Tomonidan qo'llab-quvvatlanadi" },
-  "about_sourceCode": { "message": "Ochiq kod" },
+  "about_openSourceCode": { "message": "Ochiq kod" },
   "prompt_updateReplyLang": { "message": "Javob tilini yangilash" },
   "prompt_updateReplyTopic": { "message": "Javob mavzusini yangilash" },
   "prompt_orEnter": { "message": "yoki kiriting" },

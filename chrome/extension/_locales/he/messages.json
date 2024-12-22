@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "מושבת (תוסף מותקן)" },
   "about_version": { "message": "גירסה" },
   "about_poweredBy": { "message": "באמצעות" },
-  "about_sourceCode": { "message": "קוד מקור" },
+  "about_openSourceCode": { "message": "קוד מקור" },
   "prompt_updateReplyLang": { "message": "עדכון שפת התגובה" },
   "prompt_updateReplyTopic": { "message": "עדכון נושא התגובה" },
   "prompt_orEnter": { "message": "או הזן" },

@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Disattivato (estensione installata)" },
   "about_version": { "message": "Versione" },
   "about_poweredBy": { "message": "Alimentato da" },
-  "about_sourceCode": { "message": "Codice sorgente" },
+  "about_openSourceCode": { "message": "Codice open source" },
   "prompt_updateReplyLang": { "message": "Aggiorna la lingua di risposta" },
   "prompt_updateReplyTopic": { "message": "Aggiorna argomento risposta" },
   "prompt_orEnter": { "message": "o inserisci" },

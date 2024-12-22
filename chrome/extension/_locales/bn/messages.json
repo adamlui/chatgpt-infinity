@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "নিষ্ক্রিয় (এক্সটেনশন ইনস্টল করা হয়েছে)" },
   "about_version": { "message": "সংস্করণ" },
   "about_poweredBy": { "message": "নিবেদন করছেন" },
-  "about_sourceCode": { "message": "সোর্স কোড" },
+  "about_openSourceCode": { "message": "সোর্স কোড" },
   "prompt_updateReplyLang": { "message": "জবাব ভাষা আপডেট করুন" },
   "prompt_updateReplyTopic": { "message": "উত্তর সংক্রান্ত বিষয় হালনাগাদ করুন" },
   "prompt_orEnter": { "message": "অথবা প্রবেশ করুন" },

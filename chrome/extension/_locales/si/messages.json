@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "අක්‍රීය කර ඇත (දීර්ඝ කිරීම ස්ථාපනය කර ඇත)" },
   "about_version": { "message": "වෙළුම" },
   "about_poweredBy": { "message": "විසින් බල ගැන්වී ඇත" },
-  "about_sourceCode": { "message": "මූලාශ්‍ර කේතය" },
+  "about_openSourceCode": { "message": "විවෘත කේතය" },
   "prompt_updateReplyLang": { "message": "ප්‍රතිචාර භාෂාව යාවත්කාලීන කරන්න" },
   "prompt_updateReplyTopic": { "message": "ප්‍රතිචාර මාතෘකාව යාවත්කාලීන කරන්න" },
   "prompt_orEnter": { "message": "හෝ ඇතුල් වන්න" },

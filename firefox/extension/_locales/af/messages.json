@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Gestremde (uitbreiding geïnstalleer)" },
   "about_version": { "message": "Weergawe" },
   "about_poweredBy": { "message": "Aangedryf deur" },
-  "about_sourceCode": { "message": "Oorsprong Kode" },
+  "about_openSourceCode": { "message": "Oopbronkode" },
   "prompt_updateReplyLang": { "message": "Dateer antwoordtaal op" },
   "prompt_updateReplyTopic": { "message": "Dateer antwoordonderwerp op" },
   "prompt_orEnter": { "message": "of gaan in" },

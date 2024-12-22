@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Desactivado (extensión instalada)" },
   "about_version": { "message": "Versión" },
   "about_poweredBy": { "message": "Desarrollado por" },
-  "about_sourceCode": { "message": "Código fuente" },
+  "about_openSourceCode": { "message": "Cola ciega" },
   "prompt_updateReplyLang": { "message": "Actualizar idioma de respuesta" },
   "prompt_updateReplyTopic": { "message": "Actualizar tema de respuesta" },
   "prompt_orEnter": { "message": "o acceda a" },

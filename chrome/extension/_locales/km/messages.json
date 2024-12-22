@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "បានបិទ (បានបញ្ចូលផ្នែកបន្ថែម)" },
   "about_version": { "message": "លេខជំនាន់កម្មវិធី" },
   "about_poweredBy": { "message": "ដំណើរការដោយ" },
-  "about_sourceCode": { "message": "កូដដើម" },
+  "about_openSourceCode": { "message": "កូដ​ដើម" },
   "prompt_updateReplyLang": { "message": "អាប់ដេតភាសាឆ្លើយតប" },
   "prompt_updateReplyTopic": { "message": "ធ្វើបច្ចុប្បន្នភាពប្រធានបទឆ្លើយតប" },
   "prompt_orEnter": { "message": "ឬបញ្ចូល" },

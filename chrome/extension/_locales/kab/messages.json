@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Yettwakkes (asiγzef yebna)" },
   "about_version": { "message": "Lqem" },
   "about_poweredBy": { "message": "Yettunefk-d sɣur" },
-  "about_sourceCode": { "message": "Tangalt aγbalu" },
+  "about_openSourceCode": { "message": "Tangalt taɣbalut" },
   "prompt_updateReplyLang": { "message": "Leqqem tutlayt n tririt" },
   "prompt_updateReplyTopic": { "message": "Leqqem asentel n tririt" },
   "prompt_orEnter": { "message": "neɣ kcem" },

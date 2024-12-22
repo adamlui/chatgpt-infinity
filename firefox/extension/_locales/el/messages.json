@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Απενεργοποιημένο (επέκταση εγκατεστημένη)" },
   "about_version": { "message": "Έκδοση" },
   "about_poweredBy": { "message": "Με την υποστήριξη" },
-  "about_sourceCode": { "message": "Source code" },
+  "about_openSourceCode": { "message": "Ανοιχτός κώδικας. " },
   "prompt_updateReplyLang": { "message": "Ενημέρωση γλώσσας απάντησης" },
   "prompt_updateReplyTopic": { "message": "Ενημέρωση θέματος απάντησης" },
   "prompt_orEnter": { "message": "ή εισάγετε" },

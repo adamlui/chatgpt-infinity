@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Onemogućeno (proširenje instalirano)" },
   "about_version": { "message": "Verzija" },
   "about_poweredBy": { "message": "Pokreće" },
-  "about_sourceCode": { "message": "Izvorni kod" },
+  "about_openSourceCode": { "message": "Izvorni kod" },
   "prompt_updateReplyLang": { "message": "Ažuriraj jezik odgovora" },
   "prompt_updateReplyTopic": { "message": "Ažuriraj temu odgovora" },
   "prompt_orEnter": { "message": "ili unesite" },

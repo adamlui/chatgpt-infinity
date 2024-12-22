@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Óvirkt (viðbót uppsett)" },
   "about_version": { "message": "Útgáfa" },
   "about_poweredBy": { "message": "Knúið af" },
-  "about_sourceCode": { "message": "Frumkóði" },
+  "about_openSourceCode": { "message": "Upprunakóði@ info: whatsthis" },
   "prompt_updateReplyLang": { "message": "Uppfæra tungumál svars" },
   "prompt_updateReplyTopic": { "message": "Uppfæra viðfangsefni svars" },
   "prompt_orEnter": { "message": "eða sláðu inn" },

@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Eposya apamwamba (icalo cakonse cali cilangililo)" },
   "about_version": { "message": "Ukupilibula" },
   "about_poweredBy": { "message": "Amapola by Amapola" },
-  "about_sourceCode": { "message": "Ifyebo fyaba mu cipande ca kubalilapo" },
+  "about_openSourceCode": { "message": "Ilembo lya pa kompyuta ilyaba pa kompyuta" },
   "prompt_updateReplyLang": { "message": "Kulanda lusani lwama wafwile" },
   "prompt_updateReplyTopic": { "message": "Kulanda lusani lwamukanda" },
   "prompt_orEnter": { "message": "kamfumu" },

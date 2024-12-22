@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Andikape (ekstansyon enstale)" },
   "about_version": { "message": "Vèsyon" },
   "about_poweredBy": { "message": "Powered by" },
-  "about_sourceCode": { "message": "kòd sous/ code source / le code source mis à jour/code en langage source" },
+  "about_openSourceCode": { "message": "Kòd sous louvri" },
   "prompt_updateReplyLang": { "message": "MIZAJOU REPONS LANG" },
   "prompt_updateReplyTopic": { "message": "Mizajou sijè repons" },
   "prompt_orEnter": { "message": "oswa antre/ou antre/ou antre" },

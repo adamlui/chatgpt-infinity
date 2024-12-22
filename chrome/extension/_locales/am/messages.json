@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "የተጠናከረ (የተጫነ)" },
   "about_version": { "message": "እትም" },
   "about_poweredBy": { "message": "የተጎለበተው በ" },
-  "about_sourceCode": { "message": "የምንጭ ኮድ" },
+  "about_openSourceCode": { "message": "የምንጭ ኮድ" },
   "prompt_updateReplyLang": { "message": "የምላሽ ቋንቋን ያዘምኑ" },
   "prompt_updateReplyTopic": { "message": "የምላሽ ርዕስን ያዘምኑ" },
   "prompt_orEnter": { "message": "ወይም ያስገቡ" },

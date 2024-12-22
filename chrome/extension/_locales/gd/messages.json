@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Dìchuimhnichte (teaghlaiche curtha air dòigh)" },
   "about_version": { "message": "Tionndadh" },
   "about_poweredBy": { "message": "Powered by" },
-  "about_sourceCode": { "message": "Bun-tùs a' chod" },
+  "about_openSourceCode": { "message": "Bun-tùs a' chod" },
   "prompt_updateReplyLang": { "message": "Ùrachadh air cànan freagairt" },
   "prompt_updateReplyTopic": { "message": "Ùrachadh air àbhaist freagairt" },
   "prompt_orEnter": { "message": "no sgrìobh a-steach" },

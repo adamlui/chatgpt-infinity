@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "ኣገልግሎት ከም ዘይህብ ምግባር (እተኸልከለ ምንቅስቓስ)" },
   "about_version": { "message": "መበል" },
   "about_poweredBy": { "message": "ብ" },
-  "about_sourceCode": { "message": "ምንጪ ኮድ" },
+  "about_openSourceCode": { "message": "ክፉት ምንጪ ኮድ" },
   "prompt_updateReplyLang": { "message": "ቋንቋ መልሲ ኣመሓይሽ" },
   "prompt_updateReplyTopic": { "message": "ኣርእስቲ መልሲ ኣመሓይሽ" },
   "prompt_orEnter": { "message": "ወይ ኣእቱ" },

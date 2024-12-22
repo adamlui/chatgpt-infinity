@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Kìlọ́balẹ̀ (atiwọna ti wọna ti se)" },
   "about_version": { "message": "Yângâ tî kodoro" },
   "about_poweredBy": { "message": "A yeke sara kua na ni" },
-  "about_sourceCode": { "message": "Source code ti" },
+  "about_openSourceCode": { "message": "Création d 'une brochure open source" },
   "prompt_updateReplyLang": { "message": "Sé àtúmọ̀ lálẹ̀ lángá tí ìyọ̀nù" },
   "prompt_updateReplyTopic": { "message": "Sé àtúmọ̀ ìyọ̀nù tí ìyọ̀nù" },
   "prompt_orEnter": { "message": "tabi pẹlu" },

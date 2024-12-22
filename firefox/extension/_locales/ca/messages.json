@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Desactivat (extensió instal·lada)" },
   "about_version": { "message": "Versió" },
   "about_poweredBy": { "message": "Desenvolupat per" },
-  "about_sourceCode": { "message": "Codi font" },
+  "about_openSourceCode": { "message": "Codi obert" },
   "prompt_updateReplyLang": { "message": "Actualitza l'idioma de resposta" },
   "prompt_updateReplyTopic": { "message": "Actualitza el tema de la resposta" },
   "prompt_orEnter": { "message": "o introduïu" },

@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "פאַרקריפּלט (פאַרלענגערונג אינסטאַלירן)" },
   "about_version": { "message": "ווערסיע" },
   "about_poweredBy": { "message": "פּאַוערד דורך" },
-  "about_sourceCode": { "message": "מקור קאָד" },
+  "about_openSourceCode": { "message": "עפֿענען מקור קאָד" },
   "prompt_updateReplyLang": { "message": "דערהייַנטיקן ענטפער שפּראַך" },
   "prompt_updateReplyTopic": { "message": "דערהייַנטיקן ענטפער טעמע" },
   "prompt_orEnter": { "message": "אָדער אַרייַן" },

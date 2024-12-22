@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Keelatud (laiend installitud)" },
   "about_version": { "message": "Versioon" },
   "about_poweredBy": { "message": "Powered by" },
-  "about_sourceCode": { "message": "Lähtekood" },
+  "about_openSourceCode": { "message": "lähtekood" },
   "prompt_updateReplyLang": { "message": "Uuenda vastuse keelt" },
   "prompt_updateReplyTopic": { "message": "Uuenda vastuse teemat" },
   "prompt_orEnter": { "message": "või sisesta" },

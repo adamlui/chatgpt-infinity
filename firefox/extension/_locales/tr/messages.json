@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Devre dışı (uzantı yüklü)" },
   "about_version": { "message": "Versiyon" },
   "about_poweredBy": { "message": "Destek" },
-  "about_sourceCode": { "message": "Kaynak Kodu" },
+  "about_openSourceCode": { "message": "Açık kaynak kodu" },
   "prompt_updateReplyLang": { "message": "Cevap dili güncelle" },
   "prompt_updateReplyTopic": { "message": "Yanıt konusunu güncelle" },
   "prompt_orEnter": { "message": "veya girin" },

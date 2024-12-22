@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Өшірілген (кеңейтім орнатылған)" },
   "about_version": { "message": "Нұсқа" },
   "about_poweredBy": { "message": "Сайтты жасаған" },
-  "about_sourceCode": { "message": "Бастапқы код" },
+  "about_openSourceCode": { "message": "@ info: whatsthis" },
   "prompt_updateReplyLang": { "message": "Жауап беру тілін жаңарту" },
   "prompt_updateReplyTopic": { "message": "Жауап беру тақырыбын жаңарту" },
   "prompt_orEnter": { "message": "немесе кіріңіз" },

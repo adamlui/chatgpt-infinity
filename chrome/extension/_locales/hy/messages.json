@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Անջատված է (երկարաձգումը տեղադրված է)" },
   "about_version": { "message": "Ստանալ պրեմիում տարբերակը" },
   "about_poweredBy": { "message": "🇦🇲" },
-  "about_sourceCode": { "message": "Ծրագրային կոդ" },
+  "about_openSourceCode": { "message": "Ծրագրային կոդ" },
   "prompt_updateReplyLang": { "message": "Թարմացնել պատասխանի լեզուն" },
   "prompt_updateReplyTopic": { "message": "Թարմացնել պատասխանի թեման" },
   "prompt_orEnter": { "message": "կամ մուտքագրեք" },

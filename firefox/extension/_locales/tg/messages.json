@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Ғайрифаъол (тавсеаи насбшуда)" },
   "about_version": { "message": "Версия" },
   "about_poweredBy": { "message": "Нерӯмандшуда аз тарафи" },
-  "about_sourceCode": { "message": "Рамзи манбаъ" },
+  "about_openSourceCode": { "message": "@ info: whatsthis" },
   "prompt_updateReplyLang": { "message": "Забони ҷавобро навсозӣ кунед" },
   "prompt_updateReplyTopic": { "message": "Мавзӯъи ҷавобро навсозӣ кунед" },
   "prompt_orEnter": { "message": "ё ворид кунед" },

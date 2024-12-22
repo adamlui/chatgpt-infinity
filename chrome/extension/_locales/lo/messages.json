@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "ປິດໃຊ້ງານ (ຕິດຕັ້ງຂະຫຍາຍ)" },
   "about_version": { "message": "ຮຸ່ນ" },
   "about_poweredBy": { "message": "ຂັບເຄື່ອນໂດຍ" },
-  "about_sourceCode": { "message": "ຊອດສ໌ໂຄດ" },
+  "about_openSourceCode": { "message": "ລະຫັດແຫຼ່ງເປີດ" },
   "prompt_updateReplyLang": { "message": "ອັບເດດພາສາຕອບ" },
   "prompt_updateReplyTopic": { "message": "ອັບເດດຫົວຂໍ້ຕອບ" },
   "prompt_orEnter": { "message": "ຫຼື ເຂົ້າໄປ" },

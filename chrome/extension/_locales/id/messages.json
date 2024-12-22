@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Dinonaktifkan (ekstensi terpasang)" },
   "about_version": { "message": "Versi" },
   "about_poweredBy": { "message": "Didukung oleh" },
-  "about_sourceCode": { "message": "Kode sumber" },
+  "about_openSourceCode": { "message": "Sumber Terbuka" },
   "prompt_updateReplyLang": { "message": "Perbarui bahasa balasan" },
   "prompt_updateReplyTopic": { "message": "Perbarui topik balasan" },
   "prompt_orEnter": { "message": "atau masukkan" },

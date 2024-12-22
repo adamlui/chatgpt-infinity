@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "డిసేబుల్ చేయబడింది (పొడిగింపు ఇన్స్టాల్ చేయబడింది)" },
   "about_version": { "message": "వివరణం" },
   "about_poweredBy": { "message": "ద్వారా ఆధారితం" },
-  "about_sourceCode": { "message": "సోర్స్ కోడ్" },
+  "about_openSourceCode": { "message": "@ info: whatsthis" },
   "prompt_updateReplyLang": { "message": "ప్రత్యుత్తరం భాషను అప్ ‌ డేట్ చేయండి" },
   "prompt_updateReplyTopic": { "message": "ప్రతిస్పందన అంశాన్ని అప్ ‌ డేట్ చేయండి" },
   "prompt_orEnter": { "message": "లేదా ఎంటర్ చేయండి" },

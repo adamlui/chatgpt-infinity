@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "გაუქმებულია (გაფართოება დაყენებულია)" },
   "about_version": { "message": "ვერსია" },
   "about_poweredBy": { "message": "აგებულია KDE-ზე" },
-  "about_sourceCode": { "message": "საწყისი კოდი" },
+  "about_openSourceCode": { "message": "საწყისი კოდი" },
   "prompt_updateReplyLang": { "message": "განახლება პასუხის ენა" },
   "prompt_updateReplyTopic": { "message": "Პასუხის თემის განახლება" },
   "prompt_orEnter": { "message": "ან შეიყვანეთ" },

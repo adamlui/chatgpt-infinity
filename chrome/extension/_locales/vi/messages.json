@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Vô hiệu hóa (tiện ích đã được cài đặt)" },
   "about_version": { "message": "Phiên bản" },
   "about_poweredBy": { "message": "Cung cấp bởi" },
-  "about_sourceCode": { "message": "Mã nguồn" },
+  "about_openSourceCode": { "message": "Nguồn mở" },
   "prompt_updateReplyLang": { "message": "Cập nhật ngôn ngữ trả lời" },
   "prompt_updateReplyTopic": { "message": "Cập nhật chủ đề trả lời" },
   "prompt_orEnter": { "message": "hoặc nhập" },

@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Өчүрүлгөн (кеңейтилген орнотулган)" },
   "about_version": { "message": "Версиясы" },
   "about_poweredBy": { "message": "Тарабынан иштелип чыккан" },
-  "about_sourceCode": { "message": "Баштапкы код" },
+  "about_openSourceCode": { "message": "Баштапкы код" },
   "prompt_updateReplyLang": { "message": "Жооп тилин жаңыртуу" },
   "prompt_updateReplyTopic": { "message": "Жооп темасын жаңыртуу" },
   "prompt_orEnter": { "message": "же кирүү" },

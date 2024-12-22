@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Deaktiveret (udvidelse installeret)" },
   "about_version": { "message": "Version" },
   "about_poweredBy": { "message": "Drevet af" },
-  "about_sourceCode": { "message": "Kildekode" },
+  "about_openSourceCode": { "message": "åben kilde" },
   "prompt_updateReplyLang": { "message": "Opdater svar sprog" },
   "prompt_updateReplyTopic": { "message": "Opdater emne for svar" },
   "prompt_orEnter": { "message": "eller indtast" },

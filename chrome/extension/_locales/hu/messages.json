@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Letiltva (kiegészítő telepítve)" },
   "about_version": { "message": "Verzió" },
   "about_poweredBy": { "message": "Kiszolgálja" },
-  "about_sourceCode": { "message": "Forráskód" },
+  "about_openSourceCode": { "message": "Open Source" },
   "prompt_updateReplyLang": { "message": "Válasznyelv frissítése" },
   "prompt_updateReplyTopic": { "message": "Válasz témájának frissítése" },
   "prompt_orEnter": { "message": ") gombot, vagy adja be a “számjegyeket" },

@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Отключено (расширение установлено)" },
   "about_version": { "message": "Версия" },
   "about_poweredBy": { "message": "На базе технологии" },
-  "about_sourceCode": { "message": "Исходный код" },
+  "about_openSourceCode": { "message": "Открытый исходный код" },
   "prompt_updateReplyLang": { "message": "Обновить язык ответа" },
   "prompt_updateReplyTopic": { "message": "Обновить тему ответа" },
   "prompt_orEnter": { "message": "или введите сумму" },

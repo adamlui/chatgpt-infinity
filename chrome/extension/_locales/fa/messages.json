@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "غیرفعال (برنامه افزودنی نصب شده)" },
   "about_version": { "message": "نسخه برنامه" },
   "about_poweredBy": { "message": "قدرت گرفته توسط" },
-  "about_sourceCode": { "message": "سورس کد" },
+  "about_openSourceCode": { "message": "سورس کد" },
   "prompt_updateReplyLang": { "message": "زبان پاسخ را به روز کنید" },
   "prompt_updateReplyTopic": { "message": "موضوع پاسخ را به روز کنید" },
   "prompt_orEnter": { "message": "ویا آدرس را وارد کنید" },

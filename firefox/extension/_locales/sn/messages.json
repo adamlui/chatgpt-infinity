@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Akaremara (kuwedzera yakaiswa)" },
   "about_version": { "message": "Vhezheni" },
   "about_poweredBy": { "message": "Inofambiswa ne" },
-  "about_sourceCode": { "message": "Kunobva kodhi" },
+  "about_openSourceCode": { "message": "Open source code" },
   "prompt_updateReplyLang": { "message": "Kuvandudza mutauro wekupindura" },
   "prompt_updateReplyTopic": { "message": "Gadzirisa nyaya yemhinduro" },
   "prompt_orEnter": { "message": "kana kupinda" },

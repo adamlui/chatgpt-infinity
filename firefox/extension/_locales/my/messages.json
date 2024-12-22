@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "ပိတ်ထားသည် (တိုးချဲ့တပ်ဆင်ထားသည်)" },
   "about_version": { "message": "ဗားရှင်း" },
   "about_poweredBy": { "message": "မှပံ့ပိုးသည်" },
-  "about_sourceCode": { "message": "ပင္မကုဒ္" },
+  "about_openSourceCode": { "message": "ပွင့်လင်းအရင်းအမြစ်ကုဒ်" },
   "prompt_updateReplyLang": { "message": "ပြန်ကြားရေးဘာသာစကားကို အပ်ဒိတ်လုပ်ပါ" },
   "prompt_updateReplyTopic": { "message": "ပြန်ကြားချက် ခေါင်းစဉ်ကို အပ်ဒိတ်လုပ်ပါ" },
   "prompt_orEnter": { "message": "သို့မဟုတ် ထည့်သွင်းပါ" },

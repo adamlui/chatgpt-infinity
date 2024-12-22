@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Išjungta (įdiegtas plėtinys)" },
   "about_version": { "message": "Versija" },
   "about_poweredBy": { "message": "Įgalino Proneta" },
-  "about_sourceCode": { "message": "Pradinis kodas" },
+  "about_openSourceCode": { "message": "Pradinis kodas" },
   "prompt_updateReplyLang": { "message": "Atnaujinti atsakymo kalbą" },
   "prompt_updateReplyTopic": { "message": "Atnaujinti atsakymo temą" },
   "prompt_orEnter": { "message": "arba įveskite" },

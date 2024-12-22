@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Diżattivat (estensjoni installata)" },
   "about_version": { "message": "Verżjoni" },
   "about_poweredBy": { "message": "Imħaddem minn" },
-  "about_sourceCode": { "message": "Kodiċi tas-sors" },
+  "about_openSourceCode": { "message": "sors miftuħ" },
   "prompt_updateReplyLang": { "message": "Aġġorna l-lingwa tat-tweġibiet" },
   "prompt_updateReplyTopic": { "message": "Aġġorna s-suġġett tat-tweġiba" },
   "prompt_orEnter": { "message": "jew daħħal" },

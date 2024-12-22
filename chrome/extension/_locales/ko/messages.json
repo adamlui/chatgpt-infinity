@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "비활성화됨 (확장이 설치됨)" },
   "about_version": { "message": "버전" },
   "about_poweredBy": { "message": "Powered by" },
-  "about_sourceCode": { "message": "원본 코드" },
+  "about_openSourceCode": { "message": "오픈소스" },
   "prompt_updateReplyLang": { "message": "응답 언어 업데이트" },
   "prompt_updateReplyTopic": { "message": "답변 주제 업데이트" },
   "prompt_orEnter": { "message": "또는 입력" },

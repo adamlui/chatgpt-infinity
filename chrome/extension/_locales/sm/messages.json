@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "E le aofia (ua faigofieina le faʻailoga)" },
   "about_version": { "message": "Faaliliuga" },
   "about_poweredBy": { "message": "Malosiaga e ala i" },
-  "about_sourceCode": { "message": "Punaoa code" },
+  "about_openSourceCode": { "message": "Open source code" },
   "prompt_updateReplyLang": { "message": "Faʻatauina le gagana e toe faʻatauina ai" },
   "prompt_updateReplyTopic": { "message": "Faʻatauina le sili atu o le sili" },
   "prompt_orEnter": { "message": "pe afai ae atu" },

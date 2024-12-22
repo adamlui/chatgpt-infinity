@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Ikhubazekile (isandiso sifakiweyo)" },
   "about_version": { "message": "Inguqulelo" },
   "about_poweredBy": { "message": "Ixhaswa ngu" },
-  "about_sourceCode": { "message": "Ikhowudi engumthombo" },
+  "about_openSourceCode": { "message": "@ info: whatsthis" },
   "prompt_updateReplyLang": { "message": "Hlaziya ulwimi lokuphendula" },
   "prompt_updateReplyTopic": { "message": "Hlaziya isihloko sokuphendula" },
   "prompt_orEnter": { "message": "okanye ungene" },

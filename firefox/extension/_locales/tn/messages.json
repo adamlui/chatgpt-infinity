@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "E tsamaisanang (le a imelwa)" },
   "about_version": { "message": "VERSION" },
   "about_poweredBy": { "message": "E tsamaisiwa ke" },
-  "about_sourceCode": { "message": "Source code" },
+  "about_openSourceCode": { "message": "Open source code" },
   "prompt_updateReplyLang": { "message": "Leetiša puo ya go dira" },
   "prompt_updateReplyTopic": { "message": "Leetiša selo sa go dira" },
   "prompt_orEnter": { "message": "pele le tla" },

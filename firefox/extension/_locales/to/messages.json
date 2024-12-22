@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Fakangata (tunga fakainstolasi)" },
   "about_version": { "message": "Tatau" },
   "about_poweredBy": { "message": "Fakalele ʻe he" },
-  "about_sourceCode": { "message": "Maʻuʻanga fakamatala" },
+  "about_openSourceCode": { "message": "Fakaava ʻa e kouti maʻuʻanga tokoni" },
   "prompt_updateReplyLang": { "message": "Fakapau'i lea fakautu" },
   "prompt_updateReplyTopic": { "message": "Fakapau'i lea faka'ilo" },
   "prompt_orEnter": { "message": "pe fakahu heni" },

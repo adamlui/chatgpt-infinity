@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "ปิดใช้งาน (ติดตั้งส่วนเสริมแล้ว)" },
   "about_version": { "message": "เวอร์ชัน" },
   "about_poweredBy": { "message": "สนับสนุนโดย" },
-  "about_sourceCode": { "message": "รหัสต้นฉบับ" },
+  "about_openSourceCode": { "message": "โปรแกรมโอเพนซอร์ซ " },
   "prompt_updateReplyLang": { "message": "อัปเดตภาษาตอบกลับ" },
   "prompt_updateReplyTopic": { "message": "ปรับปรุงหัวข้อการตอบกลับ" },
   "prompt_orEnter": { "message": "หรือเข้า" },

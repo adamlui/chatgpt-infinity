@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "غیر فعال (توسیع نصب شوی)" },
   "about_version": { "message": ":نسخه" },
   "about_poweredBy": { "message": "طراحی شده توسط" },
-  "about_sourceCode": { "message": "سرچينه كوډه" },
+  "about_openSourceCode": { "message": "سرچينه كوډه" },
   "prompt_updateReplyLang": { "message": "جواب ژبه اوسمهالول" },
   "prompt_updateReplyTopic": { "message": "جواب موضوع اوسمهالول" },
   "prompt_orEnter": { "message": "یا داخل شئ" },

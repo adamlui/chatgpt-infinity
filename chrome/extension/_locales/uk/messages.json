@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Вимкнено (розширення встановлено)" },
   "about_version": { "message": "Версія" },
   "about_poweredBy": { "message": "Працює на" },
-  "about_sourceCode": { "message": "Джерельний код" },
+  "about_openSourceCode": { "message": "Джерельний код" },
   "prompt_updateReplyLang": { "message": "Оновити мову відповіді" },
   "prompt_updateReplyTopic": { "message": "Оновити тему відповіді" },
   "prompt_orEnter": { "message": "або введіть" },

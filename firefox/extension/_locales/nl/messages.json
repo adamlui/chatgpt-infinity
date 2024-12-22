@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Uitgeschakeld (extensie geïnstalleerd)" },
   "about_version": { "message": "Versie" },
   "about_poweredBy": { "message": "Ondersteund door" },
-  "about_sourceCode": { "message": "Broncode" },
+  "about_openSourceCode": { "message": "open bron" },
   "prompt_updateReplyLang": { "message": "Werk antwoordtaal bij" },
   "prompt_updateReplyTopic": { "message": "Werk antwoordonderwerp bij" },
   "prompt_orEnter": { "message": "of voer in" },

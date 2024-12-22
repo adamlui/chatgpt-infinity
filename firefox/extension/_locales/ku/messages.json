@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "ناچالاک (پەرزەنتیشن دامەزرابوو)" },
   "about_version": { "message": "وەشان" },
   "about_poweredBy": { "message": "پشتگیریکراو لە لایەن" },
-  "about_sourceCode": { "message": "کۆدی سەرچاوە" },
+  "about_openSourceCode": { "message": "Koda çavkanî" },
   "prompt_updateReplyLang": { "message": "نوێکردنەوەی زمانی وەرزیی پاسخ" },
   "prompt_updateReplyTopic": { "message": "نوێکردنەوەی بابەتی وەرزیی پاسخ" },
   "prompt_orEnter": { "message": "یان تایبەتی بکە" },
