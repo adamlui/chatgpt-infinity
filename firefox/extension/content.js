@@ -178,8 +178,11 @@
     }).observe(document.body, { attributes: true, subtree: true })
 
     // Monitor SCHEME CHANGES to update sidebar toggle + modal colors
-    new MutationObserver(() => { env.scheme = getScheme() ; toggles.sidebar.update.color() ; modals.stylize() })
-        .observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
+    new MutationObserver(handleSchemeChange).observe( // site scheme changes
+        document.documentElement, { attributes: true, attributeFilter: ['class'] })
+    window.matchMedia('(prefers-color-scheme: dark)').onchange = () => // browser/system scheme changes
+        requestAnimationFrame(handleSchemeChange)
+    function handleSchemeChange() { env.scheme = getScheme() ; toggles.sidebar.update.color() ; modals.stylize() }
 
     // Disable distracting SIDEBAR CLICK-ZOOM effect
     if (!document.documentElement.hasAttribute('sidebar-click-zoom-observed')) {
