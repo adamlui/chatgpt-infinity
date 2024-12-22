@@ -178,10 +178,10 @@
     }).observe(document.body, { attributes: true, subtree: true })
 
     // Monitor SCHEME CHANGES to update sidebar toggle + modal colors
-    new MutationObserver(handleSchemePrefChange).observe( // site scheme changes
+    new MutationObserver(handleSchemePrefChange).observe( // site scheme pref changes
         document.documentElement, { attributes: true, attributeFilter: ['class'] })
-    window.matchMedia('(prefers-color-scheme: dark)').onchange = () => // browser/system scheme changes
-        requestAnimationFrame(handleSchemePrefChange)
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener( // browser/system scheme pref changes
+        'change', () => requestAnimationFrame(handleSchemePrefChange))
     function handleSchemePrefChange() {
         const displayedScheme = getScheme()
         if (env.scheme != displayedScheme) {
