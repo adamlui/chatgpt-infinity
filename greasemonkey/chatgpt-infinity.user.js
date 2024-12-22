@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.21.10
+// @version             2024.12.21.11
 // @license             MIT
 // @icon                https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?f196818
 // @icon64              https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?f196818
@@ -648,10 +648,10 @@
                 toggles.sidebar.status = 'missing' ; toggles.sidebar.insert() }
     }).observe(document.body, { attributes: true, subtree: true })
 
-    // Monitor SCHEME CHANGES to update sidebar toggle + modal colors
-    new MutationObserver(handleSchemePrefChange).observe( // site scheme pref changes
+    // Monitor SCHEME PREF changes to update sidebar toggle + modal colors
+    new MutationObserver(handleSchemePrefChange).observe( // for site scheme pref changes
         document.documentElement, { attributes: true, attributeFilter: ['class'] })
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener( // browser/system scheme pref changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener( // for browser/system scheme pref changes
         'change', () => requestAnimationFrame(handleSchemePrefChange))
     function handleSchemePrefChange() {
         const displayedScheme = getScheme()
