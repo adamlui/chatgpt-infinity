@@ -30,7 +30,9 @@ chrome.runtime.onMessage.addListener(async req => {
 // Init APP data
 (async () => {
     const app = {
-        version: chrome.runtime.getManifest().version, latestAssetCommitHash: '0ec5dfc', urls: {},
+        version: chrome.runtime.getManifest().version,
+        latestAssetCommitHash: '0ec5dfc', // for cached app.json + navicon in toggles.sidebar.insert()
+        urls: {},
         chatgptJSver: /v(\d+\.\d+\.\d+)/.exec(await (await fetch(chrome.runtime.getURL('lib/chatgpt.js'))).text())[1]
     }
     app.urls.assetHost = `https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@${app.latestAssetCommitHash}`
