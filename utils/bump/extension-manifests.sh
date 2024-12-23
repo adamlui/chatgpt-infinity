@@ -67,12 +67,15 @@ for manifest_path in "${MANIFEST_PATHS[@]}" ; do
     ((bumped_cnt++))
 
 done
-
-# COMMIT/PUSH bump(s)
 if (( $bumped_cnt == 0 )) ; then echo -e "${BW}Completed. No manifests bumped.${NC}" ; exit 0 ; fi
+
+# PULL latest changes
+echo -e "${BY}Pulling latest changes from remote to sync local repository...${NC}\n"
 git pull || (echo -e "${BR}Merge failed, please resolve conflicts!${NC}" && exit 1)
+
+# ADD/COMMIT/PUSH bump(s)
 plural_suffix=$((( $bumped_cnt > 1 )) && echo "s")
-echo -e "${BG}${bumped_cnt} manifest${plural_suffix} bumped!\n${NC}"
+echo -e "\n${BG}${bumped_cnt} manifest${plural_suffix} bumped!\n${NC}"
 echo -e "${BY}Committing bump${plural_suffix} to Git...\n${NC}"
 COMMIT_MSG="Bumped \`version\`"
 unique_versions=($(printf "%s\n" "${new_versions[@]}" | sort -u))
