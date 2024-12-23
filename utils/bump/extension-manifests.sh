@@ -47,10 +47,9 @@ for manifest_path in "${MANIFEST_PATHS[@]}" ; do
     fi
 
     # Echo begin bump
-    manifest_prefix=""
-    if [ "$chromium_only" = true ] ; then manifest_prefix="Chromium "
-    elif [ "$ff_only" = true ] ; then manifest_prefix="Firefox " ; fi
-    echo "Bumping version in ${manifest_prefix}manifest..."
+    if [ "$chromium_only" = true ] ; then manifest_prefix="Chromium"
+    elif [ "$ff_only" = true ] ; then manifest_prefix="Firefox" ; fi
+    echo "Bumping version in ${manifest_prefix} manifest..."
 
     # Determine old/new versions
     old_ver=$(sed -n 's/.*"version": *"\([0-9.]*\)".*/\1/p' "$manifest_path")
