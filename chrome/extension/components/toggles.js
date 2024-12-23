@@ -119,7 +119,8 @@ window.toggles = {
                 setTimeout(() => {
                     switchSpan.style.backgroundColor = toggleInput.checked ? '#ad68ff' : '#ccc'
                     switchSpan.style.boxShadow = toggleInput.checked ? '2px 1px 9px #d8a9ff' : 'none'
-                    knobSpan.style.transform = toggleInput.checked ? 'translateX(13px) translateY(0)' : 'translateX(0)'
+                    knobSpan.style.transform = toggleInput.checked ? 'translateX(13px)' : 'translateX(0)'
+                    knobSpan.style.transform = `translateX(${ toggleInput.checked ? 13 : 0 }px)`
                 }, 1) // min delay to trigger transition fx
             }
         }
