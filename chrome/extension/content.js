@@ -11,15 +11,15 @@
             await import(chrome.runtime.getURL(resource))
 
     // Init ENV context
-    const env = { browser: { isMobile: chatgpt.browser.isMobile() }, scheme: getScheme() }
+    const env = { browser: { isMobile: chatgpt.browser.isMobile() }, ui: { scheme: getScheme() }}
     env.browser.isPortrait = env.browser.isMobile && (window.innerWidth < window.innerHeight)
 
     // Import APP data
     const { app } = await chrome.storage.sync.get('app')
 
     // Export DEPENDENCIES to imported resources
-    dom.dependencies.import({ env }) // for env.scheme
-    modals.dependencies.import({ app, env }) // for app data + env.scheme
+    dom.dependencies.import({ env }) // for env.ui.scheme
+    modals.dependencies.import({ app, env }) // for app data + env.ui.scheme
 
     // Add CHROME MSG listener
     chrome.runtime.onMessage.addListener(req => {
@@ -56,7 +56,7 @@
         if (foundState) msg = msg.replace(foundState, '')
 
         // Show notification
-        chatgpt.notify(`${app.symbol} ${msg}`, pos, notifDuration, shadow || env.scheme == 'dark' ? '' : 'shadow')
+        chatgpt.notify(`${app.symbol} ${msg}`, pos, notifDuration, shadow || env.ui.scheme == 'dark' ? '' : 'shadow')
         const notif = document.querySelector('.chatgpt-notif:last-child')
 
         // Append styled state word
@@ -142,7 +142,7 @@
     // Init BROWSER/UI props
     await Promise.race([chatgpt.isLoaded(), new Promise(resolve => setTimeout(resolve, 5000))]) // initial UI loaded
     await chatgpt.sidebar.isLoaded()
-    env.ui = { firstLink: chatgpt.getNewChatLink() }
+    env.ui.firstLink = chatgpt.getNewChatLink()
 
     // Add LISTENER to auto-disable Infinity Mode
     document.onvisibilitychange = () => {
@@ -180,8 +180,8 @@
         'change', () => requestAnimationFrame(handleSchemePrefChange))
     function handleSchemePrefChange() {
         const displayedScheme = getScheme()
-        if (env.scheme != displayedScheme) {
-            env.scheme = displayedScheme ; toggles.sidebar.update.color() ; modals.stylize() }
+        if (env.ui.scheme != displayedScheme) {
+            env.ui.scheme = displayedScheme ; toggles.sidebar.update.color() ; modals.stylize() }
     }
 
     // Disable distracting SIDEBAR CLICK-ZOOM effect

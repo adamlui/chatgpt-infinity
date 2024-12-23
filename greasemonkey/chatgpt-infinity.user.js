@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.21.12
+// @version             2024.12.23
 // @license             MIT
 // @icon                https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?f196818
 // @icon64              https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?f196818
@@ -256,7 +256,7 @@
             name: (() => { try { return GM_info.scriptHandler } catch (err) { return 'unknown' }})(),
             version: (() => { try { return GM_info.version } catch (err) { return 'unknown' }})()
         },
-        scheme: getScheme()
+        ui: { scheme: getScheme() }
     }
     env.browser.isPortrait = env.browser.isMobile && (window.innerWidth < window.innerHeight)
     const xhr = typeof GM != 'undefined' && GM.xmlHttpRequest || GM_xmlhttpRequest
@@ -366,8 +366,8 @@
     }
 
     // Export DEPENDENCIES to imported resources
-    dom.dependencies.import({ env }) // for env.scheme
-    modals.dependencies.import({ app, env, updateCheck }) // for app data + env.scheme + update callback in modals.about
+    dom.dependencies.import({ env }) // for env.ui.scheme
+    modals.dependencies.import({ app, env, updateCheck }) // for app data + env.ui.scheme + modals.about
     settings.dependencies.import({ app }) // for app.msgs + app.configKeyPrefix refs
 
     // Init SETTINGS
@@ -521,7 +521,7 @@
         if (foundState) msg = msg.replace(foundState, '')
 
         // Show notification
-        chatgpt.notify(`${app.symbol} ${msg}`, pos, notifDuration, shadow || env.scheme == 'dark' ? '' : 'shadow')
+        chatgpt.notify(`${app.symbol} ${msg}`, pos, notifDuration, shadow || env.ui.scheme == 'dark' ? '' : 'shadow')
         const notif = document.querySelector('.chatgpt-notif:last-child')
 
         // Append styled state word
@@ -620,7 +620,7 @@
     // Init BROWSER/UI props
     await Promise.race([chatgpt.isLoaded(), new Promise(resolve => setTimeout(resolve, 5000))]) // initial UI loaded
     await chatgpt.sidebar.isLoaded()
-    env.ui = { firstLink: chatgpt.getNewChatLink() }
+    env.ui.firstLink = chatgpt.getNewChatLink()
 
     // Add LISTENER to auto-disable Infinity Mode
     if ('hidden' in document) // ...if Page Visibility API supported
@@ -655,8 +655,8 @@
         'change', () => requestAnimationFrame(handleSchemePrefChange))
     function handleSchemePrefChange() {
         const displayedScheme = getScheme()
-        if (env.scheme != displayedScheme) {
-            env.scheme = displayedScheme ; toggles.sidebar.update.color() ; modals.stylize() }
+        if (env.ui.scheme != displayedScheme) {
+            env.ui.scheme = displayedScheme ; toggles.sidebar.update.color() ; modals.stylize() }
     }
 
     // Disable distracting SIDEBAR CLICK-ZOOM effect
