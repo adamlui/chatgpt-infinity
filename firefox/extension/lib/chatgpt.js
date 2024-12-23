@@ -1,4 +1,4 @@
-// This library is a condensed version of chatgpt.js v3.3.2
+// This library is a condensed version of chatgpt.js v3.4.0
 // © 2023–2024 KudoAI & contributors under the MIT license.
 // Source: https://github.com/KudoAI/chatgpt.js
 // User guide: https://chatgptjs.org/userguide
