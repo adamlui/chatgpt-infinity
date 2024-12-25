@@ -51,7 +51,7 @@
   "alert_noMatterSize": { "message": "хэмжээ хамаагүй" },
   "alert_directlySupports": { "message": "энэ төслийг үнэгүй, ашиглахад нээлттэй байлгахын тулд миний цалингүй хүчин чармайлтыг шууд дэмждэг" },
   "alert_growTogether": { "message": "Бид хамтдаа энэхүү хүчирхэг программыг хөгжүүлэх боломжтой" },
-  "alert_tyForSupport": { "message": "Үргэлж дэмжиж байгаад баярлалаа," },
+  "alert_tyForSupport": { "message": "Үргэлж дэмжиж байгаад баярлалаа" },
   "alert_author": { "message": "Зохиогч" },
   "btnLabel_moreAIextensions": { "message": "Илүү AI Өргөтгөлүүд" },
   "btnLabel_leaveReview": { "message": "Сэтгэгдэл үлдээх" },

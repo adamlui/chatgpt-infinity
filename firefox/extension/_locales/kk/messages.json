@@ -15,7 +15,7 @@
   "menuLabel_disabled": { "message": "Өшірілген (кеңейтім орнатылған)" },
   "about_author": { "message": "Авторы" },
   "about_and": { "message": "және " },
-  "about_contributors": { "message": "Қатысушылар:" },
+  "about_contributors": { "message": "Қатысушылар" },
   "about_version": { "message": "Нұсқа" },
   "about_poweredBy": { "message": "Сайтты жасаған" },
   "about_openSourceCode": { "message": "@ info: whatsthis" },

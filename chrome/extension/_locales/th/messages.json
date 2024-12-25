@@ -51,7 +51,7 @@
   "alert_noMatterSize": { "message": "ไม่ว่าจะขนาดไหน" },
   "alert_directlySupports": { "message": "สนับสนุนความพยายามที่ไม่ได้รับค่าจ้างของฉันโดยตรงเพื่อให้แน่ใจว่าโครงการนี้ยังคงเป็นอิสระและเปิดให้ทุกคนใช้" },
   "alert_growTogether": { "message": "เราสามารถทำให้ซอฟต์แวร์ที่มีประสิทธิภาพนี้เติบโตไปด้วยกัน" },
-  "alert_tyForSupport": { "message": "ขอขอบคุณสำหรับการสนับสนุนของคุณ!" },
+  "alert_tyForSupport": { "message": "ขอขอบคุณสำหรับการสนับสนุนของคุณ" },
   "alert_author": { "message": "ผู้เขียน" },
   "btnLabel_moreAIextensions": { "message": "ส่วนขยาย AI เพิ่มเติม" },
   "btnLabel_leaveReview": { "message": "ให้รีวิว" },

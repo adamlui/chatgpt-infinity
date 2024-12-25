@@ -43,7 +43,7 @@
   "alert_isUpToDate": { "message": "карты для навител андроид" },
   "alert_showYourSupport": { "message": "Дастгирии худро нишон диҳед" },
   "alert_isOSS": { "message": "нармафзори сарчашмаи кушода сохта шудааст ва тавассути кӯшишҳои ихтиёрии 100% ройгон нигоҳ дошта мешавад" },
-  "alert_despiteAffliction": { "message": "Ҳарчанд аз он ранҷе сахт даррасад," },
+  "alert_despiteAffliction": { "message": "Ҳарчанд аз он ранҷе сахт даррасад" },
   "alert_longCOVID": { "message": "cOVID-и дароз" },
   "alert_since2020": { "message": "аз соли 2020" },
   "alert_byDonatingResults": { "message": "бо хайрия, шумо ба ман кӯмак идома беҳтар, ислоҳи хатоҳо, илова хусусиятҳои нав, ва қабули нармафзор боз ҳам беҳтар" },

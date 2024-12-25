@@ -30,7 +30,7 @@
   "alert_willReplyIn": { "message": "odpovie o" },
   "alert_yourSysLang": { "message": "váš jazyk systému" },
   "alert_replyTopicUpdated": { "message": "Téma aktualizovaná" },
-  "alert_willAnswer": { "message": "odpovedať na otázky," },
+  "alert_willAnswer": { "message": "odpovedať na otázky" },
   "alert_onTopicOf": { "message": "na tému" },
   "alert_onAllTopics": { "message": "Všetky témy" },
   "alert_replyIntUpdated": { "message": "Interval aktualizovaný" },

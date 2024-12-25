@@ -13,7 +13,7 @@
   "menuLabel_about": { "message": "אודות" },
   "menuLabel_donate": { "message": "יש לשלוח תרומה" },
   "menuLabel_disabled": { "message": "מושבת (תוסף מותקן)" },
-  "about_author": { "message": "מחבר:" },
+  "about_author": { "message": "מחבר" },
   "about_and": { "message": "ו" },
   "about_contributors": { "message": "תורמים" },
   "about_version": { "message": "גירסה" },
