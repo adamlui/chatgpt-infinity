@@ -2,7 +2,7 @@ window.toggles = {
 
     dependencies: {
         import(dependencies) { // { app, env, notify, syncConfigToUI }
-            for (const name in dependencies) this[name] = dependencies[name] }
+            for (const depName in dependencies) this[depName] = dependencies[depName] }
     },
 
     getMsg(key) {

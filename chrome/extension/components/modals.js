@@ -6,7 +6,7 @@ window.modals = {
 
     dependencies: {
         import(dependencies) { // { app, env, updateCheck (userscript only) }
-            for (const name in dependencies) this[name] = dependencies[name] }
+            for (const depName in dependencies) this[depName] = dependencies[depName] }
     },
 
     get runtime() {

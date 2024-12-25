@@ -3,7 +3,7 @@ window.settings = {
 
     dependencies: {
         import(dependencies) { // { app }
-            for (const name in dependencies) this[name] = dependencies[name] }
+            for (const depName in dependencies) this[depName] = dependencies[depName] }
     },
 
     controls: { // displays top-to-bottom in toolbar menu
