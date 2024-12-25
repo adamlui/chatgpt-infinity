@@ -4,6 +4,7 @@
   "urls": {
     "chatgptJS": "https://chatgpt.js.org",
     "cjsMediaHost": "https://media.chatgptjs.org",
+    "contributors": "https://docs.chatgptautorefresh.com/#-contributors",
     "donate": {
       "cashApp": "https://cash.app/$adamlui",
       "gitHub": "https://github.com/sponsors/adamlui",
