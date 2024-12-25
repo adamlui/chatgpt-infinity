@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "Σχετικά" },
   "menuLabel_donate": { "message": "Στείλτε μια δωρεά" },
   "menuLabel_disabled": { "message": "Απενεργοποιημένο (επέκταση εγκατεστημένη)" },
+  "about_author": { "message": "Συντάκτης" },
+  "about_andContributors": { "message": "και συνεισφέροντες" },
   "about_version": { "message": "Έκδοση" },
   "about_poweredBy": { "message": "Με την υποστήριξη" },
   "about_openSourceCode": { "message": "Ανοιχτός κώδικας. " },

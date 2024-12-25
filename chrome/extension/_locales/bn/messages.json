@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "সম্বন্ধে" },
   "menuLabel_donate": { "message": "অনুগ্রহ করে একটি অনুদান পাঠান" },
   "menuLabel_disabled": { "message": "নিষ্ক্রিয় (এক্সটেনশন ইনস্টল করা হয়েছে)" },
+  "about_author": { "message": "রচয়িতা" },
+  "about_andContributors": { "message": "এবং অবদানকারী" },
   "about_version": { "message": "সংস্করণ" },
   "about_poweredBy": { "message": "নিবেদন করছেন" },
   "about_openSourceCode": { "message": "সোর্স কোড" },

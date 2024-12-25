@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "Umbes" },
   "menuLabel_donate": { "message": "Saada annetus" },
   "menuLabel_disabled": { "message": "Keelatud (laiend installitud)" },
+  "about_author": { "message": "Autor" },
+  "about_andContributors": { "message": "Meeskond ja panustajad" },
   "about_version": { "message": "Versioon" },
   "about_poweredBy": { "message": "Powered by" },
   "about_openSourceCode": { "message": "lähtekood" },

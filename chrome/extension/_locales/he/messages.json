@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "אודות" },
   "menuLabel_donate": { "message": "יש לשלוח תרומה" },
   "menuLabel_disabled": { "message": "מושבת (תוסף מותקן)" },
+  "about_author": { "message": "מחבר:" },
+  "about_andContributors": { "message": "ותורמים" },
   "about_version": { "message": "גירסה" },
   "about_poweredBy": { "message": "באמצעות" },
   "about_openSourceCode": { "message": "קוד מקור" },

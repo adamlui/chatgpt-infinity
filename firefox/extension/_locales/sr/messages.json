@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "O nama" },
   "menuLabel_donate": { "message": "Pošaljite donaciju" },
   "menuLabel_disabled": { "message": "Искључено (прикључак је инсталиран)" },
+  "about_author": { "message": "Autor" },
+  "about_andContributors": { "message": "i saradnici" },
   "about_version": { "message": "Verzija" },
   "about_poweredBy": { "message": "Powered by" },
   "about_openSourceCode": { "message": "Izvorni kod" },

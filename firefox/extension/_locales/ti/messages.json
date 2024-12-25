@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "ብዛዕባ" },
   "menuLabel_donate": { "message": "ብኽብረትካ በጃኻ ውህበት ልኢኽካ" },
   "menuLabel_disabled": { "message": "ኣገልግሎት ከም ዘይህብ ምግባር (እተኸልከለ ምንቅስቓስ)" },
+  "about_author": { "message": "ደራሲ" },
+  "about_andContributors": { "message": "እቶም ኣበርክቶ ዝገበሩ" },
   "about_version": { "message": "መበል" },
   "about_poweredBy": { "message": "ብ" },
   "about_openSourceCode": { "message": "ክፉት ምንጪ ኮድ" },

@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "O nás" },
   "menuLabel_donate": { "message": "Pošlite dar" },
   "menuLabel_disabled": { "message": "Vypnuté (rozšírenie nainštalované)" },
+  "about_author": { "message": "Autor" },
+  "about_andContributors": { "message": "a prispievatelia" },
   "about_version": { "message": "Verzia" },
   "about_poweredBy": { "message": "Beží na" },
   "about_openSourceCode": { "message": "Otvorený zdrojový kód" },

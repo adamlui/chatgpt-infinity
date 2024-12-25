@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "ስለ" },
   "menuLabel_donate": { "message": "እባክዎን ልገሳ ይላኩ" },
   "menuLabel_disabled": { "message": "የተጠናከረ (የተጫነ)" },
+  "about_author": { "message": "ደራሲ" },
+  "about_andContributors": { "message": "እና አስተዋፅዖ አበርካቾች" },
   "about_version": { "message": "እትም" },
   "about_poweredBy": { "message": "የተጎለበተው በ" },
   "about_openSourceCode": { "message": "የምንጭ ኮድ" },

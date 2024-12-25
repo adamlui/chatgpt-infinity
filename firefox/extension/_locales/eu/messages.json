@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "Egileari Buruz" },
   "menuLabel_donate": { "message": "Mesedez, bidali dohaintza" },
   "menuLabel_disabled": { "message": "Desgaituta (luzapena instalatuta)" },
+  "about_author": { "message": "Egilea" },
+  "about_andContributors": { "message": "eta laguntzaileak" },
   "about_version": { "message": "Bertsioa" },
   "about_poweredBy": { "message": "Teknologia" },
   "about_openSourceCode": { "message": "Kode ireki" },

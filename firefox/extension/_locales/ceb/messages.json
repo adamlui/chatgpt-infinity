@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "Mga Bahin" },
   "menuLabel_donate": { "message": "Palihug ipadala ang usa ka donasyon" },
   "menuLabel_disabled": { "message": "Nahilakip (na-instalar ang ekstensyon)" },
+  "about_author": { "message": "Awtor" },
+  "about_andContributors": { "message": "ug contributors" },
   "about_version": { "message": "Bersyon" },
   "about_poweredBy": { "message": "Gipadagan sa" },
   "about_openSourceCode": { "message": "Gigikana sa kodigo" },

@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "Um" },
   "menuLabel_donate": { "message": "Vinsamlegast sendu styrk" },
   "menuLabel_disabled": { "message": "Óvirkt (viðbót uppsett)" },
+  "about_author": { "message": "Author" },
+  "about_andContributors": { "message": "og meðhöfundar" },
   "about_version": { "message": "Útgáfa" },
   "about_poweredBy": { "message": "Knúið af" },
   "about_openSourceCode": { "message": "Upprunakóði@ info: whatsthis" },

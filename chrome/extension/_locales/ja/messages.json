@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "詳細" },
   "menuLabel_donate": { "message": "寄付を送ってください" },
   "menuLabel_disabled": { "message": "無効になっています（拡張機能がインストールされています）" },
+  "about_author": { "message": "作成者" },
+  "about_andContributors": { "message": "チームと貢献者" },
   "about_version": { "message": "バージョン" },
   "about_poweredBy": { "message": "Powered by" },
   "about_openSourceCode": { "message": "Open Source" },

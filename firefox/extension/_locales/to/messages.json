@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "Fai 'a e" },
   "menuLabel_donate": { "message": "Kātaki ʻo ʻave ha foaki" },
   "menuLabel_disabled": { "message": "Fakangata (tunga fakainstolasi)" },
+  "about_author": { "message": "Tokotaha Faʻu Tohí" },
+  "about_andContributors": { "message": "mo kinautolu naʻa nau fai e tokon" },
   "about_version": { "message": "Tatau" },
   "about_poweredBy": { "message": "Fakalele ʻe he" },
   "about_openSourceCode": { "message": "Fakaava ʻa e kouti maʻuʻanga tokoni" },

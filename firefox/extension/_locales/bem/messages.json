@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "Mwezabukali" },
   "menuLabel_donate": { "message": "Napapata Uletuma Ubupe" },
   "menuLabel_disabled": { "message": "Eposya apamwamba (icalo cakonse cali cilangililo)" },
+  "about_author": { "message": "Kalemba" },
+  "about_andContributors": { "message": "abalesendamo ulubali" },
   "about_version": { "message": "Ukupilibula" },
   "about_poweredBy": { "message": "Amapola by Amapola" },
   "about_openSourceCode": { "message": "Ilembo lya pa kompyuta ilyaba pa kompyuta" },

@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "Waxtu" },
   "menuLabel_donate": { "message": "Yal na yónnee ay jaay" },
   "menuLabel_disabled": { "message": "Nopp (këyit yi nopp laañ)" },
+  "about_author": { "message": "CI/BI" },
+  "about_andContributors": { "message": "ñi àndal" },
   "about_version": { "message": "Sumb" },
   "about_poweredBy": { "message": "Xët yi lëkkalook wii \"'Powers by\"" },
   "about_openSourceCode": { "message": "Xët yi lëkkalook wii \"'Open Source\"'" },

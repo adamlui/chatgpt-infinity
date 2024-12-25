@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "Quem somos" },
   "menuLabel_donate": { "message": "Envie um donativo" },
   "menuLabel_disabled": { "message": "Desativado (extensão instalada)" },
+  "about_author": { "message": "Autor" },
+  "about_andContributors": { "message": "e colaboradores" },
   "about_version": { "message": "Versão" },
   "about_poweredBy": { "message": "Alimentado por" },
   "about_openSourceCode": { "message": "Código-fonte aberto" },

@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "గురించి" },
   "menuLabel_donate": { "message": "దయచేసి విరాళం పంపండి" },
   "menuLabel_disabled": { "message": "డిసేబుల్ చేయబడింది (పొడిగింపు ఇన్స్టాల్ చేయబడింది)" },
+  "about_author": { "message": "రచయిత" },
+  "about_andContributors": { "message": "మరియు కంట్రిబ్యూటర్ ‌ లు" },
   "about_version": { "message": "వివరణం" },
   "about_poweredBy": { "message": "ద్వారా ఆధారితం" },
   "about_openSourceCode": { "message": "@ info: whatsthis" },

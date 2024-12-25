@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "Hakkımızda" },
   "menuLabel_donate": { "message": "Lütfen bağış gönderin" },
   "menuLabel_disabled": { "message": "Devre dışı (uzantı yüklü)" },
+  "about_author": { "message": "Yazar" },
+  "about_andContributors": { "message": "ve katkıda bulunanlar" },
   "about_version": { "message": "Versiyon" },
   "about_poweredBy": { "message": "Destek" },
   "about_openSourceCode": { "message": "Açık kaynak kodu" },

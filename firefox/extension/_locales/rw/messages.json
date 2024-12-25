@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "Ku Bimenyetso" },
   "menuLabel_donate": { "message": "Yohereze Yohereze Impano" },
   "menuLabel_disabled": { "message": "Gutwikishwa (iturere rushinzwe)" },
+  "about_author": { "message": "Ibisobanuro" },
+  "about_andContributors": { "message": "na Abaterankunga" },
   "about_version": { "message": "Umukoro" },
   "about_poweredBy": { "message": "Ku" },
   "about_openSourceCode": { "message": "Inkomoko Inyandikoporogaramu" },

@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "Ról ről" },
   "menuLabel_donate": { "message": "Kérjük, küldjön adományt" },
   "menuLabel_disabled": { "message": "Letiltva (kiegészítő telepítve)" },
+  "about_author": { "message": "Szerző" },
+  "about_andContributors": { "message": "és közreműködők" },
   "about_version": { "message": "Verzió" },
   "about_poweredBy": { "message": "Kiszolgálja" },
   "about_openSourceCode": { "message": "Open Source" },

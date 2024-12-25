@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "Vizitka" },
   "menuLabel_donate": { "message": "Pošljite donacijo" },
   "menuLabel_disabled": { "message": "Onemogočeno (razširitev nameščena)" },
+  "about_author": { "message": "Avtor" },
+  "about_andContributors": { "message": "in sodelavci" },
   "about_version": { "message": "Različica" },
   "about_poweredBy": { "message": "Poganja" },
   "about_openSourceCode": { "message": "Odprta koda" },

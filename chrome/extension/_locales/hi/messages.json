@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "परिचय" },
   "menuLabel_donate": { "message": "कृपया दान भेजें" },
   "menuLabel_disabled": { "message": "अक्षम (एक्सटेंशन इंस्टॉल हुआ है)" },
+  "about_author": { "message": "लेखक" },
+  "about_andContributors": { "message": "और योगदानकर्ता" },
   "about_version": { "message": "संस्करण" },
   "about_poweredBy": { "message": "...द्वारा पावरशुदा" },
   "about_openSourceCode": { "message": "सोर्स कोड" },

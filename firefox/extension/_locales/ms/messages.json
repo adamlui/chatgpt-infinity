@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "Tentang" },
   "menuLabel_donate": { "message": "Sila hantar derma" },
   "menuLabel_disabled": { "message": "Dilumpuhkan (sambungan dipasang)" },
+  "about_author": { "message": "Author" },
+  "about_andContributors": { "message": "dan penyumbang" },
   "about_version": { "message": "Versi" },
   "about_poweredBy": { "message": "Dijana oleh" },
   "about_openSourceCode": { "message": "Sumber Terbuka" },

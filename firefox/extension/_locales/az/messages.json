@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "Haqqında" },
   "menuLabel_donate": { "message": "İanə göndərin" },
   "menuLabel_disabled": { "message": "Deaktiv edildi (genişlənmə quraşdırıldı)" },
+  "about_author": { "message": "Müəllif" },
+  "about_andContributors": { "message": "və ianəçilər" },
   "about_version": { "message": "Versiya" },
   "about_poweredBy": { "message": "Ərsəyə gətirən" },
   "about_openSourceCode": { "message": "Mənbə kodunu açın" },

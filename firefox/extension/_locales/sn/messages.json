@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "Nezvedu" },
   "menuLabel_donate": { "message": "Ndapota tumira mupiro" },
   "menuLabel_disabled": { "message": "Akaremara (kuwedzera yakaiswa)" },
+  "about_author": { "message": "Munyori" },
+  "about_andContributors": { "message": "uye Contributors" },
   "about_version": { "message": "Vhezheni" },
   "about_poweredBy": { "message": "Inofambiswa ne" },
   "about_openSourceCode": { "message": "Open source code" },

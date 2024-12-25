@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "អំពី" },
   "menuLabel_donate": { "message": "សូមផ្ញើការបរិច្ចាគ" },
   "menuLabel_disabled": { "message": "បានបិទ (បានបញ្ចូលផ្នែកបន្ថែម)" },
+  "about_author": { "message": "អ្នកបញ្ចូលព័ត៌មាន" },
+  "about_andContributors": { "message": "អ្នកចូលរួម" },
   "about_version": { "message": "លេខជំនាន់កម្មវិធី" },
   "about_poweredBy": { "message": "ដំណើរការដោយ" },
   "about_openSourceCode": { "message": "កូដ​ដើម" },

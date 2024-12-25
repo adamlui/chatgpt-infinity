@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "Mabapi le" },
   "menuLabel_donate": { "message": "Ke kopa gore o romele moneelo" },
   "menuLabel_disabled": { "message": "E tsamaisanang (le a imelwa)" },
+  "about_author": { "message": "Mokwadi" },
+  "about_andContributors": { "message": "le batho ba ba nang le seabe" },
   "about_version": { "message": "VERSION" },
   "about_poweredBy": { "message": "E tsamaisiwa ke" },
   "about_openSourceCode": { "message": "Open source code" },

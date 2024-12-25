@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "За" },
   "menuLabel_donate": { "message": "Испратете донација" },
   "menuLabel_disabled": { "message": "Оневозможено (наставката е инсталирана)" },
+  "about_author": { "message": "Автор" },
+  "about_andContributors": { "message": "и соработници" },
   "about_version": { "message": "Верзија" },
   "about_poweredBy": { "message": "Поддржано од" },
   "about_openSourceCode": { "message": "@ info: whatsthis" },

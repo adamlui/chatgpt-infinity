@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "အကြောင်း" },
   "menuLabel_donate": { "message": "ကျေးဇူးပြု ၍ လှူဒါန်းမှုတစ်ခု ပေးပို့ပါ" },
   "menuLabel_disabled": { "message": "ပိတ်ထားသည် (တိုးချဲ့တပ်ဆင်ထားသည်)" },
+  "about_author": { "message": "ရေးသူ" },
+  "about_andContributors": { "message": "နှင့် ပံ့ပိုးပေးသူများ" },
   "about_version": { "message": "ဗားရှင်း" },
   "about_poweredBy": { "message": "မှပံ့ပိုးသည်" },
   "about_openSourceCode": { "message": "ပွင့်လင်းအရင်းအမြစ်ကုဒ်" },

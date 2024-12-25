@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "Ho‘ākāka" },
   "menuLabel_donate": { "message": "E ʻoluʻolu e hoʻouna i haʻawina" },
   "menuLabel_disabled": { "message": "Hoʻopaʻa ʻia (kau ʻia ka hoʻonui)" },
+  "about_author": { "message": "Mea kākau" },
+  "about_andContributors": { "message": "a me nā mea kōkua" },
   "about_version": { "message": "Manao" },
   "about_poweredBy": { "message": "Hoʻāmana ʻia e" },
   "about_openSourceCode": { "message": "Wehe kumu kumu" },

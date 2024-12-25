@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "Dwar" },
   "menuLabel_donate": { "message": "Jekk jogħġbok ibgħat donazzjoni" },
   "menuLabel_disabled": { "message": "Diżattivat (estensjoni installata)" },
+  "about_author": { "message": "Awtur" },
+  "about_andContributors": { "message": "u l-kontributuri" },
   "about_version": { "message": "Verżjoni" },
   "about_poweredBy": { "message": "Imħaddem minn" },
   "about_openSourceCode": { "message": "sors miftuħ" },

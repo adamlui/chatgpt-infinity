@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "Omtrent" },
   "menuLabel_donate": { "message": "Stuur asseblief 'n donasie" },
   "menuLabel_disabled": { "message": "Gestremde (uitbreiding geïnstalleer)" },
+  "about_author": { "message": "Outeur" },
+  "about_andContributors": { "message": "en bydraers" },
   "about_version": { "message": "Weergawe" },
   "about_poweredBy": { "message": "Aangedryf deur" },
   "about_openSourceCode": { "message": "Oopbronkode" },

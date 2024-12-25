@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "Malunga" },
   "menuLabel_donate": { "message": "Nceda uthumele umnikelo" },
   "menuLabel_disabled": { "message": "Ikhubazekile (isandiso sifakiweyo)" },
+  "about_author": { "message": "Inkcazelo ngombhali" },
+  "about_andContributors": { "message": "kunye nabantu abanikelayo" },
   "about_version": { "message": "Inguqulelo" },
   "about_poweredBy": { "message": "Ixhaswa ngu" },
   "about_openSourceCode": { "message": "@ info: whatsthis" },

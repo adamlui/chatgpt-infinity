@@ -13,6 +13,8 @@
   "menuLabel_about": { "message": "Quant a" },
   "menuLabel_donate": { "message": "Envia una donació" },
   "menuLabel_disabled": { "message": "Desactivat (extensió instal·lada)" },
+  "about_author": { "message": "Autor" },
+  "about_andContributors": { "message": "i col·laboradors" },
   "about_version": { "message": "Versió" },
   "about_poweredBy": { "message": "Desenvolupat per" },
   "about_openSourceCode": { "message": "Codi obert" },
