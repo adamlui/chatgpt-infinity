@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2024.12.25
+// @version             2024.12.26
 // @license             MIT
 // @icon                https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?f196818
 // @icon64              https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?f196818
@@ -220,10 +220,10 @@
 // @connect             cdn.jsdelivr.net
 // @connect             update.greasyfork.org
 // @require             https://cdn.jsdelivr.net/npm/@kudoai/chatgpt.js@3.4.0/dist/chatgpt.min.js#sha256-LfB3mqeB6Xiq2BDub1tn3BtvEiMcaWEp+I094MFpA+Q=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@405762db2c8ac47b82b73ca463adf03cdd9bdb2e/chrome/extension/components/modals.js#sha256-yHvgYJdvWkq5G8GAv4IjW3GeWCzwvi1SDwPBiNor7Vg=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@405762db2c8ac47b82b73ca463adf03cdd9bdb2e/chrome/extension/components/toggles.js#sha256-kRSvHNu7PTkJAkmiHUXkSJfwIGI1M0dMledSsy6kR9c=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@22ae4a2339b39eb35d02e9fa8d3fd91c1389be14/chrome/extension/lib/dom.js#sha256-mdgglx6OZmPxvzAuCMoZa+Msw5GN7F50IBepwudDW00=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@9c4faec803082d46c28dd53273f740665b0d8b27/chrome/extension/lib/settings.js#sha256-Tk6HOrGtlOwSD4xQheBWAX9SATlaPilsR3DcwHLCJlA=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@c6338a22b98eda877436fd6c5950ac3114aea23c/chrome/extension/components/modals.js#sha256-k7ej86XnXvsIcSmvr+hxSloYcZnBoL9sJrFG3xbfGz0=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@c6338a22b98eda877436fd6c5950ac3114aea23c/chrome/extension/components/toggles.js#sha256-5iYtneZeosOYOdeIGD1TQTRA1R0YiYu3Iw4ZhfFwmU0=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@c6338a22b98eda877436fd6c5950ac3114aea23c/chrome/extension/lib/dom.js#sha256-/QaqzuGGC7PrzjYnXtYh411rJJOp27jWLA4ataKaWWY=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@c6338a22b98eda877436fd6c5950ac3114aea23c/chrome/extension/lib/settings.js#sha256-1ZWC5u6IeVzqXeUWmt3BjMNEllUfFzS4WIgeIXpomio=
 // @resource brsCSS     https://assets.aiwebextensions.com/styles/rising-stars/dist/black.min.css?v=0cde30f9ae3ce99ae998141f6e7a36de9b0cc2e7#sha256-4nbm81/JSas4wmxFIdliBBzoEEHRZ057TpzNX1PoQIs=
 // @resource wrsCSS     https://assets.aiwebextensions.com/styles/rising-stars/dist/white.min.css?v=0cde30f9ae3ce99ae998141f6e7a36de9b0cc2e7#sha256-pW8xWWV6tm8Q6Ms+HWZv6+QzzTLJPyL1DyE18ywpVaE=
 // @grant               GM_setValue
@@ -368,9 +368,9 @@
     }
 
     // Export DEPENDENCIES to imported resources
-    dom.dependencies.import({ env }) // for env.ui.scheme
-    modals.dependencies.import({ app, env, updateCheck }) // for app data + env.ui.scheme + modals.about
-    settings.dependencies.import({ app }) // for app.msgs + app.configKeyPrefix refs
+    dom.imports.import({ env }) // for env.ui.scheme
+    modals.imports.import({ app, env, updateCheck }) // for app data + env.ui.scheme + modals.about
+    settings.imports.import({ app }) // for app.msgs + app.configKeyPrefix refs
 
     // Init SETTINGS
     settings.load(Object.keys(settings.controls).filter(key => key != 'infinityMode')) // exclude infinityMode...
@@ -630,7 +630,7 @@
     // Add STARS styles
     ['brs', 'wrs'].forEach(cssType => document.head.append(dom.create.style(GM_getResourceText(`${cssType}CSS`))))
 
-    toggles.dependencies.import({ app, env, notify, syncConfigToUI })
+    toggles.imports.import({ app, env, notify, syncConfigToUI })
     toggles.sidebar.insert()
 
     // Auto-start if enabled
