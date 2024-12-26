@@ -185,7 +185,7 @@ window.modals = {
                     + `${ this.imports.env.ui.scheme == 'dark' ? 'white' : 'black' }.png" `
                     + 'style="height: 54px ; margin: 5px 0 -2px 5px"></img>'
                 + `<p>—<b><a target="_blank" rel="noopener" href="${this.imports.app.author.url}">`
-                    + `${this.getMsg('appAuthor')}</a></b>, ${this.getMsg('alert_author')}</p>`,
+                    + `${this.getMsg('appAuthor')}</a></b>, ${this.getMsg('about_author').toLowerCase()}</p>`,
             [ // buttons
                 function paypal(){},
                 function githubSponsors(){},
