@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "jappoġġja direttament l-isforzi mhux imħallsa tiegħi biex niżgura li dan il-proġett jibqa' liberu u miftuħ għal kulħadd biex juża" },
   "alert_growTogether": { "message": "Flimkien, nistgħu nżommu dan is-softwer qawwi jikber" },
   "alert_tyForSupport": { "message": "Grazzi tal-appoġġ tiegħek" },
-  "alert_author": { "message": "awtur" },
   "btnLabel_moreAIextensions": { "message": "Iktar Estensjonijiet tal-IA" },
   "btnLabel_leaveReview": { "message": "Ħalli r-Review" },
   "btnLabel_rateUs": { "message": "Rata us" },

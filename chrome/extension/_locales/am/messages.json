@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "ይህ ፕሮጀክት ነፃ እና ለሁሉም ለመጠቀም ክፍት ሆኖ እንዲቆይ ለማድረግ ያልተከፈለ ጥረቶቼን በቀጥታ ይደግፋል" },
   "alert_growTogether": { "message": "አንድ ላይ ፣ ይህንን ኃይለኛ ሶፍትዌር እያደገ ማቆየት እንችላለን" },
   "alert_tyForSupport": { "message": "የእርስዎ ድጋፍ እናመሰግናለን" },
-  "alert_author": { "message": "ደራሲ" },
   "btnLabel_moreAIextensions": { "message": "ተጨማሪ የ AI ቅጥያዎች" },
   "btnLabel_leaveReview": { "message": "ግምገማ ይተው" },
   "btnLabel_rateUs": { "message": "ደረጃ ይስጡን" },

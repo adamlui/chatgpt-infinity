@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "ഈ പ്രോജക്റ്റ് സ and ജന്യവും എല്ലാവർക്കും ഉപയോഗിക്കാൻ തുറന്നതുമായി തുടരുന്നുവെന്ന് ഉറപ്പാക്കാനുള്ള എന്റെ പണമടയ്ക്കാത്ത ശ്രമങ്ങളെ നേരിട്ട് പിന്തുണയ്ക്കുന്നു" },
   "alert_growTogether": { "message": "ഒരുമിച്ച്, നമുക്ക് ഈ ശക്തമായ സോഫ്റ്റ്‌വെയറിനെ വളർത്തിയെടുക്കാൻ കഴിയും" },
   "alert_tyForSupport": { "message": "നിങ്ങളുടെ പിന്തുണയ്ക്ക് നന്ദി" },
-  "alert_author": { "message": "ലേഖകന്‍" },
   "btnLabel_moreAIextensions": { "message": "കൂടുതൽ AI എക്സ്റ്റെൻഷനുകൾ" },
   "btnLabel_leaveReview": { "message": "അവലോകനം ഉപേക്ഷിക്കുക" },
   "btnLabel_rateUs": { "message": "ഞങ്ങളെ റേറ്റുചെയ്യുക" },

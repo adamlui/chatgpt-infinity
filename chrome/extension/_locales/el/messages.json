@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "υποστηρίζει άμεσα τις μη αμειβόμενες προσπάθειές μου να διασφαλίσω ότι αυτό το έργο παραμένει ελεύθερο και ανοιχτό για χρήση από όλους" },
   "alert_growTogether": { "message": "Μαζί, μπορούμε να συνεχίσουμε να αναπτύσσουμε αυτό το ισχυρό λογισμικό" },
   "alert_tyForSupport": { "message": "Σας ευχαριστούμε για την υποστήριξή σας" },
-  "alert_author": { "message": "συντάκτης" },
   "btnLabel_moreAIextensions": { "message": "Περισσότερες επεκτάσεις τεχνητής νοημοσύνης" },
   "btnLabel_leaveReview": { "message": "Αφήστε μια Kριτική" },
   "btnLabel_rateUs": { "message": "Βαθμολογήστε μας" },

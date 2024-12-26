@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "په مستقیم ډول زما د نه تادیه شوي هڅو ملاتړ کوي ترڅو ډاډ ترلاسه شي چې دا پروژه وړیا پاتې ده او د ټولو کارولو لپاره خلاص ده" },
   "alert_growTogether": { "message": "په ګډه، موږ کولی شو دا پیاوړی سافټویر وده وکړو" },
   "alert_tyForSupport": { "message": "د ستاسو د ملاتړ مننه" },
-  "alert_author": { "message": "لیکونکی" },
   "btnLabel_moreAIextensions": { "message": "د AI نور تمدیدونه" },
   "btnLabel_leaveReview": { "message": "د رخصتۍ بیاکتنه" },
   "btnLabel_rateUs": { "message": "موږ ته رتبه راکړئ" },

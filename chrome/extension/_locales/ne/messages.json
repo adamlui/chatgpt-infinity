@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "यो परियोजना निःशुल्क र सबैका लागि प्रयोग गर्न खुला रहने सुनिश्चित गर्न मेरो अवैतनिक प्रयासहरूलाई सिधै समर्थन गर्दछ" },
   "alert_growTogether": { "message": "सँगै, हामी यो शक्तिशाली सफ्टवेयर बढ्न जारी राख्न सक्छौं" },
   "alert_tyForSupport": { "message": "तपाईंको सहयोगको लागि धन्यवाद।" },
-  "alert_author": { "message": "लेखक" },
   "btnLabel_moreAIextensions": { "message": "थप AI विस्तारहरू" },
   "btnLabel_leaveReview": { "message": "समीक्षा छोड्नुहोस्" },
   "btnLabel_rateUs": { "message": "हामीलाई मूल्याङ्कन गर्नुहोस्" },

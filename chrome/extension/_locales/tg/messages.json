@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "бевосита кӯшишҳои бепули маро дастгирӣ мекунад, то ки ин лоиҳа ройгон ва кушода барои ҳама истифода шавад" },
   "alert_growTogether": { "message": "Якҷоя, мо метавонем ин нармафзори пуриқтидорро нигоҳ дорем" },
   "alert_tyForSupport": { "message": "Salamat sa iyong suporta" },
-  "alert_author": { "message": "муаллиф" },
   "btnLabel_moreAIextensions": { "message": "Васеъсозии бештари AI" },
   "btnLabel_leaveReview": { "message": "Баромадан аз тафсир" },
   "btnLabel_rateUs": { "message": "Баҳои мо" },

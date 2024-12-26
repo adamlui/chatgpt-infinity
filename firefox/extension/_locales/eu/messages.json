@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "zuzenean onartzen du ordaindu gabeko nire ahaleginak proiektu hau doakoa eta irekia izaten jarraitzeko" },
   "alert_growTogether": { "message": "Elkarrekin, software indartsu hau hazten jarrai dezakegu" },
   "alert_tyForSupport": { "message": "Eskerrik asko zure laguntzagatik" },
-  "alert_author": { "message": "egilea" },
   "btnLabel_moreAIextensions": { "message": "AI luzapen gehiago" },
   "btnLabel_leaveReview": { "message": "Utzi Iritzia" },
   "btnLabel_rateUs": { "message": "Baloratu gaitzazu" },

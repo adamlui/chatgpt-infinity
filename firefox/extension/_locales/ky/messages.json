@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "бул долбоордун эркин жана баарына ачык болушун камсыз кылуу үчүн акы төлөнбөгөн аракеттеримди түздөн-түз колдойт" },
   "alert_growTogether": { "message": "Биргелешип, биз бул күчтүү программалык камсыздоонун өсүп турушу мүмкүн" },
   "alert_tyForSupport": { "message": "Колдооңуз үчүн рахмат" },
-  "alert_author": { "message": "Автору: " },
   "btnLabel_moreAIextensions": { "message": "Көбүрөөк AI кеңейтүүлөрү" },
   "btnLabel_leaveReview": { "message": "Сын-пикир калтыруу" },
   "btnLabel_rateUs": { "message": "Бизди баалоо" },

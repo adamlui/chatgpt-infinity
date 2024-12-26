@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "මෙම ව් යාපෘතිය නොමිලේ සහ භාවිතා කිරීමට විවෘතව පවතින බව සහතික කිරීම සඳහා මගේ නොගෙවූ උත්සාහයන්ට සෘජුවම සහාය වේ" },
   "alert_growTogether": { "message": "එකට, අපි මේ ප්රබල මෘදුකාංග වර්ධනය තබා ගත හැක" },
   "alert_tyForSupport": { "message": "ඔබේ සහයෝගයට ස්තූතියි" },
-  "alert_author": { "message": "කතෘ" },
   "btnLabel_moreAIextensions": { "message": "තවත් AI දිගු" },
   "btnLabel_leaveReview": { "message": "සමාලෝචනයක් එක් කරන්න" },
   "btnLabel_rateUs": { "message": "අපව අගයන්න" },

@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "stöder direkt mina obetalda ansträngningar för att säkerställa att detta projekt förblir gratis och öppet för alla att använda" },
   "alert_growTogether": { "message": "Tillsammans kan vi hålla denna kraftfulla programvara växande" },
   "alert_tyForSupport": { "message": "Tack för ditt stöd" },
-  "alert_author": { "message": "författare" },
   "btnLabel_moreAIextensions": { "message": "Fler AI-tillägg" },
   "btnLabel_leaveReview": { "message": "Lämna recension" },
   "btnLabel_rateUs": { "message": "betygsätt oss" },

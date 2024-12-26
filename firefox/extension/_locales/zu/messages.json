@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "isekela ngokuqondile imizamo yami engakhokhelwa yokuqinisekisa ukuthi le phrojekthi ihlala imahhala futhi ivulekile ukuba wonke umuntu ayisebenzise" },
   "alert_growTogether": { "message": "Ndawonye, singagcina le software enamandla ikhula" },
   "alert_tyForSupport": { "message": "Siyabonga ngokungeseka kwenu" },
-  "alert_author": { "message": "Ukhetho" },
   "btnLabel_moreAIextensions": { "message": "Izandiso Ezengeziwe ze-AI" },
   "btnLabel_leaveReview": { "message": "Shiya Okushiwo Abanye" },
   "btnLabel_rateUs": { "message": "Silinganise" },

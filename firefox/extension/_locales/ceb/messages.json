@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "direkta nga nagsuporta sa akong wala 'y bayad nga mga paningkamot aron maseguro nga kini nga proyekto magpabilin nga libre ug bukas alang sa tanan nga magamit" },
   "alert_growTogether": { "message": "Mag-uban, mahimo naton mapadayon ang kini nga kusug nga software nga nagtubo" },
   "alert_tyForSupport": { "message": "Salamat sa inyong suporta" },
-  "alert_author": { "message": "Tagsulat" },
   "btnLabel_moreAIextensions": { "message": "Dugang nga mga Extension sa AI" },
   "btnLabel_leaveReview": { "message": "Biyai ang Review" },
   "btnLabel_rateUs": { "message": "I-rate Kanato" },

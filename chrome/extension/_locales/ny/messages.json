@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "mwachindunji amathandiza khama langa unpaid kuonetsetsa polojekitiyi amakhala mfulu ndi lotseguka kwa aliyense ntchito" },
   "alert_growTogether": { "message": "Pamodzi, tikhoza kusunga izi wamphamvu mapulogalamu kukula" },
   "alert_tyForSupport": { "message": "Zikomo thandizo lanu" },
-  "alert_author": { "message": "mlembi" },
   "btnLabel_moreAIextensions": { "message": "Zambiri za AI" },
   "btnLabel_leaveReview": { "message": "Kusiya Review" },
   "btnLabel_rateUs": { "message": "Kuwerengetsa Ife" },

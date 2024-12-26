@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "直接支持我的无偿努力，以确保该项目免费开放，供所有人使用" },
   "alert_growTogether": { "message": "携起手来，我们可以让这个强大的软件" },
   "alert_tyForSupport": { "message": "感谢您的支持" },
-  "alert_author": { "message": "作者" },
   "btnLabel_moreAIextensions": { "message": "更多 AI 扩展" },
   "btnLabel_leaveReview": { "message": "离开评论" },
   "btnLabel_rateUs": { "message": "给我们评价" },

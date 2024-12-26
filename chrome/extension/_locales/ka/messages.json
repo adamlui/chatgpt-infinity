@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "პირდაპირ მხარს უჭერს ჩემს გადაუხდელ ძალისხმევას, რათა ეს პროექტი დარჩეს თავისუფალი და ღია ყველასთვის გამოსაყენებლად" },
   "alert_growTogether": { "message": "Ერთად, ჩვენ შეგვიძლია შევინარჩუნოთ ეს მძლავრი პროგრამული უზრუნველყოფა" },
   "alert_tyForSupport": { "message": "ბლადჲეაპწ ჱა ოჲეკპვოარა" },
-  "alert_author": { "message": "ავტორი" },
   "btnLabel_moreAIextensions": { "message": "Სხვა AI გაფართოებები" },
   "btnLabel_leaveReview": { "message": "შეფასების დატოვება" },
   "btnLabel_rateUs": { "message": "Შეფასება" },

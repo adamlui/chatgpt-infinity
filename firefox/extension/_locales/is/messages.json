@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "styður beint við ólaunaða viðleitni mína til að tryggja að þetta verkefni verði áfram ókeypis og opið öllum til afnota" },
   "alert_growTogether": { "message": "Saman getum við haldið þessum öfluga hugbúnaði vaxandi" },
   "alert_tyForSupport": { "message": "Kærar þakkir fyrir stuðning þinn. &lt;/cf&gt;" },
-  "alert_author": { "message": "höfundur" },
   "btnLabel_moreAIextensions": { "message": "Fleiri gervigreindarviðbætur" },
   "btnLabel_leaveReview": { "message": "Skildu eftir umsögn" },
   "btnLabel_rateUs": { "message": "Gefðu okkur einkunn" },

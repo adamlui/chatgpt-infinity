@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "ສະ ຫນັບ ສະ ຫນູນ ຄວາມພະຍາຍາມທີ່ບໍ່ເສຍຄ່າຂອງຂ້ອຍໂດຍກົງເພື່ອຮັບປະກັນວ່າໂຄງການນີ້ຍັງບໍ່ເສຍຄ່າແລະເປີດໃຫ້ທຸກຄົນໃຊ້" },
   "alert_growTogether": { "message": "ຮ່ວມ ກັນ, ພວກ ເຮົາ ສາ ມາດ ຮັກ ສາ ຊອບ ແວ ທີ່ ມີ ອໍາ ນາດ ນີ້ ຂະ ຫຍາຍ ຕົວ" },
   "alert_tyForSupport": { "message": "ຂອບໃຈ ສໍາ ລັບການສະ ຫນັບ ສະ ຫນູນ ຂອງທ່ານ" },
-  "alert_author": { "message": "ຜູ້ຂຽນ" },
   "btnLabel_moreAIextensions": { "message": "ການຂະຫຍາຍ AI ເພີ່ມເຕີມ" },
   "btnLabel_leaveReview": { "message": "ໃຫ້ການທົບທວນຄືນ" },
   "btnLabel_rateUs": { "message": "ປະເມີນພວກເຮົາ" },

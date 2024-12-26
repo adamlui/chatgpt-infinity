@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "безпосередньо підтримує мої неоплачувані зусилля, спрямовані на те, щоб цей проєкт залишався вільним і відкритим для всіх" },
   "alert_growTogether": { "message": "Разом ми зможемо продовжувати розвивати це потужне програмне забезпечення" },
   "alert_tyForSupport": { "message": "Дякую за підтримку" },
-  "alert_author": { "message": "Автор" },
   "btnLabel_moreAIextensions": { "message": "Більше розширень AI" },
   "btnLabel_leaveReview": { "message": "Залишити відгук" },
   "btnLabel_rateUs": { "message": "Оцініть нас" },

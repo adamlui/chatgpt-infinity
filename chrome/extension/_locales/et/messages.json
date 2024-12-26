@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "toetab otseselt minu tasustamata jõupingutusi tagada, et see projekt jääb vabaks ja kõigile kasutamiseks avatuks" },
   "alert_growTogether": { "message": "Koos saame hoida selle võimsa tarkvara kasvamas" },
   "alert_tyForSupport": { "message": "Tänan teid toetuse eest" },
-  "alert_author": { "message": "Autor" },
   "btnLabel_moreAIextensions": { "message": "Veel tehisintellekti laiendusi" },
   "btnLabel_leaveReview": { "message": "Jäta tagasiside" },
   "btnLabel_rateUs": { "message": "Hinda meid" },

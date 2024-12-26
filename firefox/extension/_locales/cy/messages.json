@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "yn cefnogi fy ymdrechion di - dâl yn uniongyrchol i sicrhau bod y prosiect hwn yn parhau i fod yn rhad ac am ddim ac yn agored i bawb ei ddefnyddio" },
   "alert_growTogether": { "message": "Gyda'n gilydd, gallwn gadw'r feddalwedd bwerus hon i dyfu" },
   "alert_tyForSupport": { "message": "Diolch ichi am eich cefnogaeth" },
-  "alert_author": { "message": "awdur" },
   "btnLabel_moreAIextensions": { "message": "Mwy o Estyniadau AI" },
   "btnLabel_leaveReview": { "message": "Gadael Adolygiad" },
   "btnLabel_rateUs": { "message": "Graddio Ni" },

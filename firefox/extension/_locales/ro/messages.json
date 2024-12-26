@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "sprijină în mod direct eforturile mele neremunerate pentru a mă asigura că acest proiect rămâne liber și deschis pentru toți" },
   "alert_growTogether": { "message": "Împreună, putem menține acest software puternic în creștere" },
   "alert_tyForSupport": { "message": "Vă mulțumim pentru sprijin" },
-  "alert_author": { "message": "autor" },
   "btnLabel_moreAIextensions": { "message": "Mai multe extensii AI" },
   "btnLabel_leaveReview": { "message": "Lasă o recenzie" },
   "btnLabel_rateUs": { "message": "Evaluați-ne" },

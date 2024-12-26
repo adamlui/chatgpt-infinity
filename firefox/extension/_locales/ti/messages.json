@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "እዚ ፕሮጀክት እዚ ብናጻን ንኹሉ ክጥቀመሉ ክፍትሕን ምዃኑ ንምርግጋጽ ብቐጥታ ዘይተኸፍለ ጻዕረይ ይድግፎ" },
   "alert_growTogether": { "message": "ብሓባር ፡ ነዚ ሓያል ሶፍትዌር እዚ ክንዕቅቦ ንኽእል ኢና" },
   "alert_tyForSupport": { "message": "ስለቲ ቐጻሊ ደገፍኩም የመስግነኩም።" },
-  "alert_author": { "message": "ደራሲ" },
   "btnLabel_moreAIextensions": { "message": "ዝያዳ ናይ AI ምስፍሕፋሕ" },
   "btnLabel_leaveReview": { "message": "ግምገማ ሓዲግካ" },
   "btnLabel_rateUs": { "message": "ተመዝገብና" },

@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "bu layihənin pulsuz və hamının istifadəsi üçün açıq qalmasını təmin etmək üçün ödənilməmiş səylərimi birbaşa dəstəkləyir" },
   "alert_growTogether": { "message": "Bu güclü proqram təminatını birlikdə inkişaf etdirə bilərik" },
   "alert_tyForSupport": { "message": "Dəstəyiniz üçün təşəkkür edirik" },
-  "alert_author": { "message": "Müəllif" },
   "btnLabel_moreAIextensions": { "message": "Daha çox AI Uzantısı" },
   "btnLabel_leaveReview": { "message": "Rəy bildirin" },
   "btnLabel_rateUs": { "message": "Bizi qiymətləndirin" },

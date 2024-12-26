@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "напрямую поддерживает мои неоплачиваемые усилия по обеспечению того, чтобы этот проект оставался бесплатным и открытым для всех" },
   "alert_growTogether": { "message": "Вместе мы можем продолжать развивать это мощное программное обеспечение" },
   "alert_tyForSupport": { "message": "Благодарю за поддержку" },
-  "alert_author": { "message": "автором" },
   "btnLabel_moreAIextensions": { "message": "Больше расширений ИИ" },
   "btnLabel_leaveReview": { "message": "Оставить Отзыв" },
   "btnLabel_rateUs": { "message": "Оцените нас" },

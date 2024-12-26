@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "secara langsung mendukung upaya saya yang belum dibayar untuk memastikan proyek ini tetap gratis dan terbuka untuk digunakan semua orang" },
   "alert_growTogether": { "message": "Bersama - sama, kita dapat terus mengembangkan perangkat lunak yang kuat ini" },
   "alert_tyForSupport": { "message": "Terimakasih atas dukungannya" },
-  "alert_author": { "message": "Penulis" },
   "btnLabel_moreAIextensions": { "message": "Ekstensi AI Lainnya" },
   "btnLabel_leaveReview": { "message": "Buat Ulasan" },
   "btnLabel_rateUs": { "message": "Beri Kami Nilai" },

@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "přímo podporuje mé neplacené úsilí o to, aby tento projekt zůstal volný a otevřený pro všechny" },
   "alert_growTogether": { "message": "Společně můžeme udržet tento výkonný software v růstu" },
   "alert_tyForSupport": { "message": "Děkujeme za vaši přízeň" },
-  "alert_author": { "message": "autor" },
   "btnLabel_moreAIextensions": { "message": "Další rozšíření AI" },
   "btnLabel_leaveReview": { "message": "Přidat Hodnocení" },
   "btnLabel_rateUs": { "message": "Ohodnoťte nás" },

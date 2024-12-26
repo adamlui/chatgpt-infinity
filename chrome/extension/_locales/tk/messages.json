@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "bu işiň pulsuz we her kes üçin açyk bolmagy üçin edýän tagallalarymy goldaýaryn" },
   "alert_growTogether": { "message": "Biz bilelikde bu güýçli programma ösüp bileris" },
   "alert_tyForSupport": { "message": "Seniň goldawyň üçin sag bol" },
-  "alert_author": { "message": "Otomatik gaýşart" },
   "btnLabel_moreAIextensions": { "message": "Ähli uzynlyklar" },
   "btnLabel_leaveReview": { "message": "Seretmek" },
   "btnLabel_rateUs": { "message": "Bize habar beriň" },

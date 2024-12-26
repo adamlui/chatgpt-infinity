@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "izravno podržava moje neplaćene napore kako bi se osiguralo da ovaj projekt ostane besplatan i otvoren za sve" },
   "alert_growTogether": { "message": "Zajedno možemo održati rast ovog moćnog softvera" },
   "alert_tyForSupport": { "message": "Hvala na podršci" },
-  "alert_author": { "message": "autor" },
   "btnLabel_moreAIextensions": { "message": "Više AI ekstenzija" },
   "btnLabel_leaveReview": { "message": "Ostavite recenziju" },
   "btnLabel_rateUs": { "message": "Ocijenite nas" },

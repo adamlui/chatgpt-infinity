@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "ལས་འགུལ་འདི་མུ་མཐུད་ནས་རང་དབང་ཅན་དང་མི་ཚང་མས་ལག་ལེན་བྱེད་ཐུབ་པའི་ཆེད་ངའི་ལས་འགུལ་ལ་ཐད་ཀར་རྒྱབ་སྐྱོར་བྱེད་ཀྱི་ཡོད །" },
   "alert_growTogether": { "message": "ང་ཚོ་མཉམ་དུ་ནུས་ཤུགས་ལྡན་པའི་མཉེན་ཆས་འདི་ཡར་རྒྱས་སུ་གཏོང་ཐུབ་བོ །" },
   "alert_tyForSupport": { "message": "ཁྱེད་ཀྱི་རོགས་རམ་ལ་བཀའ་དྲིན་ཆེ་ཞུ །" },
-  "alert_author": { "message": "Yazar" },
   "btnLabel_moreAIextensions": { "message": "ཕྱོགས་སྟོན ། གཙོ་ངོས ། \"རྩོམ་རིག\"" },
   "btnLabel_leaveReview": { "message": "བསྐྱར་ཞིབ་སྤར་བ" },
   "btnLabel_rateUs": { "message": "རིན་ཆེན །" },

@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "ուղղակիորեն աջակցում եմ իմ չվճարված ջանքերին, որպեսզի այս նախագիծը մնա անվճար և բաց բոլորի համար" },
   "alert_growTogether": { "message": "Միասին կարող ենք պահպանել այս հզոր ծրագրային ապահովումը" },
   "alert_tyForSupport": { "message": "Շնորհակալություն աջակցության համար" },
-  "alert_author": { "message": "Հեղինակ" },
   "btnLabel_moreAIextensions": { "message": "Լրացուցիչ արհեստական ինտելեկտի ընդլայնումներ" },
   "btnLabel_leaveReview": { "message": "Թողնել ակնարկ" },
   "btnLabel_rateUs": { "message": "Գնահատեք մեզ" },

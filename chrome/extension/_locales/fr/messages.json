@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "soutient directement mes efforts non rémunérés pour que ce projet reste gratuit et ouvert à tous" },
   "alert_growTogether": { "message": "Ensemble, nous pouvons continuer à faire croître ce logiciel puissant" },
   "alert_tyForSupport": { "message": "Merci pour votre aide" },
-  "alert_author": { "message": "auteur" },
   "btnLabel_moreAIextensions": { "message": "Plus d'extensions d'IA" },
   "btnLabel_leaveReview": { "message": "Laissez Review" },
   "btnLabel_rateUs": { "message": "Évaluez-nous" },

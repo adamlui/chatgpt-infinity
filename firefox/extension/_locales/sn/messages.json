@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "inotsigira zvakananga kuedza kwangu kusingabhadharwi kuti ndione kuti basa iri rinoramba rakasununguka uye rakazaruka kuti vose vashandise" },
   "alert_growTogether": { "message": "Pamwe chete, tinogona kuchengeta software iyi yakasimba ichikura" },
   "alert_tyForSupport": { "message": "Ndinokutendai nerutsigiro rwenyu" },
-  "alert_author": { "message": "munyori" },
   "btnLabel_moreAIextensions": { "message": "Zvimwe AI Extensions" },
   "btnLabel_leaveReview": { "message": "Taura nesu" },
   "btnLabel_rateUs": { "message": "Taura nesu" },

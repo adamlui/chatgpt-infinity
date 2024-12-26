@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "apoia directamente os meus esforzos non remunerados para garantir que este proxecto permaneza libre e aberto para que todos poidan usar" },
   "alert_growTogether": { "message": "Xuntos, podemos manter este poderoso software crecendo" },
   "alert_tyForSupport": { "message": "Grazas polo voso apoio" },
-  "alert_author": { "message": "autor" },
   "btnLabel_moreAIextensions": { "message": "Máis extensións de IA" },
   "btnLabel_leaveReview": { "message": "Deixa unha opinión" },
   "btnLabel_rateUs": { "message": "Valóranos" },

@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "இந்த திட்டம் அனைவருக்கும் இலவசமாகவும் திறந்ததாகவும் இருப்பதை உறுதி செய்வதற்கான எனது ஊதியம் பெறாத முயற்சிகளை நேரடியாக ஆதரிக்கிறது" },
   "alert_growTogether": { "message": "ஒன்றாக, இந்த சக்திவாய்ந்த மென்பொருளை நாம் வளர வைக்க முடியும்" },
   "alert_tyForSupport": { "message": "தகவல் கொடுத்தமைக்கு நன்றி" },
-  "alert_author": { "message": "ஆசிரியர்" },
   "btnLabel_moreAIextensions": { "message": "மேலும் AI நீட்டிப்புகள்" },
   "btnLabel_leaveReview": { "message": "மதிப்பாய்வை விட்டுச் செல்லவும்" },
   "btnLabel_rateUs": { "message": "எங்களுக்குத் தரமதிப்பிடுங்கள்" },

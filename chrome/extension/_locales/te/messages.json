@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "ఈ ప్రాజెక్ట్ ఉచితం మరియు అందరికీ ఉపయోగించడానికి తెరిచి ఉందని నిర్ధారించడానికి నా చెల్లించని ప్రయత్నాలకు నేరుగా మద్దతు ఇస్తుంది" },
   "alert_growTogether": { "message": "కలిసి, మనం ఈ శక్తివంతమైన సాఫ్ట్ ‌ వేర్ ‌ ను పెంచుకోవచ్చు" },
   "alert_tyForSupport": { "message": "మీ మద్దతుకు ధన్యవాదాలు" },
-  "alert_author": { "message": "రచయిత" },
   "btnLabel_moreAIextensions": { "message": "మరిన్ని AI పొడిగింపులు" },
   "btnLabel_leaveReview": { "message": "సమీక్షను వదిలివేయండి" },
   "btnLabel_rateUs": { "message": "మాకు రేటింగ్ ఇవ్వండి" },

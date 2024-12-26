@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "бұл жобаның тегін және барлық пайдаланушылар үшін ашық болуын қамтамасыз ету үшін менің төленбеген күш-жігерімді тікелей қолдайды" },
   "alert_growTogether": { "message": "Бірге біз осы қуатты бағдарламалық жасақтаманы өсіре аламыз" },
   "alert_tyForSupport": { "message": "Қолдау көрсеткеніңіз үшін рақмет" },
-  "alert_author": { "message": "авторы" },
   "btnLabel_moreAIextensions": { "message": "Қосымша жасанды интеллект кеңейтімдері" },
   "btnLabel_leaveReview": { "message": "Пікіріңіз жазыныз" },
   "btnLabel_rateUs": { "message": "Бізге баға беріңіз" },

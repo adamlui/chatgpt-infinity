@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "tautoko tika toku kaha kore utu ki te whakarite i tenei kaupapa noho noa, me te tuwhera ki te katoa ki te whakamahi" },
   "alert_growTogether": { "message": "Ka taea e tatou te pupuri i tenei pūmanawa kaha tupu" },
   "alert_tyForSupport": { "message": "kia ora mo to whakaaro ki a koe" },
-  "alert_author": { "message": "Kaitito" },
   "btnLabel_moreAIextensions": { "message": "Ētahi atu whakawhitinga AI" },
   "btnLabel_leaveReview": { "message": "Waiho i te arotake" },
   "btnLabel_rateUs": { "message": "Te utu ki a tatou" },

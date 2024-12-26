@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "ಈ ಯೋಜನೆಯು ಉಚಿತವಾಗಿ ಮತ್ತು ಎಲ್ಲರಿಗೂ ಬಳಸಲು ಮುಕ್ತವಾಗಿರುವುದನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಲು ನನ್ನ ಪಾವತಿಸದ ಪ್ರಯತ್ನಗಳನ್ನು ನೇರವಾಗಿ ಬೆಂಬಲಿಸುತ್ತದೆ" },
   "alert_growTogether": { "message": "ಒಟ್ಟಾಗಿ, ನಾವು ಈ ಶಕ್ತಿಯುತ ಸಾಫ್ಟ್ ‌ ವೇರ್ ಅನ್ನು ಬೆಳೆಸಿಕೊಳ್ಳಬಹುದು" },
   "alert_tyForSupport": { "message": "ಬೆಂಬಲ ಮತ್ತು ಆಲ್ ದಿ ಬೆಸ್ಟ್ ‌ ಗೆ ಧನ್ಯವಾದಗಳು" },
-  "alert_author": { "message": "ಲೇಖಕ" },
   "btnLabel_moreAIextensions": { "message": "ಹೆಚ್ಚಿನ AI ವಿಸ್ತರಣೆಗಳು" },
   "btnLabel_leaveReview": { "message": "ವಿಮರ್ಶೆಯನ್ನು ಬಿಡಿ" },
   "btnLabel_rateUs": { "message": "ನಮಗೆ ರೇಟಿಂಗ್ ನೀಡಿ" },

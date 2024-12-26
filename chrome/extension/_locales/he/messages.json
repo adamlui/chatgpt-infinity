@@ -52,7 +52,6 @@
   "alert_directlySupports": { "message": "תומך ישירות במאמצים שלי שלא שולמו כדי להבטיח שפרויקט זה יישאר חופשי ופתוח לשימוש כולם" },
   "alert_growTogether": { "message": "יחד, אנחנו יכולים להמשיך ולגדול בתוכנה רבת העוצמה הזו" },
   "alert_tyForSupport": { "message": "תודה לך על התמיכה" },
-  "alert_author": { "message": "מחבר/ת" },
   "btnLabel_moreAIextensions": { "message": "הרחבות נוספות של בינה מלאכותית" },
   "btnLabel_leaveReview": { "message": "השארת חוות דעת" },
   "btnLabel_rateUs": { "message": "דרג אותנו" },
