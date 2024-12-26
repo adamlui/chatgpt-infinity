@@ -117,14 +117,17 @@ window.modals = {
         // Show modal
         const aboutModal = modals.alert(
             `${this.imports.app.symbol} ${this.getMsg('appName')}`, // title
-            `🏷️ ${this.getMsg('about_version')}: <span class="about-em">${this.imports.app.version}</span>\n`
-                + `⚡ ${this.getMsg('about_poweredBy')}: `
-                    + `<a href="${this.imports.app.urls.chatgptJS}" target="_blank" rel="noopener">chatgpt.js</a>`
-                        + ` v${this.imports.app.chatgptJSver}\n`
-                + `📜 ${this.getMsg('about_openSourceCode')}: `
-                    + `<a href="${this.imports.app.urls.gitHub}" target="_blank" rel="nopener">`
-                        + this.imports.app.urls.gitHub + '</a>',
-            modalBtns, '', 656
+            `🧠 ${this.getMsg('about_author')}: ` // msg
+                + `<a href="${this.imports.app.author.url}">${this.getMsg('appAuthor')}</a> ${this.getMsg('about_and')}`
+                    + ` <a href="${this.imports.app.urls.contributors}">${this.getMsg('about_contributors')}</a>\n`
+            + `🏷️ ${this.getMsg('about_version')}: <span class="about-em">${this.imports.app.version}</span>\n`
+            + `📜 ${this.getMsg('about_openSourceCode')}: `
+                + `<a href="${this.imports.app.urls.gitHub}" target="_blank" rel="nopener">`
+                    + this.imports.app.urls.gitHub + '</a>\n'
+            + `⚡ ${this.getMsg('about_poweredBy')}: `
+                + `<a href="${this.imports.app.urls.chatgptJS}" target="_blank" rel="noopener">chatgpt.js</a>`
+                    + ` v${this.imports.app.chatgptJSver}`,
+            modalBtns, '', 686
         )
 
         // Format text
@@ -132,7 +135,7 @@ window.modals = {
             'text-align: center ; font-size: 51px ; line-height: 46px ; padding: 15px 0' )
         aboutModal.querySelector('p').style.cssText = (
             'text-align: center ; overflow-wrap: anywhere ;'
-          + `margin: ${ this.imports.env.browser.isPortrait ? '6px 0 -16px' : '3px 0 0' }` )
+          + `margin: ${ this.imports.env.browser.isPortrait ? '6px 0 -16px' : '3px 0 29px' }` )
 
         // Hack buttons
         aboutModal.querySelector('.modal-buttons').style.justifyContent = 'center'
@@ -170,25 +173,25 @@ window.modals = {
         // Show modal
         const donateModal = modals.alert(
             `💖 ${this.getMsg('alert_showYourSupport')}`, // title
-                `<p>${this.getMsg('appName')} ${this.getMsg('alert_isOSS')}.</p>`
-              + `<p>${this.getMsg('alert_despiteAffliction')} `
-                  + '<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Long_COVID">'
-                      + `${this.getMsg('alert_longCOVID')}</a> `
-                  + `${this.getMsg('alert_since2020')}, ${this.getMsg('alert_byDonatingResults')}.</p>`
-              + `<p>${this.getMsg('alert_yourContrib')}, <b>${this.getMsg('alert_noMatterSize')}</b>, `
-                  + `${this.getMsg('alert_directlySupports')}.</p>`
-              + `<p>${this.getMsg('alert_tyForSupport')}!</p>`
-              + '<img src="https://cdn.jsdelivr.net/gh/adamlui/adamlui/images/siggie/'
-                  + `${ this.imports.env.ui.scheme == 'dark' ? 'white' : 'black' }.png" `
-                  + 'style="height: 54px ; margin: 5px 0 -2px 5px"></img>'
-              + `<p>—<b><a target="_blank" rel="noopener" href="${this.imports.app.author.url}">`
-                  + `${this.getMsg('appAuthor')}</a></b>, ${this.getMsg('alert_author')}</p>`,
+                `<p>${this.getMsg('appName')} ${this.getMsg('alert_isOSS')}.</p>` // msg
+                + `<p>${this.getMsg('alert_despiteAffliction')} `
+                    + '<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Long_COVID">'
+                        + `${this.getMsg('alert_longCOVID')}</a> `
+                    + `${this.getMsg('alert_since2020')}, ${this.getMsg('alert_byDonatingResults')}.</p>`
+                + `<p>${this.getMsg('alert_yourContrib')}, <b>${this.getMsg('alert_noMatterSize')}</b>, `
+                    + `${this.getMsg('alert_directlySupports')}.</p>`
+                + `<p>${this.getMsg('alert_tyForSupport')}!</p>`
+                + '<img src="https://cdn.jsdelivr.net/gh/adamlui/adamlui/images/siggie/'
+                    + `${ this.imports.env.ui.scheme == 'dark' ? 'white' : 'black' }.png" `
+                    + 'style="height: 54px ; margin: 5px 0 -2px 5px"></img>'
+                + `<p>—<b><a target="_blank" rel="noopener" href="${this.imports.app.author.url}">`
+                    + `${this.getMsg('appAuthor')}</a></b>, ${this.getMsg('alert_author')}</p>`,
             [ // buttons
                 function paypal(){},
                 function githubSponsors(){},
                 function cashApp(){},
                 function rateUs() { modals.open('feedback') }
-            ], '', 478 // set width
+            ], '', 478 // modal width
         )
 
         // Format text
@@ -263,7 +266,7 @@ window.modals = {
 
             // Show modal
             const updateAvailModal = modals.alert(`🚀 ${modals.getMsg('alert_updateAvail')}!`, // title
-                `${modals.getMsg('alert_newerVer')} ${modals.getMsg('appName')} `
+                `${modals.getMsg('alert_newerVer')} ${modals.getMsg('appName')} ` // msg
                     + `(v${modals.imports.app.latestVer}) ${modals.getMsg('alert_isAvail')}!  `
                     + '<a target="_blank" rel="noopener" style="font-size: 0.7rem" href="'
                         + modals.imports.app.urls.update.replace(/.+\/([^/]+)meta\.js/,
@@ -287,8 +290,8 @@ window.modals = {
 
         unavailable() {
             return modals.alert(`${modals.getMsg('alert_upToDate')}!`, // title
-                `${modals.getMsg('appName')} (v${modals.imports.app.version}) ${
-                    modals.getMsg('alert_isUpToDate')}!`, // msg
+                `${modals.getMsg('appName')} (v${modals.imports.app.version}) ${ // msg
+                    modals.getMsg('alert_isUpToDate')}!`,
                 '', '', modals.update.width
             )
         }
