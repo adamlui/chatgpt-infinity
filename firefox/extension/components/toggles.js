@@ -1,17 +1,17 @@
 window.toggles = {
 
-    dependencies: {
-        import(dependencies) { // { app, env, notify, syncConfigToUI }
-            for (const depName in dependencies) this[depName] = dependencies[depName] }
+    imports: {
+        import(deps) { // { app, env, notify, syncConfigToUI }
+            for (const depName in deps) this[depName] = deps[depName] }
     },
 
     getMsg(key) {
-        return typeof GM_info != 'undefined' ? this.dependencies.app.msgs[key] : chrome.i18n.getMessage(key) },
+        return typeof GM_info != 'undefined' ? this.imports.app.msgs[key] : chrome.i18n.getMessage(key) },
 
     sidebar: {
         ids: {
-            get navicon() { return `${toggles.dependencies.app.cssPrefix}-toggle-navicon` },
-            get knobSpan() { return `${toggles.dependencies.app.cssPrefix}-toggle-knob-span` }
+            get navicon() { return `${toggles.imports.app.cssPrefix}-toggle-navicon` },
+            get knobSpan() { return `${toggles.imports.app.cssPrefix}-toggle-knob-span` }
         },
 
         create() {
@@ -30,9 +30,9 @@ window.toggles = {
             const switchSpan = document.createElement('span')
             Object.assign(switchSpan.style, {
                 position: 'relative',
-                left: `${ toggles.dependencies.env.browser.isMobile ? 169
-                           : !toggles.dependencies.env.ui.firstLink ? 160 : 154 }px`,
-                bottom: `${ !toggles.dependencies.env.ui.firstLink ? -0.15 : 0 }em`,
+                left: `${ toggles.imports.env.browser.isMobile ? 169
+                           : !toggles.imports.env.ui.firstLink ? 160 : 154 }px`,
+                bottom: `${ !toggles.imports.env.ui.firstLink ? -0.15 : 0 }em`,
                 backgroundColor: '#AD68FF', // init opposite  final color
                 width: '30px', height: '15px', '-webkit-transition': '.4s', transition: '0.4s',  borderRadius: '28px'
             })
@@ -48,12 +48,12 @@ window.toggles = {
 
             // Create/stylize/fill label
             const toggleLabel = document.createElement('label')
-            if (!toggles.dependencies.env.ui.firstLink) // add font size/weight since no ui.firstLink to borrow from
+            if (!toggles.imports.env.ui.firstLink) // add font size/weight since no ui.firstLink to borrow from
                 toggleLabel.style.cssText = 'font-size: 0.875rem, font-weight: 600'
             Object.assign(toggleLabel.style, {
-                marginLeft: `-${ !toggles.dependencies.env.ui.firstLink ? 23 : 41 }px`, // left-shift to navicon
+                marginLeft: `-${ !toggles.imports.env.ui.firstLink ? 23 : 41 }px`, // left-shift to navicon
                 cursor: 'pointer', // add finger cursor on hover
-                width: `${ toggles.dependencies.env.browser.isMobile ? 201 : 148 }px`, // to truncate overflown text
+                width: `${ toggles.imports.env.browser.isMobile ? 201 : 148 }px`, // to truncate overflown text
                 overflow: 'hidden', textOverflow: 'ellipsis' // to truncate overflown text
             })
 
@@ -65,11 +65,11 @@ window.toggles = {
                 'max-height: 37px ; margin: 2px 0 ; user-select: none ; cursor: pointer'
               + 'flex-grow: unset' // overcome OpenAI .grow
             )
-            if (toggles.dependencies.env.ui.firstLink) { // borrow/assign classes from sidebar elems
-                const firstIcon = toggles.dependencies.env.ui.firstLink.querySelector('div:first-child'),
-                      firstLabel = toggles.dependencies.env.ui.firstLink.querySelector('div:nth-child(2)')
+            if (toggles.imports.env.ui.firstLink) { // borrow/assign classes from sidebar elems
+                const firstIcon = toggles.imports.env.ui.firstLink.querySelector('div:first-child'),
+                      firstLabel = toggles.imports.env.ui.firstLink.querySelector('div:nth-child(2)')
                 this.div.classList.add(
-                    ...toggles.dependencies.env.ui.firstLink.classList, ...(firstLabel?.classList || []))
+                    ...toggles.imports.env.ui.firstLink.classList, ...(firstLabel?.classList || []))
                 this.div.querySelector('img')?.classList.add(...(firstIcon?.classList || []))
             }
 
@@ -82,15 +82,15 @@ window.toggles = {
                     `var(--sidebar-surface-${event.type == 'mouseover' ? 'secondary' : 'primary'})`)
             this.div.onclick = () => {
                 settings.save('infinityMode', !toggleInput.checked)
-                toggles.dependencies.syncConfigToUI({ updatedKey: 'infinityMode' })
-                toggles.dependencies.notify(`${toggles.getMsg('menuLabel_infinityMode')}: ${
+                toggles.imports.syncConfigToUI({ updatedKey: 'infinityMode' })
+                toggles.imports.notify(`${toggles.getMsg('menuLabel_infinityMode')}: ${
                     toggles.getMsg(`state_${ config.infinityMode ? 'on' : 'off' }`).toUpperCase()}`)
             }
         },
 
         insert() {
             if (this.status?.startsWith('insert') || document.getElementById(this.ids.navicon)) return
-            const sidebar = document.querySelectorAll('nav')[toggles.dependencies.env.browser.isMobile ? 1 : 0]
+            const sidebar = document.querySelectorAll('nav')[toggles.imports.env.browser.isMobile ? 1 : 0]
             if (!sidebar) return
             this.status = 'inserting' ; if (!this.div) this.create()
             sidebar.insertBefore(this.div, sidebar.children[1]) ; this.status = 'inserted'
@@ -102,8 +102,8 @@ window.toggles = {
                       navicon = toggles.sidebar.div.querySelector(`#${toggles.sidebar.ids.navicon}`)
                 knobSpan.style.boxShadow = (
                     'rgba(0, 0, 0, .3) 0 1px 2px 0' + ( chatgpt.isDarkMode() ? ', rgba(0, 0, 0, .15) 0 3px 6px 2px' : '' ))
-                navicon.src = `${toggles.dependencies.app.urls.mediaHost}/images/icons/infinity-symbol/${
-                    chatgpt.isDarkMode() ? 'white' : 'black' }/icon32.png?${toggles.dependencies.app.latestAssetCommitHash}`
+                navicon.src = `${toggles.imports.app.urls.mediaHost}/images/icons/infinity-symbol/${
+                    chatgpt.isDarkMode() ? 'white' : 'black' }/icon32.png?${toggles.imports.app.latestAssetCommitHash}`
             },
 
             state() {

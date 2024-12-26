@@ -1,9 +1,9 @@
 window.config = {}
 window.settings = {
 
-    dependencies: {
-        import(dependencies) { // { app }
-            for (const depName in dependencies) this[depName] = dependencies[depName] }
+    imports: {
+        import(deps) { // { app }
+            for (const depName in deps) this[depName] = deps[depName] }
     },
 
     controls: { // displays top-to-bottom in toolbar menu
@@ -40,14 +40,14 @@ window.settings = {
     },
 
     getMsg(key) {
-        return typeof GM_info != 'undefined' ? this.dependencies.app.msgs[key] : chrome.i18n.getMessage(key) },
+        return typeof GM_info != 'undefined' ? this.imports.app.msgs[key] : chrome.i18n.getMessage(key) },
 
     load() {
         const keys = ( // original array if array, else new array from multiple args
             Array.isArray(arguments[0]) ? arguments[0] : Array.from(arguments))
         if (typeof GM_info != 'undefined') // synchronously load from userscript manager storage
             keys.forEach(key => window.config[key] = GM_getValue(
-                `${this.dependencies.app.configKeyPrefix}_${key}`, false))
+                `${this.imports.app.configKeyPrefix}_${key}`, false))
         else // asynchronously load from browser extension storage
             return Promise.all(keys.map(key => // resolve promise when all keys load
                 new Promise(resolve => // resolve promise when single key value loads
@@ -58,7 +58,7 @@ window.settings = {
 
     save(key, val) {
         if (typeof GM_info != 'undefined') // save to userscript manager storage
-            GM_setValue(`${this.dependencies.app.configKeyPrefix}_${key}`, val)
+            GM_setValue(`${this.imports.app.configKeyPrefix}_${key}`, val)
         else // save to browser extension storage
             chrome.storage.sync.set({ [key]: val })
         window.config[key] = val // save to memory

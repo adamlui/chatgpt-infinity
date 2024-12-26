@@ -18,8 +18,8 @@
     const { app } = await chrome.storage.sync.get('app')
 
     // Export DEPENDENCIES to imported resources
-    dom.dependencies.import({ env }) // for env.ui.scheme
-    modals.dependencies.import({ app, env }) // for app data + env.ui.scheme
+    dom.imports.import({ env }) // for env.ui.scheme
+    modals.imports.import({ app, env }) // for app data + env.ui.scheme
 
     // Add CHROME MSG listener
     chrome.runtime.onMessage.addListener((req, _, sendResp) => {
@@ -160,7 +160,7 @@
                 color}.min.css?v=0cde30f9ae3ce99ae998141f6e7a36de9b0cc2e7`
     })))
 
-    toggles.dependencies.import({ app, env, notify, syncConfigToUI })
+    toggles.imports.import({ app, env, notify, syncConfigToUI })
     toggles.sidebar.insert()
 
     // Auto-start if enabled

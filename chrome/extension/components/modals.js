@@ -2,11 +2,11 @@
 
 window.modals = {
     stack: [], // of types of undismissed modals
-    get class() { return `${this.dependencies.app.cssPrefix}-modal` },
+    get class() { return `${this.imports.app.cssPrefix}-modal` },
 
-    dependencies: {
-        import(dependencies) { // { app, env, updateCheck (userscript only) }
-            for (const depName in dependencies) this[depName] = dependencies[depName] }
+    imports: {
+        import(deps) { // { app, env, updateCheck (userscript only) }
+            for (const depName in deps) this[depName] = deps[depName] }
     },
 
     get runtime() {
@@ -19,7 +19,7 @@ window.modals = {
 
     getMsg(key) {
         return /Chromium|Firefox/.test(this.runtime) ? chrome.i18n.getMessage(key)
-            : this.dependencies.app.msgs[key] // assigned from modals.dependencies.import({ app }) in userscript
+            : this.imports.app.msgs[key] // assigned from modals.imports.import({ app }) in userscript
     },
 
     alert(title = '', msg = '', btns = '', checkbox = '', width = '') { // generic one from chatgpt.alert()
@@ -52,37 +52,37 @@ window.modals = {
               + 'font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,'
                   + 'Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif ;'
               + 'padding: 20px 25px 24px 25px !important ; font-size: 20px ;'
-              + `color: ${ this.dependencies.env.ui.scheme == 'dark' ? 'white' : 'black' } !important ;`
+              + `color: ${ this.imports.env.ui.scheme == 'dark' ? 'white' : 'black' } !important ;`
               + `background-image: linear-gradient(180deg, ${
-                     this.dependencies.env.ui.scheme == 'dark' ? '#99a8a6 -200px, black 200px'
+                     this.imports.env.ui.scheme == 'dark' ? '#99a8a6 -200px, black 200px'
                                                                : '#b6ebff -296px, white 171px' }) }`
           + `.${this.class} [class*=modal-close-btn] {`
               + 'position: absolute !important ; float: right ; top: 14px !important ; right: 16px !important ;'
               + 'cursor: pointer ; width: 33px ; height: 33px ; border-radius: 20px }'
           + `.${this.class} [class*=modal-close-btn] svg { height: 10px }`
           + `.${this.class} [class*=modal-close-btn] path {`
-              + `${ this.dependencies.env.ui.scheme == 'dark' ? 'stroke: white ; fill: white'
+              + `${ this.imports.env.ui.scheme == 'dark' ? 'stroke: white ; fill: white'
                                                               : 'stroke: #9f9f9f ; fill: #9f9f9f' }}`
-          + ( this.dependencies.env.ui.scheme == 'dark' ?  // invert dark mode hover paths
+          + ( this.imports.env.ui.scheme == 'dark' ?  // invert dark mode hover paths
                 `.${this.class} [class*=modal-close-btn]:hover path { stroke: black ; fill: black }` : '' )
           + `.${this.class} [class*=modal-close-btn]:hover { background-color: #f2f2f2 }` // hover underlay
           + `.${this.class} [class*=modal-close-btn] svg { margin: 11.5px }` // center SVG for hover underlay
           + `.${this.class} a {`
-              + `color: #${ this.dependencies.env.ui.scheme == 'dark' ? '00cfff' : '1e9ebb' } !important }`
+              + `color: #${ this.imports.env.ui.scheme == 'dark' ? '00cfff' : '1e9ebb' } !important }`
           + `.${this.class} h2 { font-weight: bold }`
           + `.${this.class} button {`
               + 'font-size: 14px ; text-transform: uppercase ;' // shrink/uppercase labels
               + 'border-radius: 0 !important ;' // square borders
               + 'transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out ;' // smoothen hover fx
               + 'cursor: pointer !important ;' // add finger cursor
-              + `border: 1px solid ${ this.dependencies.env.ui.scheme == 'dark' ? 'white' : 'black' } !important ;`
+              + `border: 1px solid ${ this.imports.env.ui.scheme == 'dark' ? 'white' : 'black' } !important ;`
               + 'padding: 8px !important ; min-width: 102px }' // resize
           + `.${this.class} button:hover {` // add zoom, re-scheme
               + 'transform: scale(1.055) ; color: black !important ;'
-              + `background-color: #${ this.dependencies.env.ui.scheme == 'dark' ? '00cfff' : '9cdaff' } !important }`
-          + ( !this.dependencies.env.browser.isMobile ?
+              + `background-color: #${ this.imports.env.ui.scheme == 'dark' ? '00cfff' : '9cdaff' } !important }`
+          + ( !this.imports.env.browser.isMobile ?
                 `.${this.class} .modal-buttons { margin-left: -13px !important }` : '' )
-          + `.about-em { color: ${ this.dependencies.env.ui.scheme == 'dark' ? 'white' : 'green' } !important }`
+          + `.about-em { color: ${ this.imports.env.ui.scheme == 'dark' ? 'white' : 'green' } !important }`
         )
     },
 
@@ -112,18 +112,18 @@ window.modals = {
             function moreAIextensions(){}
         ]
         if (this.runtime.includes('Greasemonkey')) modalBtns.unshift(
-            function checkForUpdates(){ modals.dependencies.updateCheck() })
+            function checkForUpdates(){ modals.imports.updateCheck() })
 
         // Show modal
         const aboutModal = modals.alert(
-            `${this.dependencies.app.symbol} ${this.getMsg('appName')}`, // title
-            `🏷️ ${this.getMsg('about_version')}: <span class="about-em">${this.dependencies.app.version}</span>\n`
+            `${this.imports.app.symbol} ${this.getMsg('appName')}`, // title
+            `🏷️ ${this.getMsg('about_version')}: <span class="about-em">${this.imports.app.version}</span>\n`
                 + `⚡ ${this.getMsg('about_poweredBy')}: `
-                    + `<a href="${this.dependencies.app.urls.chatgptJS}" target="_blank" rel="noopener">chatgpt.js</a>`
-                        + ` v${this.dependencies.app.chatgptJSver}\n`
+                    + `<a href="${this.imports.app.urls.chatgptJS}" target="_blank" rel="noopener">chatgpt.js</a>`
+                        + ` v${this.imports.app.chatgptJSver}\n`
                 + `📜 ${this.getMsg('about_openSourceCode')}: `
-                    + `<a href="${this.dependencies.app.urls.gitHub}" target="_blank" rel="nopener">`
-                        + this.dependencies.app.urls.gitHub + '</a>',
+                    + `<a href="${this.imports.app.urls.gitHub}" target="_blank" rel="nopener">`
+                        + this.imports.app.urls.gitHub + '</a>',
             modalBtns, '', 656
         )
 
@@ -132,7 +132,7 @@ window.modals = {
             'text-align: center ; font-size: 51px ; line-height: 46px ; padding: 15px 0' )
         aboutModal.querySelector('p').style.cssText = (
             'text-align: center ; overflow-wrap: anywhere ;'
-          + `margin: ${ this.dependencies.env.browser.isPortrait ? '6px 0 -16px' : '3px 0 0' }` )
+          + `margin: ${ this.imports.env.browser.isPortrait ? '6px 0 -16px' : '3px 0 0' }` )
 
         // Hack buttons
         aboutModal.querySelector('.modal-buttons').style.justifyContent = 'center'
@@ -144,7 +144,7 @@ window.modals = {
             if (/support|extensions/i.test(btn.textContent)) {
                 const btnClone = btn.cloneNode(true)
                 btn.parentNode.replaceChild(btnClone, btn) ; btn = btnClone
-                btn.onclick = () => this.safeWinOpen(this.dependencies.app.urls[
+                btn.onclick = () => this.safeWinOpen(this.imports.app.urls[
                     btn.textContent.includes(this.getMsg('btnLabel_getSupport')) ? 'support' : 'relatedExtensions' ])
             }
 
@@ -179,9 +179,9 @@ window.modals = {
                   + `${this.getMsg('alert_directlySupports')}.</p>`
               + `<p>${this.getMsg('alert_tyForSupport')}!</p>`
               + '<img src="https://cdn.jsdelivr.net/gh/adamlui/adamlui/images/siggie/'
-                  + `${ this.dependencies.env.ui.scheme == 'dark' ? 'white' : 'black' }.png" `
+                  + `${ this.imports.env.ui.scheme == 'dark' ? 'white' : 'black' }.png" `
                   + 'style="height: 54px ; margin: 5px 0 -2px 5px"></img>'
-              + `<p>—<b><a target="_blank" rel="noopener" href="${this.dependencies.app.author.url}">`
+              + `<p>—<b><a target="_blank" rel="noopener" href="${this.imports.app.author.url}">`
                   + `${this.getMsg('appAuthor')}</a></b>, ${this.getMsg('alert_author')}</p>`,
             [ // buttons
                 function paypal(){},
@@ -203,7 +203,7 @@ window.modals = {
             if (!/dismiss|rate/i.test(btn.textContent)) {
                 const btnClone = btn.cloneNode(true)
                 btn.parentNode.replaceChild(btnClone, btn) ; btn = btnClone
-                btn.onclick = () => this.safeWinOpen(this.dependencies.app.urls.donate[
+                btn.onclick = () => this.safeWinOpen(this.imports.app.urls.donate[
                     btn.textContent == 'Cash App' ? 'cashApp'
                   : btn.textContent == 'Github Sponsors' ? 'gitHub'
                   : 'payPal'
@@ -243,7 +243,7 @@ window.modals = {
             // Replace buttons w/ clones that don't dismiss modal
             const btnClone = btn.cloneNode(true)
             btn.parentNode.replaceChild(btnClone, btn) ; btn = btnClone
-            btn.onclick = () => this.safeWinOpen(this.dependencies.app.urls.review[
+            btn.onclick = () => this.safeWinOpen(this.imports.app.urls.review[
                 btn.textContent == 'Alternativeto' ? 'alternativeTo'
               : btn.textContent == 'Chrome Web Store' ? 'chromeWebStore'
               : btn.textContent == 'Edge Addons' ? 'edgeAddons'
@@ -264,19 +264,19 @@ window.modals = {
             // Show modal
             const updateAvailModal = modals.alert(`🚀 ${modals.getMsg('alert_updateAvail')}!`, // title
                 `${modals.getMsg('alert_newerVer')} ${modals.getMsg('appName')} `
-                    + `(v${modals.dependencies.app.latestVer}) ${modals.getMsg('alert_isAvail')}!  `
+                    + `(v${modals.imports.app.latestVer}) ${modals.getMsg('alert_isAvail')}!  `
                     + '<a target="_blank" rel="noopener" style="font-size: 0.7rem" href="'
-                        + modals.dependencies.app.urls.update.replace(/.+\/([^/]+)meta\.js/,
-                            `${modals.dependencies.app.urls.gitHub}/commits/main/greasemonkey/$1user.js`)
+                        + modals.imports.app.urls.update.replace(/.+\/([^/]+)meta\.js/,
+                            `${modals.imports.app.urls.gitHub}/commits/main/greasemonkey/$1user.js`)
                     + `">${modals.getMsg('link_viewChanges')}</a>`,
                 function update() { // button
                     modals.safeWinOpen(
-                        modals.dependencies.app.urls.update.replace('meta.js', 'user.js') + '?t=' + Date.now())
+                        modals.imports.app.urls.update.replace('meta.js', 'user.js') + '?t=' + Date.now())
                 }, '', modals.update.width
             )
 
             // Localize button labels if needed
-            if (!modals.dependencies.env.browser.language.startsWith('en')) {
+            if (!modals.imports.env.browser.language.startsWith('en')) {
                 const updateBtns = updateAvailModal.querySelectorAll('button')
                 updateBtns[1].textContent = modals.getMsg('btnLabel_update')
                 updateBtns[0].textContent = modals.getMsg('btnLabel_dismiss')
@@ -287,7 +287,7 @@ window.modals = {
 
         unavailable() {
             return modals.alert(`${modals.getMsg('alert_upToDate')}!`, // title
-                `${modals.getMsg('appName')} (v${modals.dependencies.app.version}) ${
+                `${modals.getMsg('appName')} (v${modals.imports.app.version}) ${
                     modals.getMsg('alert_isUpToDate')}!`, // msg
                 '', '', modals.update.width
             )
