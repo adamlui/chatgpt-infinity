@@ -147,7 +147,7 @@
         if (!await isValidResource(updatedURL)) continue // to next resource
 
         // Generate/compare/update SRI hash
-        console.log(`${ !log.endedWithLineBreak ? '\n' : '' }Generating SRI hash for ${resName}...`)
+        console.log(`${ !log.endedWithLineBreak ? '\n' : '' }Generating SRI (SHA-256) hash for ${resName}...`)
         const newSRIhash = await generateSRIhash(updatedURL)
         if (rePatterns.sriHash.exec(resURL)?.[0] == newSRIhash) { // SRI hash didn't change
             console.log(`${resName} already up-to-date!`) ; log.endedWithLineBreak = false
