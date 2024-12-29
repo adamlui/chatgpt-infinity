@@ -1,4 +1,4 @@
-// This library is a condensed version of chatgpt.js v3.4.0
+// This library is a condensed version of chatgpt.js v3.5.0
 // © 2023–2024 KudoAI & contributors under the MIT license.
 // Source: https://github.com/KudoAI/chatgpt.js
 // User guide: https://chatgptjs.org/userguide
@@ -52,7 +52,8 @@ const chatgpt = {
                     chatgpt.draggableElem = event.currentTarget
                     chatgpt.draggableElem.style.cursor = 'grabbing'
                     event.preventDefault(); // prevent sub-elems like icons being draggable
-                    ['mousemove', 'mouseup'].forEach(event => document.addEventListener(event, handlers.drag[event]))
+                    ['mousemove', 'mouseup'].forEach(eventType =>
+                        document.addEventListener(eventType, handlers.drag[eventType]))
                     const draggableElemRect = chatgpt.draggableElem.getBoundingClientRect()
                     handlers.drag.offsetX = event.clientX - draggableElemRect.left +21
                     handlers.drag.offsetY = event.clientY - draggableElemRect.top +12
@@ -67,8 +68,8 @@ const chatgpt = {
 
                 mouseup() { // remove listeners, reset chatgpt.draggableElem
                     chatgpt.draggableElem.style.cursor = 'inherit';
-                    ['mousemove', 'mouseup'].forEach(event =>
-                        document.removeEventListener(event, handlers.drag[event]))
+                    ['mousemove', 'mouseup'].forEach(eventType =>
+                        document.removeEventListener(eventType, handlers.drag[eventType]))
                     chatgpt.draggableElem = null
                 }
             }
@@ -83,7 +84,7 @@ const chatgpt = {
               modalMessage = document.createElement('p');
 
         // Create/append/update modal style (if missing or outdated)
-        const thisUpdated = 1734685032942; // timestamp of last edit for this file's `modalStyle`
+        const thisUpdated = 1735475757891 // timestamp of last edit for this file's `modalStyle`
         let modalStyle = document.querySelector('#chatgpt-modal-style'); // try to select existing style
         if (!modalStyle || parseInt(modalStyle.getAttribute('last-updated'), 10) < thisUpdated) { // if missing or outdated
             if (!modalStyle) { // outright missing, create/id/attr/append it first
@@ -116,6 +117,7 @@ const chatgpt = {
                     + ' -webkit-user-select: none ; -moz-user-select: none ; -ms-user-select: none ; user-select: none ; }'
                 + '.chatgpt-modal h2 { margin-bottom: 9px }'
                 + `.chatgpt-modal a { color: ${ scheme == 'dark' ? '#00cfff' : '#1e9ebb' }}`
+                + '.chatgpt-modal a:hover { text-decoration: underline }'
                 + '.chatgpt-modal.animated > div { z-index: 13456 ; opacity: 0.98 ; transform: translateX(0) translateY(0) }'
                 + '@keyframes alert-zoom-fade-out {'
                   + '0% { opacity: 1 } 50% { opacity: 0.25 ; transform: scale(1.05) }'
@@ -146,12 +148,12 @@ const chatgpt = {
                 + '.chatgpt-modal .checkbox-group label {'
                     + 'font-size: .7rem ; margin: -.04rem 0 0px .3rem ;'
                     + `color: ${ scheme == 'dark' ? '#e1e1e1' : '#1e1e1e' }}`
-                + '.chatgpt-modal input[type="checkbox"] { transform: scale(0.7) ;'
+                + '.chatgpt-modal input[type=checkbox] { transform: scale(0.7) ;'
                     + `border: 1px solid ${ scheme == 'dark' ? 'white' : 'black' }}`
-                + '.chatgpt-modal input[type="checkbox"]:checked {'
+                + '.chatgpt-modal input[type=checkbox]:checked {'
                     + `border: 1px solid ${ scheme == 'dark' ? 'white' : 'black' } ;`
                     + 'background-color: black ; position: inherit }'
-                + '.chatgpt-modal input[type="checkbox"]:focus { outline: none ; box-shadow: none }'
+                + '.chatgpt-modal input[type=checkbox]:focus { outline: none ; box-shadow: none }'
             );
         }
 
@@ -267,7 +269,7 @@ const chatgpt = {
                     }, 500);
                 }
 
-            }, 135);
+            }, 155);
         };
 
         return modalContainer.id; // if assignment used
@@ -281,12 +283,12 @@ const chatgpt = {
     getChatBox() { return document.getElementById('prompt-textarea'); },
 
     getNewChatButton() {
-        return document.querySelector('button[data-testid*="new-chat-button"], button:has([d^="M15.6729"])'); },
+        return document.querySelector('button[data-testid*=new-chat-button], button:has([d^="M15.6729"])'); },
 
     getNewChatLink() { return document.querySelector('nav a[href="/"]'); },
     getScrollToBottomButton() { return document.querySelector('button:has([d^="M12 21C11.7348"])'); },
-    getSendButton() { return document.querySelector('[data-testid="send-button"]'); },
-    getStopButton() { return document.querySelector('button[data-testid="stop-button"]'); },
+    getSendButton() { return document.querySelector('[data-testid=send-button]'); },
+    getStopButton() { return document.querySelector('button[data-testid=stop-button]'); },
     isDarkMode() { return document.documentElement.classList.toString().includes('dark'); },
 
     async isIdle(timeout = null) {
@@ -362,7 +364,7 @@ const chatgpt = {
                                  + (notificationDiv.isRight ? 'Right' : 'Left');
 
         // Create/append/update notification style (if missing or outdated)
-        const thisUpdated = 20231110; // datestamp of last edit for this file's `notifStyle`
+        const thisUpdated = 1735475527153 // timestamp of last edit for this file's `notifStyle`
         let notifStyle = document.querySelector('#chatgpt-notif-style'); // try to select existing style
         if (!notifStyle || parseInt(notifStyle.getAttribute('last-updated'), 10) < thisUpdated) { // if missing or outdated
             if (!notifStyle) { // outright missing, create/id/attr/append it first
@@ -372,6 +374,8 @@ const chatgpt = {
             }
             notifStyle.innerText = ( // update prev/new style contents
                 '.chatgpt-notif {'
+                    + 'font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",'
+                        + '"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif ;'
                     + '.no-mobile-tap-outline { outline: none ; -webkit-tap-highlight-color: transparent }'
                     + 'background-color: black ; padding: 10px 13px 10px 18px ; border-radius: 11px ; border: 1px solid #f5f5f7 ;' // bubble style
                     + 'opacity: 0 ; position: fixed ; z-index: 9999 ; font-size: 1.8rem ; color: white ;' // visibility
@@ -405,7 +409,7 @@ const chatgpt = {
                 for (const divId of thisQuadrantQueue.slice(0, -1)) { // exclude new div
                     const oldDiv = document.getElementById(divId),
                           offsetProp = oldDiv.style.top ? 'top' : 'bottom', // pick property to change
-                          vOffset = +/\d+/.exec(oldDiv.style[offsetProp])[0] + 5 + oldDiv.getBoundingClientRect().height
+                          vOffset = +/\d+/.exec(oldDiv.style[offsetProp])[0] + 5 + oldDiv.getBoundingClientRect().height;
                     oldDiv.style[offsetProp] = `${ vOffset }px`; // change prop
                 }
             } catch (err) {}
@@ -523,7 +527,7 @@ const chatgpt = {
         hide() { this.isOn() ? this.toggle() : console.info('Sidebar already hidden!'); },
         isOn() {
             const sidebar = (() => {
-                return chatgpt.sidebar.exists() ? document.querySelector('[class*="sidebar"]') : null; })();
+                return chatgpt.sidebar.exists() ? document.querySelector('[class*=sidebar]') : null; })();
             if (!sidebar) { console.error('Sidebar element not found!'); return false; }
             else return chatgpt.browser.isMobile() ?
                 document.documentElement.style.overflow == 'hidden'
@@ -531,7 +535,7 @@ const chatgpt = {
         },
 
         toggle() {
-            const sidebarToggle = document.querySelector('button[data-testid*="sidebar-button"]');
+            const sidebarToggle = document.querySelector('button[data-testid*=sidebar-button]');
             if (!sidebarToggle) console.error('Sidebar toggle not found!');
             sidebarToggle.click();
         },
