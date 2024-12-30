@@ -213,7 +213,7 @@ ChatGPT Infinity は、強力な [chatgpt.js](https://github.com/KudoAI/chatgpt.
 
 ### <img width=17 src="https://media.chatgptwidescreen.com/images/icons/widescreen-robot-emoji/icon32.png"> [ChatGPT ワイドスクリーンモード](https://chatgptwidescreen.com) &nbsp;<img src="https://media.chatgptwidescreen.com/images/badges/product-hunt/product-of-the-week-2-larger-centered-rounded-light.svg" width="auto" height="24" />
 
-> ChatGPT にワイドスクリーン + フルスクリーンモードを追加して、視聴体験を向上させ、スクロールを減らします。
+> ワイド/フル/トールスクリーン+スパンブロックモードで ChatGPT を強化します。perplexity.ai + poe.com でも動作します！
 <br>[インストール](https://docs.chatgptwidescreen.com/#-installation) / 
 [README](https://docs.chatgptwidescreen.com/#readme) / 
 [議論](https://github.com/adamlui/chatgpt-widescreen/discussions)

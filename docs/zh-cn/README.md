@@ -217,7 +217,7 @@ ChatGPT 无穷 与以下浏览器兼容:
 
 ### <img width=17 src="https://media.chatgptwidescreen.com/images/icons/widescreen-robot-emoji/icon32.png"> [ChatGPT Widescreen Mode](https://chatgptwidescreen.com) &nbsp;<img src="https://media.chatgptwidescreen.com/images/badges/product-hunt/product-of-the-week-2-larger-centered-rounded-light.svg" width="auto" height="24" />
 
-> 向 ChatGPT 添加宽屏 + 全窗口模式以增强查看效果 + 减少滚动。
+> 通过宽屏/全屏/高屏+垃圾邮件块模式增强 ChatGPT。也可以在 perplexity.ai + poe.com 上使用！
 <br>[安装](https://docs.chatgptwidescreen.com/zh-cn/#-如何安装) / 
 [自述文件](https://docs.chatgptwidescreen.com/zh-cn/#readme) / 
 [讨论](https://github.com/adamlui/chatgpt-widescreen/discussions)
