@@ -12,17 +12,18 @@ window.toggles = {
         get class() { return `${toggles.imports.app.cssPrefix}-sidebar-toggle` },
 
         create() {
-            this.div = document.createElement('div') ; this.div.className = this.class
 
-            // Create toggle elems
-            const navicon = document.createElement('img'),
-                  toggleLabel = document.createElement('label'),
-                  toggleInput = document.createElement('input'),
-                  switchSpan = document.createElement('span'),
-                  knobSpan = document.createElement('span')
+            // Init toggle elems
+            this.div = document.createElement('div') ; this.div.className = this.class
+            this.navicon = document.createElement('img')
+            this.toggleLabel = document.createElement('label')
+            this.toggleInput = document.createElement('input')
+            this.switchSpan = document.createElement('span')
+            this.knobSpan = document.createElement('span')
 
             // Assemble/append elems
-            switchSpan.append(knobSpan) ; this.div.append(navicon, toggleInput, switchSpan, toggleLabel)
+            this.switchSpan.append(this.knobSpan)
+            this.div.append(this.navicon, this.toggleInput, this.switchSpan, this.toggleLabel)
 
             // Stylize elems
             this.stylize() // create/append stylesheet
@@ -42,7 +43,7 @@ window.toggles = {
                 this.div.style.setProperty('--item-background-color',
                     `var(--sidebar-surface-${event.type == 'mouseover' ? 'secondary' : 'primary'})`)
             this.div.onclick = () => { // toggle Infinity mode
-                settings.save('infinityMode', !toggleInput.checked)
+                settings.save('infinityMode', !this.toggleInput.checked)
                 toggles.imports.syncConfigToUI({ updatedKey: 'infinityMode' })
                 toggles.imports.notify(`${toggles.getMsg('menuLabel_infinityMode')}: ${
                     toggles.getMsg(`state_${ config.infinityMode ? 'on' : 'off' }`).toUpperCase()}`)
@@ -95,12 +96,10 @@ window.toggles = {
 
         update: {
             color() {
-                const knobSpan = toggles.sidebar.div.querySelector('span > span'),
-                      navicon = toggles.sidebar.div.querySelector('img')
-                knobSpan.style.boxShadow = (
+                toggles.sidebar.knobSpan.style.boxShadow = (
                     `rgba(0, 0, 0, .3) 0 1px 2px 0${
                         toggles.imports.env.ui.scheme == 'dark' ? ', rgba(0, 0, 0, .15) 0 3px 6px 2px' : '' }`)
-                navicon.src = `${
+                toggles.sidebar.navicon.src = `${
                     toggles.imports.app.urls.mediaHost}/images/icons/infinity-symbol/${
                         toggles.imports.env.ui.scheme == 'dark' ? 'white' : 'black' }/icon32.png?${
                         toggles.imports.app.latestAssetCommitHash}`
@@ -108,17 +107,14 @@ window.toggles = {
 
             state() {
                 if (!toggles.sidebar.div) return // since toggle never created = sidebar missing
-                const toggleLabel = toggles.sidebar.div.querySelector('label'),
-                      toggleInput = toggles.sidebar.div.querySelector('input'),
-                      switchSpan = toggles.sidebar.div.querySelector('span'),
-                      knobSpan = switchSpan.firstChild
                 toggles.sidebar.div.style.display = config.toggleHidden || config.extensionDisabled ? 'none' : 'flex'
-                toggleInput.checked = config.infinityMode
-                toggleLabel.innerText = `${toggles.getMsg('menuLabel_infinityMode')} `
-                                         + toggles.getMsg(`state_${ toggleInput.checked ? 'enabled' : 'disabled' }`)
+                toggles.sidebar.toggleInput.checked = config.infinityMode
+                toggles.sidebar.toggleLabel.innerText = `${toggles.getMsg('menuLabel_infinityMode')} `
+                    + toggles.getMsg(`state_${ toggles.sidebar.toggleInput.checked ? 'enabled' : 'disabled' }`)
                 setTimeout(() => {
-                    switchSpan.className = toggleInput.checked ? 'enabled' : 'disabled'
-                    knobSpan.style.transform = `translateX(${ toggleInput.checked ? 13 : 0 }px)`
+                    toggles.sidebar.switchSpan.className = toggles.sidebar.toggleInput.checked ? 'enabled' : 'disabled'
+                    toggles.sidebar.knobSpan.style.transform = `translateX(${
+                        toggles.sidebar.toggleInput.checked ? 13 : 0 }px)`
                 }, 1) // min delay to trigger 1st transition fx
             }
         }
