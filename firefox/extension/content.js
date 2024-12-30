@@ -171,7 +171,7 @@
 
     // Monitor NODE CHANGES to maintain sidebar toggle visibility
     new MutationObserver(() => {
-        if (!config.toggleHidden && !document.getElementById(toggles.sidebar.ids.navicon)
+        if (!config.toggleHidden && !document.querySelector(`.${toggles.sidebar.class}`)
             && toggles.sidebar.status != 'inserting') {
                 toggles.sidebar.status = 'missing' ; toggles.sidebar.insert() }
     }).observe(document.body, { attributes: true, subtree: true })
@@ -190,8 +190,8 @@
     // Disable distracting SIDEBAR CLICK-ZOOM effect
     if (!document.documentElement.hasAttribute('sidebar-click-zoom-observed')) {
         new MutationObserver(mutations => mutations.forEach(({ target }) => {
-            if (target.closest('[class*=sidebar]') // include sidebar divs
-                && !target.id.endsWith('-knob-span') // exclude our toggles.sidebar
+            if (target.closest('[class*=sidebar]') // include sidebar elems
+                && !target.closest('[class*=sidebar-toggle]') // exclude our toggles.sidebar's elems
                 && target.style.transform != 'none' // click-zoom occurred
             ) target.style.transform = 'none'
         })).observe(document.body, { attributes: true, subtree: true, attributeFilter: ['style'] })

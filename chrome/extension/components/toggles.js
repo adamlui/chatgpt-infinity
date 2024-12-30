@@ -9,16 +9,13 @@ window.toggles = {
         return typeof GM_info != 'undefined' ? this.imports.app.msgs[key] : chrome.i18n.getMessage(key) },
 
     sidebar: {
-        ids: {
-            get navicon() { return `${toggles.imports.app.cssPrefix}-toggle-navicon` },
-            get knobSpan() { return `${toggles.imports.app.cssPrefix}-toggle-knob-span` }
-        },
+        get class() { return `${toggles.imports.app.cssPrefix}-sidebar-toggle` },
 
         create() {
-            this.div = document.createElement('div')
+            this.div = document.createElement('div') ; this.div.className = this.class
 
-            // Create/ID/size/position navicon
-            const navicon = document.createElement('img') ; navicon.id = this.ids.navicon
+            // Create/size/position navicon
+            const navicon = document.createElement('img')
             navicon.style.cssText = 'width: 1.25rem ; height: 1.25rem ; margin-left: 2px ; margin-right: 4px'
 
             // Create/disable/hide checkbox
@@ -38,7 +35,7 @@ window.toggles = {
             })
 
             // Create/stylize knob, append to switch
-            const knobSpan = document.createElement('span') ; knobSpan.id = this.ids.knobSpan
+            const knobSpan = document.createElement('span')
             Object.assign(knobSpan.style, {
                 position: 'absolute', left: '3px', bottom: '1.25px',
                 width: '12px', height: '12px', content: '""', borderRadius: '28px',
@@ -89,7 +86,7 @@ window.toggles = {
         },
 
         insert() {
-            if (this.status?.startsWith('insert') || document.getElementById(this.ids.navicon)) return
+            if (this.status?.startsWith('insert') || document.querySelector(`.${this.class}`)) return
             const sidebar = document.querySelectorAll('nav')[toggles.imports.env.browser.isMobile ? 1 : 0]
             if (!sidebar) return
             this.status = 'inserting' ; if (!this.div) this.create()
@@ -98,8 +95,8 @@ window.toggles = {
 
         update: {
             color() {
-                const knobSpan = toggles.sidebar.div.querySelector(`#${toggles.sidebar.ids.knobSpan}`),
-                      navicon = toggles.sidebar.div.querySelector(`#${toggles.sidebar.ids.navicon}`)
+                const knobSpan = toggles.sidebar.div.querySelector('span > span'),
+                      navicon = toggles.sidebar.div.querySelector('img')
                 knobSpan.style.boxShadow = (
                     'rgba(0, 0, 0, .3) 0 1px 2px 0' + ( chatgpt.isDarkMode() ? ', rgba(0, 0, 0, .15) 0 3px 6px 2px' : '' ))
                 navicon.src = `${toggles.imports.app.urls.mediaHost}/images/icons/infinity-symbol/${
