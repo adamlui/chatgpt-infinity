@@ -98,9 +98,12 @@ window.toggles = {
                 const knobSpan = toggles.sidebar.div.querySelector('span > span'),
                       navicon = toggles.sidebar.div.querySelector('img')
                 knobSpan.style.boxShadow = (
-                    'rgba(0, 0, 0, .3) 0 1px 2px 0' + ( chatgpt.isDarkMode() ? ', rgba(0, 0, 0, .15) 0 3px 6px 2px' : '' ))
-                navicon.src = `${toggles.imports.app.urls.mediaHost}/images/icons/infinity-symbol/${
-                    chatgpt.isDarkMode() ? 'white' : 'black' }/icon32.png?${toggles.imports.app.latestAssetCommitHash}`
+                    `rgba(0, 0, 0, .3) 0 1px 2px 0${
+                        toggles.imports.env.ui.scheme == 'dark' ? ', rgba(0, 0, 0, .15) 0 3px 6px 2px' : '' }`)
+                navicon.src = `${
+                    toggles.imports.app.urls.mediaHost}/images/icons/infinity-symbol/${
+                        toggles.imports.env.ui.scheme == 'dark' ? 'white' : 'black' }/icon32.png?${
+                        toggles.imports.app.latestAssetCommitHash}`
             },
 
             state() {
