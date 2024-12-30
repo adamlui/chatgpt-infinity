@@ -184,7 +184,7 @@
     function handleSchemePrefChange() {
         const displayedScheme = getScheme()
         if (env.ui.scheme != displayedScheme) {
-            env.ui.scheme = displayedScheme ; toggles.sidebar.updateColor() ; modals.stylize() }
+            env.ui.scheme = displayedScheme ; toggles.sidebar.updateAesthetic() ; modals.stylize() }
     }
 
     // Disable distracting SIDEBAR CLICK-ZOOM effect
