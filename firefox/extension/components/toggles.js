@@ -36,7 +36,7 @@ window.toggles = {
             }
 
             // Update color/state
-            this.update.color() ; this.update.state() // to opposite init state for animation on 1st load
+            this.updateColor() ; this.updateState() // to opposite init state for animation on 1st load
 
             // Add hover/click listeners
             this.div.onmouseover = this.div.onmouseout = event => // trigger OpenAI hover overlay
@@ -94,29 +94,25 @@ window.toggles = {
             sidebar.insertBefore(this.div, sidebar.children[1]) ; this.status = 'inserted'
         },
 
-        update: {
-            color() {
-                toggles.sidebar.knobSpan.style.boxShadow = (
-                    `rgba(0, 0, 0, .3) 0 1px 2px 0${
-                        toggles.imports.env.ui.scheme == 'dark' ? ', rgba(0, 0, 0, .15) 0 3px 6px 2px' : '' }`)
-                toggles.sidebar.navicon.src = `${
-                    toggles.imports.app.urls.mediaHost}/images/icons/infinity-symbol/${
-                        toggles.imports.env.ui.scheme == 'dark' ? 'white' : 'black' }/icon32.png?${
-                        toggles.imports.app.latestAssetCommitHash}`
-            },
+        updateColor() {
+            this.knobSpan.style.boxShadow = `rgba(0, 0, 0, 0.3) 0 1px 2px 0${
+                toggles.imports.env.ui.scheme == 'dark' ? ', rgba(0, 0, 0, 0.15) 0 3px 6px 2px' : '' }`
+            this.navicon.src = `${
+                toggles.imports.app.urls.mediaHost}/images/icons/infinity-symbol/${
+                    toggles.imports.env.ui.scheme == 'dark' ? 'white' : 'black' }/icon32.png?${
+                    toggles.imports.app.latestAssetCommitHash}`
+        },
 
-            state() {
-                if (!toggles.sidebar.div) return // since toggle never created = sidebar missing
-                toggles.sidebar.div.style.display = config.toggleHidden || config.extensionDisabled ? 'none' : 'flex'
-                toggles.sidebar.toggleInput.checked = config.infinityMode
-                toggles.sidebar.toggleLabel.innerText = `${toggles.getMsg('menuLabel_infinityMode')} `
-                    + toggles.getMsg(`state_${ toggles.sidebar.toggleInput.checked ? 'enabled' : 'disabled' }`)
-                setTimeout(() => {
-                    toggles.sidebar.switchSpan.className = toggles.sidebar.toggleInput.checked ? 'enabled' : 'disabled'
-                    toggles.sidebar.knobSpan.style.transform = `translateX(${
-                        toggles.sidebar.toggleInput.checked ? 13 : 0 }px)`
-                }, 1) // min delay to trigger 1st transition fx
-            }
+        updateState() {
+            if (!this.div) return // since toggle never created = sidebar missing
+            this.div.style.display = config.toggleHidden || config.extensionDisabled ? 'none' : 'flex'
+            this.toggleInput.checked = config.infinityMode
+            this.toggleLabel.innerText = `${toggles.getMsg('menuLabel_infinityMode')} `
+                + toggles.getMsg(`state_${ this.toggleInput.checked ? 'enabled' : 'disabled' }`)
+            setTimeout(() => {
+                this.switchSpan.className = this.toggleInput.checked ? 'enabled' : 'disabled'
+                this.knobSpan.style.transform = `translateX(${ this.toggleInput.checked ? 13 : 0 }px)`
+            }, 1) // min delay to trigger 1st transition fx
         }
     }
 };

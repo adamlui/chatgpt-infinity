@@ -77,7 +77,7 @@
         if (options?.updatedKey == 'infinityMode') infinity[config.infinityMode ? 'activate' : 'deactivate']()
         else if (settings.controls[options?.updatedKey]?.type == 'prompt' && config.infinityMode)
             infinity.restart({ target: options?.updatedKey == 'replyInterval' ? 'self' : 'new' })
-        if (/extensionDisabled|infinityMode|toggleHidden/.test(options?.updatedKey)) toggles.sidebar.update.state()
+        if (/extensionDisabled|infinityMode|toggleHidden/.test(options?.updatedKey)) toggles.sidebar.updateState()
     }
 
     function getScheme() {
@@ -184,7 +184,7 @@
     function handleSchemePrefChange() {
         const displayedScheme = getScheme()
         if (env.ui.scheme != displayedScheme) {
-            env.ui.scheme = displayedScheme ; toggles.sidebar.update.color() ; modals.stylize() }
+            env.ui.scheme = displayedScheme ; toggles.sidebar.updateColor() ; modals.stylize() }
     }
 
     // Disable distracting SIDEBAR CLICK-ZOOM effect
