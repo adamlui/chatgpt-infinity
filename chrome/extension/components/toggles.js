@@ -56,7 +56,9 @@ window.toggles = {
                 ':root {' // vars
                   + '--switch-enabled-bg-color: #ad68ff ; --switch-disabled-bg-color: #ccc ;'
                   + '--switch-enabled-box-shadow: 2px 1px 9px #d8a9ff ;'
-                  + '--switch-enabled-hover-box-shadow: 0 1px 10px #9b5ad1 }'
+                  + '--switch-enabled-hover-box-shadow: 0 1px 10px #9b5ad1 ;'
+                  + '--knob-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 2px 0 ;'
+                  + '--knob-box-shadow-dark: rgba(0, 0, 0, 0.3) 0 1px 2px 0, rgba(0, 0, 0, 0.15) 0 3px 6px 2px }'
 
                 // Element styles
               + `.${this.class} {` // parent div
@@ -81,6 +83,7 @@ window.toggles = {
               + `.${this.class} > span > span {` // knob span
                   + 'position: absolute ; width: 12px ; height: 12px ; content: "" ; border-radius: 28px ;'
                   + 'background-color: white ; -webkit-transition: 0.4s ; transition: 0.4s ; left: 3px ; bottom: 1.25px ;'
+                  + 'box-shadow: var(--knob-box-shadow) ;' // make 3D
                   + 'transform: translateX(13px) }' // init opposite final pos
               + `.${this.class} > label {` // toggle label
                   + 'cursor: pointer ; overflow: hidden ; text-overflow: ellipsis ;'
@@ -94,6 +97,8 @@ window.toggles = {
                   + 'box-shadow: var(--switch-enabled-hover-box-shadow) }' // use hover style instead
               + `.${this.class}.dark:hover > span.enabled {` // switch on when hover on parent div
                   + 'box-shadow: var(--switch-enabled-box-shadow) }' // use regular style instead
+              + `.${this.class}.dark > span > span {` // knob span
+                  + 'box-shadow: var(--knob-box-shadow-dark) }' // make 3D-er
             )
             document.head.append(this.styles)
         },
@@ -110,8 +115,6 @@ window.toggles = {
             const isDarkScheme = toggles.imports.env.ui.scheme == 'dark'
             this.div.classList.add(isDarkScheme ? 'dark' : 'light')
             this.div.classList.remove(isDarkScheme ? 'light' : 'dark')
-            this.knobSpan.style.boxShadow = `rgba(0, 0, 0, 0.3) 0 1px 2px 0${
-                toggles.imports.env.ui.scheme == 'dark' ? ', rgba(0, 0, 0, 0.15) 0 3px 6px 2px' : '' }`
             this.navicon.src = `${
                 toggles.imports.app.urls.mediaHost}/images/icons/infinity-symbol/${
                     toggles.imports.env.ui.scheme == 'dark' ? 'white' : 'black' }/icon32.png?${
