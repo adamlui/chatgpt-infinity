@@ -118,7 +118,7 @@
 <br><br>
 
 ChatGPT Infinity は、強力な [chatgpt.js](https://github.com/KudoAI/chatgpt.js) ライブラリのコードに依存しています
-<br>© 2023–2024 KudoAI & 貢献者による MIT ライセンスの下で。
+<br>© 2023–2025 KudoAI & 貢献者による MIT ライセンスの下で。
 
 </div>
 </h6>
