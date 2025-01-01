@@ -68,23 +68,28 @@ window.toggles = {
                   + 'width: 1.25rem ; height: 1.25rem ; margin-left: 2px ; margin-right: 4px }'
               + `.${this.class} > input { display: none }` // hide checkbox
               + `.${this.class} > span {` // switch span
-                  + 'position: relative ; width: 30px ; height: 15px ;'
+                  + 'position: relative ; width: 30px ; height: 15px ; border-radius: 28px ;'
                   + 'background-color: var(--switch-enabled-bg-color) ;' // init opposite  final color
-                  + '-webkit-transition: 0.4s ; transition: 0.4s ; border-radius: 28px ;'
                   + `bottom: ${ toggles.imports.env.ui.firstLink ? 0 : -0.15 }em ;`
                   + `left: ${ toggles.imports.env.browser.isMobile ? 169
-                            : toggles.imports.env.ui.firstLink ? 154 : 160 }px }`
+                            : toggles.imports.env.ui.firstLink ? 154 : 160 }px ;`
+                  + 'transition: 0.4s ; -webkit-transition: 0.4s ; -moz-transition: 0.4s ;'
+                      + '-o-transition: 0.4s ; -ms-transition: 0.4s }'
               + `.${this.class} > span.enabled {` // switch on
                   + 'background-color: var(--switch-enabled-bg-color) ; box-shadow: var(--switch-enabled-box-shadow) }'
               + `.${this.class}:hover > span.enabled {` // switch on when hover on parent div
-                  + 'box-shadow: var(--switch-enabled-hover-box-shadow) ; -webkit-transition: 0.2s ; transition: 0.2s }'
+                  + 'box-shadow: var(--switch-enabled-hover-box-shadow) ;'
+                  + 'transition: 0.2s ; -webkit-transition: 0.2s ; -moz-transition: 0.2s ;'
+                      + '-o-transition: 0.2s ; -ms-transition: 0.2s }'
               + `.${this.class} > span.disabled {` // switch off
                   + 'background-color: var(--switch-disabled-bg-color) ; box-shadow: none }'
               + `.${this.class} > span > span {` // knob span
                   + 'position: absolute ; width: 12px ; height: 12px ; content: "" ; border-radius: 28px ;'
-                  + 'background-color: white ; -webkit-transition: 0.4s ; transition: 0.4s ; left: 3px ; bottom: 1.25px ;'
+                  + 'background-color: white ; left: 3px ; bottom: 1.25px ;'
                   + 'box-shadow: var(--knob-box-shadow) ;' // make 3D
-                  + 'transform: translateX(13px) }' // init opposite final pos
+                  + 'transform: translateX(13px) ;' // init opposite final pos
+                  + 'transition: 0.4s ; -webkit-transition: 0.4s ; -moz-transition: 0.4s ;'
+                      + '-o-transition: 0.4s ; -ms-transition: 0.4s }'
               + `.${this.class} > label {` // toggle label
                   + 'cursor: pointer ; overflow: hidden ; text-overflow: ellipsis ;'
                   + `width: ${ toggles.imports.env.browser.isMobile ? 201 : 148 }px ;`
