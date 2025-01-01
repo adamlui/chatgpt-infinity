@@ -79,8 +79,8 @@ window.toggles = {
                   + 'background-color: var(--switch-enabled-bg-color) ; box-shadow: var(--switch-enabled-box-shadow) }'
               + `.${this.class}:hover > span.enabled {` // switch on when hover on parent div
                   + 'box-shadow: var(--switch-enabled-hover-box-shadow) ;'
-                  + 'transition: 0.2s ; -webkit-transition: 0.2s ; -moz-transition: 0.2s ;'
-                      + '-o-transition: 0.2s ; -ms-transition: 0.2s }'
+                  + 'transition: none ; -webkit-transition: none ; -moz-transition: none ;'
+                      + '-o-transition: none ; -ms-transition: none }'
               + `.${this.class} > span.disabled {` // switch off
                   + 'background-color: var(--switch-disabled-bg-color) ; box-shadow: none }'
               + `.${this.class} > span > span {` // knob span
