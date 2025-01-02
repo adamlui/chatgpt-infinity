@@ -26,7 +26,7 @@ const chatgpt = {
 
             dismiss: {
                 click(event) {
-                    if (event.target == event.currentTarget || event.target.closest('[class*="-close-btn]'))
+                    if (event.target == event.currentTarget || event.target.closest('[class*=-close-btn]'))
                         dismissAlert()
                 },
 
