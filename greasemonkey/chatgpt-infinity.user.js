@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2025.1.2
+// @version             2025.1.3
 // @license             MIT
 // @icon                https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?f196818
 // @icon64              https://media.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?f196818
@@ -220,7 +220,7 @@
 // @connect             cdn.jsdelivr.net
 // @connect             update.greasyfork.org
 // @require             https://cdn.jsdelivr.net/npm/@kudoai/chatgpt.js@3.5.0/dist/chatgpt.min.js#sha256-+C0x4BOFQc38aZB3pvUC2THu+ZSvuCxRphGdtRLjCDg=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@9a29cea0715196d435e78c3e6eb9f67b754db2cc/chrome/extension/components/modals.js#sha256-m2AZnKE5N1CktoiLsy7nfGBMahBROo4wS9fabZFUrAM=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@d7618509d6a110e12273f7a0a4b2353119f7cdd6/chrome/extension/components/modals.js#sha256-mWDvqPzWlivd1S4jvT1pCU5FNQSySPVRL1GIFFF+8QU=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@7e335cb07bb106aa080075c299c8adb12cc27f23/chrome/extension/components/toggles.js#sha256-XAsvy9Tn0H0De4fc6S0buxVA2RlJrEkG11bdEPZ8Tws=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@c6338a22b98eda877436fd6c5950ac3114aea23c/chrome/extension/lib/dom.js#sha256-/QaqzuGGC7PrzjYnXtYh411rJJOp27jWLA4ataKaWWY=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@c6338a22b98eda877436fd6c5950ac3114aea23c/chrome/extension/lib/settings.js#sha256-1ZWC5u6IeVzqXeUWmt3BjMNEllUfFzS4WIgeIXpomio=
