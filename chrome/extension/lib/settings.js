@@ -42,9 +42,8 @@ window.settings = {
     getMsg(key) {
         return typeof GM_info != 'undefined' ? this.imports.app.msgs[key] : chrome.i18n.getMessage(key) },
 
-    load() {
-        const keys = ( // original array if array, else new array from multiple args
-            Array.isArray(arguments[0]) ? arguments[0] : Array.from(arguments))
+    load(...keys) {
+        keys.flat() // flatten array args nested by spread operator
         if (typeof GM_info != 'undefined') // synchronously load from userscript manager storage
             keys.forEach(key => window.config[key] = GM_getValue(
                 `${this.imports.app.configKeyPrefix}_${key}`, false))
