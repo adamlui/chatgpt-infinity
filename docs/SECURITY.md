@@ -5,9 +5,9 @@
             <img height=14 src="https://assets.chatgptinfinity.com/images/icons/earth/black/icon32.svg">
         </picture>
         &nbsp;English |
-        <a href="https://docs.chatgptinfinity.com/zh-cn/SECURITY.md">简体中文</a> |
-        <a href="https://docs.chatgptinfinity.com/ja/SECURITY.md">日本語</a> |
-        <a href="https://docs.chatgptinfinity.com/hi/SECURITY.md">हिंदी</a>
+        <a href="zh-cn/SECURITY.md">简体中文</a> |
+        <a href="ja/SECURITY.md">日本語</a> |
+        <a href="hi/SECURITY.md">हिंदी</a>
     </h6>
 </div>
 
