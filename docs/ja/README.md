@@ -197,7 +197,7 @@ ChatGPT Infinity は、強力な [chatgpt.js](https://github.com/KudoAI/chatgpt.
 
 ## 📜 関連アプリ
 
-### <picture><source type="image/png" media="(prefers-color-scheme: dark)" srcset="https://media.chatgptautorefresh.com/images/icons/openai/white/icon16.png"><img width=16 src="https://media.chatgptautorefresh.com/images/icons/openai/black/icon16.png"></picture> [ChatGPT 自動更新 ↻](https://chatgptautorefresh.com) &nbsp;<a href="https://github.com/awesome-scripts/awesome-userscripts#chatgpt"><img src="https://media.chatgptautorefresh.com/images/badges/awesome/badge.svg"></a>
+### <picture><source type="image/png" media="(prefers-color-scheme: dark)" srcset="https://assets.chatgptautorefresh.com/images/icons/openai/white/icon16.png"><img width=16 src="https://assets.chatgptautorefresh.com/images/icons/openai/black/icon16.png"></picture> [ChatGPT 自動更新 ↻](https://chatgptautorefresh.com) &nbsp;<a href="https://github.com/awesome-scripts/awesome-userscripts#chatgpt"><img src="https://assets.chatgptautorefresh.com/images/badges/awesome/badge.svg"></a>
 
 > ChatGPT セッションを新鮮に保ち、チャット時間制限 + ネットワークエラー + Cloudflare チェックを排除します。
 <br>[インストール](https://docs.chatgptautorefresh.com/#-installation) / 
