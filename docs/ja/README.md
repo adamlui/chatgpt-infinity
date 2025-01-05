@@ -3,8 +3,8 @@
 <div align="right">
     <h6>
         <picture>
-            <source type="image/svg+xml" media="(prefers-color-scheme: dark)" srcset="https://media.chatgptinfinity.com/images/icons/earth/white/icon32.svg">
-            <img height=14 src="https://media.chatgptinfinity.com/images/icons/earth/black/icon32.svg">
+            <source type="image/svg+xml" media="(prefers-color-scheme: dark)" srcset="https://assets.chatgptinfinity.com/images/icons/earth/white/icon32.svg">
+            <img height=14 src="https://assets.chatgptinfinity.com/images/icons/earth/black/icon32.svg">
         </picture>
         &nbsp;日本語 |
         <a href="../README.md">English</a> |
@@ -41,11 +41,11 @@
 <br><br>
 
 <a href="https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-badge">
-    <img width=auto height=60 src="https://media.chatgptinfinity.com/images/badges/chrome-web-store/available-in-the-chrome-web-store-green-square-border-light-498x152.png"></a>
+    <img width=auto height=60 src="https://assets.chatgptinfinity.com/images/badges/chrome-web-store/available-in-the-chrome-web-store-green-square-border-light-498x152.png"></a>
 <a href="https://edge.chatgptinfinity.com">
-    <img width=auto height=60 src="https://media.chatgptinfinity.com/images/badges/microsoft-store/get-it-from-microsoft-blue-square-border-light-457x157.png"></a>
+    <img width=auto height=60 src="https://assets.chatgptinfinity.com/images/badges/microsoft-store/get-it-from-microsoft-blue-square-border-light-457x157.png"></a>
 <a href="https://gm.chatgptinfinity.com">
-    <img width=auto height=60 src="https://media.chatgptinfinity.com/images/badges/greasy-fork/available-on-greasy-fork-gold-square-border-light-816x262.png"></a>
+    <img width=auto height=60 src="https://assets.chatgptinfinity.com/images/badges/greasy-fork/available-on-greasy-fork-gold-square-border-light-816x262.png"></a>
 
 </div>
 
@@ -55,7 +55,7 @@
 
 <div align="center">
 
-<img src="https://media.chatgptinfinity.com/images/screenshots/infinity-mode-on-ss-zoomed-out.png">
+<img src="https://assets.chatgptinfinity.com/images/screenshots/infinity-mode-on-ss-zoomed-out.png">
 
 </div>
 
@@ -71,22 +71,22 @@
 
 ## 🚀 インストール方法
 
-### <img height=16 src="https://media.chatgptinfinity.com/images/icons/platforms/chrome/icon16.png"><img height=16 src="https://media.chatgptinfinity.com/images/icons/platforms/edge/icon16.png"> ブラウザ拡張機能:
+### <img height=16 src="https://assets.chatgptinfinity.com/images/icons/platforms/chrome/icon16.png"><img height=16 src="https://assets.chatgptinfinity.com/images/icons/platforms/edge/icon16.png"> ブラウザ拡張機能:
 
 1. ChatGPT Infinity 拡張機能をインストールします ([Chrome](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link), [Edge](https://edge.chatgptinfinity.com))
 
 2. 通常通り [chatgpt.com](https://chatgpt.com) を訪れると、サイドバーとツールバーメニューにトグルが表示されます
 
-*プロのヒント：拡張機能のトグルに簡単にアクセスするには、(1) ブラウザのツールバーで <img height=12 width=12 src="https://media.chatgptinfinity.com/images/icons/toolbar/chrome-puzzle-piece/gray.png"> をクリックし、(2) 次に拡張機能名の横にある <img height=12 width=12 src="https://media.chatgptinfinity.com/images/icons/toolbar/push-pin/blue.png"> をクリックします。*
+*プロのヒント：拡張機能のトグルに簡単にアクセスするには、(1) ブラウザのツールバーで <img height=12 width=12 src="https://assets.chatgptinfinity.com/images/icons/toolbar/chrome-puzzle-piece/gray.png"> をクリックし、(2) 次に拡張機能名の横にある <img height=12 width=12 src="https://assets.chatgptinfinity.com/images/icons/toolbar/push-pin/blue.png"> をクリックします。*
 
 <div align="center">
 
-<img width=268 src="https://media.chatgptinfinity.com/images/screenshots/chrome-extension-pin-instructions.png">
-<img width=268 src="https://media.chatgptinfinity.com/images/screenshots/chrome-extension-menu.png">
+<img width=268 src="https://assets.chatgptinfinity.com/images/screenshots/chrome-extension-pin-instructions.png">
+<img width=268 src="https://assets.chatgptinfinity.com/images/screenshots/chrome-extension-menu.png">
 
 </div>
 
-### <img height=17 src="https://media.chatgptinfinity.com/images/icons/platforms/tampermonkey/icon28.png"><img height=17.5 src="https://media.chatgptinfinity.com/images/icons/platforms/violentmonkey/icon25.png"><img height=16 src="https://assets.aiwebextensions.com/images/icons/platforms/scriptcat/icon16.png"> Greasemonkey ユーザースクリプト:
+### <img height=17 src="https://assets.chatgptinfinity.com/images/icons/platforms/tampermonkey/icon28.png"><img height=17.5 src="https://assets.chatgptinfinity.com/images/icons/platforms/violentmonkey/icon25.png"><img height=16 src="https://assets.aiwebextensions.com/images/icons/platforms/scriptcat/icon16.png"> Greasemonkey ユーザースクリプト:
 
 1. Tampermonkey ([Chrome](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo), [Firefox](https://addons.mozilla.org/firefox/addon/tampermonkey/), [Edge](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd), [Opera](https://addons.opera.com/extensions/details/tampermonkey-beta/)) または Violentmonkey ([Chrome](https://chromewebstore.google.com/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag), [Firefox](https://addons.mozilla.org/firefox/addon/violentmonkey/), [Edge](https://microsoftedge.microsoft.com/addons/detail/eeagobfjdenkkddmbclomhiblgggliao)) をインストールします
 
@@ -96,7 +96,7 @@
 
 <div align="center">
 
-<img src="https://media.chatgptinfinity.com/images/screenshots/sidebar-toggle-on-w-cursor.png">
+<img src="https://assets.chatgptinfinity.com/images/screenshots/sidebar-toggle-on-w-cursor.png">
 
 <p>
 
@@ -140,7 +140,7 @@ ChatGPT Infinity は、強力な [chatgpt.js](https://github.com/KudoAI/chatgpt.
 - **[QQ](https://browser.qq.com)**（[Chrome 拡張機能](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link)または[Greasemonkey ユーザースクリプト](https://gm.chatgptinfinity.com)を介して）
 - **[Whale](https://whale.naver.com)**（[Chrome 拡張機能](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link)または[Greasemonkey ユーザースクリプト](https://gm.chatgptinfinity.com)を介して）
 
-<br><picture><source type="image/png" media="(prefers-color-scheme: dark)" srcset="https://media.chatgptinfinity.com/images/logos/platforms/android/head-plus-word/white/logo150x24.png"><img alt="Android" width=111 src="https://media.chatgptinfinity.com/images/logos/platforms/android/head-plus-word/green-head-black-word/logo150x24.png"></picture><br>
+<br><picture><source type="image/png" media="(prefers-color-scheme: dark)" srcset="https://assets.chatgptinfinity.com/images/logos/platforms/android/head-plus-word/white/logo150x24.png"><img alt="Android" width=111 src="https://assets.chatgptinfinity.com/images/logos/platforms/android/head-plus-word/green-head-black-word/logo150x24.png"></picture><br>
 
 - **[Kiwi](https://kiwibrowser.com)**（[Chrome 拡張機能](https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=platform-link)または[Greasemonkey ユーザースクリプト](https://gm.chatgptinfinity.com)を介して）
 - **[Mozilla Firefox](https://www.mozilla.org/firefox/browsers/mobile/android/)**（[Greasemonkey ユーザースクリプト](https://gm.chatgptinfinity.com)を介して）
@@ -152,11 +152,11 @@ ChatGPT Infinity は、強力な [chatgpt.js](https://github.com/KudoAI/chatgpt.
 <div align="center">
 
 <a href="https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=install-button">
-    <img height=75 src="https://media.chatgptinfinity.com/images/buttons/add-to-chrome-button.png"></a>
+    <img height=75 src="https://assets.chatgptinfinity.com/images/buttons/add-to-chrome-button.png"></a>
 <a href="https://edge.chatgptinfinity.com">
-    <img height=75 src="https://media.chatgptinfinity.com/images/buttons/add-to-edge-button.png"></a>
+    <img height=75 src="https://assets.chatgptinfinity.com/images/buttons/add-to-edge-button.png"></a>
 <a href="https://gm.chatgptinfinity.com">
-    <img height=75 src="https://media.chatgptinfinity.com/images/buttons/add-userscript-button.png"></a>
+    <img height=75 src="https://assets.chatgptinfinity.com/images/buttons/add-userscript-button.png"></a>
 
 <br>
 
@@ -175,11 +175,11 @@ ChatGPT Infinity は、強力な [chatgpt.js](https://github.com/KudoAI/chatgpt.
 <a href="https://github.com/xspeed1989"><img width=47 title="@xspeed1989" src="https://avatars.githubusercontent.com/u/5162926?first-contrib=2023.11.27-ui-change-report"></img></a>
 <a href="https://github.com/Chipsum"><img width=47 title="@Chipsum" src="https://avatars.githubusercontent.com/u/37517008?first-contrib=2023.12.05-first-button-bug-report"></img></a>
 <a href="https://github.com/sanchomuzax"><img width=47 title="@sanchomuzax" src="https://avatars.githubusercontent.com/u/2911588?first-contrib=2023.2.26-truncate-toggle-label-idea"></img></a>
-<a href="https://greasyfork.org/users/1000404-misspent"><picture><source type="image/png" media="(prefers-color-scheme: dark)" srcset="https://media.chatgptinfinity.com/images/icons/web-stores/greasy-fork/white/icon50.png"><img width=47 src="https://media.chatgptinfinity.com/images/icons/web-stores/greasy-fork/black/icon50.png?first-contrib=2023.7.29-share-box-popup-bug-alert" title="misspent"></picture></a>
+<a href="https://greasyfork.org/users/1000404-misspent"><picture><source type="image/png" media="(prefers-color-scheme: dark)" srcset="https://assets.chatgptinfinity.com/images/icons/web-stores/greasy-fork/white/icon50.png"><img width=47 src="https://assets.chatgptinfinity.com/images/icons/web-stores/greasy-fork/black/icon50.png?first-contrib=2023.7.29-share-box-popup-bug-alert" title="misspent"></picture></a>
 <a href="https://github.com/eltociear"><img width=47 title="@eltociear" src="https://avatars.githubusercontent.com/u/22633385?first-contrib=2024.6.22-add-japanese-readme"></img></a>
-<a href="https://greasyfork.org/users/936309-kskwin123"><picture><source type="image/png" media="(prefers-color-scheme: dark)" srcset="https://media.chatgptinfinity.com/images/icons/web-stores/greasy-fork/white/icon50.png"><img width=47 src="https://media.chatgptinfinity.com/images/icons/web-stores/greasy-fork/black/icon50.png?first-contrib=2024.6.4-auto-start-feature-request" title="KSKwin123"></picture></a>
+<a href="https://greasyfork.org/users/936309-kskwin123"><picture><source type="image/png" media="(prefers-color-scheme: dark)" srcset="https://assets.chatgptinfinity.com/images/icons/web-stores/greasy-fork/white/icon50.png"><img width=47 src="https://assets.chatgptinfinity.com/images/icons/web-stores/greasy-fork/black/icon50.png?first-contrib=2024.6.4-auto-start-feature-request" title="KSKwin123"></picture></a>
 <a href="#"><img width=47 title="free palestine" src="https://lh3.googleusercontent.com/a/ACg8ocKGoXwUzABUkuXPI3tc-sMOrziK_6dyr1M7sPYOF54zfZcDFA=s50-w50-h50?first-contrib=2024.6.25-custom-gpt-support-request"></img></a>
-<a href="https://greasyfork.org/users/670188-hacker09"><picture><source type="image/png" media="(prefers-color-scheme: dark)" srcset="https://media.chatgptinfinity.com/images/icons/web-stores/greasy-fork/white/icon50.png"><img width=47 src="https://media.chatgptinfinity.com/images/icons/web-stores/greasy-fork/black/icon50.png?first-contrib=2024.6.27-portuguese-translation-corrections" title="hacker09"></picture></a>
+<a href="https://greasyfork.org/users/670188-hacker09"><picture><source type="image/png" media="(prefers-color-scheme: dark)" srcset="https://assets.chatgptinfinity.com/images/icons/web-stores/greasy-fork/white/icon50.png"><img width=47 src="https://assets.chatgptinfinity.com/images/icons/web-stores/greasy-fork/black/icon50.png?first-contrib=2024.6.27-portuguese-translation-corrections" title="hacker09"></picture></a>
 <a href="https://github.com/Ivanaix"><img width=47 title="@Ivanaix" src="https://avatars.githubusercontent.com/u/175084540?first-contrib=2024.9.2-chat-reset-bug-alert"></img></a>
 <a href="https://github.com/ChinaGodMan"><img width=47 title="@ChinaGodMan" src="https://avatars.githubusercontent.com/u/96548841?first-contrib=2024.9.7-improved-chinese-msgs"></img></a>
 <a href="https://github.com/adityadeshmukh10"><img width=47 title="@adityadeshmukh10" src="https://avatars.githubusercontent.com/u/110899566?first-contrib=2024.10.15-doc-typo-fix"></img></a>
@@ -187,7 +187,7 @@ ChatGPT Infinity は、強力な [chatgpt.js](https://github.com/KudoAI/chatgpt.
 <a href="https://github.com/9romise"><img width=47 title="@9romise" src="https://avatars.githubusercontent.com/u/38204901?first-contrib=2024.12.13-revealed-unneeded-semicolons"></img></a>
 <a href="https://github.com/dependabot"><img width=47 title="Dependabot" src="https://avatars.githubusercontent.com/in/29110"></img></a>
 <a href="https://github.com/ImgBotApp"><img width=47 title="@ImgBotApp" src="https://avatars.githubusercontent.com/u/31427850"></img></a>
-<a href="https://chatgpt.com"><picture><source type="image/png" media="(prefers-color-scheme: dark)" srcset="https://media.chatgptinfinity.com/images/icons/platforms/chatgpt/black-on-white/icon50.png"><img width=47 title="ChatGPT" src="https://media.chatgptinfinity.com/images/icons/platforms/chatgpt/white-on-gray/icon50.png" title="ChatGPT"></picture></a>
+<a href="https://chatgpt.com"><picture><source type="image/png" media="(prefers-color-scheme: dark)" srcset="https://assets.chatgptinfinity.com/images/icons/platforms/chatgpt/black-on-white/icon50.png"><img width=47 title="ChatGPT" src="https://assets.chatgptinfinity.com/images/icons/platforms/chatgpt/white-on-gray/icon50.png" title="ChatGPT"></picture></a>
 <br><br>
 
 ## 🤖 その他の ChatGPT アプリ
@@ -218,7 +218,7 @@ ChatGPT Infinity は、強力な [chatgpt.js](https://github.com/KudoAI/chatgpt.
 [README](https://docs.chatgptwidescreen.com/#readme) / 
 [議論](https://github.com/adamlui/chatgpt-widescreen/discussions)
 
-<img height=6px width="100%" src="https://media.chatgptinfinity.com/images/separators/gradient-aqua.png">
+<img height=6px width="100%" src="https://assets.chatgptinfinity.com/images/separators/gradient-aqua.png">
   
 <a href="https://github.com/adamlui/ai-web-extensions">**その他の ChatGPT アドオン**</a> / 
 <a href="#top">トップに戻る ↑</a>
