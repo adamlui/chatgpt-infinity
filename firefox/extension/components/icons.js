@@ -28,7 +28,7 @@ window.icons = {
         type: 'png',
         get src() {
             return `${icons.imports.app.urls.mediaHost}/images/icons/question-mark/icon16.png?${
-                icons.imports.app.latestAssetCommitHash}`
+                icons.imports.app.latestResourceCommitHash}`
         }
     }
 };

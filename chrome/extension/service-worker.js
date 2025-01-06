@@ -31,13 +31,13 @@ chrome.runtime.onMessage.addListener(async req => {
 (async () => {
     const app = {
         version: chrome.runtime.getManifest().version,
-        latestAssetCommitHash: 'cb9fc55', // for cached app.json...
+        latestResourceCommitHash: 'cb9fc55', // for cached app.json...
             // ... + navicon in toggles.sidebar.insert() + icons.questionMark.src
         urls: {},
         chatgptJSver: /v(\d+\.\d+\.\d+)/.exec(await (await fetch(chrome.runtime.getURL('lib/chatgpt.js'))).text())[1]
     }
-    app.urls.assetHost = `https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@${app.latestAssetCommitHash}`
-    const remoteAppData = await (await fetch(`${app.urls.assetHost}/app.json`)).json()
+    app.urls.resourceHost = `https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@${app.latestResourceCommitHash}`
+    const remoteAppData = await (await fetch(`${app.urls.resourceHost}/app.json`)).json()
     Object.assign(app, { ...remoteAppData, urls: { ...app.urls, ...remoteAppData.urls }})
     chrome.storage.sync.set({ app }) // save to browser storage
 })()

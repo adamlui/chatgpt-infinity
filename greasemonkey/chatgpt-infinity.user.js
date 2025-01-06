@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2025.1.5
+// @version             2025.1.5.1
 // @license             MIT
 // @icon                https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?v=69e434b
 // @icon64              https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?v=69e434b
@@ -267,11 +267,11 @@
     const app = {
         version: GM_info.script.version, configKeyPrefix: 'chatGPTinfinity',
         chatgptJSver: /chatgpt\.js@([\d.]+)/.exec(GM_info.scriptMetaStr)[1], urls: {},
-        latestAssetCommitHash: 'a2601a2' // for cached app.json + messages.json + navicon in toggles.sidebar.insert()
+        latestResourceCommitHash: 'a2601a2' // for cached app.json + messages.json + navicon in toggles.sidebar.insert()
     }
-    app.urls.assetHost = `https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@${app.latestAssetCommitHash}`
+    app.urls.resourceHost = `https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@${app.latestResourceCommitHash}`
     const remoteAppData = await new Promise(resolve => xhr({
-        method: 'GET', url: `${app.urls.assetHost}/app.json`, onload: resp => resolve(JSON.parse(resp.responseText)) }))
+        method: 'GET', url: `${app.urls.resourceHost}/app.json`, onload: resp => resolve(JSON.parse(resp.responseText)) }))
     Object.assign(app, { ...remoteAppData, urls: { ...app.urls, ...remoteAppData.urls }})
     app.urls.update = app.urls.greasyFork.replace('https://', 'https://update.')
         .replace(/(\d+)-?([a-z-]*)$/i, (_, id, name) => `${id}/${ name || 'script' }.meta.js`)
@@ -345,7 +345,7 @@
     // LOCALIZE app.msgs for non-English users
     if (!env.browser.language.startsWith('en')) {
         const localizedMsgs = await new Promise(resolve => {
-            const msgHostDir = app.urls.assetHost + '/chrome/extension/_locales/',
+            const msgHostDir = app.urls.resourceHost + '/chrome/extension/_locales/',
                   msgLocaleDir = ( env.browser.language ? env.browser.language.replace('-', '_') : 'en' ) + '/'
             let msgHref = msgHostDir + msgLocaleDir + 'messages.json', msgXHRtries = 0
             function fetchMsgs() { xhr({ method: 'GET', url: msgHref, onload: handleMsgs })}

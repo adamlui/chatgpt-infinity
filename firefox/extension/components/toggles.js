@@ -123,7 +123,7 @@ window.toggles = {
             this.navicon.src = `${
                 toggles.imports.app.urls.mediaHost}/images/icons/infinity-symbol/${
                     toggles.imports.env.ui.scheme == 'dark' ? 'white' : 'black' }/icon32.png?${
-                    toggles.imports.app.latestAssetCommitHash}`
+                    toggles.imports.app.latestResourceCommitHash}`
         },
 
         updateState() {
