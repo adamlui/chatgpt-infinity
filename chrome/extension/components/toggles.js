@@ -122,7 +122,7 @@ window.toggles = {
             this.div.classList.remove(isDarkScheme ? 'light' : 'dark')
             this.navicon.src = `${
                 toggles.imports.app.urls.assetHost}/images/icons/infinity-symbol/${
-                    toggles.imports.env.ui.scheme == 'dark' ? 'white' : 'black' }/icon32.png?${
+                    toggles.imports.env.ui.scheme == 'dark' ? 'white' : 'black' }/icon32.png?v=${
                     toggles.imports.app.latestResourceCommitHash}`
         },
 
