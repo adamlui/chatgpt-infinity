@@ -12,7 +12,7 @@
     },
     "gitHub": "https://github.com/adamlui/chatgpt-infinity",
     "greasyFork": "https://greasyfork.org/scripts/465051-chatgpt-infinity",
-    "mediaHost": "https://assets.chatgptinfinity.com",
+    "assetHost": "https://assets.chatgptinfinity.com",
     "relatedExtensions": "https://aiwebextensions.com",
     "review": {
       "alternativeTo": "https://alternativeto.net/software/chatgpt-infinity/about/",
