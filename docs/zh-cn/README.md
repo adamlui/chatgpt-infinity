@@ -154,13 +154,13 @@ ChatGPT 无穷 与以下浏览器兼容:
 <div align="center">
 
 <a href="https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=install-button">
-    <img height=75 src="https://assets.chatgptinfinity.com/images/buttons/add-to-chrome-button.png"></a>
+    <img alt="[获取 Chrome 版本]" height=75 src="https://assets.chatgptinfinity.com/images/buttons/add-to-chrome-button.png"></a>
 <a href="https://edge.chatgptinfinity.com">
-    <img height=75 src="https://assets.chatgptinfinity.com/images/buttons/add-to-edge-button.png"></a>
+    <img alt="[获取 Edge 版本]" height=75 src="https://assets.chatgptinfinity.com/images/buttons/add-to-edge-button.png"></a>
 <a href="https://ff.chatgptinfinity.com/?source=github&medium=readme&content=install-button">
-    <img height=75 src="https://assets.chatgptinfinity.com/images/buttons/add-to-firefox-button.png"></a>
+    <img alt="[获取 Firefox 版本]" height=75 src="https://assets.chatgptinfinity.com/images/buttons/add-to-firefox-button.png"></a>
 <a href="https://gm.chatgptinfinity.com">
-    <img height=75 src="https://assets.chatgptinfinity.com/images/buttons/add-userscript-button.png"></a>
+    <img alt="[获取 Greasemonkey 版本]" height=75 src="https://assets.chatgptinfinity.com/images/buttons/add-userscript-button.png"></a>
 
 <br>
 

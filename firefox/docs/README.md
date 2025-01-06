@@ -21,7 +21,7 @@
 <br><br>
 
 <a href="https://ff.chatgptinfinity.com/?source=github&medium=readme&content=install-button">
-    <img height=75 src="https://assets.chatgptinfinity.com/images/buttons/add-to-firefox-button.png"></a>
+    <img alt="[Get for Firefox]" height=75 src="https://assets.chatgptinfinity.com/images/buttons/add-to-firefox-button.png"></a>
 
 <br>
 
@@ -87,7 +87,7 @@ ChatGPT Infinity relies on code from the powerful [chatgpt.js](https://github.co
 <div align="center">
 
 <a href="https://ff.chatgptinfinity.com/?source=github&medium=readme&content=install-button">
-    <img height=75 src="https://assets.chatgptinfinity.com/images/buttons/add-to-firefox-button.png"></a>
+    <img alt="[Get for Firefox]" height=75 src="https://assets.chatgptinfinity.com/images/buttons/add-to-firefox-button.png"></a>
 
 <br>
 

@@ -152,11 +152,11 @@ ChatGPT Infinity は、強力な [chatgpt.js](https://github.com/KudoAI/chatgpt.
 <div align="center">
 
 <a href="https://chrome.chatgptinfinity.com/?source=github&medium=readme&content=install-button">
-    <img height=75 src="https://assets.chatgptinfinity.com/images/buttons/add-to-chrome-button.png"></a>
+    <img alt="[Chrome で入手]" height=75 src="https://assets.chatgptinfinity.com/images/buttons/add-to-chrome-button.png"></a>
 <a href="https://edge.chatgptinfinity.com">
-    <img height=75 src="https://assets.chatgptinfinity.com/images/buttons/add-to-edge-button.png"></a>
+    <img alt="[Edge で入手]" height=75 src="https://assets.chatgptinfinity.com/images/buttons/add-to-edge-button.png"></a>
 <a href="https://gm.chatgptinfinity.com">
-    <img height=75 src="https://assets.chatgptinfinity.com/images/buttons/add-userscript-button.png"></a>
+    <img alt="[Greasemonkey で入手]" height=75 src="https://assets.chatgptinfinity.com/images/buttons/add-userscript-button.png"></a>
 
 <br>
 
