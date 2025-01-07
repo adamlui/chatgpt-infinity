@@ -3,7 +3,7 @@
   "author": { "name": "Adam Lui", "url": "https://github.com/adamlui" },
   "urls": {
     "chatgptJS": "https://chatgpt.js.org",
-    "cjsMediaHost": "https://media.chatgptjs.org",
+    "cjsAssetHost": "https://assets.chatgptjs.org",
     "contributors": "https://docs.chatgptautorefresh.com/#-contributors",
     "donate": {
       "cashApp": "https://cash.app/$adamlui",
