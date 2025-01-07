@@ -81,8 +81,8 @@
 
 <a href="https://chatgpt.js.org">
     <picture>
-        <source type="image/png" media="(prefers-color-scheme: dark)" srcset="https://media.chatgptjs.org/images/logos/chatgpt.js/with-reflection/darkmode.png">
-        <img width=546 src="https://media.chatgptjs.org/images/logos/chatgpt.js/with-reflection/lightmode.png">
+        <source type="image/png" media="(prefers-color-scheme: dark)" srcset="https://assets.chatgptjs.org/images/logos/chatgpt.js/with-reflection/darkmode.png">
+        <img width=546 src="https://assets.chatgptjs.org/images/logos/chatgpt.js/with-reflection/lightmode.png">
     </picture>
 </a>
 <br><br>
