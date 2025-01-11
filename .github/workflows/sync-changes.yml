@@ -50,7 +50,7 @@ jobs:
 
               # Get the latest commit timestamps for both files
               ff_timestamp=$(git log -1 --format="%ct" -- "$ff_file" 2>/dev/null || echo 0)
-              chrome_timestamp=$(git log -1 --format="%ct" -- "$chromium_file" 2>/dev/null || echo 0)
+              chromium_timestamp=$(git log -1 --format="%ct" -- "$chromium_file" 2>/dev/null || echo 0)
       
               # Sync the most recently updated messages.json to the other dir
               if [[ $ff_timestamp -ne $chromium_timestamp ]] ; then
