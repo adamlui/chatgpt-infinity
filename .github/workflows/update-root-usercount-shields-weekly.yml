@@ -1,4 +1,4 @@
-name: Update usercount shields in root READMEs, then sync to adamlui/ai-apps
+name: Update usercount shields in root READMEs, then sync to adamlui/ai-web-extensions
 
 on:
   schedule:
@@ -21,12 +21,12 @@ jobs:
           repository: adamlui/chatgpt-infinity
           path: adamlui/chatgpt-infinity
 
-      - name: Checkout adamlui/ai-apps
+      - name: Checkout adamlui/ai-web-extensions
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.REPO_SYNC_PAT }}
-          repository: adamlui/ai-apps
-          path: adamlui/ai-apps
+          repository: adamlui/ai-web-extensions
+          path: adamlui/ai-web-extensions
 
       - name: Fetch/sum user counts
         run: |
@@ -127,12 +127,12 @@ jobs:
           # Set Updated flag to check in subseuqent steps
           if [ "$users_updated" = true ] ; then echo "USERS_UPDATED=true" >> $GITHUB_ENV ; fi
 
-      - name: Sync ** to adamlui/ai-apps/chatgpt-infinity/
+      - name: Sync ** to adamlui/ai-web-extensions/chatgpt-infinity/
         if: env.USERS_UPDATED == 'true'
         run: |
           rsync -avhr --delete --exclude={'.*','eslint*','package*json'} \
             ${{ github.workspace }}/adamlui/chatgpt-infinity/ \
-            ${{ github.workspace }}/adamlui/ai-apps/chatgpt-infinity/
+            ${{ github.workspace }}/adamlui/ai-web-extensions/chatgpt-infinity/
       
       - name: Config committer
         if: env.USERS_UPDATED == 'true'
@@ -151,10 +151,10 @@ jobs:
           git commit -n -m "Updated usercount shield counters in root READMEs" || true
           git push
 
-      - name: Push changes to adamlui/ai-apps
+      - name: Push changes to adamlui/ai-web-extensions
         if: env.USERS_UPDATED == 'true'
         run: |
-          cd ${{ github.workspace }}/adamlui/ai-apps
+          cd ${{ github.workspace }}/adamlui/ai-web-extensions
           git add .
           git commit -n -m "Updated usercount shield counters in ChatGPT Infinity root READMEs" || true
           git push

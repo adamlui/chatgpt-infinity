@@ -1,4 +1,4 @@
-name: Sync _locales/ between <chrome|firefox>/extension/, then ** to adamlui/ai-apps/chatgpt-infinity/, then greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-infinity/
+name: Sync _locales/ between <chrome|firefox>/extension/, then ** to adamlui/ai-web-extensions/chatgpt-infinity/, then greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-infinity/
 
 on:
   push:
@@ -25,12 +25,12 @@ jobs:
           path: adamlui/chatgpt-infinity
           fetch-depth: 2
 
-      - name: Checkout adamlui/ai-apps
+      - name: Checkout adamlui/ai-web-extensions
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.REPO_SYNC_PAT }}
-          repository: adamlui/ai-apps
-          path: adamlui/ai-apps
+          repository: adamlui/ai-web-extensions
+          path: adamlui/ai-web-extensions
 
       - name: Checkout adamlui/userscripts
         uses: actions/checkout@v4
@@ -68,11 +68,11 @@ jobs:
           # Expose sync src for commit msg in self-push step
           echo "SYNC_SRC=$sync_src" >> $GITHUB_ENV
 
-      - name: Sync ** to adamlui/ai-apps/chatgpt-infinity/
+      - name: Sync ** to adamlui/ai-web-extensions/chatgpt-infinity/
         run: |
           rsync -avhr --delete --exclude '.*' \
             ${{ github.workspace }}/adamlui/chatgpt-infinity/ \
-            ${{ github.workspace }}/adamlui/ai-apps/chatgpt-infinity/
+            ${{ github.workspace }}/adamlui/ai-web-extensions/chatgpt-infinity/
 
       - name: Sync greasemonkey/ to adamlui/userscripts/chatgpt/chatgpt-infinity/
         run: |
@@ -103,9 +103,9 @@ jobs:
           git add . && git commit -n -m "$ESCAPED_MSG ↞ [auto-sync from ${{ env.SYNC_SRC }}/]" || true
           git push
 
-      - name: Push changes to adamlui/ai-apps
+      - name: Push changes to adamlui/ai-web-extensions
         run: |
-          cd ${{ github.workspace }}/adamlui/ai-apps
+          cd ${{ github.workspace }}/adamlui/ai-web-extensions
           git add .
           git commit -n -m "$ESCAPED_MSG ↞ [auto-sync from https://github.com/adamlui/chatgpt-infinity]" || true
           git push
