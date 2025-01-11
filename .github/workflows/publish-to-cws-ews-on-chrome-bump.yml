@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths: [chrome/extension/manifest.json]
 
+permissions:
+  contents: read
+
 jobs:
   check-version-to-publish:
     runs-on: ubuntu-latest

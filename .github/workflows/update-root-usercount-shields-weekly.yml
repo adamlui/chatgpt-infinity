@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: "18 2 * * 2" # every Tue @ 2:18 AM
 
+permissions:
+  contents: write
+
 jobs:
   update-root-usercount-shields:
     runs-on: ubuntu-latest

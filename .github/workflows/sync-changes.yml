@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths: ["**", "!.*"]
 
+permissions:
+  contents: write
+
 jobs:
   build:
     if: (github.repository == 'adamlui/chatgpt-infinity') && (github.event.commits[0].committer.username != 'kudo-sync-bot')
