@@ -36,7 +36,7 @@ jobs:
 
       - name: Publish to AMO
         if: env.VERSION_CHANGED == 'true'
-        uses: cardinalby/webext-buildtools-firefox-addons-action@v1
+        uses: cardinalby/webext-buildtools-firefox-addons-action@987e338100095280ec8daf942e5640aeb55d3647 # v1.0.10
         with:
           extensionId: 'chatgpt.infinity@chatgptevo.com'
           jwtIssuer: ${{ secrets.AMO_ISSUER }}

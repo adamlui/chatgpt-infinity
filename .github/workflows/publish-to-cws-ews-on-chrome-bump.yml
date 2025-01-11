@@ -36,7 +36,7 @@ jobs:
 
       - name: Publish to CWS
         if: env.VERSION_CHANGED == 'true'
-        uses: mobilefirstllc/cws-publish@latest
+        uses: mobilefirstllc/cws-publish@5e3b5249835f1fac9f7e8c9982fec7a80e1b82a8
         with:
           action: publish
           extension_id: amikeononomkhphopbflomhnmdijjpmb
@@ -48,7 +48,7 @@ jobs:
 
       - name: Publish to EWS
         if: env.VERSION_CHANGED == 'true'
-        uses: wdzeng/edge-addon@v2
+        uses: wdzeng/edge-addon@06369b959ad46c147bcd550ce79acda53a9e16f8
         with:
           product-id: ${{ secrets.EWS_PRODUCT_ID }}
           client-id: ${{ secrets.EWS_CLIENT_ID }}
