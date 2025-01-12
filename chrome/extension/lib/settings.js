@@ -7,18 +7,18 @@ window.settings = {
     },
 
     controls: { // displays top-to-bottom in toolbar menu
-        get infinityMode() { return { type: 'toggle',
+        get infinityMode() { return { type: 'toggle', defaultVal: false,
             label: settings.getMsg('menuLabel_infinityMode')
         }},
-        get autoStart() { return { type: 'toggle',
+        get autoStart() { return { type: 'toggle', defaultVal: false,
             label: settings.getMsg('menuLabel_autoStart'),
             helptip: settings.getMsg('helptip_autoStart')
         }},
-        get toggleHidden() { return { type: 'toggle',
+        get toggleHidden() { return { type: 'toggle', defaultVal: false,
             label: settings.getMsg('menuLabel_toggleVis'),
             helptip: settings.getMsg('helptip_toggleVis')
         }},
-        get autoScrollDisabled() { return { type: 'toggle',
+        get autoScrollDisabled() { return { type: 'toggle', defaultVal: false,
             label: settings.getMsg('menuLabel_autoScroll'),
             helptip: settings.getMsg('helptip_autoScroll')
         }},
@@ -45,13 +45,17 @@ window.settings = {
     load(...keys) {
         keys = keys.flat() // flatten array args nested by spread operator
         if (typeof GM_info != 'undefined') // synchronously load from userscript manager storage
-            keys.forEach(key => window.config[key] = GM_getValue(
-                `${this.imports.app.configKeyPrefix}_${key}`, false))
+            keys.forEach(key => {
+                config[key] = GM_getValue(`${this.imports.app.configKeyPrefix}_${key}`,
+                    this.controls[key]?.defaultVal || this.controls[key]?.type == 'toggle')
+            })
         else // asynchronously load from browser extension storage
             return Promise.all(keys.map(key => // resolve promise when all keys load
                 new Promise(resolve => // resolve promise when single key value loads
                     chrome.storage.sync.get(key, result => {
-                        window.config[key] = result[key] || false ; resolve()
+                        window.config[key] = key in result ? result[key] :
+                            this.controls[key]?.defaultVal || this.controls[key]?.type == 'toggle'
+                        resolve()
         }))))
     },
 
