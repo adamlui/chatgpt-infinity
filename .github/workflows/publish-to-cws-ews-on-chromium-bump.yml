@@ -1,4 +1,4 @@
-name: Publish to CWS + EWS on Chrome version bump
+name: Publish to CWS + EWS on Chromium version bump
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
           sparse-checkout: chrome
           fetch-depth: 2
 
-      - name: Check Chrome manifest for version bump
+      - name: Check Chromium manifest for version bump
         run: |
           current_ver=$(cat chrome/extension/manifest.json | grep '"version"' | sed -E 's/.*"version": "(.*)".*/\1/')
           prev_ver=$(git show HEAD^:chrome/extension/manifest.json | grep '"version"' | sed -E 's/.*"version": "(.*)".*/\1/')
