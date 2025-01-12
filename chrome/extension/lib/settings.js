@@ -47,14 +47,14 @@ window.settings = {
         if (typeof GM_info != 'undefined') // synchronously load from userscript manager storage
             keys.forEach(key => {
                 config[key] = GM_getValue(`${this.imports.app.configKeyPrefix}_${key}`,
-                    this.controls[key]?.defaultVal || this.controls[key]?.type == 'toggle')
+                    this.controls[key]?.defaultVal ?? this.controls[key]?.type == 'toggle')
             })
         else // asynchronously load from browser extension storage
             return Promise.all(keys.map(key => // resolve promise when all keys load
                 new Promise(resolve => // resolve promise when single key value loads
                     chrome.storage.sync.get(key, result => {
-                        window.config[key] = key in result ? result[key] :
-                            this.controls[key]?.defaultVal || this.controls[key]?.type == 'toggle'
+                        window.config[key] = result[key]
+                            ?? this.controls[key]?.defaultVal ?? this.controls[key]?.type == 'toggle'
                         resolve()
         }))))
     },
