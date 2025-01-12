@@ -48,7 +48,7 @@ jobs:
 
       - name: Publish to EWS
         if: env.VERSION_CHANGED == 'true'
-        uses: wdzeng/edge-addon@06369b959ad46c147bcd550ce79acda53a9e16f8
+        uses: wdzeng/edge-addon@4c07996872eb61a92f2daf637eca33c95e72ecde # v2.1.0
         with:
           product-id: ${{ secrets.EWS_PRODUCT_ID }}
           client-id: ${{ secrets.EWS_CLIENT_ID }}
