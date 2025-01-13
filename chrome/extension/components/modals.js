@@ -37,6 +37,7 @@ window.modals = {
     },
 
     init(modal) {
+        if (!modal) return // to support non-div this.open()s
         if (!this.styles) this.stylize() // to init/append stylesheet
         modal.classList.add('no-user-select', this.class) ; modal.parentNode.classList.add(`${this.class}-bg`)
         dom.fillStarryBG(modal) // add starry bg
