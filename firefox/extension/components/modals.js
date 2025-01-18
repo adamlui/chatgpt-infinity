@@ -234,7 +234,7 @@ window.modals = {
 
         // Init buttons
         const modalBtns = [ function productHunt(){}, function alternativeto(){} ]
-        modalBtns.unshift(
+        if (!this.runtime.includes('Greasemonkey')) modalBtns.unshift(
             this.runtime.includes('Firefox') ? function firefoxAddons(){}
           : this.runtime.includes('Edge') ? function edgeAddons(){}
           : function chromeWebStore(){}
