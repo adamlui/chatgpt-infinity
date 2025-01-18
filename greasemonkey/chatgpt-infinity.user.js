@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2025.1.16
+// @version             2025.1.17
 // @license             MIT
 // @icon                https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?v=69e434b
 // @icon64              https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?v=69e434b
@@ -218,7 +218,7 @@
 // @match               *://chatgpt.com/*
 // @match               *://chat.openai.com/*
 // @connect             cdn.jsdelivr.net
-// @connect             update.greasyfork.org
+// @connect             gm.chatgptinfinity.com
 // @require             https://cdn.jsdelivr.net/npm/@kudoai/chatgpt.js@3.5.0/dist/chatgpt.min.js#sha256-+C0x4BOFQc38aZB3pvUC2THu+ZSvuCxRphGdtRLjCDg=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@7c2b7d0e4a7dab121c925da7d8bf9024ea0b5b00/chrome/extension/components/modals.js#sha256-eZNOwrpv72HKnmw32fXAIfQSdB8S/DN+HRyRoquhG6Q=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@588ec90203cf932c04af00144660d5a936239ea3/chrome/extension/components/toggles.js#sha256-0Yz+UQgsBO5raPbRCu8EZw60crlm8pVqrn4rnbpg8OY=
@@ -234,8 +234,8 @@
 // @grant               GM_xmlhttpRequest
 // @grant               GM.xmlHttpRequest
 // @noframes
-// @downloadURL         https://update.greasyfork.org/scripts/465051/chatgpt-infinity.user.js
-// @updateURL           https://update.greasyfork.org/scripts/465051/chatgpt-infinity.meta.js
+// @downloadURL         https://gm.chatgptinfinity.com
+// @updateURL           https://gm.chatgptinfinity.com
 // @homepageURL         https://www.chatgptinfinity.com
 // @supportURL          https://support.chatgptinfinity.com
 // @contributionURL     https://github.com/sponsors/adamlui
@@ -266,7 +266,8 @@
     // Init APP data
     const app = {
         version: GM_info.script.version, configKeyPrefix: 'chatGPTinfinity',
-        chatgptJSver: /chatgpt\.js@([\d.]+)/.exec(GM_info.scriptMetaStr)[1], urls: {},
+        chatgptJSver: /chatgpt\.js@([\d.]+)/.exec(GM_info.scriptMetaStr)[1],
+        urls: { update: 'https://gm.chatgptinfinity.com' },
         latestResourceCommitHash: '64cabb3' // for cached app.json + messages.json + navicon in toggles.sidebar.insert()
     }
     app.urls.resourceHost = `https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@${app.latestResourceCommitHash}`
@@ -275,8 +276,6 @@
         onload: resp => resolve(JSON.parse(resp.responseText))
     }))
     Object.assign(app, { ...remoteAppData, urls: { ...app.urls, ...remoteAppData.urls }})
-    app.urls.update = app.urls.greasyFork.replace('https://', 'https://update.')
-        .replace(/(\d+)-?([a-z-]*)$/i, (_, id, name) => `${id}/${ name || 'script' }.meta.js`)
     app.msgs = {
         appName: app.name,
         appAuthor: app.author.name,
