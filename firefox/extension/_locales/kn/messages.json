@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "ಹೆಚ್ಚಿನ AI ವಿಸ್ತರಣೆಗಳು" },
   "btnLabel_leaveReview": { "message": "ವಿಮರ್ಶೆಯನ್ನು ಬಿಡಿ" },
   "btnLabel_rateUs": { "message": "ನಮಗೆ ರೇಟಿಂಗ್ ನೀಡಿ" },
+  "btnLabel_discuss": { "message": "ಚರ್ಚಿಸಿ" },
   "btnLabel_getSupport": { "message": "ಬೆಂಬಲ ಪಡೆಯಿರಿ" },
   "btnLabel_checkForUpdates": { "message": "ನವೀಕರಣಗಳಿಗಾಗಿ ಪರಿಶೀಲಿಸಿ" },
   "btnLabel_update": { "message": "ನವೀಕರಿಸಿ" },

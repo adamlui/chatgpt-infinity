@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "Mai multe extensii AI" },
   "btnLabel_leaveReview": { "message": "Lasă o recenzie" },
   "btnLabel_rateUs": { "message": "Evaluați-ne" },
+  "btnLabel_discuss": { "message": "Discuție" },
   "btnLabel_getSupport": { "message": "Primește asistență" },
   "btnLabel_checkForUpdates": { "message": "Caută actualizări" },
   "btnLabel_update": { "message": "Actualizare" },

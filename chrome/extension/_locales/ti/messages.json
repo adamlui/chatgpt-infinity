@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "ዝያዳ ናይ AI ምስፍሕፋሕ" },
   "btnLabel_leaveReview": { "message": "ግምገማ ሓዲግካ" },
   "btnLabel_rateUs": { "message": "ተመዝገብና" },
+  "btnLabel_discuss": { "message": "ዘተ" },
   "btnLabel_getSupport": { "message": "ደገፍ ርኸቡ" },
   "btnLabel_checkForUpdates": { "message": "ምምሕያሻት መርምር" },
   "btnLabel_update": { "message": "ኣሐድስ" },

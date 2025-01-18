@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "ການຂະຫຍາຍ AI ເພີ່ມເຕີມ" },
   "btnLabel_leaveReview": { "message": "ໃຫ້ການທົບທວນຄືນ" },
   "btnLabel_rateUs": { "message": "ປະເມີນພວກເຮົາ" },
+  "btnLabel_discuss": { "message": "ປຶກສາຫາລື" },
   "btnLabel_getSupport": { "message": "ໄດ້ຮັບການສະໜັບສະໜູນ" },
   "btnLabel_checkForUpdates": { "message": "ກວດສອບການອັບເດດ" },
   "btnLabel_update": { "message": "ອັບເດດ" },

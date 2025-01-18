@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "Լրացուցիչ արհեստական ինտելեկտի ընդլայնումներ" },
   "btnLabel_leaveReview": { "message": "Թողնել ակնարկ" },
   "btnLabel_rateUs": { "message": "Գնահատեք մեզ" },
+  "btnLabel_discuss": { "message": "Քննարկել" },
   "btnLabel_getSupport": { "message": "Ստանալ աջակցում" },
   "btnLabel_checkForUpdates": { "message": "Ստուգել թարմացումները" },
   "btnLabel_update": { "message": "Թարմացնել" },

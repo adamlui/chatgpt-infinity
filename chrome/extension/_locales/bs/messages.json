@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "Više proširenja za vještačku inteligenciju" },
   "btnLabel_leaveReview": { "message": "Pošalji recenziju" },
   "btnLabel_rateUs": { "message": "Ocijenite nas" },
+  "btnLabel_discuss": { "message": "Raspravljajte" },
   "btnLabel_getSupport": { "message": "Zatražite podršku" },
   "btnLabel_checkForUpdates": { "message": "Provjeri ima li ažuriranja" },
   "btnLabel_update": { "message": "Nadogradi" },

@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "Көбүрөөк AI кеңейтүүлөрү" },
   "btnLabel_leaveReview": { "message": "Сын-пикир калтыруу" },
   "btnLabel_rateUs": { "message": "Бизди баалоо" },
+  "btnLabel_discuss": { "message": "Талкуу." },
   "btnLabel_getSupport": { "message": "Колдоо алуу" },
   "btnLabel_checkForUpdates": { "message": "Жаңы чыгаруулар бар экендигин текшерүү" },
   "btnLabel_update": { "message": "Жаңыртуу" },

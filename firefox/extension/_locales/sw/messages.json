@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "Viendelezi zaidi vya AI" },
   "btnLabel_leaveReview": { "message": "Acha Tathmini" },
   "btnLabel_rateUs": { "message": "Tupe kadirio" },
+  "btnLabel_discuss": { "message": "Jadili" },
   "btnLabel_getSupport": { "message": "Pata Usaidizi" },
   "btnLabel_checkForUpdates": { "message": "Angalia Masasisho" },
   "btnLabel_update": { "message": "Sasisho" },

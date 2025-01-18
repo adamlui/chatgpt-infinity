@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "Fleiri AI útbyggingar" },
   "btnLabel_leaveReview": { "message": "Loyvi endurskoðan" },
   "btnLabel_rateUs": { "message": "Rætta okkum" },
+  "btnLabel_discuss": { "message": "Tosa" },
   "btnLabel_getSupport": { "message": "Fá stuðul" },
   "btnLabel_checkForUpdates": { "message": "Leita eftir Uppdateringum" },
   "btnLabel_update": { "message": "Uppdatera" },

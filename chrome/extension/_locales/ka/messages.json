@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "Სხვა AI გაფართოებები" },
   "btnLabel_leaveReview": { "message": "შეფასების დატოვება" },
   "btnLabel_rateUs": { "message": "Შეფასება" },
+  "btnLabel_discuss": { "message": "Განხილვა" },
   "btnLabel_getSupport": { "message": "მხარდაჭერის მიღება" },
   "btnLabel_checkForUpdates": { "message": "განახლებების შემოწმება" },
   "btnLabel_update": { "message": "განახლება" },

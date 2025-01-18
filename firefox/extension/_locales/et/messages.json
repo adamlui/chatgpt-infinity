@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "Veel tehisintellekti laiendusi" },
   "btnLabel_leaveReview": { "message": "Jäta tagasiside" },
   "btnLabel_rateUs": { "message": "Hinda meid" },
+  "btnLabel_discuss": { "message": "Väitlus" },
   "btnLabel_getSupport": { "message": "Saage tuge" },
   "btnLabel_checkForUpdates": { "message": "Kontrolli uuendusi" },
   "btnLabel_update": { "message": "Uuenda" },

@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "Izandiso Ezengeziwe ze-AI" },
   "btnLabel_leaveReview": { "message": "Shiya Okushiwo Abanye" },
   "btnLabel_rateUs": { "message": "Silinganise" },
+  "btnLabel_discuss": { "message": "Xoxani" },
   "btnLabel_getSupport": { "message": "Thola Usizo" },
   "btnLabel_checkForUpdates": { "message": "Hlola Izibuyekezo" },
   "btnLabel_update": { "message": "Buyekeza" },

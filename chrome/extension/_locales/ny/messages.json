@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "Zambiri za AI" },
   "btnLabel_leaveReview": { "message": "Kusiya Review" },
   "btnLabel_rateUs": { "message": "Kuwerengetsa Ife" },
+  "btnLabel_discuss": { "message": "Kukambitsirana" },
   "btnLabel_getSupport": { "message": "Pezani Thandizo" },
   "btnLabel_checkForUpdates": { "message": "Onani Zosintha" },
   "btnLabel_update": { "message": "Mfundo zazinsinsi" },

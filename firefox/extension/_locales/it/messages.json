@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "Altre estensioni AI" },
   "btnLabel_leaveReview": { "message": "Lascia la recensione" },
   "btnLabel_rateUs": { "message": "Valutaci" },
+  "btnLabel_discuss": { "message": "Confrontarsi" },
   "btnLabel_getSupport": { "message": "Richiedi Assistenza" },
   "btnLabel_checkForUpdates": { "message": "Cerca aggiornamenti" },
   "btnLabel_update": { "message": "Aggiorna" },

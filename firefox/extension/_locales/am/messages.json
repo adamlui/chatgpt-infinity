@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "ተጨማሪ የ AI ቅጥያዎች" },
   "btnLabel_leaveReview": { "message": "ግምገማ ይተው" },
   "btnLabel_rateUs": { "message": "ደረጃ ይስጡን" },
+  "btnLabel_discuss": { "message": "ተወያዩበት" },
   "btnLabel_getSupport": { "message": "ድጋፍ ያግኙ" },
   "btnLabel_checkForUpdates": { "message": "ዝማኔዎችን ይፈትሹ" },
   "btnLabel_update": { "message": "አዘምን" },

@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "കൂടുതൽ AI എക്സ്റ്റെൻഷനുകൾ" },
   "btnLabel_leaveReview": { "message": "അവലോകനം ഉപേക്ഷിക്കുക" },
   "btnLabel_rateUs": { "message": "ഞങ്ങളെ റേറ്റുചെയ്യുക" },
+  "btnLabel_discuss": { "message": "ചർച്ച ചെയ്യുക" },
   "btnLabel_getSupport": { "message": "പിന്തുണ നേടുക" },
   "btnLabel_checkForUpdates": { "message": "അപ്ഡേറ്റുകൾക്കായി പരിശോധിക്കുക" },
   "btnLabel_update": { "message": "അപ്ഡേറ്റ് ചെയ്യുക" },

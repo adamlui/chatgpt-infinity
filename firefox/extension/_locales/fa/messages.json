@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "افزونه های بیشتر هوش مصنوعی" },
   "btnLabel_leaveReview": { "message": "بررسی را ترک کنید" },
   "btnLabel_rateUs": { "message": "به طراح افشان رای دهید" },
+  "btnLabel_discuss": { "message": "بحث و گفتگو" },
   "btnLabel_getSupport": { "message": "پشتیبانی" },
   "btnLabel_checkForUpdates": { "message": "بررسی به روز رسانی" },
   "btnLabel_update": { "message": "به‌روز‌رسانی" },

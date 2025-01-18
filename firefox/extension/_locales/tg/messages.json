@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "Васеъсозии бештари AI" },
   "btnLabel_leaveReview": { "message": "Баромадан аз тафсир" },
   "btnLabel_rateUs": { "message": "Баҳои мо" },
+  "btnLabel_discuss": { "message": "Баҳс кардан" },
   "btnLabel_getSupport": { "message": "Гирифтани Дастгирӣ" },
   "btnLabel_checkForUpdates": { "message": "Тафтиш кардан барои қоидаҳои ҳозира" },
   "btnLabel_update": { "message": "Навсозӣ кардан" },

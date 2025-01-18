@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "Още разширения с изкуствен интелект" },
   "btnLabel_leaveReview": { "message": "Оставете рецензия" },
   "btnLabel_rateUs": { "message": "Оценете ни" },
+  "btnLabel_discuss": { "message": "Обсъждам" },
   "btnLabel_getSupport": { "message": "Вземи поддръжка" },
   "btnLabel_checkForUpdates": { "message": "Проверка за обновяване" },
   "btnLabel_update": { "message": "Актуализация" },

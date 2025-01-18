@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "Flere AI-udvidelser" },
   "btnLabel_leaveReview": { "message": "Skriv en anmeldelse" },
   "btnLabel_rateUs": { "message": "Bedøm os" },
+  "btnLabel_discuss": { "message": "Diskuter" },
   "btnLabel_getSupport": { "message": "Få hjælp" },
   "btnLabel_checkForUpdates": { "message": "Tjek for Opdateringer" },
   "btnLabel_update": { "message": "Opdatér" },

@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "Další rozšíření AI" },
   "btnLabel_leaveReview": { "message": "Přidat Hodnocení" },
   "btnLabel_rateUs": { "message": "Ohodnoťte nás" },
+  "btnLabel_discuss": { "message": "Debata" },
   "btnLabel_getSupport": { "message": "Získat podporu" },
   "btnLabel_checkForUpdates": { "message": "Zjistit novější verzi" },
   "btnLabel_update": { "message": "Aktualizovat" },

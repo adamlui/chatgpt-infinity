@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "その他のAI拡張機能" },
   "btnLabel_leaveReview": { "message": "レビューを残す" },
   "btnLabel_rateUs": { "message": "評価してください" },
+  "btnLabel_discuss": { "message": "話し合う" },
   "btnLabel_getSupport": { "message": "サポートを受ける" },
   "btnLabel_checkForUpdates": { "message": "更新を確認" },
   "btnLabel_update": { "message": "更新情報" },

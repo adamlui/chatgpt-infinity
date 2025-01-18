@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "Fleiri gervigreindarviðbætur" },
   "btnLabel_leaveReview": { "message": "Skildu eftir umsögn" },
   "btnLabel_rateUs": { "message": "Gefðu okkur einkunn" },
+  "btnLabel_discuss": { "message": "Ræða" },
   "btnLabel_getSupport": { "message": "Fá stuðning" },
   "btnLabel_checkForUpdates": { "message": "Leita að uppfærslum" },
   "btnLabel_update": { "message": "Uppfæra" },

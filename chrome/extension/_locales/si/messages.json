@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "තවත් AI දිගු" },
   "btnLabel_leaveReview": { "message": "සමාලෝචනයක් එක් කරන්න" },
   "btnLabel_rateUs": { "message": "අපව අගයන්න" },
+  "btnLabel_discuss": { "message": "සාකච්ඡා කරන්න" },
   "btnLabel_getSupport": { "message": "සහාය ලබාගන්න" },
   "btnLabel_checkForUpdates": { "message": "යාවත්කාලීන සඳහා පරීක්ෂා කරන්න" },
   "btnLabel_update": { "message": "යාවත් කාළීන" },

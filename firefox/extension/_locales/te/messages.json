@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "మరిన్ని AI పొడిగింపులు" },
   "btnLabel_leaveReview": { "message": "సమీక్షను వదిలివేయండి" },
   "btnLabel_rateUs": { "message": "మాకు రేటింగ్ ఇవ్వండి" },
+  "btnLabel_discuss": { "message": "చర్చించండి " },
   "btnLabel_getSupport": { "message": "సహకారం తీసుకోండి" },
   "btnLabel_checkForUpdates": { "message": "నవీకరణల కోసం పరిశీలించు" },
   "btnLabel_update": { "message": "అప్‌డేట్" },

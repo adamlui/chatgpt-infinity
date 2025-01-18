@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "הרחבות נוספות של בינה מלאכותית" },
   "btnLabel_leaveReview": { "message": "השארת חוות דעת" },
   "btnLabel_rateUs": { "message": "דרג אותנו" },
+  "btnLabel_discuss": { "message": "דיבייט" },
   "btnLabel_getSupport": { "message": "קבל תמיכה" },
   "btnLabel_checkForUpdates": { "message": "חפש עדכונים" },
   "btnLabel_update": { "message": "עדכון" },

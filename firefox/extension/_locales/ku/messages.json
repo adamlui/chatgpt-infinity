@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "Zêdetir Pêvekên AI-ê" },
   "btnLabel_leaveReview": { "message": "Bihêle Review" },
   "btnLabel_rateUs": { "message": "Me binirxînin" },
+  "btnLabel_discuss": { "message": "گفتوگۆ دەکات، تاووتوێکردن(دانوستاندن)، گفتوگۆدەکات، تاووتوێکردن، دانوستان، وتووێژ، گفتوگۆ" },
   "btnLabel_getSupport": { "message": "پشتگیری بگرە" },
   "btnLabel_checkForUpdates": { "message": "پشکنینی نوێکردنەوە" },
   "btnLabel_update": { "message": "نوێکردنەوە" },

@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "और AI एक्सटेंशन" },
   "btnLabel_leaveReview": { "message": "समीक्षा छोड़ें" },
   "btnLabel_rateUs": { "message": "हमें रेटिंग दें" },
+  "btnLabel_discuss": { "message": "आइए एक साथ हमारी कहानी के बारे में चर्चा करें" },
   "btnLabel_getSupport": { "message": "सपोर्ट प्राप्त करें" },
   "btnLabel_checkForUpdates": { "message": "अद्यतन के लिए जाँचें" },
   "btnLabel_update": { "message": "अपडेट" },

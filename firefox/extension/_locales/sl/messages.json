@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "Več razširitev umetne inteligence" },
   "btnLabel_leaveReview": { "message": "Dodajte oceno" },
   "btnLabel_rateUs": { "message": "Ocenite nas" },
+  "btnLabel_discuss": { "message": "Razprava" },
   "btnLabel_getSupport": { "message": "Podpora" },
   "btnLabel_checkForUpdates": { "message": "Preveri stanje posodobitev" },
   "btnLabel_update": { "message": "Update" },

@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "Máis extensións de IA" },
   "btnLabel_leaveReview": { "message": "Deixa unha opinión" },
   "btnLabel_rateUs": { "message": "Valóranos" },
+  "btnLabel_discuss": { "message": "Debate" },
   "btnLabel_getSupport": { "message": "Asistencia" },
   "btnLabel_checkForUpdates": { "message": "Comproba se hai actualizacións" },
   "btnLabel_update": { "message": "Actualizar" },

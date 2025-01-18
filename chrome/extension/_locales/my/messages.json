@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "ပိုများသော AI Extensions" },
   "btnLabel_leaveReview": { "message": "ပြန်လည်သုံးသပ်မှုကိုစွန့်ခွာပါ" },
   "btnLabel_rateUs": { "message": "ကြှနျုပျတို့ကို Rate" },
+  "btnLabel_discuss": { "message": "ဆွေးနွေးပါ ။" },
   "btnLabel_getSupport": { "message": "ပံ့ပိုးမှုရယူပါ" },
   "btnLabel_checkForUpdates": { "message": "အသစ်ထွက်ရှိမှု့ကိုစစ်ဆေးမည်" },
   "btnLabel_update": { "message": "နောက်ဆုံးသတင်း" },

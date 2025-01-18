@@ -55,6 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "Meer AI-uitbreidings" },
   "btnLabel_leaveReview": { "message": "Los Kommentaar" },
   "btnLabel_rateUs": { "message": "Gradeer ons" },
+  "btnLabel_discuss": { "message": "Bespreek:" },
   "btnLabel_getSupport": { "message": "Kry Ondersteuning" },
   "btnLabel_checkForUpdates": { "message": "Kontroleer vir bywerkings" },
   "btnLabel_update": { "message": "Opdateer" },
