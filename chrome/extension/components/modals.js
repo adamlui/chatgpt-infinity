@@ -117,8 +117,8 @@ window.modals = {
             function rateUs() { modals.open('feedback') },
             function moreAIextensions(){}
         ]
-        if (this.runtime.includes('Greasemonkey')) modalBtns.unshift(
-            function checkForUpdates(){ modals.imports.updateCheck() })
+        if (this.runtime.includes('Greasemonkey')) // add Check for Updates
+            modalBtns.unshift(function checkForUpdates(){ modals.imports.updateCheck() })
 
         // Show modal
         const aboutModal = modals.alert(
@@ -195,8 +195,7 @@ window.modals = {
             [ // buttons
                 function paypal(){},
                 function githubSponsors(){},
-                function cashApp(){},
-                function rateUs() { modals.open('feedback') }
+                function cashApp(){}
             ], '', 478 // modal width
         )
 
@@ -209,13 +208,12 @@ window.modals = {
         btns.forEach((btn, idx) => {
 
             // Replace link buttons w/ clones that don't dismiss modal
-            if (!/dismiss|rate/i.test(btn.textContent)) {
+            if (!/dismiss/i.test(btn.textContent)) {
                 const btnClone = btn.cloneNode(true)
                 btn.parentNode.replaceChild(btnClone, btn) ; btn = btnClone
                 btn.onclick = () => this.safeWinOpen(this.imports.app.urls.donate[
                     btn.textContent == 'Cash App' ? 'cashApp'
-                  : btn.textContent == 'Github Sponsors' ? 'gitHub'
-                  : 'payPal'
+                  : btn.textContent == 'Github Sponsors' ? 'gitHub' : 'payPal'
                 ])
             }
 
@@ -226,8 +224,6 @@ window.modals = {
                                   + ' width: 107px ; line-height: 14px'
                 if (idx == btns.length -1) // de-emphasize right-most button
                     btn.classList.remove('primary-modal-btn')
-                else if (/rate/i.test(btn.textContent)) // localize 'Rate Us' label
-                    btn.textContent = this.getMsg('btnLabel_rateUs')
             }
         })
 
@@ -238,10 +234,12 @@ window.modals = {
 
         // Init buttons
         const modalBtns = [ function productHunt(){}, function alternativeto(){} ]
-        modalBtns.unshift(this.runtime.includes('Firefox') ? function firefoxAddons(){}
-                        : this.runtime.includes('Edge') ? function edgeAddons(){}
-                        : this.runtime.includes('Chromium') ? function chromeWebStore(){}
-                        : function greasyFork(){} )
+        modalBtns.unshift(
+            this.runtime.includes('Firefox') ? function firefoxAddons(){}
+          : this.runtime.includes('Edge') ? function edgeAddons(){}
+          : function chromeWebStore(){}
+        )
+
         // Show modal
         const feedbackModal = modals.alert(`${this.getMsg('alert_choosePlatform')}:`, '', modalBtns)
 
@@ -257,7 +255,6 @@ window.modals = {
               : btn.textContent == 'Chrome Web Store' ? 'chromeWebStore'
               : btn.textContent == 'Edge Addons' ? 'edgeAddons'
               : btn.textContent == 'Firefox Addons' ? 'firefoxAddons'
-              : btn.textContent == 'Greasy Fork' ? 'greasyFork'
               : 'productHunt'
             ])
         })
