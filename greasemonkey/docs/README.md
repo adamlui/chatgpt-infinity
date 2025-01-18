@@ -27,7 +27,7 @@
 <a href="https://gm.chatgptinfinity.com"><img height=45 alt="Install this script" src="https://assets.chatgptinfinity.com/images/buttons/greasy-fork/install-button.svg"></a><a href="#installation"><img height=45 alt="How to install" title="How to install" src="https://assets.chatgptinfinity.com/images/buttons/greasy-fork/help-button.svg"></a>
 <br>
 [Discuss](https://github.com/adamlui/chatgpt-infinity/discussions) / 
-[Review](https://greasyfork.org/scripts/465051-chatgpt-infinity/feedback#post-discussion) / 
+[Get support](https://support.chatgptinfinity.com) / 
 [Contact author](https://github.com/adamlui)
 
 </div>
