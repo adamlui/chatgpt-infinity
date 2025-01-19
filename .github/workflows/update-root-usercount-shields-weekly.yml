@@ -88,8 +88,8 @@ jobs:
             sed -n 's/.*"activeInstallCount":\([0-9]*\).*/\1/p')
           echo "Edge users: $edge_users"
 
-          # Fetch Greasy Fork total user count
-          gf_users=200000
+          # Init Greasy Fork total user count
+          gf_users=150000
           echo "Greasy Fork users: $gf_users"
 
           # Sum user counts
