@@ -272,8 +272,8 @@ window.modals = {
                 `${modals.getMsg('alert_newerVer')} ${modals.getMsg('appName')} ` // msg
                     + `(v${modals.imports.app.latestVer}) ${modals.getMsg('alert_isAvail')}!  `
                     + '<a target="_blank" rel="noopener" style="font-size: 0.7rem" href="'
-                        + modals.imports.app.urls.update.replace(/.+\/([^/]+)meta\.js/,
-                            `${modals.imports.app.urls.gitHub}/commits/main/greasemonkey/$1user.js`)
+                        + `${modals.imports.app.urls.gitHub}/commits/main/greasemonkey/${
+                             modals.imports.app.slug}.user.js`
                     + `">${modals.getMsg('link_viewChanges')}</a>`,
                 function update() { // button
                     modals.safeWinOpen(
