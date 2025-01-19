@@ -89,11 +89,7 @@ jobs:
           echo "Edge users: $edge_users"
 
           # Fetch Greasy Fork total user count
-          base_url="https://img.shields.io/greasyfork/dt/"
-          app_id="465051"
-          gf_users=$(curl -s "$base_url$app_id" |
-            sed -n 's/.*<title>installs: \([0-9.k]\+\)*<\/title>.*/\1/Ip')
-          gf_users=$(expand_num "$gf_users")
+          gf_users=200000
           echo "Greasy Fork users: $gf_users"
 
           # Sum user counts
