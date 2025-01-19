@@ -9,7 +9,7 @@ window.toggles = {
         return typeof GM_info != 'undefined' ? this.imports.app.msgs[key] : chrome.i18n.getMessage(key) },
 
     sidebar: {
-        get class() { return `${toggles.imports.app.cssPrefix}-sidebar-toggle` },
+        get class() { return `${toggles.imports.app.slug}-sidebar-toggle` },
 
         create() {
 

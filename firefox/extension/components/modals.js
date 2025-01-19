@@ -2,7 +2,7 @@
 
 window.modals = {
     stack: [], // of types of undismissed modals
-    get class() { return `${this.imports.app.cssPrefix}-modal` },
+    get class() { return `${this.imports.app.slug}-modal` },
 
     imports: {
         import(deps) { // { app, env, updateCheck (userscript only) }
