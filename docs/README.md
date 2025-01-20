@@ -101,7 +101,7 @@
 
 <div align="center">
 
-<img src="https://assets.chatgptinfinity.com/images/screenshots/sidebar-toggle-on-w-cursor.png">
+<img src="https://assets.chatgptinfinity.com/images/screenshots/sidebar-toggle/on-with-cursor.png">
 
 <p>
 
