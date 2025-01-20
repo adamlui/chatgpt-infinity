@@ -3,7 +3,7 @@ name: Publish to CWS + EWS on Chromium version bump
 on:
   push:
     branches: [main]
-    paths: [chrome/extension/manifest.json]
+    paths: [chromium/extension/manifest.json]
 
 permissions:
   contents: read
@@ -21,8 +21,8 @@ jobs:
 
       - name: Check Chromium manifest for version bump
         run: |
-          current_ver=$(cat chrome/extension/manifest.json | grep '"version"' | sed -E 's/.*"version": "(.*)".*/\1/')
-          prev_ver=$(git show HEAD^:chrome/extension/manifest.json | grep '"version"' | sed -E 's/.*"version": "(.*)".*/\1/')
+          current_ver=$(cat chromium/extension/manifest.json | grep '"version"' | sed -E 's/.*"version": "(.*)".*/\1/')
+          prev_ver=$(git show HEAD^:chromium/extension/manifest.json | grep '"version"' | sed -E 's/.*"version": "(.*)".*/\1/')
           if [ "$current_ver" != "$prev_ver" ] ; then
                echo "Extension updated from $prev_ver to $current_ver"
                echo "VERSION_CHANGED=true" >> $GITHUB_ENV
@@ -31,7 +31,7 @@ jobs:
       - name: Create zipball
         if: env.VERSION_CHANGED == 'true'
         run: |
-          cd chrome/extension
+          cd chromium/extension
           zip -r ../../extension.zip .
 
       - name: Publish to CWS
