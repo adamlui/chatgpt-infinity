@@ -12,7 +12,7 @@
     </h6>
 </div>
 
-<img src="https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity/chromium/media/images/tiles/marquee-promo-tile-1400x560.png">
+<img src="https://assets.chatgptinfinity.com/images/tiles/marquee/tile-1400x560.png">
 
 <div align="center">
 
@@ -98,7 +98,7 @@
 
 <div align="center">
 
-<img src="https://assets.chatgptinfinity.com/images/screenshots/sidebar-toggle-on-w-cursor.png">
+<img src="https://assets.chatgptinfinity.com/images/screenshots/sidebar-toggle/on-with-cursor.png">
 
 <p>
 
