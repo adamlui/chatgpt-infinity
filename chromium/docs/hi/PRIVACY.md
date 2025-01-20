@@ -17,4 +17,4 @@
 
 ## अपडेट
 
-इस नीति में संशोधन देखने के लिए, https://github.com/adamlui/chatgpt-infinity/commits/main/chrome/docs/hi/PRIVACY.md पर जाएं
+इस नीति में संशोधन देखने के लिए, https://github.com/adamlui/chatgpt-infinity/commits/main/chromium/docs/hi/PRIVACY.md पर जाएं

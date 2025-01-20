@@ -21,7 +21,7 @@ elif [[ -n "$1" ]] ; then
     echo -e "${BR}Invalid argument. Use '--chrome', '--chromium', '--firefox', '--ff', or omit arg.${NC}" ; exit 1 ; fi
 
 # Init manifest PATHS
-chromium_manifest_path="chrome/extension/manifest.json"
+chromium_manifest_path="chromium/extension/manifest.json"
 ff_manifest_path="firefox/extension/manifest.json"
 if [ "$chromium_only" = true ] ; then MANIFEST_PATHS=$(echo "$chromium_manifest_path" | grep -i 'chrom')
 elif [ "$ff_only" = true ] ; then MANIFEST_PATHS=$(echo "$ff_manifest_path" | grep -i 'firefox')

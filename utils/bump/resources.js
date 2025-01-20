@@ -122,11 +122,7 @@
     // Fetch latest commit hash for repo/chrom<e|ium>/extension
     if (resURLs.some(url => url.includes(repoName))) {
         console.log('Fetching latest commit hash for Chromium extension...')
-        for (const chrDirName of ['chromium', 'chrome']) {
-            latestCommitHashes.chromium = await getLatestCommitHash(
-                `adamlui/${repoName}`, `${chrDirName}/extension`)
-            if (latestCommitHashes.chromium) break
-        }
+        latestCommitHashes.chromium = await getLatestCommitHash(`adamlui/${repoName}`, 'chromium/extension')
     }
 
     // Process each resource

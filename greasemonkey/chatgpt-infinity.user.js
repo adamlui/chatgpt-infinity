@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2025.1.19
+// @version             2025.1.20
 // @license             MIT
 // @icon                https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?v=69e434b
 // @icon64              https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?v=69e434b
@@ -221,10 +221,10 @@
 // @connect             gm.chatgptinfinity.com
 // @connect             raw.githubusercontent.com
 // @require             https://cdn.jsdelivr.net/npm/@kudoai/chatgpt.js@3.5.0/dist/chatgpt.min.js#sha256-+C0x4BOFQc38aZB3pvUC2THu+ZSvuCxRphGdtRLjCDg=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@b1b5c177f6cf7821009260f4cd0e89ae862dbb0a/chrome/extension/components/modals.js#sha256-g49gKDaE127Qknp3onyvYSWUlb857uPOXWpyWN4/EsM=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@b1b5c177f6cf7821009260f4cd0e89ae862dbb0a/chrome/extension/components/toggles.js#sha256-hURrv20NMKaj7uRUoMNzwHBqk652WnZs33U87wBwyXI=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@c6338a22b98eda877436fd6c5950ac3114aea23c/chrome/extension/lib/dom.js#sha256-/QaqzuGGC7PrzjYnXtYh411rJJOp27jWLA4ataKaWWY=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@3fb2a12621f1ee971eed9439c5e11d1bddff28fc/chrome/extension/lib/settings.js#sha256-3uj1yPXTh/zZd4pHvMzOznvL5dr00fREbmJe2b5VKkQ=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@4586ca96c5f69562386e94414576eeec89d175d4/chromium/extension/components/modals.js#sha256-g49gKDaE127Qknp3onyvYSWUlb857uPOXWpyWN4/EsM=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@4586ca96c5f69562386e94414576eeec89d175d4/chromium/extension/components/toggles.js#sha256-hURrv20NMKaj7uRUoMNzwHBqk652WnZs33U87wBwyXI=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@4586ca96c5f69562386e94414576eeec89d175d4/chromium/extension/lib/dom.js#sha256-/QaqzuGGC7PrzjYnXtYh411rJJOp27jWLA4ataKaWWY=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@4586ca96c5f69562386e94414576eeec89d175d4/chromium/extension/lib/settings.js#sha256-3uj1yPXTh/zZd4pHvMzOznvL5dr00fREbmJe2b5VKkQ=
 // @resource brsCSS     https://assets.aiwebextensions.com/styles/rising-stars/dist/black.min.css?v=3289404#sha256-CTj6Ndngq+TsPlNpQ6Ej39PQKSDpmxyKUFohhc91ruQ=
 // @resource wrsCSS     https://assets.aiwebextensions.com/styles/rising-stars/dist/white.min.css?v=3289404#sha256-tOOIvIe6O5/x2A5E7s9kP4+zw0d4EEDfRgXQLq2KwLs=
 // @grant               GM_setValue
@@ -269,7 +269,7 @@
         version: GM_info.script.version, configKeyPrefix: 'chatGPTinfinity',
         chatgptJSver: /chatgpt\.js@([\d.]+)/.exec(GM_info.scriptMetaStr)[1],
         urls: { update: 'https://gm.chatgptinfinity.com' },
-        latestResourceCommitHash: '3cabd0e' // for cached app.json + messages.json + navicon in toggles.sidebar.insert()
+        latestResourceCommitHash: '4586ca9' // for cached app.json + messages.json + navicon in toggles.sidebar.insert()
     }
     app.urls.resourceHost = `https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@${app.latestResourceCommitHash}`
     const remoteAppData = await new Promise(resolve => xhr({
@@ -348,7 +348,7 @@
     // LOCALIZE app.msgs for non-English users
     if (!env.browser.language.startsWith('en')) {
         const localizedMsgs = await new Promise(resolve => {
-            const msgHostDir = app.urls.resourceHost + '/chrome/extension/_locales/',
+            const msgHostDir = app.urls.resourceHost + '/chromium/extension/_locales/',
                   msgLocaleDir = ( env.browser.language ? env.browser.language.replace('-', '_') : 'en' ) + '/'
             let msgHref = msgHostDir + msgLocaleDir + 'messages.json', msgXHRtries = 0
             function fetchMsgs() { xhr({ method: 'GET', url: msgHref, onload: handleMsgs })}

@@ -17,4 +17,4 @@ ChatGPT 無限 はユーザー データを収集または保存しません。�
 
 ## アップデート
 
-このポリシーの改訂版をご覧になるには、https://github.com/adamlui/chatgpt-infinity/commits/main/chrome/docs/ja/PRIVACY.md にアクセスしてください。
+このポリシーの改訂版をご覧になるには、https://github.com/adamlui/chatgpt-infinity/commits/main/chromium/docs/ja/PRIVACY.md にアクセスしてください。

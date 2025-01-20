@@ -17,4 +17,4 @@ ChatGPT 无限 不收集也不存储任何用户数据。 不会出于个人目�
 
 ## 更新
 
-要查看对此政策的修订，请访问 https://github.com/adamlui/chatgpt-infinity/commits/main/chrome/docs/zh-cn/PRIVACY.md
+要查看对此政策的修订，请访问 https://github.com/adamlui/chatgpt-infinity/commits/main/chromium/docs/zh-cn/PRIVACY.md

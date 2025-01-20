@@ -1,6 +1,6 @@
 <a id="top"></a>
 
-<a href="https://gm.chatgptinfinity.com"><img src="https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity/chrome/media/images/tiles/marquee-promo-tile-1400x560.png"></a>
+<a href="https://gm.chatgptinfinity.com"><img src="https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity/chromium/media/images/tiles/marquee-promo-tile-1400x560.png"></a>
 
 <div align="center">
 
