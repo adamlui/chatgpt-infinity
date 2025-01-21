@@ -17,7 +17,7 @@
 <div align="center">
 
 <a href="#">
-    <img height=31 src="https://img.shields.io/badge/%E7%94%A8%E6%88%B7-100,000+-blue?logo=weightsandbiases&logoColor=white&labelColor=464646&style=for-the-badge"></img></a>
+    <img height=31 src="https://img.shields.io/badge/%E7%94%A8%E6%88%B7-150,000+-blue?logo=weightsandbiases&logoColor=white&labelColor=464646&style=for-the-badge"></img></a>
 <a href="https://chrome.chatgptinfinity.com/?utm_source=github&utm_medium=readme&utm_content=featured-by-google-shield">
     <img alt="[由 Google 推荐]" height=31 src="https://img.shields.io/badge/%E7%B2%BE%E9%80%89%E8%80%85-Google-8afc25?logo=googlechrome&logoColor=white&labelColor=464646&style=for-the-badge"></img></a>
 <a href="https://edge.chatgptinfinity.com">
