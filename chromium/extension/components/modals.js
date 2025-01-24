@@ -277,7 +277,7 @@ window.modals = {
                     + `">${modals.getMsg('link_viewChanges')}</a>`,
                 function update() { // button
                     modals.safeWinOpen(
-                        modals.imports.app.urls.update.replace('meta.js', 'user.js') + '?t=' + Date.now())
+                        modals.imports.`${app.urls.update}?t=${Date.now()}`)
                 }, '', modals.update.width
             )
 
