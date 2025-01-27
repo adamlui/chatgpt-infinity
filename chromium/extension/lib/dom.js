@@ -1,7 +1,7 @@
 window.dom = {
 
     imports: {
-        import(deps) { // { env) }
+        import(deps) { // { env }
             for (const depName in deps) this[depName] = deps[depName] }
     },
 
