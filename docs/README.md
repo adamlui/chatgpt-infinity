@@ -53,7 +53,7 @@
 
 <div align="center">
 
-<img src="https://assets.chatgptinfinity.com/images/screenshots/infinity-mode-on-ss-zoomed-out.png">
+<img src="https://assets.chatgptinfinity.com/images/screenshots/desktop/infinity-mode/chat/on-zoomed-out.png">
 
 </div>
 
@@ -82,8 +82,8 @@
 
 <div align="center">
 
-<img width=268 src="https://assets.chatgptinfinity.com/images/screenshots/chrome-extension-pin-instructions.png">
-<img width=268 src="https://assets.chatgptinfinity.com/images/screenshots/chrome-extension-menu.png">
+<img width=268 src="https://assets.chatgptinfinity.com/images/screenshots/desktop/chrome/pin-instructions/en.png">
+<img width=268 src="https://assets.chatgptinfinity.com/images/screenshots/desktop/chrome/toolbar-menu/en.png">
 
 </div>
 

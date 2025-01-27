@@ -34,7 +34,7 @@
 
 <div align="center">
 
-<img src="https://assets.chatgptinfinity.com/images/screenshots/infinity-mode-on-ss-zoomed-out.png">
+<img src="https://assets.chatgptinfinity.com/images/screenshots/desktop/infinity-mode/chat/on-zoomed-out.png">
 
 </div>
 
