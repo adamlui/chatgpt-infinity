@@ -54,5 +54,4 @@ jobs:
           client-id: ${{ secrets.EWS_CLIENT_ID }}
           api-key: ${{ secrets.EWS_CLIENT_SECRET }}
           zip-path: extension.zip
-          upload-only: true
         continue-on-error: true
