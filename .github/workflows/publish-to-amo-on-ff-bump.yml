@@ -42,4 +42,3 @@ jobs:
           jwtIssuer: ${{ secrets.AMO_ISSUER }}
           jwtSecret: ${{ secrets.AMO_SECRET }}
           zipFilePath: extension.zip
-        continue-on-error: true
