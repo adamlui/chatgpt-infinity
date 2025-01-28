@@ -16,7 +16,7 @@ jobs:
       - name: Checkout adamlui/chatgpt-infinity
         uses: actions/checkout@v4
         with:
-          sparse-checkout: chrome
+          sparse-checkout: chromium
           fetch-depth: 2
 
       - name: Check Chromium manifest for version bump
