@@ -36,7 +36,6 @@ export default [
             'quotes': ['error', 'single', // enforce single quotes...
                 { 'allowTemplateLiterals': true }], // ...except backticks to avoid escaping quotes
             'comma-dangle': ['error', 'never'], // enforce no trailing commas in arrays or objects
-            'no-async-promise-executor': 'off', // allow promise executor functions to be async (to accomodate await lines)
             'no-constant-condition': 'off', // allow constant conditions
             'no-empty': 'off', // allow empty blocks
             'no-inner-declarations': 'off', // allow function declarations anywhere
