@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2025.1.27
+// @version             2025.1.29
 // @license             MIT
 // @icon                https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?v=69e434b
 // @icon64              https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?v=69e434b
@@ -220,10 +220,10 @@
 // @connect             gm.chatgptinfinity.com
 // @connect             raw.githubusercontent.com
 // @require             https://cdn.jsdelivr.net/npm/@kudoai/chatgpt.js@3.5.0/dist/chatgpt.min.js#sha256-+C0x4BOFQc38aZB3pvUC2THu+ZSvuCxRphGdtRLjCDg=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@acb80ecc146b9ab748125039287901adc212a7e6/chromium/extension/components/modals.js#sha256-KpeIRRlbVMP6FyeOCKAQ9LDrtG3DSJn7tN40nueR/jo=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@4586ca96c5f69562386e94414576eeec89d175d4/chromium/extension/components/toggles.js#sha256-hURrv20NMKaj7uRUoMNzwHBqk652WnZs33U87wBwyXI=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@8a547fca63d0422ffaf85e57d34e8667ee22996d/chromium/extension/lib/dom.js#sha256-x42VLAXHPZdt08Dp23Oo7AWqCRsK4EgfBEX3B1dyW4w=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@4586ca96c5f69562386e94414576eeec89d175d4/chromium/extension/lib/settings.js#sha256-3uj1yPXTh/zZd4pHvMzOznvL5dr00fREbmJe2b5VKkQ=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@acb80ec/chromium/extension/components/modals.js#sha256-KpeIRRlbVMP6FyeOCKAQ9LDrtG3DSJn7tN40nueR/jo=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@4586ca9/chromium/extension/components/toggles.js#sha256-hURrv20NMKaj7uRUoMNzwHBqk652WnZs33U87wBwyXI=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@8a547fc/chromium/extension/lib/dom.js#sha256-x42VLAXHPZdt08Dp23Oo7AWqCRsK4EgfBEX3B1dyW4w=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@4586ca9/chromium/extension/lib/settings.js#sha256-3uj1yPXTh/zZd4pHvMzOznvL5dr00fREbmJe2b5VKkQ=
 // @resource brsCSS     https://assets.aiwebextensions.com/styles/rising-stars/dist/black.min.css?v=3289404#sha256-CTj6Ndngq+TsPlNpQ6Ej39PQKSDpmxyKUFohhc91ruQ=
 // @resource wrsCSS     https://assets.aiwebextensions.com/styles/rising-stars/dist/white.min.css?v=3289404#sha256-tOOIvIe6O5/x2A5E7s9kP4+zw0d4EEDfRgXQLq2KwLs=
 // @grant               GM_setValue
