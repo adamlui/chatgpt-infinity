@@ -76,11 +76,11 @@ window.toggles = {
                   + 'transition: 0.4s ; -webkit-transition: 0.4s ; -moz-transition: 0.4s ;'
                       + '-o-transition: 0.4s ; -ms-transition: 0.4s }'
               + `.${this.class} > span.enabled {` // switch on
-                  + 'background-color: var(--switch-enabled-bg-color) ; box-shadow: var(--switch-enabled-box-shadow) }'
+                  + 'background-color: var(--switch-enabled-bg-color) ; box-shadow: var(--switch-enabled-box-shadow) ;'
+                  + 'transition: 0.15s ; -webkit-transition: 0.15s ; -moz-transition: 0.15s ;'
+                      + '-o-transition: 0.15s ; -ms-transition: 0.15s }'
               + `.${this.class}:hover > span.enabled {` // switch on when hover on parent div
-                  + 'box-shadow: var(--switch-enabled-hover-box-shadow) ;'
-                  + 'transition: none ; -webkit-transition: none ; -moz-transition: none ;'
-                      + '-o-transition: none ; -ms-transition: none }'
+                  + 'box-shadow: var(--switch-enabled-hover-box-shadow) }'
               + `.${this.class} > span.disabled {` // switch off
                   + 'background-color: var(--switch-disabled-bg-color) ; box-shadow: none }'
               + `.${this.class} > span > span {` // knob span
