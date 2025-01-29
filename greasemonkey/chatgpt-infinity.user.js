@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2025.1.29.1
+// @version             2025.1.29.2
 // @license             MIT
 // @icon                https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?v=69e434b
 // @icon64              https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?v=69e434b
@@ -528,10 +528,18 @@
 
         // Append styled state word
         if (foundState) {
-            const styledStateSpan = dom.create.elem('span')
-            styledStateSpan.style.cssText = `color: ${
-                foundState == menu.state.words[0] ? '#ef4848 ; text-shadow: rgba(255,169,225,0.44) 2px 1px 5px'
-                                                  : '#5cef48 ; text-shadow: rgba(255,250,169,0.38) 2px 1px 5px' }`
+            const stateStyles = {
+                on: {
+                    light: 'color: #5cef48 ; text-shadow: rgba(255,250,169,0.38) 2px 1px 5px',
+                    dark:  'color: #5cef48 ; text-shadow: rgb(55, 255, 0) 3px 0 10px'
+                },
+                off: {
+                    light: 'color: #ef4848 ; text-shadow: rgba(255,169,225,0.44) 2px 1px 5px',
+                    dark:  'color: #ef4848 ; text-shadow: rgba(255, 116, 116, 0.87) 3px 0 9px'
+                }
+            }
+            const styledStateSpan = document.createElement('span')
+            styledStateSpan.style.cssText = stateStyles[foundState == menu.state.words[0] ? 'off' : 'on'][env.ui.scheme]
             styledStateSpan.append(foundState) ; notif.append(styledStateSpan)
         }
     }

@@ -51,6 +51,7 @@
     // Define FUNCTIONS
 
     function notify(msg, pos = '', notifDuration = '', shadow = '') {
+        if (config.notifDisabled && !msg.includes(chrome.i18n.getMessage('menuLabel_modeNotifs'))) return
 
         // Strip state word to append colored one later
         const foundState = [ chrome.i18n.getMessage('state_on').toUpperCase(),
@@ -64,10 +65,19 @@
 
         // Append styled state word
         if (foundState) {
-            const styledStateSpan = dom.create.elem('span')
-            styledStateSpan.style.cssText = `color: ${
-                foundState == 'OFF' ? '#ef4848 ; text-shadow: rgba(255,169,225,0.44) 2px 1px 5px'
-                                    : '#5cef48 ; text-shadow: rgba(255,250,169,0.38) 2px 1px 5px' }`
+            const stateStyles = {
+                on: {
+                    light: 'color: #5cef48 ; text-shadow: rgba(255,250,169,0.38) 2px 1px 5px',
+                    dark:  'color: #5cef48 ; text-shadow: rgb(55, 255, 0) 3px 0 10px'
+                },
+                off: {
+                    light: 'color: #ef4848 ; text-shadow: rgba(255,169,225,0.44) 2px 1px 5px',
+                    dark:  'color: #ef4848 ; text-shadow: rgba(255, 116, 116, 0.87) 3px 0 9px'
+                }
+            }
+            const styledStateSpan = document.createElement('span')
+            styledStateSpan.style.cssText = stateStyles[
+                foundState == chrome.i18n.getMessage('state_off').toUpperCase() ? 'off' : 'on'][env.ui.scheme]
             styledStateSpan.append(foundState) ; notif.append(styledStateSpan)
         }
     }
