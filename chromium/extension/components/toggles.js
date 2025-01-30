@@ -121,16 +121,11 @@ window.toggles = {
             navicon({ preload = false } = {}) {
                 const baseURL = `${toggles.imports.app.urls.assetHost}/images/icons/infinity-symbol`,
                       schemeMap = { light: 'black', dark: 'white' },
-                      fileName = 'icon32.png'
-
+                      fileName = `icon32.png?v=${toggles.imports.app.latestResourceCommitHash}`
                 if (preload)
                     Object.keys(schemeMap).forEach(scheme =>
-                        new Image().src = `${baseURL}/${schemeMap[scheme]}/${fileName}?v=`
-                                        + toggles.imports.app.latestResourceCommitHash
-                    )
-                else toggles.sidebar.navicon.src = baseURL
-                    + `/${schemeMap[toggles.imports.env.ui.scheme]}` // scheme path
-                    + `/${fileName}?v=${toggles.imports.app.latestResourceCommitHash}` // file path
+                        new Image().src = `${baseURL}/${schemeMap[scheme]}/${fileName}`)
+                else toggles.sidebar.navicon.src = `${baseURL}/${schemeMap[toggles.imports.env.ui.scheme]}/${fileName}`
             },
 
             scheme() { // to match UI scheme
