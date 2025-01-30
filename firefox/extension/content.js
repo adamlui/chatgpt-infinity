@@ -164,7 +164,7 @@
     }
 
     // Add RISING PARTICLES styles
-    ['black', 'white'].forEach(color => document.head.append(
+    ['gray', 'white'].forEach(color => document.head.append(
         dom.create.elem('link', { rel: 'stylesheet',
             href: `https://assets.aiwebextensions.com/styles/rising-particles/dist/${
                 color}.min.css?v=727feff`

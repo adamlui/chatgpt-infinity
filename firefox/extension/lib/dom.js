@@ -25,7 +25,7 @@ window.dom = {
         }
     },
 
-    addRisingParticles(targetNode) { // requires https://assets.aiwebextensions.com/styles/rising-particles/dist/<black|white>.min.css
+    addRisingParticles(targetNode) { // requires https://assets.aiwebextensions.com/styles/rising-particles/dist/<gray|white>.min.css
         if (targetNode.querySelector('[id*=particles]')) return
         const particlesDivsContainer = document.createElement('div')
         particlesDivsContainer.style.cssText = 'position: absolute ; top: 0 ; left: 0 ;' // hug targetNode's top-left corner
@@ -33,7 +33,7 @@ window.dom = {
           + 'z-index: -1'; // allow interactive elems to be clicked
         ['sm', 'med', 'lg'].forEach(particleSize => {
             const particlesDiv = document.createElement('div')
-            particlesDiv.id = `${ this.imports.env.ui.scheme == 'dark' ? 'white' : 'black' }-particles-${particleSize}`
+            particlesDiv.id = `${ this.imports.env.ui.scheme == 'dark' ? 'white' : 'gray' }-particles-${particleSize}`
             particlesDivsContainer.append(particlesDiv)
         })
         targetNode.prepend(particlesDivsContainer)
