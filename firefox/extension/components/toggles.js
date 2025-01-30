@@ -36,7 +36,7 @@ window.toggles = {
             }
 
             // Update aesthetic/state
-            this.updateAesthetic() ; this.updateState() // to opposite init state for animation on 1st load
+            this.updateScheme() ; this.updateState() // to opposite init state for animation on 1st load
 
             // Add hover/click listeners
             this.div.onmouseover = this.div.onmouseout = event => // trigger OpenAI hover overlay
@@ -116,10 +116,10 @@ window.toggles = {
             sidebar.insertBefore(this.div, sidebar.children[1]) ; this.status = 'inserted'
         },
 
-        updateAesthetic() { // to match UI scheme
-            const isDarkScheme = toggles.imports.env.ui.scheme == 'dark'
-            this.div.classList.add(isDarkScheme ? 'dark' : 'light')
-            this.div.classList.remove(isDarkScheme ? 'light' : 'dark')
+        updateScheme() { // to match UI scheme
+            const { scheme } = toggles.imports.env.ui
+            this.div.classList.add(scheme)
+            this.div.classList.remove(scheme == 'dark' ? 'light' : 'dark')
             this.navicon.src = `${
                 toggles.imports.app.urls.assetHost}/images/icons/infinity-symbol/${
                     toggles.imports.env.ui.scheme == 'dark' ? 'white' : 'black' }/icon32.png?v=${
