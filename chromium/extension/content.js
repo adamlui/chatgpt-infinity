@@ -149,6 +149,10 @@
 
     // Run MAIN routine
 
+    // Preload sidebar NAVICON variants
+    toggles.imports.import({ app, env, notify, syncConfigToUI })
+    toggles.sidebar.update.navicon({ preload: true })
+
     // Init BROWSER/UI props
     await Promise.race([chatgpt.isLoaded(), new Promise(resolve => setTimeout(resolve, 5000))]) // initial UI loaded
     await chatgpt.sidebar.isLoaded()
@@ -167,7 +171,6 @@
                 color}.min.css?v=727feff`
     })))
 
-    toggles.imports.import({ app, env, notify, syncConfigToUI })
     toggles.sidebar.insert()
 
     // Auto-start if enabled
