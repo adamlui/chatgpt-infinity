@@ -25,7 +25,7 @@ window.modals = {
     alert(title = '', msg = '', btns = '', checkbox = '', width = '') { // generic one from chatgpt.alert()
         const alertID = chatgpt.alert(title, msg, btns, checkbox, width),
               alert = document.getElementById(alertID).firstChild
-        this.init(alert) // add classes + starry bg
+        this.init(alert) // add classes + rising particles bg
         return alert
     },
 
@@ -33,14 +33,14 @@ window.modals = {
         const modal = modalSubType ? this[modalType][modalSubType]() : this[modalType]() // show modal
         if (!modal) return // since no div returned
         this.stack.unshift(modalSubType ? `${modalType}_${modalSubType}` : modalType) // add to stack
-        this.init(modal) // add classes + starry bg
+        this.init(modal) // add classes + rising particles bg
         this.observeRemoval(modal, modalType, modalSubType) // to maintain stack for proper nav
     },
 
     init(modal) {
         if (!this.styles) this.stylize() // to init/append stylesheet
         modal.classList.add('no-user-select', this.class) ; modal.parentNode.classList.add(`${this.class}-bg`)
-        dom.fillStarryBG(modal) // add starry bg
+        dom.addRisingParticles(modal)
     },
 
     stylize() {

@@ -160,11 +160,11 @@
             settings.save('infinityMode', false) ; syncConfigToUI({ updatedKey: 'infinityMode' }) }
     }
 
-    // Add STARS styles
+    // Add RISING PARTICLES styles
     ['black', 'white'].forEach(color => document.head.append(
         dom.create.elem('link', { rel: 'stylesheet',
-            href: `https://assets.aiwebextensions.com/styles/rising-stars/dist/${
-                color}.min.css?v=0cde30f9ae3ce99ae998141f6e7a36de9b0cc2e7`
+            href: `https://assets.aiwebextensions.com/styles/rising-particles/dist/${
+                color}.min.css?v=727feff`
     })))
 
     toggles.imports.import({ app, env, notify, syncConfigToUI })
