@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2025.1.29.7
+// @version             2025.1.30
 // @license             MIT
 // @icon                https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?v=69e434b
 // @icon64              https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?v=69e434b
@@ -221,7 +221,7 @@
 // @connect             raw.githubusercontent.com
 // @require             https://cdn.jsdelivr.net/npm/@kudoai/chatgpt.js@3.5.0/dist/chatgpt.min.js#sha256-+C0x4BOFQc38aZB3pvUC2THu+ZSvuCxRphGdtRLjCDg=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@b7228bd/chromium/extension/components/modals.js#sha256-oeiVFvJECpa2DAj/LAe6+15ZgWrlh6DYQ0BEV/3jV0E=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@b441146/chromium/extension/components/toggles.js#sha256-+x+IfREblPYDD7t90z9T0w+2VHjD0GFCgG7uL59HIQ0=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@bcb4819/chromium/extension/components/toggles.js#sha256-yqBNNr1puanjKOwduFJIkyT+MzqLtcxWRJSsYlzFnUU=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@f5ad513/chromium/extension/lib/dom.js#sha256-U6seAou0x/ZpIZNAZp5QifGxS0WV/5UaxofWniGpeUU=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@4586ca9/chromium/extension/lib/settings.js#sha256-3uj1yPXTh/zZd4pHvMzOznvL5dr00fREbmJe2b5VKkQ=
 // @resource grpCSS     https://assets.aiwebextensions.com/styles/rising-particles/dist/gray.min.css?v=727feff#sha256-7ycEGqwB5zKKoaW3olhaFP8yj0KEXe+Ks2kS/4iRGZM=
@@ -616,6 +616,10 @@
 
     // Run MAIN routine
 
+    // Preload sidebar NAVICON variants
+    toggles.imports.import({ app, env, notify, syncConfigToUI })
+    toggles.sidebar.update.navicon({ preload: true })
+
     // Create browser TOOLBAR MENU or DISABLE SCRIPT if extension installed
     env.extensionInstalled = await Promise.race([
         new Promise(resolve => {
@@ -642,7 +646,6 @@
     // Add RISING PARTICLES styles
     ['grp', 'wrp'].forEach(cssType => document.head.append(dom.create.style(GM_getResourceText(`${cssType}CSS`))))
 
-    toggles.imports.import({ app, env, notify, syncConfigToUI })
     toggles.sidebar.insert()
 
     // Auto-start if enabled
