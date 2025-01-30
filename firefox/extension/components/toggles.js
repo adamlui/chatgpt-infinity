@@ -116,14 +116,18 @@ window.toggles = {
             sidebar.insertBefore(this.div, sidebar.children[1]) ; this.status = 'inserted'
         },
 
-        updateScheme() { // to match UI scheme
-            const { scheme } = toggles.imports.env.ui
-            this.div.classList.add(scheme)
-            this.div.classList.remove(scheme == 'dark' ? 'light' : 'dark')
+        updateNavicon() {
             this.navicon.src = `${
                 toggles.imports.app.urls.assetHost}/images/icons/infinity-symbol/${
                     toggles.imports.env.ui.scheme == 'dark' ? 'white' : 'black' }/icon32.png?v=${
                     toggles.imports.app.latestResourceCommitHash}`
+        },
+
+        updateScheme() { // to match UI scheme
+            const { scheme } = toggles.imports.env.ui
+            this.div.classList.add(scheme)
+            this.div.classList.remove(scheme == 'dark' ? 'light' : 'dark')
+            this.updateNavicon()
         },
 
         updateState() {
