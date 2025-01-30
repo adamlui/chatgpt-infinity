@@ -84,7 +84,7 @@
 
     async function syncConfigToUI(options) { // on toolbar popup toggles + ChatGPT tab activations
         await settings.load('extensionDisabled', ...Object.keys(settings.controls))
-        toggles.sidebar.updateState() // from extension/IM/TV toggled or tab newly active
+        toggles.sidebar.update.state() // from extension/IM/TV toggled or tab newly active
         if (options?.updatedKey == 'infinityMode') infinity[config.infinityMode ? 'activate' : 'deactivate']()
         else if (settings.controls[options?.updatedKey]?.type == 'prompt' && config.infinityMode)
             infinity.restart({ target: options?.updatedKey == 'replyInterval' ? 'self' : 'new' })
@@ -194,7 +194,7 @@
     function handleSchemePrefChange() {
         const displayedScheme = getScheme()
         if (env.ui.scheme != displayedScheme) {
-            env.ui.scheme = displayedScheme ; toggles.sidebar.updateScheme() ; modals.stylize() }
+            env.ui.scheme = displayedScheme ; toggles.sidebar.update.scheme() ; modals.stylize() }
     }
 
     // Disable distracting SIDEBAR CLICK-ZOOM effect
