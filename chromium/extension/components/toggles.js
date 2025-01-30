@@ -35,7 +35,7 @@ window.toggles = {
                 this.div.querySelector('img')?.classList.add(...(firstIcon?.classList || []))
             }
 
-            // Update aesthetic/state
+            // Update scheme/state
             this.updateScheme() ; this.updateState() // to opposite init state for animation on 1st load
 
             // Add hover/click listeners
