@@ -65,5 +65,5 @@
   "state_enabled": { "message": "уключаны" },
   "state_disabled": { "message": "адключаны" },
   "state_on": { "message": "на" },
-  "state_off": { "message": "выкл." }
+  "state_off": { "message": "выкл" }
 }
