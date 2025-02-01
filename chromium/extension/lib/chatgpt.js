@@ -1,8 +1,7 @@
-// This library is a condensed version of chatgpt.js v3.5.0
+// This library is a condensed version of chatgpt.js v3.6.0
 // © 2023–2025 KudoAI & contributors under the MIT license.
 // Source: https://github.com/KudoAI/chatgpt.js
 // User guide: https://chatgptjs.org/userguide
-// Latest minified release: https://cdn.jsdelivr.net/npm/@kudoai/chatgpt.js/chatgpt.min.js
 // Latest minified release: https://cdn.jsdelivr.net/npm/@kudoai/chatgpt.js/chatgpt.min.js
 // --------------------------------------------------------
 //
@@ -84,7 +83,7 @@ const chatgpt = {
               modalMessage = document.createElement('p');
 
         // Create/append/update modal style (if missing or outdated)
-        const thisUpdated = 1735475757891 // timestamp of last edit for this file's `modalStyle`
+        const thisUpdated = 1735768363880 // timestamp of last edit for this file's `modalStyle`
         let modalStyle = document.querySelector('#chatgpt-modal-style'); // try to select existing style
         if (!modalStyle || parseInt(modalStyle.getAttribute('last-updated'), 10) < thisUpdated) { // if missing or outdated
             if (!modalStyle) { // outright missing, create/id/attr/append it first
@@ -93,14 +92,21 @@ const chatgpt = {
                 document.head.append(modalStyle);
             }
             modalStyle.innerText = ( // update prev/new style contents
-                '.no-mobile-tap-outline { outline: none ; -webkit-tap-highlight-color: transparent }'
+                '.chatgpt-modal {' // vars
+                    + '--transition: opacity 0.65s cubic-bezier(.165,.84,.44,1),' // for fade-in
+                                  + 'transform 0.55s cubic-bezier(.165,.84,.44,1) ;' // for move-in
+                    + '--bg-transition: background-color 0.25s ease }' // for bg dim
+
+                + '.no-mobile-tap-outline { outline: none ; -webkit-tap-highlight-color: transparent }'
 
                 // Background styles
                 + '.chatgpt-modal {'
                     + 'pointer-events: auto ;' // override any disabling from site modals (like guest login spam)
                     + 'position: fixed ; top: 0 ; left: 0 ; width: 100% ; height: 100% ;' // expand to full view-port
-                    + 'transition: background-color 0.25s ease !important ;' // speed to show bg dim
-                    + 'display: flex ; justify-content: center ; align-items: center ; z-index: 9999 }' // align
+                    + 'display: flex ; justify-content: center ; align-items: center ; z-index: 9999 ;' // align
+                    + 'transition: var(--bg-transition) ;' // for bg dim
+                        + '-webkit-transition: var(--bg-transition) ; -moz-transition: var(--bg-transition) ;'
+                        + '-o-transition: var(--bg-transition) ; -ms-transition: var(--bg-transition) }'
 
                 // Alert styles
                 + '.chatgpt-modal > div {'
@@ -110,11 +116,13 @@ const chatgpt = {
                     + `color: ${ scheme == 'dark' ? 'white' : 'black' };`
                     + `background-color: ${ scheme == 'dark' ? 'black' : 'white' };`
                     + 'transform: translateX(-3px) translateY(7px) ;' // offset to move-in from
-                    + 'transition: opacity 0.65s cubic-bezier(.165,.84,.44,1),' // for fade-ins
-                                + 'transform 0.55s cubic-bezier(.165,.84,.44,1) ;' // for move-ins
-                    + 'max-width: 75vw ; word-wrap: break-word ;'
-                    + 'padding: 20px ; margin: 12px 23px ; border-radius: 15px ; box-shadow: 0 30px 60px rgba(0,0,0,.12) ;'
-                    + ' -webkit-user-select: none ; -moz-user-select: none ; -ms-user-select: none ; user-select: none ; }'
+                    + 'max-width: 75vw ; word-wrap: break-word ; border-radius: 15px ;'
+                    + 'padding: 20px ; margin: 12px 23px ; box-shadow: 0 30px 60px rgba(0,0,0,0.12) ;'
+                    + 'user-select: none ; -webkit-user-select: none ; -moz-user-select: none ; -o-user-select: none ;'
+                        + '-ms-user-select: none ;'
+                    + 'transition: var(--transition) ;' // for fade-in + move-in
+                        + '-webkit-transition: var(--transition) ; -moz-transition: var(--transition) ;'
+                        + '-o-transition: var(--transition) ; -ms-transition: var(--transition) }'
                 + '.chatgpt-modal h2 { margin-bottom: 9px }'
                 + `.chatgpt-modal a { color: ${ scheme == 'dark' ? '#00cfff' : '#1e9ebb' }}`
                 + '.chatgpt-modal a:hover { text-decoration: underline }'
@@ -249,30 +257,29 @@ const chatgpt = {
 
         // Define alert dismisser
         const dismissAlert = () => {
-            modalContainer.style.backgroundColor = 'transparent';
-            modal.style.animation = 'alert-zoom-fade-out 0.135s ease-out';
-            setTimeout(() => { // delay removal for fade-out
+            modalContainer.style.backgroundColor = 'transparent'
+            modal.style.animation = 'alert-zoom-fade-out 0.165s ease-out'
+            modal.onanimationend = () => {
 
                 // Remove alert
-                modalContainer.remove(); // ...from DOM
-                alertQueue = JSON.parse(localStorage.alertQueue);
-                alertQueue.shift(); // + memory
-                localStorage.alertQueue = JSON.stringify(alertQueue); // + storage
-                document.removeEventListener('keydown', handlers.dismiss.key); // prevent memory leaks
+                modalContainer.remove() // ...from DOM
+                alertQueue = JSON.parse(localStorage.alertQueue)
+                alertQueue.shift() // + memory
+                localStorage.alertQueue = JSON.stringify(alertQueue) // + storage
+                document.removeEventListener('keydown', handlers.dismiss.key) // prevent memory leaks
 
                 // Check for pending alerts in queue
                 if (alertQueue.length > 0) {
-                    const nextAlert = document.getElementById(alertQueue[0]);
+                    const nextAlert = document.getElementById(alertQueue[0])
                     setTimeout(() => {
-                        nextAlert.style.display = '';
-                        setTimeout(() => { nextAlert.classList.add('animated'); }, 100);
-                    }, 500);
+                        nextAlert.style.display = ''
+                        setTimeout(() => nextAlert.classList.add('animated'), 100)
+                    }, 500)
                 }
+            }
+        }
 
-            }, 155);
-        };
-
-        return modalContainer.id; // if assignment used
+        return modalContainer.id // if assignment used
     },
 
     browser: {
@@ -289,7 +296,7 @@ const chatgpt = {
     getScrollToBottomButton() { return document.querySelector('button:has([d^="M12 21C11.7348"])'); },
     getSendButton() { return document.querySelector('[data-testid=send-button]'); },
     getStopButton() { return document.querySelector('button[data-testid=stop-button]'); },
-    isDarkMode() { return document.documentElement.classList.toString().includes('dark'); },
+    isDarkMode() { return document.documentElement.className.includes('dark') },
 
     async isIdle(timeout = null) {
         const obsConfig = { childList: true, subtree: true },
@@ -364,7 +371,7 @@ const chatgpt = {
                                  + (notificationDiv.isRight ? 'Right' : 'Left');
 
         // Create/append/update notification style (if missing or outdated)
-        const thisUpdated = 1735475527153 // timestamp of last edit for this file's `notifStyle`
+        const thisUpdated = 1735767823541 // timestamp of last edit for this file's `notifStyle`
         let notifStyle = document.querySelector('#chatgpt-notif-style'); // try to select existing style
         if (!notifStyle || parseInt(notifStyle.getAttribute('last-updated'), 10) < thisUpdated) { // if missing or outdated
             if (!notifStyle) { // outright missing, create/id/attr/append it first
@@ -379,7 +386,8 @@ const chatgpt = {
                     + '.no-mobile-tap-outline { outline: none ; -webkit-tap-highlight-color: transparent }'
                     + 'background-color: black ; padding: 10px 13px 10px 18px ; border-radius: 11px ; border: 1px solid #f5f5f7 ;' // bubble style
                     + 'opacity: 0 ; position: fixed ; z-index: 9999 ; font-size: 1.8rem ; color: white ;' // visibility
-                    + '-webkit-user-select: none ; -moz-user-select: none ; -ms-user-select: none ; user-select: none ;'
+                    + 'user-select: none ; -webkit-user-select: none ; -moz-user-select: none ; -o-user-select: none ;'
+                        + '-ms-user-select: none ;'
                     + `transform: translateX(${ !notificationDiv.isRight ? '-' : '' }35px) ;` // init off-screen for transition fx
                     + ( shadow ? ( 'box-shadow: -8px 13px 25px 0 ' + ( /\b(?:shadow|on)\b/i.test(shadow) ? 'gray' : shadow )) : '' ) + '}'
                 + '.notif-close-btn { cursor: pointer ; float: right ; position: relative ; right: -4px ; margin-left: -3px ;'
