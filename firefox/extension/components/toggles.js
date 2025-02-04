@@ -76,19 +76,25 @@ window.toggles = {
                   + 'transition: 0.4s ; -webkit-transition: 0.4s ; -moz-transition: 0.4s ;'
                       + '-o-transition: 0.4s ; -ms-transition: 0.4s }'
               + `.${this.class} > span.enabled {` // switch on
-                  + 'background-color: var(--switch-enabled-bg-color) ; box-shadow: var(--switch-enabled-box-shadow) ;'
-                  + 'transition: 0.15s ; -webkit-transition: 0.15s ; -moz-transition: 0.15s ;'
-                      + '-o-transition: 0.15s ; -ms-transition: 0.15s }'
+                  + `background-color: var(--switch-enabled-bg-color) ;
+                    box-shadow: var(--switch-enabled-box-shadow) ;
+                        -webkit-box-shadow: var(--switch-enabled-box-shadow) ;
+                        -moz-box-shadow: var(--switch-enabled-box-shadow) ;
+                    transition: 0.15s ; -webkit-transition: 0.15s ; -moz-transition: 0.15s ;
+                        -o-transition: 0.15s ; -ms-transition: 0.15s }`
               + `.${this.class}:hover > span.enabled {` // switch on when hover on parent div
-                  + 'box-shadow: var(--switch-enabled-hover-box-shadow) }'
+                  + `box-shadow: var(--switch-enabled-hover-box-shadow) ;
+                        -webkit-box-shadow: var(--switch-enabled-hover-box-shadow) ;
+                        -moz-box-shadow: var(--switch-enabled-hover-box-shadow) }`
               + `.${this.class} > span.disabled {` // switch off
                   + 'background-color: var(--switch-disabled-bg-color) ; box-shadow: none }'
               + `.${this.class} > span > span {` // knob span
-                  + 'position: absolute ; width: 12px ; height: 12px ; content: "" ; border-radius: 28px ;'
-                  + 'background-color: white ; left: 3px ; bottom: 1.25px ;'
-                  + 'box-shadow: var(--knob-box-shadow) ;' // make 3D
-                  + 'transition: 0.4s ; -webkit-transition: 0.4s ; -moz-transition: 0.4s ;'
-                      + '-o-transition: 0.4s ; -ms-transition: 0.4s }'
+                  + `position: absolute ; width: 12px ; height: 12px ; content: "" ; border-radius: 28px ;
+                    background-color: white ; left: 3px ; bottom: 1.25px ;
+                    box-shadow: var(--knob-box-shadow) ;
+                        -webkit-box-shadow: var(--knob-box-shadow) ; -moz-box-shadow: var(--knob-box-shadow) ;
+                    transition: 0.4s ; -webkit-transition: 0.4s ; -moz-transition: 0.4s ;
+                        -o-transition: 0.4s ; -ms-transition: 0.4s }`
               + `.${this.class} > label {` // toggle label
                   + 'cursor: pointer ; overflow: hidden ; text-overflow: ellipsis ;'
                   + `width: ${ toggles.imports.env.browser.isMobile ? 201 : 148 }px ;`
@@ -98,11 +104,17 @@ window.toggles = {
                 // Dark scheme mods
               + `.${this.class}.dark > span.enabled {` // switch on
                   + 'background-color: var(--switch-enabled-bg-color) ;'
-                  + 'box-shadow: var(--switch-enabled-hover-box-shadow) }' // use hover style instead
+                  + 'box-shadow: var(--switch-enabled-hover-box-shadow) ;' // use hover style instead
+                      + '-webkit-box-shadow: var(--switch-enabled-hover-box-shadow) ;'
+                      + '-moz-box-shadow: var(--switch-enabled-hover-box-shadow) }'
               + `.${this.class}.dark:hover > span.enabled {` // switch on when hover on parent div
-                  + 'box-shadow: var(--switch-enabled-box-shadow) }' // use regular style instead
+                  + 'box-shadow: var(--switch-enabled-box-shadow) ;' // use regular style instead
+                      + '-webkit-box-shadow: var(--switch-enabled-box-shadow) ;'
+                      + '-moz-box-shadow: var(--switch-enabled-box-shadow) }'
               + `.${this.class}.dark > span > span {` // knob span
-                  + 'box-shadow: var(--knob-box-shadow-dark) }' // make 3D-er
+                  + 'box-shadow: var(--knob-box-shadow-dark) ;' // make 3D-er
+                      + '-webkit-box-shadow: var(--knob-box-shadow-dark) ;'
+                      + '-moz-box-shadow: var(--knob-box-shadow-dark) }'
             )
             document.head.append(this.styles)
         },
