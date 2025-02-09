@@ -18,8 +18,9 @@ window.modals = {
     },
 
     getMsg(key) {
-        return /Chromium|Firefox/.test(this.runtime) ? chrome.i18n.getMessage(key)
-            : this.imports.app.msgs[key] // from modals.imports.import({ app }) in userscript
+        return /Chromium|Firefox/.test(this.runtime) ?
+            chrome.i18n.getMessage(key) // from ./_locales/*/messages.json
+                : this.imports.app.msgs[key] // from modals.imports.import({ app }) in userscript
     },
 
     alert(title = '', msg = '', btns = '', checkbox = '', width = '') { // generic one from chatgpt.alert()

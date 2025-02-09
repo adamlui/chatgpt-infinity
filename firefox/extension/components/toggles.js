@@ -8,7 +8,10 @@ window.toggles = {
     },
 
     getMsg(key) {
-        return typeof GM_info != 'undefined' ? this.imports.app.msgs[key] : chrome.i18n.getMessage(key) },
+        return typeof GM_info != 'undefined' ?
+            this.imports.app.msgs[key] // from toggles.imports.import({ app }) in userscript
+                : chrome.i18n.getMessage(key) // from ./_locales/*/messages.json
+    },
 
     sidebar: {
         get class() { return `${toggles.imports.app.slug}-sidebar-toggle` },
