@@ -18,8 +18,8 @@
     const { app } = await chrome.storage.sync.get('app')
 
     // Export DEPENDENCIES to imported resources
-    dom.imports.import({ env }) // for env.ui.scheme
-    modals.imports.import({ app, env }) // for app data + env.ui.scheme
+    dom.imports.import({ scheme: env.ui.scheme }) // for dom.addRisingParticles()
+    modals.imports.import({ app, env }) // for app data + env.<browser|ui> flags
 
     // Add CHROME MSG listener
     chrome.runtime.onMessage.addListener(req => {
