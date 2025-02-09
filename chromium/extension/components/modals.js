@@ -1,11 +1,11 @@
-// Requires lib/chatgpt.js + lib/dom.js
+// Requires lib/chatgpt.js + lib/dom.js + app + env
 
 window.modals = {
     stack: [], // of types of undismissed modals
     get class() { return `${this.imports.app.slug}-modal` },
 
     imports: {
-        import(deps) { // { app, env, updateCheck (userscript only) }
+        import(deps) { // { app, env, updateCheck (Greasemonkey only) }
             for (const depName in deps) this[depName] = deps[depName] }
     },
 
@@ -19,7 +19,7 @@ window.modals = {
 
     getMsg(key) {
         return /Chromium|Firefox/.test(this.runtime) ? chrome.i18n.getMessage(key)
-            : this.imports.app.msgs[key] // assigned from modals.imports.import({ app }) in userscript
+            : this.imports.app.msgs[key] // from modals.imports.import({ app }) in userscript
     },
 
     alert(title = '', msg = '', btns = '', checkbox = '', width = '') { // generic one from chatgpt.alert()
