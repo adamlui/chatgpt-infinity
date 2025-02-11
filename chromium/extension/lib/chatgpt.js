@@ -1,4 +1,4 @@
-// This library is a condensed version of chatgpt.js v3.6.0
+// This library is a condensed version of chatgpt.js v3.6.2
 // © 2023–2025 KudoAI & contributors under the MIT license.
 // Source: https://github.com/KudoAI/chatgpt.js
 // User guide: https://chatgptjs.org/userguide
@@ -49,7 +49,8 @@ const chatgpt = {
                     if (event.button != 0) return // prevent non-left-click drag
                     if (getComputedStyle(event.target).cursor == 'pointer') return // prevent drag on interactive elems
                     chatgpt.draggableElem = event.currentTarget
-                    chatgpt.draggableElem.style.cursor = 'grabbing'
+                    Object.assign(chatgpt.draggableElem.style, {
+                        cursor: 'grabbing', transition: '0.1s', willChange: 'transform', transform: 'scale(1.05)' })
                     event.preventDefault(); // prevent sub-elems like icons being draggable
                     ['mousemove', 'mouseup'].forEach(eventType =>
                         document.addEventListener(eventType, handlers.drag[eventType]))
@@ -66,7 +67,8 @@ const chatgpt = {
                 },
 
                 mouseup() { // remove listeners, reset chatgpt.draggableElem
-                    chatgpt.draggableElem.style.cursor = 'inherit';
+                    Object.assign(chatgpt.draggableElem.style, {
+                        cursor: 'inherit', transition: 'inherit', willChange: 'auto', transform: 'scale(1)' });
                     ['mousemove', 'mouseup'].forEach(eventType =>
                         document.removeEventListener(eventType, handlers.drag[eventType]))
                     chatgpt.draggableElem = null
@@ -117,19 +119,22 @@ const chatgpt = {
                     + `background-color: ${ scheme == 'dark' ? 'black' : 'white' };`
                     + 'transform: translateX(-3px) translateY(7px) ;' // offset to move-in from
                     + 'max-width: 75vw ; word-wrap: break-word ; border-radius: 15px ;'
-                    + 'padding: 20px ; margin: 12px 23px ; box-shadow: 0 30px 60px rgba(0,0,0,0.12) ;'
+                    + 'padding: 20px ; margin: 12px 23px ;'
+                    + `--shadow: 0 30px 60px rgba(0,0,0,0.12) ; box-shadow: var(--shadow) ;
+                          -webkit-box-shadow: var(--shadow) ; -moz-box-shadow: var(--shadow) ;`
                     + 'user-select: none ; -webkit-user-select: none ; -moz-user-select: none ; -o-user-select: none ;'
                         + '-ms-user-select: none ;'
                     + 'transition: var(--transition) ;' // for fade-in + move-in
                         + '-webkit-transition: var(--transition) ; -moz-transition: var(--transition) ;'
                         + '-o-transition: var(--transition) ; -ms-transition: var(--transition) }'
-                + '.chatgpt-modal h2 { margin-bottom: 9px }'
-                + `.chatgpt-modal a { color: ${ scheme == 'dark' ? '#00cfff' : '#1e9ebb' }}`
-                + '.chatgpt-modal a:hover { text-decoration: underline }'
-                + '.chatgpt-modal.animated > div { z-index: 13456 ; opacity: 0.98 ; transform: translateX(0) translateY(0) }'
-                + '@keyframes alert-zoom-fade-out {'
-                  + '0% { opacity: 1 } 50% { opacity: 0.25 ; transform: scale(1.05) }'
-                  + '100% { opacity: 0 ; transform: scale(1.35) }}'
+                + `.chatgpt-modal h2 { margin-bottom: 9px }
+                  .chatgpt-modal a { color: ${ scheme == 'dark' ? '#00cfff' : '#1e9ebb' }}
+                  .chatgpt-modal a:hover { text-decoration: underline }
+                  .chatgpt-modal.animated > div {
+                      z-index: 13456 ; opacity: 0.98 ; transform: translateX(0) translateY(0) }
+                  @keyframes alert-zoom-fade-out {
+                      0% { opacity: 1 } 50% { opacity: 0.25 ; transform: scale(1.05) }
+                      100% { opacity: 0 ; transform: scale(1.35) }}`
 
                 // Button styles
                 + '.modal-buttons { display: flex ; justify-content: flex-end ; margin: 20px -5px -3px 0 ;'
@@ -142,9 +147,11 @@ const chatgpt = {
                     + `border: 1px solid ${ scheme == 'dark' ? 'white' : 'black' } ;`
                     + `background: ${ scheme == 'dark' ? 'white' : 'black' } ;`
                     + `color: ${ scheme == 'dark' ? 'black' : 'white' }}`
-                + '.chatgpt-modal button:hover { color: #3d5d71 ; border-color: #6d9cb9 ;'
-                    + 'background-color: ' + ( scheme == 'dark' ? '#00cfff' : '#9cdaff' ) + ';'
-                    + 'box-shadow: 2px 1px ' + ( scheme == 'dark' ? '54px #00cfff' : '30px #9cdaff' ) + '}'
+                + `.chatgpt-modal button:hover {
+                      color: #3d5d71 ; border-color: #6d9cb9 ;
+                      background-color: ${ scheme == 'dark' ? '#00cfff' : '#9cdaff' };
+                      --shadow: 2px 1px ${ scheme == 'dark' ? '54px #00cfff' : '30px #9cdaff' };
+                      box-shadow: var(--shadow) ; box-shadow: var(--shadow) ; box-shadow: var(--shadow) }`
                 + '.modal-close-btn {'
                     + 'cursor: pointer ; width: 29px ; height: 29px ; border-radius: 17px ;'
                     + 'float: right ; position: relative ; right: -6px ; top: -5px }'
@@ -152,17 +159,18 @@ const chatgpt = {
                 + `.modal-close-btn:hover { background-color: #f2f2f2${ scheme == 'dark' ? '00' : '' }}`
 
                 // Checkbox styles
-                + '.chatgpt-modal .checkbox-group { display: flex ; margin-top: -18px }'
-                + '.chatgpt-modal .checkbox-group label {'
-                    + 'font-size: .7rem ; margin: -.04rem 0 0px .3rem ;'
-                    + `color: ${ scheme == 'dark' ? '#e1e1e1' : '#1e1e1e' }}`
-                + '.chatgpt-modal input[type=checkbox] { transform: scale(0.7) ;'
-                    + `border: 1px solid ${ scheme == 'dark' ? 'white' : 'black' }}`
-                + '.chatgpt-modal input[type=checkbox]:checked {'
-                    + `border: 1px solid ${ scheme == 'dark' ? 'white' : 'black' } ;`
-                    + 'background-color: black ; position: inherit }'
-                + '.chatgpt-modal input[type=checkbox]:focus { outline: none ; box-shadow: none }'
-            );
+                + `.chatgpt-modal .checkbox-group { margin-top: 15px }
+                  .chatgpt-modal .checkbox-group label {
+                      font-size: .7rem ; margin: -.04rem 0 0px .3rem 
+                      color: ${ scheme == 'dark' ? '#e1e1e1' : '#1e1e1e' }}
+                  .chatgpt-modal input[type=checkbox] { transform: scale(0.7) ;
+                      border: 1px solid ${ scheme == 'dark' ? 'white' : 'black' }}
+                  .chatgpt-modal input[type=checkbox]:checked {
+                      border: 1px solid ${ scheme == 'dark' ? 'white' : 'black' } ;
+                      background-color: black ; position: inherit }
+                  .chatgpt-modal input[type=checkbox]:focus {
+                      outline: none ; box-shadow: none ; -webkit-box-shadow: none ; -moz-box-shadow: none }`
+            )
         }
 
         // Insert text into elements
@@ -229,7 +237,7 @@ const chatgpt = {
         closeSVG.append(closeSVGpath); closeBtn.append(closeSVG);
 
         // Assemble/append div
-        const modalElems = [closeBtn, modalTitle, modalMessage, modalButtons, checkboxDiv];
+        const modalElems = [closeBtn, modalTitle, modalMessage, checkboxDiv, modalButtons ];
         modalElems.forEach((elem) => { modal.append(elem); });
         modal.style.width = `${ width || 458 }px`;
         modalContainer.append(modal); document.body.append(modalContainer);
@@ -290,7 +298,12 @@ const chatgpt = {
     getChatBox() { return document.getElementById('prompt-textarea'); },
 
     getNewChatButton() {
-        return document.querySelector('button[data-testid*=new-chat-button], button:has([d^="M15.6729"])'); },
+        return document.querySelector(
+            'button[data-testid*=new-chat-button],' // sidebar button (when logged in)
+          + 'button:has([d^="M3.06957"]),' // Cycle Arrows icon (Temp chat mode)
+          + 'button:has([d^="M15.6729"])' // Pencil icon (recorded chat mode)
+        )
+    },
 
     getNewChatLink() { return document.querySelector('nav a[href="/"]'); },
     getScrollToBottomButton() { return document.querySelector('button:has([d^="M12 21C11.7348"])'); },
@@ -327,14 +340,14 @@ const chatgpt = {
     },
 
     async isLoaded(timeout = null) {
-        const timeoutPromise = timeout ? new Promise(resolve => setTimeout(() => resolve(false), timeout)) : null;
+        const timeoutPromise = timeout ? new Promise(resolve => setTimeout(() => resolve(false), timeout)) : null
         const isLoadedPromise = new Promise(resolve => {
-            if (chatgpt.getNewChatBtn()) resolve(true);
+            if (chatgpt.getNewChatBtn()) resolve(true)
             else new MutationObserver((_, obs) => {
-                if (chatgpt.getNewChatBtn()) { obs.disconnect(); resolve(true); }
-            }).observe(document.body, { childList: true, subtree: true });
-        });
-        return await ( timeoutPromise ? Promise.race([isLoadedPromise, timeoutPromise]) : isLoadedPromise );
+                if (chatgpt.getNewChatBtn()) { obs.disconnect() ; resolve(true) }
+            }).observe(document.documentElement, { childList: true, subtree: true })
+        })
+        return await ( timeoutPromise ? Promise.race([isLoadedPromise, timeoutPromise]) : isLoadedPromise )
     },
 
     notify(msg, position, notifDuration, shadow) {
@@ -549,15 +562,15 @@ const chatgpt = {
         },
 
         async isLoaded(timeout = 5000) {
-            await chatgpt.isLoaded();
-            const timeoutPromise = new Promise(resolve => setTimeout(() => { resolve(false); }, timeout));
+            await chatgpt.isLoaded()
+            const timeoutPromise = new Promise(resolve => setTimeout(() => resolve(false), timeout))
             const isLoadedPromise = new Promise(resolve => {
-                if (chatgpt.getNewChatLink()) resolve(true);
+                if (chatgpt.getNewChatLink()) resolve(true)
                 else new MutationObserver((_, obs) => {
-                    if (chatgpt.getNewChatLink()) { obs.disconnect(); resolve(true); }
-                }).observe(document.body, { childList: true, subtree: true });
-            });
-            return await Promise.race([isLoadedPromise, timeoutPromise]);
+                    if (chatgpt.getNewChatLink()) { obs.disconnect() ; resolve(true) }
+                }).observe(document.documentElement, { childList: true, subtree: true })
+            })
+            return await Promise.race([isLoadedPromise, timeoutPromise])
         }
     },
 
