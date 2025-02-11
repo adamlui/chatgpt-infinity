@@ -18,8 +18,8 @@
     const { app } = await chrome.storage.sync.get('app')
 
     // Export DEPENDENCIES to imported resources
-    dom.imports.import({ scheme: env.ui.scheme }) // for dom.addRisingParticles()
-    modals.imports.import({ app, env }) // for app data + env.<browser|ui> flags
+    dom.import({ scheme: env.ui.scheme }) // for dom.addRisingParticles()
+    modals.import({ app, env }) // for app data + env.<browser|ui> flags
 
     // Add CHROME MSG listener
     chrome.runtime.onMessage.addListener(req => {
@@ -150,7 +150,7 @@
     // Run MAIN routine
 
     // Preload sidebar NAVICON variants
-    toggles.imports.import({ app, env, notify, syncConfigToUI })
+    toggles.import({ app, env, notify, syncConfigToUI })
     toggles.sidebar.update.navicon({ preload: true })
 
     // Init BROWSER/UI props

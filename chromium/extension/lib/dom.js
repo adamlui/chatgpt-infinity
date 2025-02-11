@@ -1,12 +1,8 @@
 window.dom = {
-
-    imports: {
-        import(deps) { // { scheme: env.ui.scheme }
-            for (const depName in deps) this[depName] = deps[depName] }
-    },
+    import(deps) { Object.assign(this.imports = this.imports || {}, deps) },
 
     addRisingParticles(targetNode, { lightScheme = 'gray', darkScheme = 'white' } = {}) {
-    // * Requires https://assets.aiwebextensions.com/styles/rising-particles/dist/<lightScheme|darkScheme>.min.css
+    // * Requires https://assets.aiwebextensions.com/styles/rising-particles/dist/<lightScheme>.min.css
 
         if (targetNode.querySelector('[id*=particles]')) return
         const particlesDivsWrapper = document.createElement('div')

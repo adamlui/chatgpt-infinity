@@ -1,10 +1,8 @@
+// Requires app (Greasemonkey only)
+
 window.config = {}
 window.settings = {
-
-    imports: {
-        import(deps) { // { app (Greasemonkey only) }
-            for (const depName in deps) this[depName] = deps[depName] }
-    },
+    import(deps) { Object.assign(this.imports = this.imports || {}, deps) },
 
     controls: { // displays top-to-bottom in toolbar menu
         get infinityMode() { return { type: 'toggle', defaultVal: false,

@@ -1,13 +1,10 @@
-// Requires lib/chatgpt.js + lib/dom.js + app + env
+// Requires lib/chatgpt.js + lib/dom.js + app + env + updateCheck (Greasemonkey only)
 
 window.modals = {
+    import(deps) { Object.assign(this.imports = this.imports || {}, deps) },
+
     stack: [], // of types of undismissed modals
     get class() { return `${this.imports.app.slug}-modal` },
-
-    imports: {
-        import(deps) { // { app, env, updateCheck (Greasemonkey only) }
-            for (const depName in deps) this[depName] = deps[depName] }
-    },
 
     get runtime() {
         if (typeof GM_info != 'undefined') return 'Greasemonkey userscript'
@@ -20,7 +17,7 @@ window.modals = {
     getMsg(key) {
         return /Chromium|Firefox/.test(this.runtime) ?
             chrome.i18n.getMessage(key) // from ./_locales/*/messages.json
-                : this.imports.app.msgs[key] // from modals.imports.import({ app }) in userscript
+                : this.imports.app.msgs[key] // from modals.import({ app }) in userscript
     },
 
     alert(title = '', msg = '', btns = '', checkbox = '', width = '') { // generic one from chatgpt.alert()

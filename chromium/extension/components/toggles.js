@@ -1,15 +1,11 @@
 // Requires app + env + notify + syncConfigToUI
 
 window.toggles = {
-
-    imports: {
-        import(deps) { // { app, env, notify, syncConfigToUI }
-            for (const depName in deps) this[depName] = deps[depName] }
-    },
+    import(deps) { Object.assign(this.imports = this.imports || {}, deps) },
 
     getMsg(key) {
         return typeof GM_info != 'undefined' ?
-            this.imports.app.msgs[key] // from toggles.imports.import({ app }) in userscript
+            this.imports.app.msgs[key] // from toggles.import({ app }) in userscript
                 : chrome.i18n.getMessage(key) // from ./_locales/*/messages.json
     },
 
