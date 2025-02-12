@@ -1,4 +1,4 @@
-// This library is a condensed version of chatgpt.js v3.6.2
+// This library is a condensed version of chatgpt.js v3.6.3
 // © 2023–2025 KudoAI & contributors under the MIT license.
 // Source: https://github.com/KudoAI/chatgpt.js
 // User guide: https://chatgptjs.org/userguide
@@ -85,49 +85,53 @@ const chatgpt = {
               modalMessage = document.createElement('p');
 
         // Create/append/update modal style (if missing or outdated)
-        const thisUpdated = 1735768363880 // timestamp of last edit for this file's `modalStyle`
-        let modalStyle = document.querySelector('#chatgpt-modal-style'); // try to select existing style
+        const thisUpdated = 1739338889852 // timestamp of last edit for this file's `modalStyle`
+        let modalStyle = document.querySelector('#chatgpt-modal-style') // try to select existing style
         if (!modalStyle || parseInt(modalStyle.getAttribute('last-updated'), 10) < thisUpdated) { // if missing or outdated
             if (!modalStyle) { // outright missing, create/id/attr/append it first
-                modalStyle = document.createElement('style'); modalStyle.id = 'chatgpt-modal-style';
-                modalStyle.setAttribute('last-updated', thisUpdated.toString());
-                document.head.append(modalStyle);
+                modalStyle = document.createElement('style') ; modalStyle.id = 'chatgpt-modal-style'
+                modalStyle.setAttribute('last-updated', thisUpdated.toString())
+                document.head.append(modalStyle)
             }
             modalStyle.innerText = ( // update prev/new style contents
-                '.chatgpt-modal {' // vars
-                    + '--transition: opacity 0.65s cubic-bezier(.165,.84,.44,1),' // for fade-in
-                                  + 'transform 0.55s cubic-bezier(.165,.84,.44,1) ;' // for move-in
-                    + '--bg-transition: background-color 0.25s ease }' // for bg dim
+                `.chatgpt-modal { /* vars */
+                      --transition: opacity 0.65s cubic-bezier(.165,.84,.44,1), /* for fade-in */
+                                    transform 0.55s cubic-bezier(.165,.84,.44,1) ; /* for move-in */
+                      --bg-transition: background-color 0.25s ease ; /* for bg dim */
+                      --btn-transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out ; /* for smooth zoom */
+                      --btn-shadow: 2px 1px ${ scheme == 'dark' ? '54px #00cfff' : '30px #9cdaff' }}`
 
                 + '.no-mobile-tap-outline { outline: none ; -webkit-tap-highlight-color: transparent }'
 
                 // Background styles
-                + '.chatgpt-modal {'
-                    + 'pointer-events: auto ;' // override any disabling from site modals (like guest login spam)
-                    + 'position: fixed ; top: 0 ; left: 0 ; width: 100% ; height: 100% ;' // expand to full view-port
-                    + 'display: flex ; justify-content: center ; align-items: center ; z-index: 9999 ;' // align
-                    + 'transition: var(--bg-transition) ;' // for bg dim
-                        + '-webkit-transition: var(--bg-transition) ; -moz-transition: var(--bg-transition) ;'
-                        + '-o-transition: var(--bg-transition) ; -ms-transition: var(--bg-transition) }'
+                + `.chatgpt-modal {
+                      pointer-events: auto ; /* override any disabling from site modals (like guest login spam) */
+                      position: fixed ; top: 0 ; left: 0 ; width: 100% ; height: 100% ; /* expand to full view-port */
+                      display: flex ; justify-content: center ; align-items: center ; z-index: 9999 ; /* align */
+                      transition: var(--bg-transition) ; /* for bg dim */
+                          -webkit-transition: var(--bg-transition) ; -moz-transition: var(--bg-transition) ;
+                          -o-transition: var(--bg-transition) ; -ms-transition: var(--bg-transition) }`
 
                 // Alert styles
-                + '.chatgpt-modal > div {'
-                    + 'position: absolute ;' // to be click-draggable
-                    + 'opacity: 0 ;' // to fade-in
-                    + `border: 1px solid ${ scheme == 'dark' ? 'white' : '#b5b5b5' };`
-                    + `color: ${ scheme == 'dark' ? 'white' : 'black' };`
-                    + `background-color: ${ scheme == 'dark' ? 'black' : 'white' };`
-                    + 'transform: translateX(-3px) translateY(7px) ;' // offset to move-in from
-                    + 'max-width: 75vw ; word-wrap: break-word ; border-radius: 15px ;'
-                    + 'padding: 20px ; margin: 12px 23px ;'
-                    + `--shadow: 0 30px 60px rgba(0,0,0,0.12) ; box-shadow: var(--shadow) ;
-                          -webkit-box-shadow: var(--shadow) ; -moz-box-shadow: var(--shadow) ;`
-                    + 'user-select: none ; -webkit-user-select: none ; -moz-user-select: none ; -o-user-select: none ;'
-                        + '-ms-user-select: none ;'
-                    + 'transition: var(--transition) ;' // for fade-in + move-in
-                        + '-webkit-transition: var(--transition) ; -moz-transition: var(--transition) ;'
-                        + '-o-transition: var(--transition) ; -ms-transition: var(--transition) }'
-                + `.chatgpt-modal h2 { margin-bottom: 9px }
+                + `.chatgpt-modal > div {
+                      position: absolute ; /* to be click-draggable */
+                      opacity: 0 ; /* to fade-in */
+                      font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
+                                   Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif ;
+                      padding: 20px ; margin: 12px 23px ; font-size: 20px ;
+                      color: ${ scheme == 'dark' ? 'white' : 'black' };
+                      background-color: ${ scheme == 'dark' ? 'black' : 'white' };
+                      border: 1px solid ${ scheme == 'dark' ? 'white' : '#b5b5b5' };
+                      transform: translateX(-3px) translateY(7px) ; /* offset to move-in from */
+                      max-width: 75vw ; word-wrap: break-word ; border-radius: 15px ;
+                      --shadow: 0 30px 60px rgba(0,0,0,0.12) ; box-shadow: var(--shadow) ;
+                          -webkit-box-shadow: var(--shadow) ; -moz-box-shadow: var(--shadow) ;
+                      user-select: none ; -webkit-user-select: none ; -moz-user-select: none ;
+                          -o-user-select: none ; -ms-user-select: none ;
+                      transition: var(--transition) ; /* for fade-in + move-in */
+                          -webkit-transition: var(--transition) ; -moz-transition: var(--transition) ;
+                          -o-transition: var(--transition) ; -ms-transition: var(--transition) }
+                  .chatgpt-modal h2 { font-weight: bold ; font-size: 24px ; margin-bottom: 9px }
                   .chatgpt-modal a { color: ${ scheme == 'dark' ? '#00cfff' : '#1e9ebb' }}
                   .chatgpt-modal a:hover { text-decoration: underline }
                   .chatgpt-modal.animated > div {
@@ -137,39 +141,44 @@ const chatgpt = {
                       100% { opacity: 0 ; transform: scale(1.35) }}`
 
                 // Button styles
-                + '.modal-buttons { display: flex ; justify-content: flex-end ; margin: 20px -5px -3px 0 ;'
-                    + ( isMobile ? 'flex-direction: column-reverse' : '' ) + '}'
-                + '.chatgpt-modal button {'
-                    + `margin-left: ${ isMobile ? 0 : 10}px ; padding: ${ isMobile ? 15 : 4}px 18px ; border-radius: 15px ;`
-                    + ( isMobile ? 'margin-top: 5px ; margin-bottom: 3px ;' : '')
-                    + `border: 1px solid ${ scheme == 'dark' ? 'white' : 'black' }}`
-                + '.primary-modal-btn {'
-                    + `border: 1px solid ${ scheme == 'dark' ? 'white' : 'black' } ;`
-                    + `background: ${ scheme == 'dark' ? 'white' : 'black' } ;`
-                    + `color: ${ scheme == 'dark' ? 'black' : 'white' }}`
-                + `.chatgpt-modal button:hover {
-                      color: #3d5d71 ; border-color: #6d9cb9 ;
-                      background-color: ${ scheme == 'dark' ? '#00cfff' : '#9cdaff' };
-                      --shadow: 2px 1px ${ scheme == 'dark' ? '54px #00cfff' : '30px #9cdaff' };
-                      box-shadow: var(--shadow) ; box-shadow: var(--shadow) ; box-shadow: var(--shadow) }`
-                + '.modal-close-btn {'
-                    + 'cursor: pointer ; width: 29px ; height: 29px ; border-radius: 17px ;'
-                    + 'float: right ; position: relative ; right: -6px ; top: -5px }'
-                + '.modal-close-btn svg { margin: 10px }' // center SVG for hover underlay
-                + `.modal-close-btn:hover { background-color: #f2f2f2${ scheme == 'dark' ? '00' : '' }}`
+                + `.modal-buttons {
+                        display: flex ; justify-content: flex-end ; margin: 20px -5px -3px 0 ;
+                        ${ isMobile ? 'flex-direction: column-reverse' : '' }}
+                  .chatgpt-modal button {
+                      font-size: 14px ; text-transform: uppercase ;
+                      margin-left: ${ isMobile ? 0 : 10 }px ; padding: ${ isMobile ? 15 : 8 }px 18px ;
+                      ${ isMobile ? 'margin-top: 5px ; margin-bottom: 3px ;' : '' }
+                      border-radius: 0 ; border: 1px solid ${ scheme == 'dark' ? 'white' : 'black' };
+                      transition: var(--btn-transition) ;
+                          -webkit-transition: var(--btn-transition) ; -moz-transition: var(--btn-transition) ;
+                          -o-transition: var(--btn-transition) ; -ms-transition: var(--btn-transition) }
+                  .chatgpt-modal button:hover {
+                      transform: scale(1.055) ; color: black ;
+                      background-color: #${ scheme == 'dark' ? '00cfff' : '9cdaff' };
+                      box-shadow: var(--btn-shadow) ;
+                          -webkit-box-shadow: var(--btn-shadow) ; -moz-box-shadow: var(--btn-shadow) }
+                  .primary-modal-btn {
+                      border: 1px solid ${ scheme == 'dark' ? 'white' : 'black' };
+                      background: ${ scheme == 'dark' ? 'white' : 'black' };
+                      color: ${ scheme == 'dark' ? 'black' : 'white' }}
+                  .modal-close-btn {
+                      cursor: pointer ; width: 29px ; height: 29px ; border-radius: 17px ;
+                      float: right ; position: relative ; right: -6px ; top: -5px }
+                  .modal-close-btn svg { margin: 10px } /* center SVG for hover underlay */
+                  .modal-close-btn:hover { background-color: #f2f2f2${ scheme == 'dark' ? '00' : '' }}`
 
                 // Checkbox styles
-                + `.chatgpt-modal .checkbox-group { margin-top: 15px }
-                  .chatgpt-modal .checkbox-group label {
-                      font-size: .7rem ; margin: -.04rem 0 0px .3rem 
-                      color: ${ scheme == 'dark' ? '#e1e1e1' : '#1e1e1e' }}
-                  .chatgpt-modal input[type=checkbox] { transform: scale(0.7) ;
+                + `.chatgpt-modal .checkbox-group { margin: 5px 0 -8px 5px }
+                  .chatgpt-modal input[type=checkbox] {
+                      cursor: pointer ; transform: scale(0.7) ; margin-right: 5px ;
                       border: 1px solid ${ scheme == 'dark' ? 'white' : 'black' }}
                   .chatgpt-modal input[type=checkbox]:checked {
-                      border: 1px solid ${ scheme == 'dark' ? 'white' : 'black' } ;
-                      background-color: black ; position: inherit }
+                      background-color: black ; position: inherit ;
+                      border: 1px solid ${ scheme == 'dark' ? 'white' : 'black' }}
                   .chatgpt-modal input[type=checkbox]:focus {
-                      outline: none ; box-shadow: none ; -webkit-box-shadow: none ; -moz-box-shadow: none }`
+                      outline: none ; box-shadow: none ; -webkit-box-shadow: none ; -moz-box-shadow: none }
+                  .chatgpt-modal .checkbox-group label {
+                      font-size: 14px ; color: ${ scheme == 'dark' ? '#e1e1e1' : '#1e1e1e' }}`
             )
         }
 
@@ -579,7 +588,7 @@ const chatgpt = {
 
 };
 
-// Create alias functions
+// Create ALIAS functions
 const cjsFuncAliases = [
     ['actAs', 'actas', 'act', 'become', 'persona', 'premadePrompt', 'preMadePrompt', 'prePrompt', 'preprompt', 'roleplay', 'rolePlay', 'rp'],
     ['activateAutoRefresh', 'activateAutoRefresher', 'activateRefresher', 'activateSessionRefresher',
@@ -592,14 +601,13 @@ const cjsFuncAliases = [
     ['exportChat', 'chatExport', 'export'],
     ['getFooterDiv', 'getFooter'],
     ['getHeaderDiv', 'getHeader'],
-    ['getLastPrompt', 'getLastQuery', 'getMyLastMsg', 'getMyLastQuery'],
+    ['getLastPrompt', 'getLastQuery', 'getMyLastMessage', 'getMyLastQuery'],
     ['getContinueButton', 'getContinueGeneratingButton'],
     ['getScrollToBottomButton', 'getScrollButton'],
     ['getStopButton', 'getStopGeneratingButton'],
     ['getTextarea', 'getTextArea', 'getChatbar', 'getChatBar', 'getChatbox', 'getChatBox'],
     ['isFullScreen', 'isFullscreen', 'isfullscreen'],
-    ['isLoaded', 'isloaded'],
-    ['logOut', 'logout', 'logOff', 'logoff', 'signOut', 'signout', 'signOff', 'signoff'],
+    ['logout', 'logOut', 'logOff', 'signOff', 'signOut'],
     ['minify', 'codeMinify', 'minifyCode'],
     ['new', 'newChat', 'startNewChat'],
     ['obfuscate', 'codeObfuscate', 'obfuscateCode'],
@@ -609,7 +617,7 @@ const cjsFuncAliases = [
     ['refreshSession', 'sessionRefresh'],
     ['renderHTML', 'renderHtml', 'renderLinks', 'renderTags'],
     ['reviewCode', 'codeReview'],
-    ['send', 'sendChat', 'sendMsg'],
+    ['send', 'sendChat', 'sendMessage'],
     ['sendInNewChat', 'sendNewChat'],
     ['sentiment', 'analyzeSentiment', 'sentimentAnalysis'],
     ['startNewChat', 'new', 'newChat'],
@@ -620,7 +628,7 @@ const cjsFuncAliases = [
     ['translate', 'translation', 'translator'],
     ['unminify', 'unminifyCode', 'codeUnminify'],
     ['writeCode', 'codeWrite']
-];
+]
 const cjsFuncSynonyms = [
     ['account', 'acct'],
     ['activate', 'turnOn'],
@@ -636,51 +644,56 @@ const cjsFuncSynonyms = [
     ['execute', 'interpret', 'interpreter', 'run'],
     ['firefox', 'ff'],
     ['generating', 'generation'],
+    ['message', 'msg'],
     ['minify', 'uglify'],
     ['refactor', 'rewrite'],
     ['regenerate', 'regen'],
     ['render', 'parse'],
     ['reply', 'response'],
     ['sentiment', 'attitude', 'emotion', 'feeling', 'opinion', 'perception'],
-    ['speak', 'say', 'speech', 'talk', 'tts'],
+    ['speak', 'play', 'say', 'speech', 'talk', 'tts'],
     ['summarize', 'tldr'],
+    ['typing', 'generating'],
     ['unminify', 'beautify', 'prettify', 'prettyPrint']
 ];
-const camelCaser = (words) => {
-    return words.map((word, index) => index === 0 || word == 's' ? word : word.charAt(0).toUpperCase() + word.slice(1)).join(''); };
-for (const prop in chatgpt) {
-
-    // Create new function for each alias
-    for (const subAliases of cjsFuncAliases) {
-        if (subAliases.includes(prop)) {
-            if (subAliases.some(element => element.includes('.'))) {
-                const nestedFunction = subAliases.find(element => element.includes('.')).split('.')[1];
-                for (const nestAlias of subAliases) {
-                    if (/^(\w+)/.exec(nestAlias)[1] !== prop) { // don't alias og function
-                        chatgpt[nestAlias] = chatgpt[prop][nestedFunction]; // make new function, reference og one
-            }}} else { // alias direct functions
-                for (const dirAlias of subAliases) {
-                    if (dirAlias !== prop) { // don't alias og function
-                        chatgpt[dirAlias] = chatgpt[prop]; // make new function, reference og one
-            }}}
-    }}
-
-    do { // create new function per synonym per word per function
-        var newFunctionsCreated = false;
-        for (const funcName in chatgpt) {
-            if (typeof chatgpt[funcName] == 'function') {
-                const funcWords = funcName.split(/(?=[A-Zs])/); // split function name into constituent words
-                for (const funcWord of funcWords) {
-                    const synonymValues = [].concat(...cjsFuncSynonyms // flatten into single array w/ word's cjsFuncSynonyms
+(function createCJSaliasFuncs(obj = chatgpt) {
+    for (const prop in obj) {
+        if (!Object.prototype.hasOwnProperty.call(obj, prop)) continue // skip inherited props
+        if (typeof obj[prop] == 'object') createCJSaliasFuncs(obj[prop]) // recurse thru objs to find deeper functions
+    }
+    let aliasFuncCreated
+    do {
+        aliasFuncCreated = false
+        for (const prop in obj) {
+            if (!Object.prototype.hasOwnProperty.call(obj, prop)) continue // skip inherited props
+            if (typeof obj[prop] == 'function') {
+                obj[prop.toLowerCase()] = obj[prop]  // create lowercase variant
+                cjsFuncAliases.forEach(aliasArr => { // create alias function per alias to use
+                    if (!aliasArr.includes(prop)) return
+                    aliasArr.forEach(alias => { if (!obj[alias]) {
+                        obj[alias] = obj[alias.toLowerCase()] = obj[prop] ; aliasFuncCreated = true }})
+                })
+                const funcWords = prop.split(/(?=[A-Z])/) // split function name into constituent words
+                funcWords.forEach(funcWord => { // create alias function per function word per synonym
+                    const synonymsToUse = cjsFuncSynonyms
                         .filter(arr => arr.includes(funcWord.toLowerCase())) // filter in relevant synonym sub-arrays
-                        .map(arr => arr.filter(synonym => synonym !== funcWord.toLowerCase()))); // filter out matching word
-                    for (const synonym of synonymValues) { // create function per synonym
-                        const newFuncName = camelCaser(funcWords.map(word => (word == funcWord ? synonym : word)));
-                        if (!chatgpt[newFuncName]) { // don't alias existing functions
-                            chatgpt[newFuncName] = chatgpt[funcName]; // make new function, reference og one
-                            newFunctionsCreated = true;
-    }}}}}} while (newFunctionsCreated); // loop over new functions to encompass all variations
-}
+                        .flat().filter(synonym => synonym != funcWord.toLowerCase()) // filter out matching word
+                    synonymsToUse.forEach(synonym => { // create alias function per synonym to use
+                        const newFuncName = toCamelCase(funcWords.map(word => word == funcWord ? synonym : word))
+                        if (!obj[newFuncName]) {
+                            obj[newFuncName] = obj[newFuncName.toLowerCase()] = obj[prop] ; aliasFuncCreated = true }
+                    })
+                })
+            }
+        }
+    } while (aliasFuncCreated) // loop over new functions to encompass all variations
+})()
+
+
+// Define HELPER functions
+
+function toCamelCase(words) {
+    return words.map((word, idx) => idx == 0 ? word : word.charAt(0).toUpperCase() + word.slice(1)).join('') }
 
 // Prefix console logs w/ '🤖 chatgpt.js >> '
 const consolePrefix = '🤖 chatgpt.js >> ', ogError = console.error, ogInfo = console.info;
