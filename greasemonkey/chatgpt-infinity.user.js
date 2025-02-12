@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2025.2.12
+// @version             2025.2.12.1
 // @license             MIT
 // @icon                https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?v=69e434b
 // @icon64              https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?v=69e434b
@@ -391,6 +391,11 @@
             words: [app.msgs.state_off.toUpperCase(), app.msgs.state_on.toUpperCase()]
         },
 
+        refresh() {
+            if (typeof GM_unregisterMenuCommand == 'undefined') return
+            for (const id of menu.ids) { GM_unregisterMenuCommand(id) } menu.register()
+        },
+
         register() {
 
             // Show "Disabled (extension installed)"
@@ -477,11 +482,6 @@
                     () => modals.open(entryType), env.scriptManager.supportsTooltips ? { title: ' ' } : undefined
                 ))
             })
-        },
-
-        refresh() {
-            if (typeof GM_unregisterMenuCommand == 'undefined') return
-            for (const id of menu.ids) { GM_unregisterMenuCommand(id) } menu.register()
         }
     }
 
@@ -546,12 +546,12 @@
 
     // Define UI functions
 
-    function syncConfigToUI(options) {
-        if (options?.updatedKey == 'infinityMode') infinity[config.infinityMode ? 'activate' : 'deactivate']()
-        else if (settings.controls[options?.updatedKey].type == 'prompt' && config.infinityMode)
-            infinity.restart({ target: options?.updatedKey == 'replyInterval' ? 'self' : 'new' })
-        if (/infinityMode|toggleHidden/.test(options?.updatedKey)) toggles.sidebar.update.state()
-        menu.refresh() // prefixes/suffixes
+    chatgpt.isIdle = function() { // replace waiting for chat to start in case of interrupts
+        return new Promise(resolve => { // when stop btn missing
+            new MutationObserver((_, obs) => {
+                if (!chatgpt.getStopBtn()) { obs.disconnect(); resolve() }
+            }).observe(document.body, { childList: true, subtree: true })
+        })
     }
 
     function getScheme() {
@@ -559,12 +559,12 @@
             || (window.matchMedia?.('(prefers-color-scheme: dark)')?.matches ? 'dark' : 'light')
     }
 
-    chatgpt.isIdle = function() { // replace waiting for chat to start in case of interrupts
-        return new Promise(resolve => { // when stop btn missing
-            new MutationObserver((_, obs) => {
-                if (!chatgpt.getStopBtn()) { obs.disconnect(); resolve() }
-            }).observe(document.body, { childList: true, subtree: true })
-        })
+    function syncConfigToUI(options) {
+        if (options?.updatedKey == 'infinityMode') infinity[config.infinityMode ? 'activate' : 'deactivate']()
+        else if (settings.controls[options?.updatedKey].type == 'prompt' && config.infinityMode)
+            infinity.restart({ target: options?.updatedKey == 'replyInterval' ? 'self' : 'new' })
+        if (/infinityMode|toggleHidden/.test(options?.updatedKey)) toggles.sidebar.update.state()
+        menu.refresh() // prefixes/suffixes
     }
 
     // Define INFINITY MODE functions
