@@ -28,14 +28,14 @@ window.modals = {
         // Show modal
         const aboutModal = modals.alert(
             `${this.imports.app.symbol} ${this.getMsg('appName')}`, // title
-            `🧠 ${this.getMsg('about_author')}: ` // msg
+            `<b>🧠 ${this.getMsg('about_author')}:</b> ` // msg
                 + `<a href="${this.imports.app.author.url}">${this.getMsg('appAuthor')}</a> ${this.getMsg('about_and')}`
                     + ` <a href="${this.imports.app.urls.contributors}">${this.getMsg('about_contributors')}</a>\n`
-            + `🏷️ ${this.getMsg('about_version')}: <span class="about-em">${this.imports.app.version}</span>\n`
-            + `📜 ${this.getMsg('about_openSourceCode')}: `
+            + `<b>🏷️ ${this.getMsg('about_version')}:</b> <span class="about-em">${this.imports.app.version}</span>\n`
+            + `<b>📜 ${this.getMsg('about_openSourceCode')}:</b> `
                 + `<a href="${this.imports.app.urls.gitHub}" target="_blank" rel="nopener">`
                     + this.imports.app.urls.gitHub + '</a>\n'
-            + `⚡ ${this.getMsg('about_poweredBy')}: `
+            + `<b>⚡ ${this.getMsg('about_poweredBy')}:</b> `
                 + `<a href="${this.imports.app.urls.chatgptJS}" target="_blank" rel="noopener">chatgpt.js</a>`
                     + ` v${this.imports.app.chatgptJSver}`,
             modalBtns, '', 686
