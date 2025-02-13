@@ -12,7 +12,7 @@ window.dom = {
           + 'z-index: -1' ); // allow interactive elems to be clicked
         ['sm', 'med', 'lg'].forEach(particleSize => {
             const particlesDiv = document.createElement('div')
-            particlesDiv.id = `${ this.imports.scheme == 'dark' ? darkScheme
+            particlesDiv.id = `${ this.imports?.scheme == 'dark' ? darkScheme
                 : lightScheme }-particles-${particleSize}`
             particlesDivsWrapper.append(particlesDiv)
         })
