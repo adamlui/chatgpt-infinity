@@ -14,12 +14,12 @@
 
     // Define FUNCTIONS
 
+    function notify(msg, pos = 'bottom-right') { sendMsgToActiveTab('notify', { msg, pos }) }
+
     async function sendMsgToActiveTab(action, options) {
         const [activeTab] = await chrome.tabs.query({ active: true, currentWindow: true })
         return await chrome.tabs.sendMessage(activeTab.id, { action: action, options: { ...options }})
     }
-
-    function notify(msg, pos = 'bottom-right') { sendMsgToActiveTab('notify', { msg, pos }) }
     function siteAlert(title, msg) { sendMsgToActiveTab('alert', { title, msg }) }
     async function sitePrompt(msg, defaultVal) { return await sendMsgToActiveTab('prompt', { msg, defaultVal }) }
 
