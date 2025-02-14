@@ -74,4 +74,3 @@ footer > .menu-icon { position: absolute ; bottom: -10px ; opacity: 0.7 }
 
 /* Master toggle effects */
 .disabled { opacity: 0.3 ; pointer-events: none }
-.enabled { opacity: 1 }
