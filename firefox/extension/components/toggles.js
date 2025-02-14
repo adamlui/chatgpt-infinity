@@ -125,7 +125,7 @@ window.toggles = {
             const sidebar = document.querySelectorAll('nav')[toggles.imports.env.browser.isMobile ? 1 : 0]
             if (!sidebar) return
             this.status = 'inserting' ; if (!this.div) this.create()
-            sidebar.insertBefore(this.div, sidebar.children[1]) ; this.status = 'inserted'
+            sidebar.children[1].before(this.div) ; this.status = 'inserted'
         },
 
         update: {
