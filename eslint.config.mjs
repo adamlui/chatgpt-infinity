@@ -44,7 +44,13 @@ export default [
         }
     },
     { files: ['**/chatgpt.js'], languageOptions: { globals: { chatgpt: 'off' }}},
-    { files: ['**/*.css'], language: 'css/css', ...css.configs.recommended },
+    {
+        files: ['**/*.css'], language: 'css/css', plugins: { css },
+        rules: {
+            ...css.configs.recommended.rules,
+            'css/require-baseline': 'off' // allow widely unavailable features since browser-specific extension
+        }
+    },
     {
         files: ['**/*.html'], languageOptions: { parser: htmlParser }, plugins: { '@html-eslint': html },
         rules: {
