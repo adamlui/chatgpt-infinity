@@ -26,16 +26,18 @@ window.modals = {
             modalBtns.unshift(function checkForUpdates(){ modals.imports.updateCheck() })
 
         // Show modal
+        const labelStyles = 'text-transform: uppercase ; font-size: 17px ; font-weight: bold ; color: #494141'
         const aboutModal = modals.alert(
             `${this.imports.app.symbol} ${this.getMsg('appName')}`, // title
-            `<b>🧠 ${this.getMsg('about_author')}:</b> ` // msg
+            `<span style="${labelStyles}">🧠 ${this.getMsg('about_author')}:</span> `
                 + `<a href="${this.imports.app.author.url}">${this.getMsg('appAuthor')}</a> ${this.getMsg('about_and')}`
                     + ` <a href="${this.imports.app.urls.contributors}">${this.getMsg('about_contributors')}</a>\n`
-            + `<b>🏷️ ${this.getMsg('about_version')}:</b> <span class="about-em">${this.imports.app.version}</span>\n`
-            + `<b>📜 ${this.getMsg('about_openSourceCode')}:</b> `
+            + `<span style="${labelStyles}">🏷️ ${this.getMsg('about_version')}:</span> `
+                + `<span class="about-em">${this.imports.app.version}</span>\n`
+            + `<span style="${labelStyles}">📜 ${this.getMsg('about_openSourceCode')}:</span> `
                 + `<a href="${this.imports.app.urls.gitHub}" target="_blank" rel="nopener">`
                     + this.imports.app.urls.gitHub + '</a>\n'
-            + `<b>⚡ ${this.getMsg('about_poweredBy')}:</b> `
+            + `<span style="${labelStyles}">⚡ ${this.getMsg('about_poweredBy')}:</span> `
                 + `<a href="${this.imports.app.urls.chatgptJS}" target="_blank" rel="noopener">chatgpt.js</a>`
                     + ` v${this.imports.app.chatgptJSver}`,
             modalBtns, '', 686
