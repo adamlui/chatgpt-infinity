@@ -55,7 +55,7 @@
     // Init MASTER TOGGLE
     const masterToggle = document.querySelector('input')
     await settings.load('extensionDisabled')
-    masterToggle.checked = !config.extensionDisabled ; sync.fade()
+    masterToggle.checked = !config.extensionDisabled
     masterToggle.onchange = () => {
         settings.save('extensionDisabled', !config.extensionDisabled)
         if (config.infinityMode) // always disable Infinity Mode on master toggle
@@ -162,8 +162,6 @@
                 sync.configToUI({ updatedKey: key }) ; close() // popup
             }
         })
-
-        sync.fade() // in case master toggle off
     }
 
     // LOCALIZE labels
@@ -176,6 +174,8 @@
     }})
     if (translationOccurred) // update <html lang> attr
         document.documentElement.lang = chrome.i18n.getUILanguage().split('-')[0]
+
+    sync.fade() // based on master toggle
 
     // Create/append FOOTER container
     const footer = dom.create.elem('footer') ; document.body.append(footer)
