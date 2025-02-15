@@ -39,5 +39,5 @@ chrome.runtime.onMessage.addListener(async req => {
     app.urls.resourceHost = `https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@${app.latestResourceCommitHash}`
     const remoteAppData = await (await fetch(`${app.urls.resourceHost}/assets/data/app.json`)).json()
     Object.assign(app, { ...remoteAppData, urls: { ...app.urls, ...remoteAppData.urls }})
-    chrome.storage.sync.set({ app }) // save to browser storage
+    chrome.storage.local.set({ app }) // save to browser storage
 })()
