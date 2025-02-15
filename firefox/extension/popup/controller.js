@@ -59,9 +59,8 @@
         if (config.infinityMode) // always disable Infinity Mode on master toggle
             document.querySelector('.menu-area > .toggle-switch > input')?.click()
         Object.keys(sync).forEach(key => sync[key]({ updatedKey: 'extensionDisabled' })) // sync fade + storage to UI
-        if (!config.notifDisabled)
-            notify(`${chrome.i18n.getMessage('appName')} 🧩 ${chrome.i18n.getMessage(`state_${
-                config.extensionDisabled ? 'off' : 'on' }`).toUpperCase()}`)
+        notify(`${chrome.i18n.getMessage('appName')} 🧩 ${chrome.i18n.getMessage(`state_${
+            config.extensionDisabled ? 'off' : 'on' }`).toUpperCase()}`)
     }
 
     // Create CHILD menu entries on chatgpt.com
