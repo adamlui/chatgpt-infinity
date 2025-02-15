@@ -14,7 +14,10 @@
 
     // Define FUNCTIONS
 
-    function notify(msg, pos = 'bottom-right') { sendMsgToActiveTab('notify', { msg, pos }) }
+    function notify(msg, pos = 'bottom-right') {
+        if (config.notifDisabled && !msg.includes(chrome.i18n.getMessage('menuLabel_modeNotifs'))) return
+        sendMsgToActiveTab('notify', { msg, pos })
+    }
 
     async function sendMsgToActiveTab(action, options) {
         const [activeTab] = await chrome.tabs.query({ active: true, currentWindow: true })
