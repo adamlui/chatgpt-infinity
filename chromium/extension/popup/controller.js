@@ -5,8 +5,11 @@
         await import(chrome.runtime.getURL(resource))
 
     // Init ENV context
-    const env = { site: /([^.]+)\.[^.]+$/.exec(new URL((await chrome.tabs.query(
-        { active: true, currentWindow: true }))[0].url).hostname)?.[1] }
+    const env = {
+        site: /([^.]+)\.[^.]+$/.exec(new URL((await chrome.tabs.query(
+            { active: true, currentWindow: true }))[0].url).hostname)?.[1],
+        displaysEnglish: (await chrome.i18n.getAcceptLanguages())[0].startsWith('en')
+    }
 
     // Import APP data
     const { app } = await chrome.storage.local.get('app')
@@ -180,8 +183,8 @@
     const footer = dom.create.elem('footer') ; document.body.append(footer)
 
     // Create/append CHATGPT.JS footer logo
-    const cjsSpan = dom.create.elem('span', {
-        class: 'cjs-span', title: `${chrome.i18n.getMessage('about_poweredBy')} chatgpt.js` })
+    const cjsSpan = dom.create.elem('span', { class: 'cjs-span',
+        title: env.displaysEnglish ? '' : `${chrome.i18n.getMessage('about_poweredBy')} chatgpt.js` })
     const cjsLogo = dom.create.elem('img', {
         src: `${app.urls.cjsAssetHost}/images/badges/powered-by-chatgpt.js.png?b2a1975` })
     cjsSpan.onclick = () => { open(app.urls.chatgptJS) ; close() }
