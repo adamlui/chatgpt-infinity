@@ -184,7 +184,7 @@
         class: 'chatgpt-js', title: `${chrome.i18n.getMessage('about_poweredBy')} chatgpt.js` })
     const cjsLogo = dom.create.elem('img', {
         src: `${app.urls.cjsAssetHost}/images/badges/powered-by-chatgpt.js.png?b2a1975` })
-    cjsSpan.onclick = () => { chrome.tabs.create({ url: app.urls.chatgptJS }) ; close() }
+    cjsSpan.onclick = () => { open(app.urls.chatgptJS) ; close() }
     cjsSpan.append(cjsLogo) ; footer.append(cjsSpan)
 
     // Create/append ABOUT footer button
@@ -200,7 +200,7 @@
         title:  chrome.i18n.getMessage('btnLabel_moreAIextensions'),
         class: 'menu-icon menu-area', style: 'right:2px ; padding-top: 2px' })
     const moreExtensionsIcon = icons.create('plus')
-    moreExtensionsSpan.onclick = () => { chrome.tabs.create({ url: app.urls.relatedExtensions }) ; close() }
+    moreExtensionsSpan.onclick = () => { open(app.urls.relatedExtensions) ; close() }
     moreExtensionsSpan.append(moreExtensionsIcon) ; footer.append(moreExtensionsSpan)
 
     // Remove loading spinner
