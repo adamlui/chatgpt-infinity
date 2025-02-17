@@ -32,7 +32,7 @@
             const userInput = window.prompt(req.options.msg || 'Please enter your input:', req.options.defaultVal || '')
             sendResp({ input: userInput })
         } else if (req.action == 'syncConfigToUI') {
-            if (req.sender == 'background.js') // disable Infinity mode 1st to not transfer between tabs
+            if (req.fromBG) // disable Infinity mode 1st to not transfer between tabs
                 settings.save('infinityMode', false)
             syncConfigToUI(req.options)
         }

@@ -10,7 +10,7 @@ chrome.runtime.onInstalled.addListener(details => {
 chrome.tabs.onActivated.addListener(activeInfo =>
     chrome.tabs.sendMessage(activeInfo.tabId, {
         action: 'syncConfigToUI',
-        sender: 'service-worker.js' // for content.js to reset config.infinityMode
+        fromBG: true // for content.js to reset config.infinityMode
 }))
 
 // Show ABOUT modal on ChatGPT when toolbar button clicked
