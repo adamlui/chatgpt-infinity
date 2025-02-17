@@ -1,7 +1,9 @@
+const chatgptURL = 'https://chatgpt.com'
+
 // Launch CHATGPT on install
 chrome.runtime.onInstalled.addListener(details => {
     if (details.reason == 'install') // to exclude updates
-        chrome.tabs.create({ url: 'https://chatgpt.com/' })
+    chrome.tabs.create({ url: chatgptURL })
 })
 
 // Sync SETTINGS to activated tabs
@@ -16,12 +18,11 @@ chrome.runtime.onMessage.addListener(async req => {
     if (req.action == 'showAbout') {
         const [activeTab] = await chrome.tabs.query({ active: true, currentWindow: true })
         const chatgptTab = new URL(activeTab.url).hostname == 'chatgpt.com' ? activeTab
-            : await chrome.tabs.create({ url: 'https://chatgpt.com/' })
+            : await chrome.tabs.create({ url: chatgptURL })
         if (activeTab != chatgptTab) await new Promise(resolve => // after new tab loads
             chrome.tabs.onUpdated.addListener(async function loadedListener(tabId, info) {
                 if (tabId == chatgptTab.id && info.status == 'complete') {
-                    chrome.tabs.onUpdated.removeListener(loadedListener)
-                    setTimeout(resolve, 2500)
+                    chrome.tabs.onUpdated.removeListener(loadedListener) ; setTimeout(resolve, 2500)
         }}))
         chrome.tabs.sendMessage(chatgptTab.id, { action: 'showAbout' })
     }
