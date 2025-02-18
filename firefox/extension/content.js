@@ -45,18 +45,19 @@
     if (!config.replyLanguage) // init reply language if unset
         settings.save('replyLanguage', (await chrome.i18n.getAcceptLanguages())[0])
     if (!config.replyTopic) // init reply topic if unset
-        settings.save('replyTopic', chrome.i18n.getMessage('menuLabel_all'))
+        settings.save('replyTopic', getMsg('menuLabel_all'))
     if (!config.replyInterval) settings.save('replyInterval', 7) // init refresh interval to 7 secs if unset
 
     // Define FUNCTIONS
 
+    function getMsg(key) { return chrome.i18n.getMessage(key) }
+
     function notify(msg, pos = '', notifDuration = '', shadow = '') {
-        if (config.notifDisabled && !msg.includes(chrome.i18n.getMessage('menuLabel_modeNotifs'))) return
+        if (config.notifDisabled && !msg.includes(getMsg('menuLabel_modeNotifs'))) return
 
         // Strip state word to append colored one later
-        const foundState = [ chrome.i18n.getMessage('state_on').toUpperCase(),
-                             chrome.i18n.getMessage('state_off').toUpperCase()
-              ].find(word => msg.includes(word))
+        const foundState = [
+            getMsg('state_on').toUpperCase(), getMsg('state_off').toUpperCase() ].find(word => msg.includes(word))
         if (foundState) msg = msg.replace(foundState, '')
 
         // Show notification
@@ -77,7 +78,7 @@
             }
             const styledStateSpan = dom.create.elem('span')
             styledStateSpan.style.cssText = stateStyles[
-                foundState == chrome.i18n.getMessage('state_off').toUpperCase() ? 'off' : 'on'][env.ui.scheme]
+                foundState == getMsg('state_off').toUpperCase() ? 'off' : 'on'][env.ui.scheme]
             styledStateSpan.append(foundState) ; notif.append(styledStateSpan)
         }
     }
@@ -179,7 +180,7 @@
     // Auto-start if enabled
     if (config.autoStart) {
         settings.save('infinityMode', true) ; syncConfigToUI({ updatedKey: 'infinityMode' })
-        notify(`${chrome.i18n.getMessage('menuLabel_autoStart')}: ${chrome.i18n.getMessage('state_on').toUpperCase()}`)
+        notify(`${getMsg('menuLabel_autoStart')}: ${getMsg('state_on').toUpperCase()}`)
     }
 
     // Monitor NODE CHANGES to maintain sidebar toggle visibility

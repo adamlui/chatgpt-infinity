@@ -17,8 +17,10 @@
 
     // Define FUNCTIONS
 
+    function getMsg(key) { return chrome.i18n.getMessage(key) }
+
     function notify(msg, pos = 'bottom-right') {
-        if (config.notifDisabled && !msg.includes(chrome.i18n.getMessage('menuLabel_modeNotifs'))) return
+        if (config.notifDisabled && !msg.includes(getMsg('menuLabel_modeNotifs'))) return
         sendMsgToActiveTab('notify', { msg, pos })
     }
 
@@ -60,7 +62,7 @@
 
     // Run MAIN routine
 
-    const appName = env.browser.displaysEnglish ? app.name : chrome.i18n.getMessage('appName') // for shorter notifs
+    const appName = env.browser.displaysEnglish ? app.name : getMsg('appName') // for shorter notifs
 
     // Init MASTER TOGGLE
     const masterToggle = {
@@ -74,14 +76,13 @@
         env.extensionWasDisabled = config.extensionDisabled
         masterToggle.switch.classList.toggle('on') ; settings.save('extensionDisabled', !config.extensionDisabled)
         Object.keys(sync).forEach(key => sync[key]()) // sync fade + storage to UI
-        notify(`${appName} 🧩 ${
-            chrome.i18n.getMessage(`state_${ config.extensionDisabled ? 'off' : 'on' }`).toUpperCase()}`)
+        notify(`${appName} 🧩 ${getMsg(`state_${ config.extensionDisabled ? 'off' : 'on' }`).toUpperCase()}`)
     }
 
     // Create CHILD menu entries on chatgpt.com
     if (env.site == 'chatgpt') {
         const childEntriesDiv = dom.create.elem('div') ; document.body.append(childEntriesDiv)
-        const re_all = new RegExp(`^(${chrome.i18n.getMessage('menuLabel_all')}|all|any|every)$`, 'i')
+        const re_all = new RegExp(`^(${getMsg('menuLabel_all')}|all|any|every)$`, 'i')
         await settings.load(Object.keys(settings.controls))
         Object.keys(settings.controls).forEach(key => {
             const controlType = settings.controls[key].type
@@ -113,46 +114,46 @@
                     if (key == 'replyLanguage') {
                         while (true) {
                             let replyLang = await (await sitePrompt(
-                                `${chrome.i18n.getMessage('prompt_updateReplyLang')}:`, config.replyLanguage)).input
+                                `${getMsg('prompt_updateReplyLang')}:`, config.replyLanguage)).input
                             if (replyLang == null) break // user cancelled so do nothing
                             else if (!/\d/.test(replyLang)) { // valid reply language set
                                 replyLang = ( // auto-case for menu/alert aesthetics
                                     replyLang.length < 4 || replyLang.includes('-') ? replyLang.toUpperCase()
                                         : replyLang.charAt(0).toUpperCase() + replyLang.slice(1).toLowerCase() )
                                 settings.save('replyLanguage', replyLang || (await chrome.i18n.getAcceptLanguages())[0])
-                                siteAlert(chrome.i18n.getMessage('alert_replyLangUpdated') + '!',
-                                    `${chrome.i18n.getMessage('appName')} ${chrome.i18n.getMessage('alert_willReplyIn')} `
-                                    + `${ replyLang || chrome.i18n.getMessage('alert_yourSysLang') }.`
+                                siteAlert(getMsg('alert_replyLangUpdated') + '!',
+                                    `${getMsg('appName')} ${getMsg('alert_willReplyIn')} `
+                                    + `${ replyLang || getMsg('alert_yourSysLang') }.`
                                 )
                                 break
                             }
                         }
                     } else if (key == 'replyTopic') {
-                        let replyTopic = await (await sitePrompt(chrome.i18n.getMessage('prompt_updateReplyTopic')
-                            + ' (' + chrome.i18n.getMessage('prompt_orEnter') + ' \'ALL\'):', config.replyTopic)).input
+                        let replyTopic = await (await sitePrompt(getMsg('prompt_updateReplyTopic')
+                            + ' (' + getMsg('prompt_orEnter') + ' \'ALL\'):', config.replyTopic)).input
                         if (replyTopic != null) { // user didn't cancel
                             replyTopic = toTitleCase(replyTopic.toString()) // for menu/alert aesthetics
                             settings.save('replyTopic',
-                                !replyTopic || re_all.test(replyTopic) ? chrome.i18n.getMessage('menuLabel_all')
+                                !replyTopic || re_all.test(replyTopic) ? getMsg('menuLabel_all')
                                                                     : replyTopic)
-                            siteAlert(`${chrome.i18n.getMessage('alert_replyTopicUpdated')}!`,
-                                `${chrome.i18n.getMessage('appName')} ${chrome.i18n.getMessage('alert_willAnswer')} `
+                            siteAlert(`${getMsg('alert_replyTopicUpdated')}!`,
+                                `${getMsg('appName')} ${getMsg('alert_willAnswer')} `
                                     + ( !replyTopic || re_all.test(replyTopic) ?
-                                            chrome.i18n.getMessage('alert_onAllTopics')
-                                        : `${chrome.i18n.getMessage('alert_onTopicOf')} ${replyTopic}`
+                                            getMsg('alert_onAllTopics')
+                                        : `${getMsg('alert_onTopicOf')} ${replyTopic}`
                                     ) + '!'
                             )
                         }
                     } else if (key == 'replyInterval') {
                         while (true) {
                             const replyInterval = await (await sitePrompt(
-                                `${chrome.i18n.getMessage('prompt_updateReplyInt')}:`, config.replyInterval)).input
+                                `${getMsg('prompt_updateReplyInt')}:`, config.replyInterval)).input
                             if (replyInterval == null) break // user cancelled so do nothing
                             else if (!isNaN(parseInt(replyInterval, 10)) && parseInt(replyInterval, 10) > 4) {
                                 settings.save('replyInterval', parseInt(replyInterval, 10))
-                                siteAlert(chrome.i18n.getMessage('alert_replyIntUpdated') + '!',
-                                    chrome.i18n.getMessage('appName') + ' ' + chrome.i18n.getMessage('alert_willReplyEvery')
-                                    + ' ' + replyInterval + ' ' + chrome.i18n.getMessage('unit_seconds') + '.')
+                                siteAlert(getMsg('alert_replyIntUpdated') + '!',
+                                    getMsg('appName') + ' ' + getMsg('alert_willReplyEvery')
+                                    + ' ' + replyInterval + ' ' + getMsg('unit_seconds') + '.')
                                 break
                             }
                         }
@@ -167,7 +168,7 @@
     let translationOccurred = false
     document.querySelectorAll('[data-locale]').forEach(elem => {
         const localeKeys = elem.dataset.locale.split(' '),
-              translatedText = localeKeys.map(key => chrome.i18n.getMessage(key)).join(' ')
+              translatedText = localeKeys.map(key => getMsg(key)).join(' ')
         if (translatedText != elem.innerText) {
             elem.innerText = translatedText ; translationOccurred = true }
     })
@@ -181,7 +182,7 @@
 
     // Create/append CHATGPT.JS footer logo
     const cjsSpan = dom.create.elem('span', { class: 'cjs-span',
-        title: env.browser.displaysEnglish ? '' : `${chrome.i18n.getMessage('about_poweredBy')} chatgpt.js` })
+        title: env.browser.displaysEnglish ? '' : `${getMsg('about_poweredBy')} chatgpt.js` })
     const cjsLogo = dom.create.elem('img', {
         src: `${app.urls.cjsAssetHost}/images/badges/powered-by-chatgpt.js.png?b2a1975` })
     cjsSpan.onclick = () => { open(app.urls.chatgptJS) ; close() }
@@ -189,7 +190,7 @@
 
     // Create/append ABOUT footer button
     const aboutSpan = dom.create.elem('span', {
-        title: `${chrome.i18n.getMessage('menuLabel_about')} ${chrome.i18n.getMessage('appName')}`,
+        title: `${getMsg('menuLabel_about')} ${getMsg('appName')}`,
         class: 'menu-icon highlight-on-hover', style: 'right:30px ; padding-top: 2px' })
     const aboutIcon = icons.create('questionMark', { width: 15, height: 13, style: 'margin-bottom: 0.04rem' })
     aboutSpan.onclick = () => { chrome.runtime.sendMessage({ action: 'showAbout' }) ; close() }
@@ -197,7 +198,7 @@
 
     // Create/append RELATED EXTENSIONS footer button
     const moreExtensionsSpan = dom.create.elem('span', {
-        title:  chrome.i18n.getMessage('btnLabel_moreAIextensions'),
+        title:  getMsg('btnLabel_moreAIextensions'),
         class: 'menu-icon highlight-on-hover', style: 'right:2px ; padding-top: 2px' })
     const moreExtensionsIcon = icons.create('plus')
     moreExtensionsSpan.onclick = () => { open(app.urls.relatedExtensions) ; close() }
