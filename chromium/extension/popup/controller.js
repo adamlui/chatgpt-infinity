@@ -95,7 +95,7 @@
             entry.div.append(entry.leftElem, entry.label) ; childEntriesDiv.append(entry.div)
             if (controlType == 'toggle') { // add track to left, init knob pos
                 entry.leftElem.append(dom.create.elem('span', { class: 'track' }))
-                entry.leftElem.classList.toggle('on', /disabled/i.test(key) ^ config[key])
+                entry.leftElem.classList.toggle('on', /disabled|hidden/i.test(key) ^ config[key])
             } else { // add symbol to left, append status to right
                 entry.leftElem.innerText = settings.controls[key].symbol
                 entry.label.innerText += `— ${settings.controls[key].status}`
@@ -107,7 +107,7 @@
                     entry.leftElem.classList.toggle('on')
                     settings.save(key, !config[key]) ; sync.configToUI({ updatedKey: key })
                     notify(`${settings.controls[key].label} ${chrome.i18n.getMessage(`state_${
-                        /disabled/i.test(key) ^ config[key] ? 'on' : 'off' }`).toUpperCase()}`)
+                        /disabled|hidden/i.test(key) ^ config[key] ? 'on' : 'off' }`).toUpperCase()}`)
                 } else {
                     if (key == 'replyLanguage') {
                         while (true) {
