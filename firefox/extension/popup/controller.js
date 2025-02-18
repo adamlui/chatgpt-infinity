@@ -197,7 +197,8 @@
         setTimeout(() => toggleSiteSettingsVisibility({ transitions: onMatchedPage }),
             !onMatchedPage ? 0 // no delay since emptyish already
           : !env.browser.isFF ? 250 // some delay since other settings appear
-          : 335) // more in FF since no transition
+          : 335 // more in FF since no transition
+        )
     }
 
     // LOCALIZE labels
