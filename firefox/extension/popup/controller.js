@@ -27,6 +27,7 @@
         return await chrome.tabs.sendMessage(activeTab.id, { action: action, options: { ...options }})
     }
 
+    function settingIsEnabled(key) { return config[key] ^ /disabled|hidden/i.test(key) }
     function siteAlert(title, msg) { sendMsgToActiveTab('alert', { title, msg }) }
     async function sitePrompt(msg, defaultVal) { return await sendMsgToActiveTab('prompt', { msg, defaultVal }) }
 
@@ -96,7 +97,7 @@
             entry.div.append(entry.leftElem, entry.label) ; childEntriesDiv.append(entry.div)
             if (controlType == 'toggle') { // add track to left, init knob pos
                 entry.leftElem.append(dom.create.elem('span', { class: 'track' }))
-                entry.leftElem.classList.toggle('on', /disabled|hidden/i.test(key) ^ config[key])
+                entry.leftElem.classList.toggle('on', settingIsEnabled(key))
             } else { // add symbol to left, append status to right
                 entry.leftElem.innerText = settings.controls[key].symbol
                 entry.label.innerText += `— ${settings.controls[key].status}`
@@ -107,7 +108,7 @@
                     entry.leftElem.classList.toggle('on')
                     settings.save(key, !config[key]) ; sync.configToUI({ updatedKey: key })
                     notify(`${settings.controls[key].label} ${chrome.i18n.getMessage(`state_${
-                        /disabled|hidden/i.test(key) ^ config[key] ? 'on' : 'off' }`).toUpperCase()}`)
+                        settingIsEnabled(key) ? 'on' : 'off' }`).toUpperCase()}`)
                 } else {
                     if (key == 'replyLanguage') {
                         while (true) {
