@@ -8,15 +8,23 @@
     const env = {
         site: /([^.]+)\.[^.]+$/.exec(new URL((await chrome.tabs.query(
             { active: true, currentWindow: true }))[0].url).hostname)?.[1],
-        browser: { displaysEnglish: (await chrome.i18n.getAcceptLanguages())[0].startsWith('en') }
+        browser: {
+            displaysEnglish: (await chrome.i18n.getAcceptLanguages())[0].startsWith('en'),
+            isFF: navigator.userAgent.includes('Firefox')
+        }
     }
 
-    // Import APP data
-    const { app } = await chrome.storage.local.get('app')
+    // Import DATA
+    const { app } = await chrome.storage.local.get('app'),
+          { sites } = await chrome.storage.local.get('sites')
+
+    // Export DEPENDENCIES to imported resources
     icons.import({ app }) // for src's using app.urls.assetHost
+    settings.import({ site: env.site, sites }) // to load/save active tab's settings + `${site}Disabled`
 
     // Define FUNCTIONS
 
+    function extensionIsDisabled() { return config.extensionDisabled || !!config[`${env.site}Disabled`] }
     function getMsg(key) { return chrome.i18n.getMessage(key) }
 
     function notify(msg, pos = 'bottom-right') {
@@ -30,8 +38,6 @@
     }
 
     function settingIsEnabled(key) { return config[key] ^ /disabled|hidden/i.test(key) }
-    function siteAlert(title, msg) { sendMsgToActiveTab('alert', { title, msg }) }
-    async function sitePrompt(msg, defaultVal) { return await sendMsgToActiveTab('prompt', { msg, defaultVal }) }
 
     const sync = {
         fade() {
@@ -44,20 +50,36 @@
 
             // Menu elems
             document.querySelectorAll('.logo, .menu-title, .menu-entry').forEach((elem, idx) => {
-                elem.style.transition = config.extensionDisabled ? '' : 'opacity 0.15s ease-in'
-                setTimeout(() => elem.classList.toggle('disabled', config.extensionDisabled),
-                    config.extensionDisabled ? 0 : idx *10) // fade-out abruptly, fade-in staggered
+                if (elem.id == 'site-settings' || elem.parentElement?.previousElementSibling?.id == 'site-settings')
+                    return // never potentially disable important Site Settings
+                elem.style.transition = extensionIsDisabled() ? '' : 'opacity 0.15s ease-in'
+                setTimeout(() => elem.classList.toggle('disabled', extensionIsDisabled()),
+                    extensionIsDisabled() ? 0 : idx *10) // fade-out abruptly, fade-in staggered
             })
         },
 
         configToUI(options) { return sendMsgToActiveTab('syncConfigToUI', options) }
     }
 
-    function toTitleCase(str) {
-        if (!str) return ''
-        const words = str.toLowerCase().split(' ')
-        for (let i = 0 ; i < words.length ; i++) words[i] = words[i][0].toUpperCase() + words[i].slice(1)
-        return words.join(' ')
+    function toggleSiteSettingsVisibility({ transitions = true } = {}) {
+        const transitionDuration = 350, // ms
+              toggleRows = ssTogglesDiv.querySelectorAll('.menu-entry')
+        if (ssTogglesDiv.style.height == '0px') { // show toggles
+            Object.assign(ssTogglesDiv.style, { height: `${dom.get.computedHeight(toggleRows)}px`,
+                transition: transitions && !env.browser.isFF ? 'height 0.25s' : '' })
+            Object.assign(ssLabel.caret.style, { transform: '',
+                transition: transitions ? 'transform 0.15s ease-out' : '' })
+            toggleRows.forEach(row => { // reset styles to support continuous transition on rapid show/hide
+                row.style.transition = 'none' ; row.style.opacity = 0 })
+            ssTogglesDiv.offsetHeight // force reflow to insta-apply reset
+            toggleRows.forEach((row, idx) => { // fade-in staggered
+                if (transitions) row.style.transition = `opacity ${ transitionDuration /1000 }s ease-in-out`
+                setTimeout(() => row.style.opacity = 1, transitions ? idx * transitionDuration /10 : 0)
+            })
+        } else { // hide toggles
+            Object.assign(ssTogglesDiv.style, { height: 0, transition: '' })
+            Object.assign(ssLabel.caret.style, { transform: 'rotate(-90deg)', transition: '' })
+        }
     }
 
     // Run MAIN routine
@@ -73,18 +95,21 @@
     masterToggle.div.append(masterToggle.switch) ; masterToggle.switch.append(masterToggle.track)
     await settings.load('extensionDisabled') ; masterToggle.switch.classList.toggle('on', !config.extensionDisabled)
     masterToggle.div.onclick = () => {
-        env.extensionWasDisabled = config.extensionDisabled
+        env.extensionWasDisabled = extensionIsDisabled()
         masterToggle.switch.classList.toggle('on') ; settings.save('extensionDisabled', !config.extensionDisabled)
         Object.keys(sync).forEach(key => sync[key]()) // sync fade + storage to UI
-        notify(`${appName} 🧩 ${getMsg(`state_${ config.extensionDisabled ? 'off' : 'on' }`).toUpperCase()}`)
+        if (env.extensionWasDisabled ^ extensionIsDisabled()) notify(`${appName} 🧩 ${
+            getMsg(`state_${ extensionIsDisabled() ? 'off' : 'on' }`).toUpperCase()}`)
     }
 
-    // Create CHILD menu entries on chatgpt.com
-    if (env.site == 'chatgpt') {
+    // Create CHILD menu entries on matched pages
+    const matchHosts = chrome.runtime.getManifest().content_scripts[0].matches
+        .map(url => url.replace(/^https?:\/\/|\/.*$/g, ''))
+    if (matchHosts.some(host => host.includes(env.site))) {
+        await settings.load(sites[env.site].availFeatures)
         const childEntriesDiv = dom.create.elem('div') ; document.body.append(childEntriesDiv)
-        const re_all = new RegExp(`^(${getMsg('menuLabel_all')}|all|any|every)$`, 'i')
-        await settings.load(Object.keys(settings.controls))
         Object.keys(settings.controls).forEach(key => {
+            if (!sites[env.site].availFeatures.includes(key)) return
             const controlType = settings.controls[key].type
 
             // Init entry's elems
@@ -104,64 +129,75 @@
                 entry.label.innerText += `— ${settings.controls[key].status}`
             }
 
-            entry.div.onclick = async () => {
+            entry.div.onclick = () => {
                 if (controlType == 'toggle') {
                     entry.leftElem.classList.toggle('on')
                     settings.save(key, !config[key]) ; sync.configToUI({ updatedKey: key })
                     notify(`${settings.controls[key].label} ${chrome.i18n.getMessage(`state_${
                         settingIsEnabled(key) ? 'on' : 'off' }`).toUpperCase()}`)
-                } else {
-                    if (key == 'replyLanguage') {
-                        while (true) {
-                            let replyLang = await (await sitePrompt(
-                                `${getMsg('prompt_updateReplyLang')}:`, config.replyLanguage)).input
-                            if (replyLang == null) break // user cancelled so do nothing
-                            else if (!/\d/.test(replyLang)) { // valid reply language set
-                                replyLang = ( // auto-case for menu/alert aesthetics
-                                    replyLang.length < 4 || replyLang.includes('-') ? replyLang.toUpperCase()
-                                        : replyLang.charAt(0).toUpperCase() + replyLang.slice(1).toLowerCase() )
-                                settings.save('replyLanguage', replyLang || (await chrome.i18n.getAcceptLanguages())[0])
-                                siteAlert(getMsg('alert_replyLangUpdated') + '!',
-                                    `${getMsg('appName')} ${getMsg('alert_willReplyIn')} `
-                                    + `${ replyLang || getMsg('alert_yourSysLang') }.`
-                                )
-                                break
-                            }
-                        }
-                    } else if (key == 'replyTopic') {
-                        let replyTopic = await (await sitePrompt(getMsg('prompt_updateReplyTopic')
-                            + ' (' + getMsg('prompt_orEnter') + ' \'ALL\'):', config.replyTopic)).input
-                        if (replyTopic != null) { // user didn't cancel
-                            replyTopic = toTitleCase(replyTopic.toString()) // for menu/alert aesthetics
-                            settings.save('replyTopic',
-                                !replyTopic || re_all.test(replyTopic) ? getMsg('menuLabel_all')
-                                                                    : replyTopic)
-                            siteAlert(`${getMsg('alert_replyTopicUpdated')}!`,
-                                `${getMsg('appName')} ${getMsg('alert_willAnswer')} `
-                                    + ( !replyTopic || re_all.test(replyTopic) ?
-                                            getMsg('alert_onAllTopics')
-                                        : `${getMsg('alert_onTopicOf')} ${replyTopic}`
-                                    ) + '!'
-                            )
-                        }
-                    } else if (key == 'replyInterval') {
-                        while (true) {
-                            const replyInterval = await (await sitePrompt(
-                                `${getMsg('prompt_updateReplyInt')}:`, config.replyInterval)).input
-                            if (replyInterval == null) break // user cancelled so do nothing
-                            else if (!isNaN(parseInt(replyInterval, 10)) && parseInt(replyInterval, 10) > 4) {
-                                settings.save('replyInterval', parseInt(replyInterval, 10))
-                                siteAlert(getMsg('alert_replyIntUpdated') + '!',
-                                    getMsg('appName') + ' ' + getMsg('alert_willReplyEvery')
-                                    + ' ' + replyInterval + ' ' + getMsg('unit_seconds') + '.')
-                                break
-                            }
-                        }
-                    }
-                    sync.configToUI({ updatedKey: key }) ; close() // popup
                 }
             }
         })
+    }
+
+    // Create SITE SETTINGS label
+    const ssLabel = { // category label row
+        div: dom.create.elem('div', { id: 'site-settings', class: 'menu-entry highlight-on-hover',
+            title: `${getMsg('helptip_enableDisable')} ${appName} ${getMsg('helptip_perSite')}`
+        }),
+        label: dom.create.elem('label', { class: 'menu-icon' }), labelSpan: dom.create.elem('span'),
+        caret: icons.create('caretDown', { size: 11, class: 'caret',
+            style: 'position: absolute ; right: 14px ; transform: rotate(-90deg)' })
+    }
+    ssLabel.label.innerText = '🌐' ; ssLabel.labelSpan.textContent = getMsg('menuLabel_siteSettings')
+    ssLabel.div.onclick = toggleSiteSettingsVisibility;
+    ['label', 'labelSpan', 'caret'].forEach(elemType => ssLabel.div.append(ssLabel[elemType]))
+    document.body.append(ssLabel.div)
+
+    // Create SITE SETTINGS toggles
+    const ssTogglesDiv = dom.create.elem('div', {
+        style: `border-left: 4px solid transparent ; height: 0 ; overflow: hidden ;
+                border-image: linear-gradient(transparent, rgb(161 161 161)) 30 100%`
+    })
+    document.body.append(ssTogglesDiv)
+    for (const site of Object.keys(sites)) { // create toggle per site
+
+        // Init entry's elems
+        const ssEntry = {
+            div: dom.create.elem('div', { class: 'menu-entry highlight-on-hover',
+                title: `${getMsg('helptip_run')} ${appName} on ${sites[site].urls.homepage}` }),
+            switch: dom.create.elem('div', { class: 'toggle menu-icon' }),
+            track: dom.create.elem('span', { class: 'track' }), label: dom.create.elem('span'),
+            favicon: dom.create.elem('img', {
+                src: sites[site].urls.favicon, width: 15, style: 'position: absolute ; right: 13px' })
+        }
+        ssEntry.label.textContent = sites[site].urls.homepage
+        ssEntry.switch.append(ssEntry.track) ; ssEntry.div.append(ssEntry.switch, ssEntry.label, ssEntry.favicon)
+        ssTogglesDiv.append(ssEntry.div)
+        await settings.load(`${site}Disabled`) ; ssEntry.switch.classList.toggle('on', !config[`${site}Disabled`])
+        if (env.site == site) env.siteDisabled = config[`${site}Disabled`] // to auto-expand toggles later if true
+
+        // Add listener
+        ssEntry.div.onclick = () => {
+            env.extensionWasDisabled = extensionIsDisabled()
+            ssEntry.switch.classList.toggle('on')
+            settings.save(`${site}Disabled`, !config[`${site}Disabled`]) ; sync.configToUI()
+            if (env.site == site) { // fade/notify if setting of active site toggled
+                sync.fade()
+                if (env.extensionWasDisabled ^ extensionIsDisabled()) notify(`${appName} 🧩 ${
+                    getMsg(`state_${ extensionIsDisabled() ? 'off' : 'on' }`).toUpperCase()}`)
+            }
+        }
+    }
+
+    // Auto-expand SITE SETTINGS conditionally
+    const onMatchedPage = chrome.runtime.getManifest().content_scripts[0].matches.toString().includes(env.site)
+    if (!onMatchedPage || config[`${env.site}Disabled`]) { // auto-expand Site Settings
+        if (!onMatchedPage) ssLabel.div.style.pointerEvents = 'none' // disable label from triggering unneeded collapse
+        setTimeout(() => toggleSiteSettingsVisibility({ transitions: onMatchedPage }),
+            !onMatchedPage ? 0 // no delay since emptyish already
+          : !env.browser.isFF ? 250 // some delay since other settings appear
+          : 335) // more in FF since no transition
     }
 
     // LOCALIZE labels
@@ -175,7 +211,7 @@
     if (translationOccurred) // update <html lang> attr
         document.documentElement.lang = chrome.i18n.getUILanguage().split('-')[0]
 
-    sync.fade() // based on master toggle
+    sync.fade() // based on master/site toggle
 
     // Create/append FOOTER container
     const footer = dom.create.elem('footer') ; document.body.append(footer)
