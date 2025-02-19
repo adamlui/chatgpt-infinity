@@ -8,7 +8,7 @@
     const env = {
         site: /([^.]+)\.[^.]+$/.exec(new URL((await chrome.tabs.query(
             { active: true, currentWindow: true }))[0].url).hostname)?.[1],
-        browser: { displaysEnglish: (await chrome.i18n.getAcceptLanguages())[0].startsWith('en') }
+        browser: { displaysEnglish: chrome.i18n.getUILanguage().startsWith('en') }
     }
 
     // Import APP data
@@ -123,7 +123,7 @@
                                 replyLang = ( // auto-case for menu/alert aesthetics
                                     replyLang.length < 4 || replyLang.includes('-') ? replyLang.toUpperCase()
                                         : replyLang.charAt(0).toUpperCase() + replyLang.slice(1).toLowerCase() )
-                                settings.save('replyLanguage', replyLang || (await chrome.i18n.getAcceptLanguages())[0])
+                                settings.save('replyLanguage', replyLang || chrome.i18n.getUILanguage())
                                 siteAlert(getMsg('alert_replyLangUpdated') + '!',
                                     `${getMsg('appName')} ${getMsg('alert_willReplyIn')} `
                                     + `${ replyLang || getMsg('alert_yourSysLang') }.`

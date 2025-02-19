@@ -43,7 +43,7 @@
         .filter(key => key != 'infinityMode')) // exclude infinityMode...
     settings.save('infinityMode', false) // ...to always init as false
     if (!config.replyLanguage) // init reply language if unset
-        settings.save('replyLanguage', (await chrome.i18n.getAcceptLanguages())[0])
+        settings.save('replyLanguage', chrome.i18n.getUILanguage())
     if (!config.replyTopic) // init reply topic if unset
         settings.save('replyTopic', getMsg('menuLabel_all'))
     if (!config.replyInterval) settings.save('replyInterval', 7) // init refresh interval to 7 secs if unset
