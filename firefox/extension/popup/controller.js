@@ -62,8 +62,6 @@
 
     // Run MAIN routine
 
-    const appName = env.browser.displaysEnglish ? app.name : getMsg('appName') // for shorter notifs
-
     // LOCALIZE extension title, set document lang
     const menuTitle = document.querySelector('.menu-title')
     menuTitle.innerText = getMsg(menuTitle.dataset.locale)
@@ -81,7 +79,7 @@
         env.extensionWasDisabled = config.extensionDisabled
         masterToggle.switch.classList.toggle('on') ; settings.save('extensionDisabled', !config.extensionDisabled)
         Object.keys(sync).forEach(key => sync[key]()) // sync fade + storage to UI
-        notify(`${appName} 🧩 ${getMsg(`state_${ config.extensionDisabled ? 'off' : 'on' }`).toUpperCase()}`)
+        notify(`${getMsg('appName')} 🧩 ${getMsg(`state_${ config.extensionDisabled ? 'off' : 'on' }`).toUpperCase()}`)
     }
 
     // Create CHILD menu entries on chatgpt.com
