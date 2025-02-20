@@ -27,7 +27,7 @@
             notify(...['msg', 'pos', 'notifDuration', 'shadow'].map(arg => req.options[arg]))
         else if (req.action == 'alert')
             modals.alert(...['title', 'msg', 'btns', 'checkbox', 'width'].map(arg => req.options[arg]))
-        else if (req.action == 'showAbout') chatgpt.isLoaded().then(() => { modals.open('about') })
+        else if (req.action == 'showAbout') chatgpt.isLoaded().then(() => modals.open('about'))
         else if (req.action == 'prompt') {
             const userInput = window.prompt(req.options.msg || 'Please enter your input:', req.options.defaultVal || '')
             sendResp({ input: userInput })

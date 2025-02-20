@@ -27,7 +27,7 @@
             notify(...['msg', 'pos', 'notifDuration', 'shadow'].map(arg => req.options[arg]))
         else if (req.action == 'alert')
             modals.alert(...['title', 'msg', 'btns', 'checkbox', 'width'].map(arg => req.options[arg]))
-        else if (req.action == 'showAbout') chatgpt.isLoaded().then(() => { modals.open('about') })
+        else if (req.action == 'showAbout') chatgpt.isLoaded().then(() => modals.open('about'))
         else if (req.action == 'syncConfigToUI') {
             if (req.fromBG) // disable Infinity mode 1st to not transfer between tabs
                 settings.save('infinityMode', false)
