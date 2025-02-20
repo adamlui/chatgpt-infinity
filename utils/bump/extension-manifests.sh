@@ -34,7 +34,7 @@ else MANIFEST_PATHS=("$chromium_manifest_path" "$ff_manifest_path") ; fi
 if (( ${#MANIFEST_PATHS[@]} > 1 )) ; then manifest_label="manifests"
 else manifest_label="${MANIFEST_PATHS[0]}" ; fi
 echo -e "${BY}\nBumping version in ${manifest_label}...${NC}\n"
-bumped_cnt=0
+bumped_manifests=() # for final summary
 TODAY=$(date +'%Y.%-m.%-d') # YYYY.M.D format
 new_versions=() # for dynamic commit msg
 for manifest_path in "${MANIFEST_PATHS[@]}" ; do
@@ -67,15 +67,15 @@ for manifest_path in "${MANIFEST_PATHS[@]}" ; do
     # Bump old version
     sed -i "s/\"$old_ver\"/\"$new_ver\"/" "$manifest_path"
     echo -e "Updated: ${BW}v${old_ver}${NC} → ${BG}v${new_ver}${NC}\n"
-    ((bumped_cnt++))
+    bumped_manifests+=("$platform_manifest_path/manifest.json")
 
 done
-if (( $bumped_cnt == 0 )) ; then echo -e "${BW}Completed. No manifests bumped.${NC}" ; exit 0 ; fi
+if (( ${#bumped_manifests[@]} == 0 )) ; then echo -e "${BW}Completed. No manifests bumped.${NC}" ; exit 0 ; fi
 
 # ADD/COMMIT/PUSH bump(s)
 if [[ "$no_commit" != true ]] ; then
-    plural_suffix=$((( $bumped_cnt > 1 )) && echo "s")
-    echo -e "${BG}${bumped_cnt} manifest${plural_suffix} bumped!\n${NC}"
+    plural_suffix=$((( ${#bumped_manifests[@]} > 1 )) && echo "s")
+    echo -e "${BG}${#bumped_manifests[@]} manifest${plural_suffix} bumped!\n${NC}"
     echo -e "${BY}Committing bump${plural_suffix} to Git...\n${NC}"
     COMMIT_MSG="Bumped \`version\`"
     unique_versions=($(printf "%s\n" "${new_versions[@]}" | sort -u))
@@ -89,7 +89,8 @@ if [[ "$no_commit" != true ]] ; then
     fi
 fi
 
-# FINAL log
+# Final SUMMARY log
 git_action="updated"$( [[ "$no_commit" != true ]] && echo -n "/committed" )$(
                        [[ "$no_push"   != true ]] && echo -n "/pushed" )
-echo -e "\n${BG}Success! ${bumped_cnt} manifest${plural_suffix} ${git_action} to GitHub${NC}"
+echo -e "\n${BG}Success! ${#bumped_manifests[@]} manifest${plural_suffix} ${git_action} to GitHub${NC}"
+for manifest in "${bumped_manifests[@]}" ; do echo -e "  ± $manifest" ; done # log manifests bumped
