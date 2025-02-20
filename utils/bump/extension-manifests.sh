@@ -16,8 +16,8 @@ BW="\033[1;97m"     # bright white
 
 # Parse ARGS
 for arg in "$@" ; do case "$arg" in
-    --chrome|--chromium) chromium_only=true ;;
-    --firefox|--ff) ff_only=true ;;
+    *chrom*) chromium_only=true ;;
+    *f*f*) ff_only=true ;;
     --no-commit) no_commit=true ;;
     --no-push) no_push=true ;;
     *) echo -e "${BR}Invalid argument: $arg.${NC}" && exit 1 ;;
