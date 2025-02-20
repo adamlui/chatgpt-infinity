@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Bumps extension manifests if changes detected + git commit/push
+# Bumps extension manifests if changes detected + git commit/push if --no-<commit|push> not passed
 # NOTE: Pass --chrome or --chromium to forcibly bump Chromium manifest only
 # NOTE: Pass --firefox or --ff to forcibly bump Firefox manifest only
 
@@ -15,10 +15,13 @@ BG="\033[1;92m"     # bright green
 BW="\033[1;97m"     # bright white
 
 # Parse ARGS
-if [[ "$1" == *chrom* ]] ; then chromium_only=true
-elif [[ "$1" == *f*f* ]] ; then ff_only=true
-elif [[ -n "$1" ]] ; then
-    echo -e "${BR}Invalid argument. Use '--chrome', '--chromium', '--firefox', '--ff', or omit arg.${NC}" ; exit 1 ; fi
+for arg in "$@" ; do case "$arg" in
+    --chrome|--chromium) chromium_only=true ;;
+    --firefox|--ff) ff_only=true ;;
+    --no-commit) no_commit=true ;;
+    --no-push) no_push=true ;;
+    *) echo -e "${BR}Invalid argument: $arg.${NC}" && exit 1 ;;
+esac ; done
 
 # Init manifest PATHS
 chromium_manifest_path="chromium/extension/manifest.json"
@@ -69,18 +72,24 @@ for manifest_path in "${MANIFEST_PATHS[@]}" ; do
 done
 if (( $bumped_cnt == 0 )) ; then echo -e "${BW}Completed. No manifests bumped.${NC}" ; exit 0 ; fi
 
-# PULL latest changes
-echo -e "${BY}Pulling latest changes from remote to sync local repository...${NC}\n"
-git pull || (echo -e "${BR}Merge failed, please resolve conflicts!${NC}" && exit 1)
-echo ''
-
 # ADD/COMMIT/PUSH bump(s)
-plural_suffix=$((( $bumped_cnt > 1 )) && echo "s")
-echo -e "${BG}${bumped_cnt} manifest${plural_suffix} bumped!\n${NC}"
-echo -e "${BY}Committing bump${plural_suffix} to Git...\n${NC}"
-COMMIT_MSG="Bumped \`version\`"
-unique_versions=($(printf "%s\n" "${new_versions[@]}" | sort -u))
-if (( ${#unique_versions[@]} == 1 )) ; then COMMIT_MSG+=" to \`${unique_versions[0]}\`" ; fi
-git add ./**/manifest.json && git commit -n -m "$COMMIT_MSG"
-git push
-echo -e "\n${BG}Success! ${bumped_cnt} manifest${plural_suffix} updated/committed/pushed to GitHub${NC}"
+if [[ "$no_commit" != true ]] ; then
+    plural_suffix=$((( $bumped_cnt > 1 )) && echo "s")
+    echo -e "${BG}${bumped_cnt} manifest${plural_suffix} bumped!\n${NC}"
+    echo -e "${BY}Committing bump${plural_suffix} to Git...\n${NC}"
+    COMMIT_MSG="Bumped \`version\`"
+    unique_versions=($(printf "%s\n" "${new_versions[@]}" | sort -u))
+    if (( ${#unique_versions[@]} == 1 )) ; then COMMIT_MSG+=" to \`${unique_versions[0]}\`" ; fi
+    git add ./**/manifest.json && git commit -n -m "$COMMIT_MSG"
+    if [[ "$no_push" != true ]] ; then
+        echo -e "${BY}Pulling latest changes from remote to sync local repository...${NC}\n"
+        git pull || (echo -e "${BR}Merge failed, please resolve conflicts!${NC}" && exit 1)
+        echo -e "${BY}Pushing bump${plural_suffix} to Git...\n${NC}"
+        git push
+    fi
+fi
+
+# FINAL log
+git_action="updated"$( [[ "$no_commit" != true ]] && echo -n "/committed" )$(
+                       [[ "$no_push"   != true ]] && echo -n "/pushed" )
+echo -e "\n${BG}Success! ${bumped_cnt} manifest${plural_suffix} ${git_action} to GitHub${NC}"
