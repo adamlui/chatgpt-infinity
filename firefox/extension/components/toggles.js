@@ -153,11 +153,11 @@ window.toggles = {
                 toggles.sidebar.toggleInput.checked = config.infinityMode
                 toggles.sidebar.toggleLabel.innerText = `${toggles.getMsg('menuLabel_infinityMode')} `
                     + toggles.getMsg(`state_${ toggles.sidebar.toggleInput.checked ? 'enabled' : 'disabled' }`)
-                setTimeout(() => {
+                requestAnimationFrame(() => {
                     toggles.sidebar.switchSpan.className = toggles.sidebar.toggleInput.checked ? 'enabled' : 'disabled'
                     toggles.sidebar.knobSpan.style.transform = `translateX(${
                         toggles.sidebar.toggleInput.checked ? 13 : 0 }px)`
-                }, 1) // min delay to trigger 1st transition fx
+                }) // to trigger 1st transition fx
             }
         }
     }
