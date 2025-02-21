@@ -43,7 +43,7 @@
 <a href="https://ff.chatgptinfinity.com/?utm_source=github&utm_medium=readme&utm_content=platform-badge">
     <img alt="[Get for Firefox]" width=auto height=60 src="https://assets.chatgptinfinity.com/images/badges/firefox/available-for-firefox/raspberry-border-334x128.png"></a>
 <a href="https://gm.chatgptinfinity.com">
-    <img alt="[Get for Greasemonkey]" width=auto height=60 src="https://assets.chatgptinfinity.com/images/badges/greasemonkey/install-greasemonkey-userscript.png"></a>
+    <img alt="[Get for Greasemonkey]" width=auto height=60 src="https://assets.chatgptinfinity.com/images/badges/greasemonkey/install-userscript/en/badge860x262.png"></a>
 
 </div>
 
