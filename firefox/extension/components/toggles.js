@@ -54,68 +54,69 @@ window.toggles = {
         stylize() {
             this.styles = document.createElement('style') ; this.styles.id = `${this.class}-styles`
             this.styles.innerText = (
-                ':root {' // vars
-                  + '--switch-enabled-bg-color: #ad68ff ; --switch-disabled-bg-color: #ccc ;'
-                  + '--switch-enabled-box-shadow: 2px 1px 9px #d8a9ff ;'
-                  + '--switch-enabled-hover-box-shadow: 0 1px 10px #9b5ad1 ;'
-                  + '--knob-box-shadow: rgba(0,0,0,0.3) 0 1px 2px 0 ;'
-                  + '--knob-box-shadow-dark: rgba(0,0,0,0.3) 0 1px 2px 0, rgba(0,0,0,0.15) 0 3px 6px 2px }'
+                `:root { /* vars */
+                    --switch-enabled-bg-color: #ad68ff ; --switch-disabled-bg-color: #ccc ;
+                    --switch-enabled-box-shadow: 1px 2px 8px #d8a9ff ;
+                    --switch-enabled-hover-box-shadow: 0 1px 10px #9b5ad1 ;
+                    --knob-box-shadow: rgba(0,0,0,0.3) 0 1px 2px 0 ;
+                    --knob-box-shadow-dark: rgba(0,0,0,0.3) 0 1px 2px 0, rgba(0,0,0,0.15) 0 3px 6px 2px }`
 
                 // Element styles
-              + `.${this.class} {` // parent div
-                  + 'max-height: 37px ; margin: 2px 0 ; user-select: none ; cursor: pointer ;'
-                  + 'flex-grow: unset }' // overcome OpenAI .grow
-              + `.${this.class} > img {` // navicon
-                  + 'width: 1.25rem ; height: 1.25rem ; margin-left: 2px ; margin-right: 4px }'
-              + `.${this.class} > input { display: none }` // hide checkbox
-              + `.${this.class} > span {` // switch span
-                  + 'position: relative ; width: 30px ; height: 15px ; border-radius: 28px ;'
-                  + 'background-color: var(--switch-disabled-bg-color) ;'
-                  + `bottom: ${ toggles.imports.env.ui.firstLink ? 0 : -0.15 }em ;`
-                  + `left: ${ toggles.imports.env.browser.isMobile ? 169
-                            : toggles.imports.env.ui.firstLink ? 154 : 160 }px ;`
-                  + 'transition: 0.4s ; -webkit-transition: 0.4s ; -moz-transition: 0.4s ;'
-                      + '-o-transition: 0.4s ; -ms-transition: 0.4s }'
-              + `.${this.class} > span.enabled {` // switch on
-                  + `background-color: var(--switch-enabled-bg-color) ;
+              + `.${this.class} { /* parent div */
+                    max-height: 37px ; margin: 2px 0 ; user-select: none ; cursor: pointer ;
+                    opacity: 1 !important ; /* overcome OpenAI click-dim */
+                    flex-grow: unset } /* overcome OpenAI .grow */
+                .${this.class} > img { /* navicon */
+                    width: 1.25rem ; height: 1.25rem ; margin-left: 2px ; margin-right: 4px }
+                .${this.class} > input { display: none } /* hide checkbox */
+                .${this.class} > span { /* switch span */
+                    position: relative ; width: 30px ; height: 15px ; border-radius: 28px ;
+                    background-color: var(--switch-disabled-bg-color) ;
+                    bottom: ${ toggles.imports.env.ui.firstLink ? 0 : -0.15 }em ;
+                    left: ${ toggles.imports.env.browser.isMobile ? 169
+                           : toggles.imports.env.ui.firstLink ? 154 : 160 }px ;
+                    transition: 0.4s ; -webkit-transition: 0.4s ; -moz-transition: 0.4s ;
+                        -o-transition: 0.4s ; -ms-transition: 0.4s }
+                .${this.class} > span.enabled { /* switch on */
+                    background-color: var(--switch-enabled-bg-color) ;
                     box-shadow: var(--switch-enabled-box-shadow) ;
                         -webkit-box-shadow: var(--switch-enabled-box-shadow) ;
                         -moz-box-shadow: var(--switch-enabled-box-shadow) ;
                     transition: 0.15s ; -webkit-transition: 0.15s ; -moz-transition: 0.15s ;
-                        -o-transition: 0.15s ; -ms-transition: 0.15s }`
-              + `.${this.class}:hover > span.enabled {` // switch on when hover on parent div
-                  + `box-shadow: var(--switch-enabled-hover-box-shadow) ;
+                        -o-transition: 0.15s ; -ms-transition: 0.15s }
+                .${this.class}:hover > span.enabled { /* switch on when hover on parent div */
+                    box-shadow: var(--switch-enabled-hover-box-shadow) ;
                         -webkit-box-shadow: var(--switch-enabled-hover-box-shadow) ;
-                        -moz-box-shadow: var(--switch-enabled-hover-box-shadow) }`
-              + `.${this.class} > span.disabled {` // switch off
-                  + 'background-color: var(--switch-disabled-bg-color) ; box-shadow: none }'
-              + `.${this.class} > span > span {` // knob span
-                  + `position: absolute ; width: 12px ; height: 12px ; content: "" ; border-radius: 28px ;
+                        -moz-box-shadow: var(--switch-enabled-hover-box-shadow) }
+                .${this.class} > span.disabled { /* switch off */
+                    background-color: var(--switch-disabled-bg-color) ; box-shadow: none }
+                .${this.class} > span > span { /* knob span */
+                    position: absolute ; width: 12px ; height: 12px ; content: "" ; border-radius: 28px ;
                     background-color: white ; left: 3px ; bottom: 1.25px ;
                     box-shadow: var(--knob-box-shadow) ;
                         -webkit-box-shadow: var(--knob-box-shadow) ; -moz-box-shadow: var(--knob-box-shadow) ;
                     transition: 0.4s ; -webkit-transition: 0.4s ; -moz-transition: 0.4s ;
-                        -o-transition: 0.4s ; -ms-transition: 0.4s }`
-              + `.${this.class} > label {` // toggle label
-                  + 'cursor: pointer ; overflow: hidden ; text-overflow: ellipsis ;'
-                  + `width: ${ toggles.imports.env.browser.isMobile ? 201 : 148 }px ;`
-                  + `margin-left: -${ toggles.imports.env.ui.firstLink ? 41 : 23 }px ;` // left-shift to navicon
-                  + `${ toggles.imports.env.ui.firstLink ? '' : 'font-size: 0.875rem ; font-weight: 600' }}`
+                        -o-transition: 0.4s ; -ms-transition: 0.4s }
+                .${this.class} > label { /* toggle label */
+                    cursor: pointer ; overflow: hidden ; text-overflow: ellipsis ;
+                    width: ${ toggles.imports.env.browser.isMobile ? 201 : 148 }px ;
+                    margin-left: -${ toggles.imports.env.ui.firstLink ? 41 : 23 }px ; /* left-shift to navicon */
+                    ${ toggles.imports.env.ui.firstLink ? '' : 'font-size: 0.875rem ; font-weight: 600' }}`
 
                 // Dark scheme mods
-              + `.${this.class}.dark > span.enabled {` // switch on
-                  + 'background-color: var(--switch-enabled-bg-color) ;'
-                  + 'box-shadow: var(--switch-enabled-hover-box-shadow) ;' // use hover style instead
-                      + '-webkit-box-shadow: var(--switch-enabled-hover-box-shadow) ;'
-                      + '-moz-box-shadow: var(--switch-enabled-hover-box-shadow) }'
-              + `.${this.class}.dark:hover > span.enabled {` // switch on when hover on parent div
-                  + 'box-shadow: var(--switch-enabled-box-shadow) ;' // use regular style instead
-                      + '-webkit-box-shadow: var(--switch-enabled-box-shadow) ;'
-                      + '-moz-box-shadow: var(--switch-enabled-box-shadow) }'
-              + `.${this.class}.dark > span > span {` // knob span
-                  + 'box-shadow: var(--knob-box-shadow-dark) ;' // make 3D-er
-                      + '-webkit-box-shadow: var(--knob-box-shadow-dark) ;'
-                      + '-moz-box-shadow: var(--knob-box-shadow-dark) }'
+              + `.${this.class}.dark > span.enabled { /* switch on */
+                    background-color: var(--switch-enabled-bg-color) ;
+                    box-shadow: var(--switch-enabled-hover-box-shadow) ; /* use hover style instead */
+                        -webkit-box-shadow: var(--switch-enabled-hover-box-shadow) ;
+                        -moz-box-shadow: var(--switch-enabled-hover-box-shadow) }
+                .${this.class}.dark:hover > span.enabled { /* switch on when hover on parent div */
+                    box-shadow: var(--switch-enabled-box-shadow) ; /* use regular style instead */
+                        -webkit-box-shadow: var(--switch-enabled-box-shadow) ;
+                        -moz-box-shadow: var(--switch-enabled-box-shadow) }
+                .${this.class}.dark > span > span { /* knob span */
+                    box-shadow: var(--knob-box-shadow-dark) ; /* make 3D-er */*
+                        -webkit-box-shadow: var(--knob-box-shadow-dark) ;
+                        -moz-box-shadow: var(--knob-box-shadow-dark) }`
             )
             document.head.append(this.styles)
         },
