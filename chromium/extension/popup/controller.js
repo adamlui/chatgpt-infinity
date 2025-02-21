@@ -87,28 +87,29 @@
         const re_all = new RegExp(`^(${getMsg('menuLabel_all')}|all|any|every)$`, 'i')
         await settings.load(Object.keys(settings.controls))
         Object.keys(settings.controls).forEach(key => {
-            const controlType = settings.controls[key].type
+            const ctrlType = settings.controls[key].type,
+                  ctrlStatus = settings.controls[key].status
 
             // Init entry's elems
             const entry = {
                 div: dom.create.elem('div', {
                     class: 'menu-entry highlight-on-hover', title: settings.controls[key].helptip || '' }),
-                leftElem: dom.create.elem('div', { class: `menu-icon ${ controlType || '' }` }),
+                leftElem: dom.create.elem('div', { class: `menu-icon ${ ctrlType || '' }` }),
                 label: dom.create.elem('span')
             }
             entry.label.textContent = settings.controls[key].label
             entry.div.append(entry.leftElem, entry.label) ; childEntriesDiv.append(entry.div)
-            if (controlType == 'toggle') { // add track to left, init knob pos
+            if (ctrlType == 'toggle') { // add track to left, init knob pos
                 entry.leftElem.append(dom.create.elem('span', { class: 'track' }))
                 entry.leftElem.classList.toggle('on', settingIsEnabled(key))
             } else { // add symbol to left, append status to right
                 entry.leftElem.innerText = settings.controls[key].symbol
-                entry.label.innerText += `— ${settings.controls[key].status}`
+                entry.label.innerText += ctrlStatus ? `— ${ctrlStatus }` : ''
             }
 
             // Add listener
             entry.div.onclick = () => {
-                if (controlType == 'toggle') {
+                if (ctrlType == 'toggle') {
                     entry.leftElem.classList.toggle('on')
                     settings.save(key, !config[key]) ; sync.configToUI({ updatedKey: key })
                     notify(`${settings.controls[key].label} ${chrome.i18n.getMessage(`state_${

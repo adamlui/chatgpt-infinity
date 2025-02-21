@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2025.2.21
+// @version             2025.2.21.1
 // @license             MIT
 // @icon                https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?v=69e434b
 // @icon64              https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?v=69e434b
@@ -409,15 +409,15 @@
 
                 // Add setting entries
                 Object.keys(settings.controls).forEach(key => {
-                    const controlType = settings.controls[key].type
+                    const ctrlType = settings.controls[key].type
                     const menuLabel = `${ settings.controls[key].symbol
                                        || this.state.symbols[+settingIsEnabled(key)] } `
                                     + settings.controls[key].label
-                                    + ( controlType == 'toggle' ? this.state.separator
+                                    + ( ctrlType == 'toggle' ? this.state.separator
                                                                 + this.state.words[+settingIsEnabled(key)]
                                                                 : `— ${settings.controls[key].status}` )
                     this.ids.push(GM_registerMenuCommand(menuLabel, () => {
-                        if (controlType == 'toggle') {
+                        if (ctrlType == 'toggle') {
                             settings.save(key, !config[key])
                             notify(`${settings.controls[key].label}: ${
                                 this.state.words[+(/disabled|hidden/i.test(key) ^ config[key])]}`)
