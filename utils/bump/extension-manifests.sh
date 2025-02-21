@@ -87,10 +87,10 @@ if [[ "$no_commit" != true ]] ; then
         echo -e "${BY}Pushing bump${plural_suffix} to Git...\n${NC}"
         git push
     fi
+    git_action="updated"$( [[ "$no_commit" != true ]] && echo -n "/committed" )$(
+                        [[ "$no_push"   != true ]] && echo -n "/pushed" )
+    echo -e "\n${BG}Success! ${#bumped_manifests[@]} manifest${plural_suffix} ${git_action} to GitHub${NC}"
 fi
 
 # Final SUMMARY log
-git_action="updated"$( [[ "$no_commit" != true ]] && echo -n "/committed" )$(
-                       [[ "$no_push"   != true ]] && echo -n "/pushed" )
-echo -e "\n${BG}Success! ${#bumped_manifests[@]} manifest${plural_suffix} ${git_action} to GitHub${NC}"
 for manifest in "${bumped_manifests[@]}" ; do echo -e "  ± $manifest" ; done # log manifests bumped
