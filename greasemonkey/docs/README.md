@@ -20,6 +20,13 @@
     <img alt="jsDelivr stats" height=31 src="https://img.shields.io/jsdelivr/gh/hm/adamlui/chatgpt-infinity?style=for-the-badge&logo=jsdelivr&logoColor=white&label=jsDelivr%20Requests&labelColor=464646&color=2bbbd8"></img></a>
 <br><br>
 
+</div>
+
+> [!IMPORTANT]
+> _**Greasy Fork users:** If you installed ChatGPT Infinity **before January 18, 2025**, auto-updates no longer work because the script's update mechanism has migrated to GitHub. To continue receiving updates, click the green 'Install this script' button below (once) or click [this link](https://gm.chatgptinfinity.com) (once)_
+
+<div align="center">
+
 <a href="https://gm.chatgptinfinity.com"><img height=45 alt="[Install this script]" src="https://assets.chatgptinfinity.com/images/buttons/greasy-fork/install-button.svg"></a><a href="#installation"><img height=45 alt="[How to install]" title="How to install" src="https://assets.chatgptinfinity.com/images/buttons/greasy-fork/help-button.svg"></a>
 <br>
 [Discuss](https://github.com/adamlui/chatgpt-infinity/discussions) / 
