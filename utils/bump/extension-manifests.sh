@@ -84,7 +84,7 @@ if [[ "$no_commit" != true ]] ; then
     if [[ "$no_push" != true ]] ; then
         echo -e "${BY}Pulling latest changes from remote to sync local repository...${NC}\n"
         git pull || (echo -e "${BR}Merge failed, please resolve conflicts!${NC}" && exit 1)
-        echo -e "${BY}Pushing bump${plural_suffix} to Git...\n${NC}"
+        echo -e "\n${BY}Pushing bump${plural_suffix} to Git...\n${NC}"
         git push
     fi
     git_action="updated"$( [[ "$no_commit" != true ]] && echo -n "/committed" )$(
