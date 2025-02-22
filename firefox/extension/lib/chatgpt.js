@@ -1,4 +1,4 @@
-// This library is a condensed version of chatgpt.js v3.6.3
+// This library is a condensed version of chatgpt.js v3.7.0
 // © 2023–2025 KudoAI & contributors under the MIT license.
 // Source: https://github.com/KudoAI/chatgpt.js
 // User guide: https://chatgptjs.org/userguide
@@ -6,11 +6,35 @@
 // --------------------------------------------------------
 //
 
-// Init feedback properties
-localStorage.alertQueue = JSON.stringify([]);
-localStorage.notifyProps = JSON.stringify({ queue: { topRight: [], bottomRight: [], bottomLeft: [], topLeft: [] }});
+// Init feedback props
+localStorage.alertQueue = JSON.stringify([])
+localStorage.notifyProps = JSON.stringify({ queue: { topRight: [], bottomRight: [], bottomLeft: [], topLeft: [] }})
 
+// Define chatgpt API
 const chatgpt = {
+
+    selectors: {
+        btns: {
+            continue: 'button.btn:has([d^="M4.47189"])', login: '[data-testid*=login]',
+            newChat: 'button[data-testid*=new-chat-button],' // sidebar button (when logged in)
+                   + 'button:has([d^="M3.06957"]),' // Cycle Arrows icon (Temp chat mode)
+                   + 'button:has([d^="M15.6729"])', // Pencil icon (recorded chat mode)
+            regen: 'button:has([d^="M3.06957"])', scroll: 'button:has([d^="M12 21C11.7348"])',
+            send: '[data-testid=send-button]', sidebar: 'button[data-testid*=sidebar-button]',
+            stop: 'button[data-testid=stop-button]', voice: 'button[data-testid*=composer-speech-button]'
+        },
+        chatDivs: {
+            convo: 'main > div > div > div > div > div > div[class*=group]',
+            msg: 'div[data-message-author-role]', reply: 'div[data-message-author-role=assistant]'
+        },
+        chatHistory: 'nav',
+        errors: { txt: '[class*=text-error]' },
+        footer: '.min-h-4',
+        header: 'main .sticky',
+        links: { newChat: 'nav a[href="/"]', sidebarItem: 'nav a' },
+        sidebar: 'div[class*=sidebar]',
+        ssgManifest: 'script[src*="_ssgManifest.js"]'
+    },
 
     alert(title, msg, btns, checkbox, width) {
     // [ title/msg = strings, btns = [named functions], checkbox = named function, width (px) = int ] = optional
@@ -18,7 +42,7 @@ const chatgpt = {
 
         // Init env context
         const scheme = chatgpt.isDarkMode() ? 'dark' : 'light',
-              isMobile = chatgpt.browser.isMobile();
+              isMobile = chatgpt.browser.isMobile()
 
         // Define event handlers
         const handlers = {
@@ -37,52 +61,56 @@ const chatgpt = {
                         if (!alert || alert.style.display == 'none') return
                         if (event.key.startsWith('Esc') || event.keyCode == 27) dismissAlert() // and do nothing
                         else { // Space/Enter pressed
-                            const mainButton = alert.querySelector('.modal-buttons').lastChild // look for main button
-                            if (mainButton) { mainButton.click() ; event.preventDefault() } // click if found
+                            const mainBtn = alert.querySelector('.modal-buttons').lastChild // look for main button
+                            if (mainBtn) { mainBtn.click() ; event.preventDefault() } // click if found
                         }
                     }
                 }
             },
 
             drag: {
-                mousedown(event) { // find modal, attach listeners, init XY offsets
+                mousedown(event) { // find modal, update styles, attach listeners, init XY offsets
                     if (event.button != 0) return // prevent non-left-click drag
                     if (getComputedStyle(event.target).cursor == 'pointer') return // prevent drag on interactive elems
-                    chatgpt.draggableElem = event.currentTarget
-                    Object.assign(chatgpt.draggableElem.style, {
-                        cursor: 'grabbing', transition: '0.1s', willChange: 'transform', transform: 'scale(1.05)' })
-                    event.preventDefault(); // prevent sub-elems like icons being draggable
-                    ['mousemove', 'mouseup'].forEach(eventType =>
+                    chatgpt.draggingModal = event.currentTarget
+                    event.preventDefault() // prevent sub-elems like icons being draggable
+                    Object.assign(chatgpt.draggingModal.style, {
+                        cursor: 'grabbing', transition: '0.1s', willChange: 'transform', transform: 'scale(1.05)' });
+                    [...chatgpt.draggingModal.children] // prevent hover FX if drag lags behind cursor
+                        .forEach(child => child.style.pointerEvents = 'none');
+                    ['mousemove', 'mouseup'].forEach(eventType => // add listeners
                         document.addEventListener(eventType, handlers.drag[eventType]))
-                    const draggableElemRect = chatgpt.draggableElem.getBoundingClientRect()
-                    handlers.drag.offsetX = event.clientX - draggableElemRect.left +21
-                    handlers.drag.offsetY = event.clientY - draggableElemRect.top +12
+                    const draggingModalRect = chatgpt.draggingModal.getBoundingClientRect()
+                    handlers.drag.offsetX = event.clientX - draggingModalRect.left +21
+                    handlers.drag.offsetY = event.clientY - draggingModalRect.top +12
                 },
 
                 mousemove(event) { // drag modal
-                    if (!chatgpt.draggableElem) return
+                    if (!chatgpt.draggingModal) return
                     const newX = event.clientX - handlers.drag.offsetX,
                           newY = event.clientY - handlers.drag.offsetY
-                    Object.assign(chatgpt.draggableElem.style, { left: `${newX}px`, top: `${newY}px` })
+                    Object.assign(chatgpt.draggingModal.style, { left: `${newX}px`, top: `${newY}px` })
                 },
 
-                mouseup() { // remove listeners, reset chatgpt.draggableElem
-                    Object.assign(chatgpt.draggableElem.style, {
+                mouseup() { // restore styles/pointer events, remove listeners, reset chatgpt.draggingModal
+                    Object.assign(chatgpt.draggingModal.style, { // restore styles
                         cursor: 'inherit', transition: 'inherit', willChange: 'auto', transform: 'scale(1)' });
-                    ['mousemove', 'mouseup'].forEach(eventType =>
+                    [...chatgpt.draggingModal.children] // restore pointer events
+                        .forEach(child => child.style.pointerEvents = '');
+                    ['mousemove', 'mouseup'].forEach(eventType => // remove listeners
                         document.removeEventListener(eventType, handlers.drag[eventType]))
-                    chatgpt.draggableElem = null
+                    chatgpt.draggingModal = null
                 }
             }
         }
 
-        // Create modal parent/children elements
-        const modalContainer = document.createElement('div');
-        modalContainer.id = Math.floor(chatgpt.randomFloat() * 1000000) + Date.now();
-        modalContainer.classList.add('chatgpt-modal'); // add class to main div
+        // Create modal parent/children elems
+        const modalContainer = document.createElement('div')
+        modalContainer.id = Math.floor(chatgpt.randomFloat() * 1000000) + Date.now()
+        modalContainer.classList.add('chatgpt-modal') // add class to main div
         const modal = document.createElement('div'),
               modalTitle = document.createElement('h2'),
-              modalMessage = document.createElement('p');
+              modalMessage = document.createElement('p')
 
         // Create/append/update modal style (if missing or outdated)
         const thisUpdated = 1739338889852 // timestamp of last edit for this file's `modalStyle`
@@ -178,88 +206,85 @@ const chatgpt = {
                   .chatgpt-modal input[type=checkbox]:focus {
                       outline: none ; box-shadow: none ; -webkit-box-shadow: none ; -moz-box-shadow: none }
                   .chatgpt-modal .checkbox-group label {
-                      font-size: 14px ; color: ${ scheme == 'dark' ? '#e1e1e1' : '#1e1e1e' }}`
+                      cursor: pointer ; font-size: 14px ; color: ${ scheme == 'dark' ? '#e1e1e1' : '#1e1e1e' }}`
             )
         }
 
-        // Insert text into elements
-        modalTitle.innerText = title || '';
-        modalMessage.innerText = msg || ''; chatgpt.renderHTML(modalMessage);
+        // Insert text into elems
+        modalTitle.innerText = title || '' ; modalMessage.innerText = msg || '' ; chatgpt.renderHTML(modalMessage)
 
         // Create/append buttons (if provided) to buttons div
-        const modalButtons = document.createElement('div');
-        modalButtons.classList.add('modal-buttons', 'no-mobile-tap-outline');
+        const modalButtons = document.createElement('div')
+        modalButtons.classList.add('modal-buttons', 'no-mobile-tap-outline')
         if (btns) { // are supplied
-            if (!Array.isArray(btns)) btns = [btns]; // convert single button to array if necessary
+            if (!Array.isArray(btns)) btns = [btns] // convert single button to array if necessary
             btns.forEach((buttonFn) => { // create title-cased labels + attach listeners
-                const button = document.createElement('button');
+                const button = document.createElement('button')
                 button.textContent = buttonFn.name
                     .replace(/[_-]\w/g, match => match.slice(1).toUpperCase()) // convert snake/kebab to camel case
                     .replace(/([A-Z])/g, ' $1') // insert spaces
-                    .replace(/^\w/, firstChar => firstChar.toUpperCase()); // capitalize first letter
-                button.onclick = () => { dismissAlert(); buttonFn(); };
-                modalButtons.insertBefore(button, modalButtons.firstChild); // insert button to left
-            });
+                    .replace(/^\w/, firstChar => firstChar.toUpperCase()) // capitalize first letter
+                button.onclick = () => { dismissAlert() ; buttonFn() }
+                modalButtons.insertBefore(button, modalButtons.firstChild)
+            })
         }
 
         // Create/append OK/dismiss button to buttons div
-        const dismissBtn = document.createElement('button');
-        dismissBtn.textContent = btns ? 'Dismiss' : 'OK';
-        modalButtons.insertBefore(dismissBtn, modalButtons.firstChild);
+        const dismissBtn = document.createElement('button')
+        dismissBtn.textContent = btns ? 'Dismiss' : 'OK'
+        modalButtons.insertBefore(dismissBtn, modalButtons.firstChild)
 
         // Highlight primary button
-        modalButtons.lastChild.classList.add('primary-modal-btn');
+        modalButtons.lastChild.classList.add('primary-modal-btn')
 
         // Create/append checkbox (if provided) to checkbox group div
-        const checkboxDiv = document.createElement('div');
+        const checkboxDiv = document.createElement('div')
         if (checkbox) { // is supplied
-            checkboxDiv.classList.add('checkbox-group');
+            checkboxDiv.classList.add('checkbox-group')
             const checkboxFn = checkbox, // assign the named function to checkboxFn
-                  checkboxInput = document.createElement('input');
-            checkboxInput.type = 'checkbox';
-            checkboxInput.onchange = checkboxFn;
+                  checkboxInput = document.createElement('input')
+            checkboxInput.type = 'checkbox' ; checkboxInput.onchange = checkboxFn
 
             // Create/show label
-            const checkboxLabel = document.createElement('label');
-            checkboxLabel.onclick = () => { checkboxInput.checked = !checkboxInput.checked; checkboxFn(); };
+            const checkboxLabel = document.createElement('label')
+            checkboxLabel.onclick = () => { checkboxInput.checked = !checkboxInput.checked ; checkboxFn() }
             checkboxLabel.textContent = checkboxFn.name.charAt(0).toUpperCase() // capitalize first char
                 + checkboxFn.name.slice(1) // format remaining chars
                     .replace(/([A-Z])/g, (match, letter) => ' ' + letter.toLowerCase()) // insert spaces, convert to lowercase
                     .replace(/\b(\w+)nt\b/gi, '$1n\'t') // insert apostrophe in 'nt' suffixes
-                    .trim(); // trim leading/trailing spaces
+                    .trim() // trim leading/trailing spaces
 
-            checkboxDiv.append(checkboxInput); checkboxDiv.append(checkboxLabel);
+            checkboxDiv.append(checkboxInput) ; checkboxDiv.append(checkboxLabel)
         }
 
         // Create close button
-        const closeBtn = document.createElement('div');
-        closeBtn.title = 'Close'; closeBtn.classList.add('modal-close-btn', 'no-mobile-tap-outline');
-        const closeSVG = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        closeSVG.setAttribute('height', '10px');
-        closeSVG.setAttribute('viewBox', '0 0 14 14');
-        closeSVG.setAttribute('fill', 'none');
-        const closeSVGpath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        closeSVGpath.setAttribute('fill-rule', 'evenodd');
-        closeSVGpath.setAttribute('clip-rule', 'evenodd');
-        closeSVGpath.setAttribute('fill', chatgpt.isDarkMode() ? 'white' : 'black');
-        closeSVGpath.setAttribute('d', 'M13.7071 1.70711C14.0976 1.31658 14.0976 0.683417 13.7071 0.292893C13.3166 -0.0976312 12.6834 -0.0976312 12.2929 0.292893L7 5.58579L1.70711 0.292893C1.31658 -0.0976312 0.683417 -0.0976312 0.292893 0.292893C-0.0976312 0.683417 -0.0976312 1.31658 0.292893 1.70711L5.58579 7L0.292893 12.2929C-0.0976312 12.6834 -0.0976312 13.3166 0.292893 13.7071C0.683417 14.0976 1.31658 14.0976 1.70711 13.7071L7 8.41421L12.2929 13.7071C12.6834 14.0976 13.3166 14.0976 13.7071 13.7071C14.0976 13.3166 14.0976 12.6834 13.7071 12.2929L8.41421 7L13.7071 1.70711Z');
-        closeSVG.append(closeSVGpath); closeBtn.append(closeSVG);
+        const closeBtn = document.createElement('div')
+        closeBtn.title = 'Close' ; closeBtn.classList.add('modal-close-btn', 'no-mobile-tap-outline')
+        const closeSVG = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+        closeSVG.setAttribute('height', '10px')
+        closeSVG.setAttribute('viewBox', '0 0 14 14')
+        closeSVG.setAttribute('fill', 'none')
+        const closeSVGpath = document.createElementNS('http://www.w3.org/2000/svg', 'path')
+        closeSVGpath.setAttribute('fill-rule', 'evenodd')
+        closeSVGpath.setAttribute('clip-rule', 'evenodd')
+        closeSVGpath.setAttribute('fill', chatgpt.isDarkMode() ? 'white' : 'black')
+        closeSVGpath.setAttribute('d', 'M13.7071 1.70711C14.0976 1.31658 14.0976 0.683417 13.7071 0.292893C13.3166 -0.0976312 12.6834 -0.0976312 12.2929 0.292893L7 5.58579L1.70711 0.292893C1.31658 -0.0976312 0.683417 -0.0976312 0.292893 0.292893C-0.0976312 0.683417 -0.0976312 1.31658 0.292893 1.70711L5.58579 7L0.292893 12.2929C-0.0976312 12.6834 -0.0976312 13.3166 0.292893 13.7071C0.683417 14.0976 1.31658 14.0976 1.70711 13.7071L7 8.41421L12.2929 13.7071C12.6834 14.0976 13.3166 14.0976 13.7071 13.7071C14.0976 13.3166 14.0976 12.6834 13.7071 12.2929L8.41421 7L13.7071 1.70711Z')
+        closeSVG.append(closeSVGpath) ; closeBtn.append(closeSVG)
 
         // Assemble/append div
-        const modalElems = [closeBtn, modalTitle, modalMessage, checkboxDiv, modalButtons ];
-        modalElems.forEach((elem) => { modal.append(elem); });
-        modal.style.width = `${ width || 458 }px`;
-        modalContainer.append(modal); document.body.append(modalContainer);
+        modal.append(closeBtn, modalTitle, modalMessage, checkboxDiv, modalButtons)
+        modal.style.width = `${ width || 458 }px`
+        modalContainer.append(modal) ; document.body.append(modalContainer)
 
         // Enqueue alert
-        let alertQueue = JSON.parse(localStorage.alertQueue);
-        alertQueue.push(modalContainer.id);
-        localStorage.alertQueue = JSON.stringify(alertQueue);
+        let alertQueue = JSON.parse(localStorage.alertQueue)
+        alertQueue.push(modalContainer.id)
+        localStorage.alertQueue = JSON.stringify(alertQueue)
 
         // Show alert if none active
-        modalContainer.style.display = 'none';
-        if (alertQueue.length === 1) {
-            modalContainer.style.display = '';
+        modalContainer.style.display = 'none'
+        if (alertQueue.length == 1) {
+            modalContainer.style.display = ''
             setTimeout(() => { // dim bg
                 modal.parentNode.style.backgroundColor = `rgba(67,70,72,${ scheme == 'dark' ? 0.62 : 0.33 })`
                 modal.parentNode.classList.add('animated')
@@ -267,9 +292,8 @@ const chatgpt = {
         }
 
         // Add listeners
-        const dismissElems = [modalContainer, closeBtn, closeSVG, dismissBtn];
-        dismissElems.forEach(elem => elem.onclick = handlers.dismiss.click);
-        document.addEventListener('keydown', handlers.dismiss.key);
+        [modalContainer, closeBtn, closeSVG, dismissBtn].forEach(elem => elem.onclick = handlers.dismiss.click)
+        document.addEventListener('keydown', handlers.dismiss.key)
         modal.onmousedown = handlers.drag.mousedown // enable click-dragging
 
         // Define alert dismisser
@@ -301,51 +325,42 @@ const chatgpt = {
 
     browser: {
         isMobile() {
-            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent); }
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) }
     },
 
-    getChatBox() { return document.getElementById('prompt-textarea'); },
-
-    getNewChatButton() {
-        return document.querySelector(
-            'button[data-testid*=new-chat-button],' // sidebar button (when logged in)
-          + 'button:has([d^="M3.06957"]),' // Cycle Arrows icon (Temp chat mode)
-          + 'button:has([d^="M15.6729"])' // Pencil icon (recorded chat mode)
-        )
-    },
-
-    getNewChatLink() { return document.querySelector('nav a[href="/"]'); },
-    getScrollToBottomButton() { return document.querySelector('button:has([d^="M12 21C11.7348"])'); },
-    getSendButton() { return document.querySelector('[data-testid=send-button]'); },
-    getStopButton() { return document.querySelector('button[data-testid=stop-button]'); },
+    getChatBox() { return document.getElementById('prompt-textarea') },
+    getNewChatButton() { return document.querySelector(chatgpt.selectors.btns.newChat) },
+    getNewChatLink() { return document.querySelector(chatgpt.selectors.links.newChat) },
+    getScrollToBottomButton() { return document.querySelector(chatgpt.selectors.btns.scroll) },
+    getSendButton() { return document.querySelector(chatgpt.selectors.btns.send) },
+    getStopButton() { return document.querySelector(chatgpt.selectors.btns.stop) },
     isDarkMode() { return document.documentElement.className.includes('dark') },
 
     async isIdle(timeout = null) {
-        const obsConfig = { childList: true, subtree: true },
-              msgDivSelector = 'div[data-message-author-role]';
+        const obsConfig = { childList: true, subtree: true }
 
         // Create promises
-        const timeoutPromise = timeout ? new Promise(resolve => setTimeout(() => resolve(false), timeout)) : null;
+        const timeoutPromise = timeout ? new Promise(resolve => setTimeout(() => resolve(false), timeout)) : null
         const isIdlePromise = (async () => {
             await new Promise(resolve => { // when on convo page
-                if (document.querySelector(msgDivSelector)) resolve();
+                if (document.querySelector(chatgpt.selectors.chatDivs.msg)) resolve()
                 else new MutationObserver((_, obs) => {
-                    if (document.querySelector(msgDivSelector)) { obs.disconnect(); resolve(); }
-                }).observe(document.body, obsConfig);
-            });
-            await new Promise(resolve => { // when reply starts generating
+                    if (document.querySelector(chatgpt.selectors.chatDivs.msg)) { obs.disconnect() ; resolve() }
+                }).observe(document.body, obsConfig)
+            })
+            await new Promise(resolve => // when reply starts generating
                 new MutationObserver((_, obs) => {
-                    if (chatgpt.getStopBtn()) { obs.disconnect(); resolve(); }
-                }).observe(document.body, obsConfig);
-            });
-            return new Promise(resolve => { // when reply stops generating
+                    if (chatgpt.getStopBtn()) { obs.disconnect() ; resolve() }
+                }).observe(document.body, obsConfig)
+            )
+            return new Promise(resolve => // when reply stops generating
                 new MutationObserver((_, obs) => {
-                    if (!chatgpt.getStopBtn()) { obs.disconnect(); resolve(true); }
-                }).observe(document.body, obsConfig);
-            });
-        })();
+                    if (!chatgpt.getStopBtn()) { obs.disconnect() ; resolve(true) }
+                }).observe(document.body, obsConfig)
+            )
+        })()
 
-        return await (timeoutPromise ? Promise.race([isIdlePromise, timeoutPromise]) : isIdlePromise);
+        return await (timeoutPromise ? Promise.race([isIdlePromise, timeoutPromise]) : isIdlePromise)
     },
 
     async isLoaded(timeout = null) {
@@ -362,134 +377,139 @@ const chatgpt = {
     notify(msg, position, notifDuration, shadow) {
         notifDuration = notifDuration ? +notifDuration : 1.75; // sec duration to maintain notification visibility
         const fadeDuration = 0.35, // sec duration of fade-out
-              vpYoffset = 23, vpXoffset = 27; // px offset from viewport border
+              vpYoffset = 23, vpXoffset = 27 // px offset from viewport border
 
         // Create/append notification div
-        const notificationDiv = document.createElement('div'); // make div
-        notificationDiv.id = Math.floor(chatgpt.randomFloat() * 1000000) + Date.now();
-        notificationDiv.classList.add('chatgpt-notif');
-        notificationDiv.innerText = msg; // insert msg
-        document.body.append(notificationDiv); // insert into DOM
+        const notificationDiv = document.createElement('div') // make div
+        notificationDiv.id = Math.floor(chatgpt.randomFloat() * 1000000) + Date.now()
+        notificationDiv.classList.add('chatgpt-notif')
+        notificationDiv.innerText = msg // insert msg
+        document.body.append(notificationDiv) // insert into DOM
 
         // Create/append close button
-        const closeBtn = document.createElement('div');
-        closeBtn.title = 'Dismiss'; closeBtn.classList.add('notif-close-btn', 'no-mobile-tap-outline');
-        const closeSVG = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        closeSVG.setAttribute('height', '8px');
-        closeSVG.setAttribute('viewBox', '0 0 14 14');
-        closeSVG.setAttribute('fill', 'none');
-        closeSVG.style.height = closeSVG.style.width = '8px'; // override SVG styles on non-OpenAI sites
-        const closeSVGpath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        closeSVGpath.setAttribute('fill-rule', 'evenodd');
-        closeSVGpath.setAttribute('clip-rule', 'evenodd');
-        closeSVGpath.setAttribute('fill', 'white');
+        const closeBtn = document.createElement('div')
+        closeBtn.title = 'Dismiss'; closeBtn.classList.add('notif-close-btn', 'no-mobile-tap-outline')
+        const closeSVG = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+        closeSVG.setAttribute('height', '8px')
+        closeSVG.setAttribute('viewBox', '0 0 14 14')
+        closeSVG.setAttribute('fill', 'none')
+        closeSVG.style.height = closeSVG.style.width = '8px' // override SVG styles on non-OpenAI sites
+        const closeSVGpath = document.createElementNS('http://www.w3.org/2000/svg', 'path')
+        closeSVGpath.setAttribute('fill-rule', 'evenodd')
+        closeSVGpath.setAttribute('clip-rule', 'evenodd')
+        closeSVGpath.setAttribute('fill', 'white')
         closeSVGpath.setAttribute('d', 'M13.7071 1.70711C14.0976 1.31658 14.0976 0.683417 13.7071 0.292893C13.3166 -0.0976312 12.6834 -0.0976312 12.2929 0.292893L7 5.58579L1.70711 0.292893C1.31658 -0.0976312 0.683417 -0.0976312 0.292893 0.292893C-0.0976312 0.683417 -0.0976312 1.31658 0.292893 1.70711L5.58579 7L0.292893 12.2929C-0.0976312 12.6834 -0.0976312 13.3166 0.292893 13.7071C0.683417 14.0976 1.31658 14.0976 1.70711 13.7071L7 8.41421L12.2929 13.7071C12.6834 14.0976 13.3166 14.0976 13.7071 13.7071C14.0976 13.3166 14.0976 12.6834 13.7071 12.2929L8.41421 7L13.7071 1.70711Z');
-        closeSVG.append(closeSVGpath); closeBtn.append(closeSVG); notificationDiv.append(closeBtn);
+        closeSVG.append(closeSVGpath) ; closeBtn.append(closeSVG) ; notificationDiv.append(closeBtn)
 
         // Determine div position/quadrant
-        notificationDiv.isTop = !position || !/low|bottom/i.test(position);
-        notificationDiv.isRight = !position || !/left/i.test(position);
+        notificationDiv.isTop = !position || !/low|bottom/i.test(position)
+        notificationDiv.isRight = !position || !/left/i.test(position)
         notificationDiv.quadrant = (notificationDiv.isTop ? 'top' : 'bottom')
-                                 + (notificationDiv.isRight ? 'Right' : 'Left');
+                                 + (notificationDiv.isRight ? 'Right' : 'Left')
 
         // Create/append/update notification style (if missing or outdated)
         const thisUpdated = 1735767823541 // timestamp of last edit for this file's `notifStyle`
-        let notifStyle = document.querySelector('#chatgpt-notif-style'); // try to select existing style
+        let notifStyle = document.querySelector('#chatgpt-notif-style') // try to select existing style
         if (!notifStyle || parseInt(notifStyle.getAttribute('last-updated'), 10) < thisUpdated) { // if missing or outdated
             if (!notifStyle) { // outright missing, create/id/attr/append it first
-                notifStyle = document.createElement('style'); notifStyle.id = 'chatgpt-notif-style';
-                notifStyle.setAttribute('last-updated', thisUpdated.toString());
-                document.head.append(notifStyle);
+                notifStyle = document.createElement('style') ; notifStyle.id = 'chatgpt-notif-style'
+                notifStyle.setAttribute('last-updated', thisUpdated.toString())
+                document.head.append(notifStyle)
             }
             notifStyle.innerText = ( // update prev/new style contents
                 '.chatgpt-notif {'
                     + 'font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",'
                         + '"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif ;'
                     + '.no-mobile-tap-outline { outline: none ; -webkit-tap-highlight-color: transparent }'
-                    + 'background-color: black ; padding: 10px 13px 10px 18px ; border-radius: 11px ; border: 1px solid #f5f5f7 ;' // bubble style
+                    + 'background-color: black ; padding: 10px 13px 10px 18px ;' // bubble style
+                        + 'border-radius: 11px ; border: 1px solid #f5f5f7 ;'
                     + 'opacity: 0 ; position: fixed ; z-index: 9999 ; font-size: 1.8rem ; color: white ;' // visibility
                     + 'user-select: none ; -webkit-user-select: none ; -moz-user-select: none ; -o-user-select: none ;'
                         + '-ms-user-select: none ;'
-                    + `transform: translateX(${ !notificationDiv.isRight ? '-' : '' }35px) ;` // init off-screen for transition fx
-                    + ( shadow ? ( 'box-shadow: -8px 13px 25px 0 ' + ( /\b(?:shadow|on)\b/i.test(shadow) ? 'gray' : shadow )) : '' ) + '}'
-                + '.notif-close-btn { cursor: pointer ; float: right ; position: relative ; right: -4px ; margin-left: -3px ;'
+                    + `transform: translateX(${ // init off-screen for transition fx
+                          !notificationDiv.isRight ? '-' : '' }35px) ;`
+                    + ( shadow ? `--shadow: -8px 13px 25px 0 ${ /\b(?:shadow|on)\b/i.test(shadow) ? 'gray' : shadow };
+                        box-shadow: var(--shadow) ; -webkit-box-shadow: var(--shadow) ; -moz-box-shadow: var(--shadow)`
+                            : '' ) + '}'
+                + `.notif-close-btn {
+                      cursor: pointer ; float: right ; position: relative ; right: -4px ; margin-left: -3px ;`
                     + 'display: grid }' // top-align for non-OpenAI sites
                 + '@keyframes notif-zoom-fade-out { 0% { opacity: 1 ; transform: scale(1) }' // transition out keyframes
                     + '15% { opacity: 0.35 ; transform: rotateX(-27deg) scale(1.05) }'
                     + '45% { opacity: 0.05 ; transform: rotateX(-81deg) }'
                     + '100% { opacity: 0 ; transform: rotateX(-180deg) scale(1.15) }}'
-            );
+            )
         }
 
         // Enqueue notification
-        let notifyProps = JSON.parse(localStorage.notifyProps);
-        notifyProps.queue[notificationDiv.quadrant].push(notificationDiv.id);
-        localStorage.notifyProps = JSON.stringify(notifyProps);
+        let notifyProps = JSON.parse(localStorage.notifyProps)
+        notifyProps.queue[notificationDiv.quadrant].push(notificationDiv.id)
+        localStorage.notifyProps = JSON.stringify(notifyProps)
 
         // Position notification (defaults to top-right)
-        notificationDiv.style.top = notificationDiv.isTop ? vpYoffset.toString() + 'px' : '';
-        notificationDiv.style.bottom = !notificationDiv.isTop ? vpYoffset.toString() + 'px' : '';
-        notificationDiv.style.right = notificationDiv.isRight ? vpXoffset.toString() + 'px' : '';
-        notificationDiv.style.left = !notificationDiv.isRight ? vpXoffset.toString() + 'px' : '';
+        notificationDiv.style.top = notificationDiv.isTop ? vpYoffset.toString() + 'px' : ''
+        notificationDiv.style.bottom = !notificationDiv.isTop ? vpYoffset.toString() + 'px' : ''
+        notificationDiv.style.right = notificationDiv.isRight ? vpXoffset.toString() + 'px' : ''
+        notificationDiv.style.left = !notificationDiv.isRight ? vpXoffset.toString() + 'px' : ''
 
         // Reposition old notifications
-        const thisQuadrantQueue = notifyProps.queue[notificationDiv.quadrant];
+        const thisQuadrantQueue = notifyProps.queue[notificationDiv.quadrant]
         if (thisQuadrantQueue.length > 1) {
             try { // to move old notifications
                 for (const divId of thisQuadrantQueue.slice(0, -1)) { // exclude new div
                     const oldDiv = document.getElementById(divId),
                           offsetProp = oldDiv.style.top ? 'top' : 'bottom', // pick property to change
-                          vOffset = +/\d+/.exec(oldDiv.style[offsetProp])[0] + 5 + oldDiv.getBoundingClientRect().height;
-                    oldDiv.style[offsetProp] = `${ vOffset }px`; // change prop
+                          vOffset = +/\d+/.exec(oldDiv.style[offsetProp])[0] + 5 + oldDiv.getBoundingClientRect().height
+                    oldDiv.style[offsetProp] = `${ vOffset }px` // change prop
                 }
             } catch (err) {}
         }
 
         // Show notification
         setTimeout(() => {
-            notificationDiv.style.opacity = chatgpt.isDarkMode() ? 0.8 : 0.67; // show msg
-            notificationDiv.style.transform = 'translateX(0)'; // bring from off-screen
-            notificationDiv.style.transition = 'transform 0.15s ease, opacity 0.15s ease';
-        }, 10);
+            notificationDiv.style.opacity = chatgpt.isDarkMode() ? 0.8 : 0.67 // show msg
+            notificationDiv.style.transform = 'translateX(0)' // bring from off-screen
+            notificationDiv.style.transition = 'transform 0.15s ease, opacity 0.15s ease'
+        }, 10)
 
         // Init delay before hiding
         const hideDelay = fadeDuration > notifDuration ? 0 // don't delay if fade exceeds notification duration
-                        : notifDuration - fadeDuration; // otherwise delay for difference
+                        : notifDuration - fadeDuration // otherwise delay for difference
 
         // Add notification dismissal to timeout schedule + button clicks
         const dismissNotif = () => {
             notificationDiv.style.animation = `notif-zoom-fade-out ${ fadeDuration }s ease-out`;
-            clearTimeout(dismissFuncTID);
-        };
-        const dismissFuncTID = setTimeout(dismissNotif, hideDelay * 1000); // maintain visibility for `hideDelay` secs, then dismiss
-        closeSVG.onclick = dismissNotif; // add to close button clicks
+            clearTimeout(dismissFuncTID)
+        }
+        const dismissFuncTID = setTimeout(dismissNotif, hideDelay * 1000) // maintain visibility for `hideDelay` secs, then dismiss
+        closeSVG.onclick = dismissNotif // add to close button clicks
 
         // Destroy notification
         notificationDiv.onanimationend = () => {
-            notificationDiv.remove(); // remove from DOM
-            notifyProps = JSON.parse(localStorage.notifyProps);
-            notifyProps.queue[notificationDiv.quadrant].shift(); // + memory
-            localStorage.notifyProps = JSON.stringify(notifyProps); // + storage
-        };
+            notificationDiv.remove() // remove from DOM
+            notifyProps = JSON.parse(localStorage.notifyProps)
+            notifyProps.queue[notificationDiv.quadrant].shift() // + memory
+            localStorage.notifyProps = JSON.stringify(notifyProps) // + storage
+        }
 
-        return notificationDiv;
+        return notificationDiv
     },
 
     randomFloat() {
     // * Generates a random, cryptographically secure value between 0 (inclusive) & 1 (exclusive)
-        const crypto = window.crypto || window.msCrypto;
-        return crypto?.getRandomValues(new Uint32Array(1))[0] / 0xFFFFFFFF || Math.random();
+        const crypto = window.crypto || window.msCrypto
+        return crypto?.getRandomValues(new Uint32Array(1))[0] / 0xFFFFFFFF || Math.random()
     },
 
     renderHTML(node) {
         const reTags = /<([a-z\d]+)\b([^>]*)>([\s\S]*?)<\/\1>/g,
-              reAttributes = /(\S+)=['"]?((?:.(?!['"]?\s+\S+=|[>']))+.)['"]?/g, // eslint-disable-line
-              nodeContent = node.childNodes;
+              reAttrs = /(\S+)=['"]?((?:.(?!['"]?\s+\S+=|[>']))+.)['"]?/g, // eslint-disable-line
+              nodeContent = node.childNodes
 
         // Preserve consecutive spaces + line breaks
         if (!chatgpt.renderHTML.preWrapSet) {
-            node.style.whiteSpace = 'pre-wrap'; chatgpt.renderHTML.preWrapSet = true;
-            setTimeout(() => { chatgpt.renderHTML.preWrapSet = false; }, 100);
+            node.style.whiteSpace = 'pre-wrap' ; chatgpt.renderHTML.preWrapSet = true
+            setTimeout(() => chatgpt.renderHTML.preWrapSet = false, 100)
         }
 
         // Process child nodes
@@ -498,76 +518,77 @@ const chatgpt = {
             // Process text node
             if (childNode.nodeType == Node.TEXT_NODE) {
                 const text = childNode.nodeValue,
-                      elems = Array.from(text.matchAll(reTags));
+                      elems = Array.from(text.matchAll(reTags))
 
                 // Process 1st element to render
                 if (elems.length > 0) {
                     const elem = elems[0],
-                          [tagContent, tagName, tagAttributes, tagText] = elem.slice(0, 4),
-                          tagNode = document.createElement(tagName); tagNode.textContent = tagText;
+                          [tagContent, tagName, tagAttrs, tagText] = elem.slice(0, 4),
+                          tagNode = document.createElement(tagName) ; tagNode.textContent = tagText
 
                     // Extract/set attributes
-                    const attributes = Array.from(tagAttributes.matchAll(reAttributes));
-                    attributes.forEach(attribute => {
-                        const name = attribute[1], value = attribute[2].replace(/['"]/g, '');
-                        tagNode.setAttribute(name, value);
-                    });
+                    const attrs = Array.from(tagAttrs.matchAll(reAttrs))
+                    attrs.forEach(attr => {
+                        const name = attr[1], value = attr[2].replace(/['"]/g, '')
+                        tagNode.setAttribute(name, value)
+                    })
 
-                    const renderedNode = chatgpt.renderHTML(tagNode); // render child elements of newly created node
+                    const renderedNode = chatgpt.renderHTML(tagNode) // render child elems of newly created node
 
                     // Insert newly rendered node
                     const beforeTextNode = document.createTextNode(text.substring(0, elem.index)),
-                          afterTextNode = document.createTextNode(text.substring(elem.index + tagContent.length));
+                          afterTextNode = document.createTextNode(text.substring(elem.index + tagContent.length))
 
                     // Replace text node with processed nodes
-                    node.replaceChild(beforeTextNode, childNode);
-                    node.insertBefore(renderedNode, beforeTextNode.nextSibling);
-                    node.insertBefore(afterTextNode, renderedNode.nextSibling);
+                    node.replaceChild(beforeTextNode, childNode)
+                    node.insertBefore(renderedNode, beforeTextNode.nextSibling)
+                    node.insertBefore(afterTextNode, renderedNode.nextSibling)
                 }
 
             // Process element nodes recursively
-            } else if (childNode.nodeType == Node.ELEMENT_NODE) chatgpt.renderHTML(childNode);
+            } else if (childNode.nodeType == Node.ELEMENT_NODE) chatgpt.renderHTML(childNode)
         }
 
-        return node; // if assignment used
+        return node // if assignment used
     },
 
-    response: { stopGenerating() { try { chatgpt.getStopBtn().click(); } catch (err) { console.error(err.message); }}},
-    scrollToBottom() { try { chatgpt.getScrollBtn().click(); } catch (err) { console.error(err.message); }},
+    response: { stopGenerating() { try { chatgpt.getStopBtn().click() } catch (err) { console.error(err.message) }}},
+    scrollToBottom() { try { chatgpt.getScrollBtn().click() } catch (err) { console.error(err.message) }},
 
     send(msg, method='') {
-        for (let i = 0; i < arguments.length; i++) if (typeof arguments[i] !== 'string')
-            return console.error(`Argument ${ i + 1 } must be a string!`);
-        const textArea = chatgpt.getChatBox();
-        if (!textArea) return console.error('Chatbar element not found!');
-        const msgP = document.createElement('p'); msgP.textContent = msg;
-        textArea.replaceChild(msgP, textArea.querySelector('p'));
-        textArea.dispatchEvent(new Event('input', { bubbles: true })); // enable send button
+        for (let i = 0 ; i < arguments.length ; i++) if (typeof arguments[i] != 'string')
+            return console.error(`Argument ${ i + 1 } must be a string!`)
+        const textArea = chatgpt.getChatBox()
+        if (!textArea) return console.error('Chatbar element not found!')
+        const msgP = document.createElement('p'); msgP.textContent = msg
+        textArea.replaceChild(msgP, textArea.querySelector('p'))
+        textArea.dispatchEvent(new Event('input', { bubbles: true })) // enable send button
         setTimeout(function delaySend() {
-            const sendBtn = chatgpt.getSendButton();
+            const sendBtn = chatgpt.getSendButton()
             if (!sendBtn?.hasAttribute('disabled')) { // send msg
                 method.toLowerCase() == 'click' || chatgpt.browser.isMobile() ? sendBtn.click()
-                    : textArea.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
-            } else setTimeout(delaySend, 222);
-        }, 222);
+                    : textArea.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }))
+            } else setTimeout(delaySend, 222)
+        }, 222)
     },
 
     sidebar: {
         exists() { return !!chatgpt.getNewChatLink(); },
-        hide() { this.isOn() ? this.toggle() : console.info('Sidebar already hidden!'); },
+        hide() { this.isOn() ? this.toggle() : console.info('Sidebar already hidden!') },
+
         isOn() {
             const sidebar = (() => {
-                return chatgpt.sidebar.exists() ? document.querySelector('[class*=sidebar]') : null; })();
-            if (!sidebar) { console.error('Sidebar element not found!'); return false; }
+                return chatgpt.sidebar.exists() ? document.querySelector(chatgpt.selectors.sidebar) : null })()
+            if (!sidebar) { console.error('Sidebar element not found!'); return false }
             else return chatgpt.browser.isMobile() ?
                 document.documentElement.style.overflow == 'hidden'
-              : sidebar.style.visibility != 'hidden' && sidebar.style.width != '0px';
+              : sidebar.style.visibility != 'hidden' && sidebar.style.width != '0px'
         },
 
         toggle() {
-            const sidebarToggle = document.querySelector('button[data-testid*=sidebar-button]');
-            if (!sidebarToggle) console.error('Sidebar toggle not found!');
-            sidebarToggle.click();
+            const sidebarToggle = document.querySelector(chatgpt.selectors.btns.sidebar)
+            if (!sidebarToggle) console.error('Sidebar toggle not found!')
+            sidebarToggle.click()
         },
 
         async isLoaded(timeout = 5000) {
@@ -583,14 +604,13 @@ const chatgpt = {
         }
     },
 
-    startNewChat() { try { chatgpt.getNewChatBtn().click(); } catch (err) { console.error(err.message); }},
+    startNewChat() { try { chatgpt.getNewChatBtn().click() } catch (err) { console.error(err.message) }},
     stop() { chatgpt.response.stopGenerating(); }
-
-};
+}
 
 // Create ALIAS functions
 const cjsFuncAliases = [
-    ['actAs', 'actas', 'act', 'become', 'persona', 'premadePrompt', 'preMadePrompt', 'prePrompt', 'preprompt', 'roleplay', 'rolePlay', 'rp'],
+    ['actAs', 'act', 'become', 'persona', 'premadePrompt', 'preMadePrompt', 'prePrompt', 'rolePlay', 'rp'],
     ['activateAutoRefresh', 'activateAutoRefresher', 'activateRefresher', 'activateSessionRefresher',
         'autoRefresh', 'autoRefresher', 'autoRefreshSession', 'refresher', 'sessionRefresher'],
     ['continue', 'continueChat', 'continueGenerating', 'continueResponse'],
@@ -606,8 +626,9 @@ const cjsFuncAliases = [
     ['getScrollToBottomButton', 'getScrollButton'],
     ['getStopButton', 'getStopGeneratingButton'],
     ['getTextarea', 'getTextArea', 'getChatbar', 'getChatBar', 'getChatbox', 'getChatBox'],
-    ['isFullScreen', 'isFullscreen', 'isfullscreen'],
-    ['logout', 'logOut', 'logOff', 'signOff', 'signOut'],
+    ['getVoiceButton', 'getVoiceModeButton'],
+    ['isFullScreen', 'isFullscreen'],
+    ['isTempChat', 'isIncognito', 'isIncognitoMode', 'isTempChatMode'],
     ['minify', 'codeMinify', 'minifyCode'],
     ['new', 'newChat', 'startNewChat'],
     ['obfuscate', 'codeObfuscate', 'obfuscateCode'],
@@ -644,6 +665,8 @@ const cjsFuncSynonyms = [
     ['execute', 'interpret', 'interpreter', 'run'],
     ['firefox', 'ff'],
     ['generating', 'generation'],
+    ['login', 'logIn', 'logOn', 'signIn', 'signOn'],
+    ['logout', 'logOut', 'logOff', 'signOff', 'signOut'],
     ['message', 'msg'],
     ['minify', 'uglify'],
     ['refactor', 'rewrite'],
@@ -653,6 +676,7 @@ const cjsFuncSynonyms = [
     ['sentiment', 'attitude', 'emotion', 'feeling', 'opinion', 'perception'],
     ['speak', 'play', 'say', 'speech', 'talk', 'tts'],
     ['summarize', 'tldr'],
+    ['temp', 'temporary'],
     ['typing', 'generating'],
     ['unminify', 'beautify', 'prettify', 'prettyPrint']
 ];
@@ -689,23 +713,22 @@ const cjsFuncSynonyms = [
     } while (aliasFuncCreated) // loop over new functions to encompass all variations
 })()
 
-
 // Define HELPER functions
 
 function toCamelCase(words) {
     return words.map((word, idx) => idx == 0 ? word : word.charAt(0).toUpperCase() + word.slice(1)).join('') }
 
 // Prefix console logs w/ '🤖 chatgpt.js >> '
-const consolePrefix = '🤖 chatgpt.js >> ', ogError = console.error, ogInfo = console.info;
+const consolePrefix = '🤖 chatgpt.js >> ', ogError = console.error, ogInfo = console.info
 console.error = (...args) => {
-    if (!args[0].startsWith(consolePrefix)) ogError(consolePrefix + args[0], ...args.slice(1));
-    else ogError(...args);
-};
+    if (!args[0].startsWith(consolePrefix)) ogError(consolePrefix + args[0], ...args.slice(1))
+    else ogError(...args)
+}
 console.info = (msg) => {
     if (!msg.startsWith(consolePrefix)) ogInfo(consolePrefix + msg);
-    else ogInfo(msg);
-};
+    else ogInfo(msg)
+}
 
 // Export chatgpt object
-try { window.chatgpt = chatgpt; } catch (err) {} // for Greasemonkey
-try { module.exports = chatgpt; } catch (err) {} // for CommonJS
+try { window.chatgpt = chatgpt } catch (err) {} // for Greasemonkey
+try { module.exports = chatgpt } catch (err) {} // for CommonJS
