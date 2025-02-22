@@ -82,7 +82,7 @@ if [[ "$no_commit" != true ]] ; then
     if (( ${#unique_versions[@]} == 1 )) ; then COMMIT_MSG+=" to \`${unique_versions[0]}\`" ; fi
     git add ./**/manifest.json && git commit -n -m "$COMMIT_MSG"
     if [[ "$no_push" != true ]] ; then
-        echo -e "${BY}Pulling latest changes from remote to sync local repository...${NC}\n"
+        echo -e "\n${BY}Pulling latest changes from remote to sync local repository...${NC}\n"
         git pull || (echo -e "${BR}Merge failed, please resolve conflicts!${NC}" && exit 1)
         echo -e "\n${BY}Pushing bump${plural_suffix} to Git...\n${NC}"
         git push
