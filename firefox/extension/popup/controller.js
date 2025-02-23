@@ -123,7 +123,7 @@
                             else if (!/\d/.test(replyLang)) { // valid reply language set
                                 replyLang = ( // auto-case for menu/alert aesthetics
                                     replyLang.length < 4 || replyLang.includes('-') ? replyLang.toUpperCase()
-                                        : replyLang[0].toUpperCase() + replyLang.slice(1).toLowerCase() )
+                                        : toTitleCase(replyLang) )
                                 settings.save('replyLanguage', replyLang || chrome.i18n.getUILanguage())
                                 siteAlert(getMsg('alert_replyLangUpdated') + '!',
                                     `${getMsg('appName')} ${getMsg('alert_willReplyIn')} `

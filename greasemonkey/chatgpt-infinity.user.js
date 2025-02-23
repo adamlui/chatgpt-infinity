@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2025.2.22
+// @version             2025.2.23
 // @license             MIT
 // @icon                https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?v=69e434b
 // @icon64              https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?v=69e434b
@@ -429,7 +429,7 @@
                                 else if (!/\d/.test(replyLang)) { // valid reply language set
                                     replyLang = ( // auto-case for menu/alert aesthetics
                                         replyLang.length < 4 || replyLang.includes('-') ? replyLang.toUpperCase()
-                                            : replyLang[0].toUpperCase() + replyLang.slice(1).toLowerCase() )
+                                            : toTitleCase(replyLang) )
                                     settings.save('replyLanguage', replyLang || env.browser.language)
                                     modals.alert(( app.msgs.alert_replyLangUpdated ) + '!', // title
                                         ( app.msgs.appName ) + ' ' // msg
