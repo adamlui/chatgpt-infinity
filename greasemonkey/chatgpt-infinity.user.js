@@ -429,7 +429,7 @@
                                 else if (!/\d/.test(replyLang)) { // valid reply language set
                                     replyLang = ( // auto-case for menu/alert aesthetics
                                         replyLang.length < 4 || replyLang.includes('-') ? replyLang.toUpperCase()
-                                            : replyLang.charAt(0).toUpperCase() + replyLang.slice(1).toLowerCase() )
+                                            : replyLang[0].toUpperCase() + replyLang.slice(1).toLowerCase() )
                                     settings.save('replyLanguage', replyLang || env.browser.language)
                                     modals.alert(( app.msgs.alert_replyLangUpdated ) + '!', // title
                                         ( app.msgs.appName ) + ' ' // msg
