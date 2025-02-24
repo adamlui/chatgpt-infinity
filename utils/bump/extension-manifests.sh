@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# Bumps extension manifests if changes detected + git commit/push if --no-<commit|push> not passed
+# Bumps extension manifests if changes detected + git commit/push
 # NOTE: Pass --chrome or --chromium to forcibly bump Chromium manifest only
 # NOTE: Pass --firefox or --ff to forcibly bump Firefox manifest only
+# NOTE: Pass --no-<commit|push> to skip git commit/push
 
 shopt -s nocasematch # enable case-insensitive matching (to flexibly check commit msg for bumps)
 
