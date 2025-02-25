@@ -142,9 +142,8 @@ window.toggles = {
             },
 
             scheme() { // to match UI scheme
-                const { scheme } = toggles.imports.env.ui
-                toggles.sidebar.div.classList.add(scheme)
-                toggles.sidebar.div.classList.remove(scheme == 'dark' ? 'light' : 'dark')
+                toggles.sidebar.div.classList.remove('dark', 'light')
+                toggles.sidebar.div.classList.add(toggles.imports.env.ui.scheme)
                 toggles.sidebar.update.navicon()
             },
 
