@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2025.2.24
+// @version             2025.2.25
 // @license             MIT
 // @icon                https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?v=69e434b
 // @icon64              https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?v=69e434b
@@ -399,7 +399,7 @@
         register() {
 
             // Show "Disabled (extension installed)"
-            if (env.extensionInstalled)
+            if (env.extensionActive)
                 GM_registerMenuCommand(`${this.state.symbols[0]} ${app.msgs.menuLabel_disabled}`,
                     () => modals.open('about'), env.scriptManager.supportsTooltips ? { title: ' ' } : undefined )
 
@@ -476,7 +476,7 @@
 
             // Add About/Donate entries
             ['about', 'donate'].forEach(entryType => {
-                if (entryType === 'donate' && env.extensionInstalled) return
+                if (entryType === 'donate' && env.extensionActive) return
                 this.ids.push(GM_registerMenuCommand(
                     `${ entryType == 'about' ? '💡' : '💖' }`
                         + ` ${app.msgs[`menuLabel_${entryType}`]} ${ entryType == 'about' ? app.msgs.appName : '' }`,
@@ -625,15 +625,15 @@
     toggles.sidebar.update.navicon({ preload: true })
 
     // Create browser TOOLBAR MENU or DISABLE SCRIPT if extension installed
-    env.extensionInstalled = await Promise.race([
+    env.extensionActive = await Promise.race([
         new Promise(resolve => {
-            (function checkExtensionInstalled() {
+            (function checkextensionActive() {
                 if (document.documentElement.hasAttribute('chatgpt-infinity-extension-installed')) resolve(true)
-                else setTimeout(checkExtensionInstalled, 200)
+                else setTimeout(checkextensionActive, 200)
             })()
         }), new Promise(resolve => setTimeout(() => resolve(false), 1500))])
 
-    toolbarMenu.register() ; if (env.extensionInstalled) return
+    toolbarMenu.register() ; if (env.extensionActive) return
 
     // Init BROWSER/UI props
     await Promise.race([chatgpt.isLoaded(), new Promise(resolve => setTimeout(resolve, 5000))]) // initial UI loaded
