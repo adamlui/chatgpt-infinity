@@ -62,7 +62,6 @@
   "btnLabel_dismiss": { "message": "Sluiten" },
   "link_viewChanges": { "message": "Bekijk wijzigingen" },
   "unit_seconds": { "message": "seconden" },
-  "state_enabled": { "message": "ingeschakeld" },
   "state_disabled": { "message": "uitgeschakeld" },
   "state_on": { "message": "aan" },
   "state_off": { "message": "uit" }

@@ -62,7 +62,6 @@
   "btnLabel_dismiss": { "message": "Abbandona" },
   "link_viewChanges": { "message": "Visualizza modifiche" },
   "unit_seconds": { "message": "secondi" },
-  "state_enabled": { "message": "abilitato" },
   "state_disabled": { "message": "disabilitato" },
   "state_on": { "message": "il" },
   "state_off": { "message": "spento" }

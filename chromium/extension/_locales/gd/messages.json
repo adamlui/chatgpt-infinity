@@ -62,7 +62,6 @@
   "btnLabel_dismiss": { "message": "Fàg air an taobh" },
   "link_viewChanges": { "message": "Seall atharrachaidhean" },
   "unit_seconds": { "message": "diogan" },
-  "state_enabled": { "message": "gnìomhach" },
   "state_disabled": { "message": "gun ghniomhachd" },
   "state_on": { "message": "air" },
   "state_off": { "message": "dheth" }

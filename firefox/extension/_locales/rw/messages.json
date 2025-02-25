@@ -62,7 +62,6 @@
   "btnLabel_dismiss": { "message": "Emeza" },
   "link_viewChanges": { "message": "Reba ibigendecacrus" },
   "unit_seconds": { "message": "amasegonda" },
-  "state_enabled": { "message": "Igihagararire" },
   "state_disabled": { "message": "Gucyura" },
   "state_on": { "message": "Agashushondanga" },
   "state_off": { "message": "bidakora" }

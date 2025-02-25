@@ -62,7 +62,6 @@
   "btnLabel_dismiss": { "message": "Opusti" },
   "link_viewChanges": { "message": "Poglej spremembe" },
   "unit_seconds": { "message": "sekund" },
-  "state_enabled": { "message": "omogočeno" },
   "state_disabled": { "message": "onemogočeno" },
   "state_on": { "message": "vključeno" },
   "state_off": { "message": "izključeno" }

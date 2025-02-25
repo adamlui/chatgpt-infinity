@@ -62,7 +62,6 @@
   "btnLabel_dismiss": { "message": "Singkir" },
   "link_viewChanges": { "message": "Lihat perubahan" },
   "unit_seconds": { "message": "saat" },
-  "state_enabled": { "message": "dibenarkan" },
   "state_disabled": { "message": "dilumpuhkan" },
   "state_on": { "message": "ke atas" },
   "state_off": { "message": "mati" }

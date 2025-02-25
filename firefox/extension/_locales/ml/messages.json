@@ -62,7 +62,6 @@
   "btnLabel_dismiss": { "message": "ഡിസ്മിസ്" },
   "link_viewChanges": { "message": "മാറ്റങ്ങള്‍ കാണുക" },
   "unit_seconds": { "message": "സെക്കന്റുകൾ" },
-  "state_enabled": { "message": "പ്രവർത്തനക്ഷമമാക്കി" },
   "state_disabled": { "message": "വികലാംഗൻ" },
   "state_on": { "message": "ഓൺ" },
   "state_off": { "message": "ഓഫ്" }
