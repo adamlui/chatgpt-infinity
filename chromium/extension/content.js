@@ -3,7 +3,7 @@
 
 (async () => {
 
-    document.documentElement.setAttribute('chatgpt-infinity-extension-installed', true) // for userscript auto-disable
+    sessionStorage.chatgptInfinityExtensionActive = 'true' // for userscript auto-disable
 
     // Import JS resources
     for (const resource of
