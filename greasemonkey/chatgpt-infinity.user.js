@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2025.2.25
+// @version             2025.2.25.1
 // @license             MIT
 // @icon                https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?v=69e434b
 // @icon64              https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?v=69e434b
@@ -268,7 +268,7 @@
         version: GM_info.script.version, configKeyPrefix: 'chatGPTinfinity',
         chatgptJSver: /chatgpt\.js@([\d.]+)/.exec(GM_info.scriptMetaStr)[1],
         urls: { update: 'https://gm.chatgptinfinity.com' },
-        latestResourceCommitHash: 'ac13c74' // for cached app.json + messages.json + navicon in toggles.sidebar.insert()
+        latestResourceCommitHash: 'bbbc237' // for cached app.json + messages.json + navicon in toggles.sidebar.insert()
     }
     app.urls.resourceHost = `https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@${app.latestResourceCommitHash}`
     const remoteAppData = await new Promise(resolve => xhr({
@@ -290,7 +290,7 @@
         menuLabel_replyInt: 'Reply Interval',
         menuLabel_about: 'About',
         menuLabel_donate: 'Please send a donation',
-        menuLabel_disabled: 'Disabled (extension installed)',
+        menuLabel_extensionActive: 'extension active',
         about_author: 'Author',
         about_and: '&',
         about_contributors: 'contributors',
@@ -398,9 +398,10 @@
 
         register() {
 
-            // Show "Disabled (extension installed)"
+            // Show "Disabled (extension active)"
             if (env.extensionActive)
-                GM_registerMenuCommand(`${this.state.symbols[0]} ${app.msgs.menuLabel_disabled}`,
+                GM_registerMenuCommand(`${this.state.symbols[0]} ${
+                        toTitleCase(app.msgs.state_disabled)} (${app.msgs.menuLabel_extensionActive})`,
                     () => modals.open('about'), env.scriptManager.supportsTooltips ? { title: ' ' } : undefined )
 
             // ...or add settings entries
@@ -624,7 +625,7 @@
     toggles.import({ app, env, notify, syncConfigToUI })
     toggles.sidebar.update.navicon({ preload: true })
 
-    // Create browser TOOLBAR MENU or DISABLE SCRIPT if extension installed
+    // Create browser TOOLBAR MENU + DISABLE SCRIPT if extension active
     env.extensionActive = await Promise.race([
         new Promise(resolve => {
             (function checkextensionActive() {
