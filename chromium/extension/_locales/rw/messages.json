@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Intaremuco yo Guhindura" },
   "menuLabel_about": { "message": "Ku Bimenyetso" },
   "menuLabel_donate": { "message": "Yohereze Yohereze Impano" },
+  "menuLabel_extensionActive": { "message": "umugereka Gikora" },
   "about_author": { "message": "Ibisobanuro" },
   "about_and": { "message": "&&" },
   "about_contributors": { "message": "Ibigize" },

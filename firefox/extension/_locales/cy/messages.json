@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Ysbaid Ateb" },
   "menuLabel_about": { "message": "Gwybodaeth" },
   "menuLabel_donate": { "message": "Anfonwch rodd os gwelwch yn dda" },
+  "menuLabel_extensionActive": { "message": "estyniad ar waith" },
   "about_author": { "message": "Awdur" },
   "about_and": { "message": "a" },
   "about_contributors": { "message": "Cyfranwyr" },

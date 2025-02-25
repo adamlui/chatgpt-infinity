@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Ikhefu lokuphendula" },
   "menuLabel_about": { "message": "Malunga" },
   "menuLabel_donate": { "message": "Nceda uthumele umnikelo" },
+  "menuLabel_extensionActive": { "message": "ukongezwa kuyasebenza" },
   "about_author": { "message": "Inkcazelo ngombhali" },
   "about_and": { "message": "no" },
   "about_contributors": { "message": "Abanikeli" },

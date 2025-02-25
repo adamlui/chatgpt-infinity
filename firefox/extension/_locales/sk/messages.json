@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Interval odpovede" },
   "menuLabel_about": { "message": "O nás" },
   "menuLabel_donate": { "message": "Pošlite dar" },
+  "menuLabel_extensionActive": { "message": "rozšírenie aktívne" },
   "about_author": { "message": "Autor" },
   "about_and": { "message": "a" },
   "about_contributors": { "message": " PRISPIEVATELIA" },

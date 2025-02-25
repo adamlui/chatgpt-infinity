@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Pane Interval" },
   "menuLabel_about": { "message": "Ho‘ākāka" },
   "menuLabel_donate": { "message": "E ʻoluʻolu e hoʻouna i haʻawina" },
+  "menuLabel_extensionActive": { "message": "hoʻonui hana" },
   "about_author": { "message": "Mea kākau" },
   "about_and": { "message": "aloha au i ko'u mau kaikunane" },
   "about_contributors": { "message": "nā mea kōkua" },

@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "જવાબ અંતરાલ" },
   "menuLabel_about": { "message": "માહિતી" },
   "menuLabel_donate": { "message": "કૃપા કરીને દાન મોકલો" },
+  "menuLabel_extensionActive": { "message": "એક્સ્ટેંશન સક્રિય" },
   "about_author": { "message": "લેખક" },
   "about_and": { "message": "અને" },
   "about_contributors": { "message": "ફાળો આપનારાઓ" },

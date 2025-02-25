@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Interval odgovora" },
   "menuLabel_about": { "message": "Vizitka" },
   "menuLabel_donate": { "message": "Pošljite donacijo" },
+  "menuLabel_extensionActive": { "message": "razširitev je aktivna" },
   "about_author": { "message": "Avtor" },
   "about_and": { "message": "in" },
   "about_contributors": { "message": "Sodelavci" },

@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Atsakymų intervalas" },
   "menuLabel_about": { "message": "Apie" },
   "menuLabel_donate": { "message": "Siųskite auką" },
+  "menuLabel_extensionActive": { "message": "plėtinys aktyvus" },
   "about_author": { "message": "Autorius" },
   "about_and": { "message": "ir" },
   "about_contributors": { "message": "kontributoriai" },

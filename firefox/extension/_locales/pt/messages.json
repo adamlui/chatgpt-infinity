@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Intervalo de Resposta" },
   "menuLabel_about": { "message": "Quem somos" },
   "menuLabel_donate": { "message": "Envie um donativo" },
+  "menuLabel_extensionActive": { "message": "Extensão SOAP ativa." },
   "about_author": { "message": "Autor" },
   "about_and": { "message": "e" },
   "about_contributors": { "message": "colaboradores" },

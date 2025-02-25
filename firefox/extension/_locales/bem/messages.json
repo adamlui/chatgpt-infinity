@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Eposya Intervali" },
   "menuLabel_about": { "message": "Mwezabukali" },
   "menuLabel_donate": { "message": "Napapata Uletuma Ubupe" },
+  "menuLabel_extensionActive": { "message": "ukufutukishiwa" },
   "about_author": { "message": "Kalemba" },
   "about_and": { "message": "Elyo na" },
   "about_contributors": { "message": "abalesendamo ulubali" },

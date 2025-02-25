@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Taimi fakautu" },
   "menuLabel_about": { "message": "Fai 'a e" },
   "menuLabel_donate": { "message": "Kātaki ʻo ʻave ha foaki" },
+  "menuLabel_extensionActive": { "message": "fakalahi ki he malohi" },
   "about_author": { "message": "Tokotaha Faʻu Tohí" },
   "about_and": { "message": "e" },
   "about_contributors": { "message": "niʻihi ne nau ʻomi e" },

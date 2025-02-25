@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "جواب کا وقفہ" },
   "menuLabel_about": { "message": "معلومات" },
   "menuLabel_donate": { "message": "براہ کرم ایک عطیہ بھیجیں" },
+  "menuLabel_extensionActive": { "message": "توسیع فعال ہے" },
   "about_author": { "message": "مصنف" },
   "about_and": { "message": "اور " },
   "about_contributors": { "message": "تعاون کنندگان" },

@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Javob Oraliqi" },
   "menuLabel_about": { "message": "Dastur haqida" },
   "menuLabel_donate": { "message": "Iltimos, xayriya yuboring" },
+  "menuLabel_extensionActive": { "message": "kengaytma faol" },
   "about_author": { "message": "Muallif" },
   "about_and": { "message": "va" },
   "about_contributors": { "message": "hissa qo'shuvchilar" },

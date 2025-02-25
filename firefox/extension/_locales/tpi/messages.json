@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Taim bilong Toktok" },
   "menuLabel_about": { "message": "Long Toktok" },
   "menuLabel_donate": { "message": "Plis salim wanpela donesen" },
+  "menuLabel_extensionActive": { "message": "eksensensen i wok strong" },
   "about_author": { "message": "Man bilong raitim" },
   "about_and": { "message": "Na" },
   "about_contributors": { "message": "ol contributor" },

@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Interval äntweren" },
   "menuLabel_about": { "message": "Iwwer Qt" },
   "menuLabel_donate": { "message": "Schéckt w.e.g. eng Donatioun" },
+  "menuLabel_extensionActive": { "message": "verlängerung aktiv" },
   "about_author": { "message": "Auteur" },
   "about_and": { "message": "a(n)" },
   "about_contributors": { "message": "Matwierkend" },

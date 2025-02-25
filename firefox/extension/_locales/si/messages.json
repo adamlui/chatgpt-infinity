@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "ප්‍රතිචාර අන්තර්ගතය" },
   "menuLabel_about": { "message": "සම්බන්ධව" },
   "menuLabel_donate": { "message": "කරුණාකර පරිත් ‍ යාගයක් යවන්න" },
+  "menuLabel_extensionActive": { "message": "දිගුව සක් ‍ රීයයි" },
   "about_author": { "message": "කතෘ" },
   "about_and": { "message": "සහ" },
   "about_contributors": { "message": "දායකයින්" },

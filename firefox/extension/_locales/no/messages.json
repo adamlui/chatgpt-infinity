@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Svarintervall" },
   "menuLabel_about": { "message": "Om" },
   "menuLabel_donate": { "message": "Vennligst send en donasjon" },
+  "menuLabel_extensionActive": { "message": "utvidelse aktiv" },
   "about_author": { "message": "Forfatter" },
   "about_and": { "message": "og" },
   "about_contributors": { "message": "bidragsytere" },

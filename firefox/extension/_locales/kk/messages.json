@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Жауап беру аралығы" },
   "menuLabel_about": { "message": "Туралы" },
   "menuLabel_donate": { "message": "Қайырымдылық жасауыңызды сұраймыз" },
+  "menuLabel_extensionActive": { "message": "белсенді кеңейтім" },
   "about_author": { "message": "Авторы" },
   "about_and": { "message": "және " },
   "about_contributors": { "message": "Қатысушылар" },

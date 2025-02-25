@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Khoảng cách Trả lời" },
   "menuLabel_about": { "message": "Giới thiệu" },
   "menuLabel_donate": { "message": "Vui lòng gửi khoản quyên góp" },
+  "menuLabel_extensionActive": { "message": "kích hoạt tiện ích mở rộng" },
   "about_author": { "message": "Tác giả" },
   "about_and": { "message": "và" },
   "about_contributors": { "message": "Cộng sự" },

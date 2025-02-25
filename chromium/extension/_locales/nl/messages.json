@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Antwoordinterval" },
   "menuLabel_about": { "message": "Over" },
   "menuLabel_donate": { "message": "Stuur een donatie" },
+  "menuLabel_extensionActive": { "message": "SOAP Extensie actief." },
   "about_author": { "message": "Auteur" },
   "about_and": { "message": "and" },
   "about_contributors": { "message": "contributanten " },

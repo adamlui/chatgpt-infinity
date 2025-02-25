@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Інтервал відповіді" },
   "menuLabel_about": { "message": "Про нас" },
   "menuLabel_donate": { "message": "Будь ласка, надішліть пожертву" },
+  "menuLabel_extensionActive": { "message": "розширення активне" },
   "about_author": { "message": "Автор" },
   "about_and": { "message": "та" },
   "about_contributors": { "message": "Співавтори" },

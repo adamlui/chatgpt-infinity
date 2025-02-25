@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Erantzun tartea" },
   "menuLabel_about": { "message": "Egileari Buruz" },
   "menuLabel_donate": { "message": "Mesedez, bidali dohaintza" },
+  "menuLabel_extensionActive": { "message": "luzapena aktiboa" },
   "about_author": { "message": "Egilea" },
   "about_and": { "message": "eta" },
   "about_contributors": { "message": "Laguntzaileak" },

@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "מרווח זמן לתשובה" },
   "menuLabel_about": { "message": "אודות" },
   "menuLabel_donate": { "message": "יש לשלוח תרומה" },
+  "menuLabel_extensionActive": { "message": "תוסף פעיל" },
   "about_author": { "message": "מחבר" },
   "about_and": { "message": "ו" },
   "about_contributors": { "message": "תורמים" },

@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "فترة الرد" },
   "menuLabel_about": { "message": "عن وزارة الثقافة" },
   "menuLabel_donate": { "message": "يرجى إرسال تبرع" },
+  "menuLabel_extensionActive": { "message": "الامتداد نشط" },
   "about_author": { "message": "مؤلف" },
   "about_and": { "message": "و" },
   "about_contributors": { "message": "ساهموا" },

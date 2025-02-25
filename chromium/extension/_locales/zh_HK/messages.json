@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "回覆間隔" },
   "menuLabel_about": { "message": "關於我們" },
   "menuLabel_donate": { "message": "請發送捐款" },
+  "menuLabel_extensionActive": { "message": "擴充功能已啟用" },
   "about_author": { "message": "作者" },
   "about_and": { "message": "及" },
   "about_contributors": { "message": "貢獻者" },

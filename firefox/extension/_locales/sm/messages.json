@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Vaega e toe faʻatauina ai" },
   "menuLabel_about": { "message": "Faʻaaliaga" },
   "menuLabel_donate": { "message": "Faamolemole auina atu se foaʻi" },
+  "menuLabel_extensionActive": { "message": "faalauteleina o Galuega Faatino" },
   "about_author": { "message": "Tusitala" },
   "about_and": { "message": "ma" },
   "about_contributors": { "message": "saofaga" },

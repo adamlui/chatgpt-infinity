@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Go dira Sebotsa" },
   "menuLabel_about": { "message": "Mabapi le" },
   "menuLabel_donate": { "message": "Ke kopa gore o romele moneelo" },
+  "menuLabel_extensionActive": { "message": "katoloso e dira ka natla" },
   "about_author": { "message": "Mokwadi" },
   "about_and": { "message": "le" },
   "about_contributors": { "message": "bakgatlhegedi" },

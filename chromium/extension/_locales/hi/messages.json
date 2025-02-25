@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "जवाब अंतराल" },
   "menuLabel_about": { "message": "परिचय" },
   "menuLabel_donate": { "message": "कृपया दान भेजें" },
+  "menuLabel_extensionActive": { "message": "एक्सटेंशन सक्रिय है" },
   "about_author": { "message": "लेखक" },
   "about_and": { "message": "और" },
   "about_contributors": { "message": "योगदानकर्ता" },

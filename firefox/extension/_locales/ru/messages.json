@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Интервал ответа" },
   "menuLabel_about": { "message": "Шифр" },
   "menuLabel_donate": { "message": "Пожалуйста, отправьте пожертвование" },
+  "menuLabel_extensionActive": { "message": "Расширение SOAP активно." },
   "about_author": { "message": "Автор" },
   "about_and": { "message": "и" },
   "about_contributors": { "message": "участников" },

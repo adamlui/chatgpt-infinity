@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Selang Balas" },
   "menuLabel_about": { "message": "Tentang" },
   "menuLabel_donate": { "message": "Sila hantar derma" },
+  "menuLabel_extensionActive": { "message": "sambungan aktif" },
   "about_author": { "message": "Author" },
   "about_and": { "message": "dan" },
   "about_contributors": { "message": "apakah maksud sumbangan" },

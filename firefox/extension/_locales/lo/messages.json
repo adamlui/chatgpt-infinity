@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "ໄລຍະເວລາຕອບ" },
   "menuLabel_about": { "message": "ກ່ຽວກັບ" },
   "menuLabel_donate": { "message": "ສະນັ້ນ ໃຫ້ບໍລິຈາກ" },
+  "menuLabel_extensionActive": { "message": "ການຂະຫຍາຍທີ່ໃຊ້ງານ" },
   "about_author": { "message": "ຜູ້ຂຽນ" },
   "about_and": { "message": "ແລະ" },
   "about_contributors": { "message": "ຜູ້ປະກອບສ່ວນ" },

@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "ចន្លោះពេលឆ្លើយតប" },
   "menuLabel_about": { "message": "អំពី" },
   "menuLabel_donate": { "message": "សូមផ្ញើការបរិច្ចាគ" },
+  "menuLabel_extensionActive": { "message": "ផ្នែក បន្ថែម សកម្ម" },
   "about_author": { "message": "អ្នកបញ្ចូលព័ត៌មាន" },
   "about_and": { "message": "និង" },
   "about_contributors": { "message": "អ្នក​ចូល​រួម​ចំណែក​" },

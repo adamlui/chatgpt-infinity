@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Vastausväli" },
   "menuLabel_about": { "message": "Tietoa" },
   "menuLabel_donate": { "message": "Lähetä lahjoitus" },
+  "menuLabel_extensionActive": { "message": "laajennus aktiivinen" },
   "about_author": { "message": "Tekijä" },
   "about_and": { "message": "ja" },
   "about_contributors": { "message": "tuottajat" },

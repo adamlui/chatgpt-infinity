@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "ਜਵਾਬ ਅੰਤਰਾਲ" },
   "menuLabel_about": { "message": "ਇਸ ਬਾਰੇ" },
   "menuLabel_donate": { "message": "ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਦਾਨ ਭੇਜੋ" },
+  "menuLabel_extensionActive": { "message": "ਐਕਸਟੈਂਸ਼ਨ ਐਕਟਿਵ" },
   "about_author": { "message": "_ਲੇਖਕ" },
   "about_and": { "message": "ਅਤੇ" },
   "about_contributors": { "message": "ਸਹਿਯੋਗ" },

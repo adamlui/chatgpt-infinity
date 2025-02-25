@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "ޖަވާބު އިންޓަވަލް" },
   "menuLabel_about": { "message": "މިއާއި ބެހޭ" },
   "menuLabel_donate": { "message": "ހަދިޔާ ފޮނުއްވުން އެދެމެވެ" },
+  "menuLabel_extensionActive": { "message": "އެކްސްޓެންޝަން އެކްޓިވް" },
   "about_author": { "message": "ލިޔުންތެރިޔާ" },
   "about_and": { "message": "އަދި" },
   "about_contributors": { "message": "ކޮންޓްރިބިއުޓަރުންނެވެ" },

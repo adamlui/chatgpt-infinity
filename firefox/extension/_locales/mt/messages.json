@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Intervall ta' Risposta" },
   "menuLabel_about": { "message": "Dwar" },
   "menuLabel_donate": { "message": "Jekk jogħġbok ibgħat donazzjoni" },
+  "menuLabel_extensionActive": { "message": "estensjoni attiva" },
   "about_author": { "message": "Awtur" },
   "about_and": { "message": "u" },
   "about_contributors": { "message": "Kontributuri" },

@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "စာပြန်ကြားကာလ" },
   "menuLabel_about": { "message": "အကြောင်း" },
   "menuLabel_donate": { "message": "ကျေးဇူးပြု ၍ လှူဒါန်းမှုတစ်ခု ပေးပို့ပါ" },
+  "menuLabel_extensionActive": { "message": "သက်ဝင်နေသော တိုးချဲ့မှု" },
   "about_author": { "message": "ရေးသူ" },
   "about_and": { "message": "Raw Material (Inventory) တွေ ဝယ်မယ့် လုပ်ငန်းမျိုးအတွက်၊" },
   "about_contributors": { "message": "ပါဝင်အားဖြည့်သူများ" },

@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Интервал за отговор" },
   "menuLabel_about": { "message": "Относно" },
   "menuLabel_donate": { "message": "Моля, изпратете дарение" },
+  "menuLabel_extensionActive": { "message": "разширението е активно" },
   "about_author": { "message": "Автор" },
   "about_and": { "message": "и" },
   "about_contributors": { "message": "Сътрудници" },

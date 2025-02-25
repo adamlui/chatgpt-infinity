@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "ଉତ୍ତର ଅନୁରୋଧ" },
   "menuLabel_about": { "message": "ବିଷୟରେ" },
   "menuLabel_donate": { "message": "ଦୟାକରି ଦାନ ପଠାନ୍ତୁ" },
+  "menuLabel_extensionActive": { "message": "ସମ୍ପ୍ରସାରଣ ସକ୍ରିୟ" },
   "about_author": { "message": "ଲେଖକ" },
   "about_and": { "message": "ଏବଂ" },
   "about_contributors": { "message": "ଅବଦାନକାରୀ" },

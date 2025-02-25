@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Interval de răspuns" },
   "menuLabel_about": { "message": "Despre" },
   "menuLabel_donate": { "message": "Te rugăm să trimiți o donație" },
+  "menuLabel_extensionActive": { "message": "extensie activă" },
   "about_author": { "message": "Autor" },
   "about_and": { "message": "şi" },
   "about_contributors": { "message": "colaboratorilor" },

@@ -12,6 +12,7 @@
   "menuLabel_replyInt": { "message": "Jibu Kipindi" },
   "menuLabel_about": { "message": "Kuhusu" },
   "menuLabel_donate": { "message": "Tafadhali tuma mchango" },
+  "menuLabel_extensionActive": { "message": "kiendelezi kinatumika" },
   "about_author": { "message": "Mwandishi" },
   "about_and": { "message": "na" },
   "about_contributors": { "message": "Wachangiaji" },
