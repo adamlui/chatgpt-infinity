@@ -21,14 +21,12 @@ window.dom = {
 
     create: {
         elem(elemType, attrs = {}) {
-            const elem = document.createElement(elemType)
-            for (const attr in attrs) elem.setAttribute(attr, attrs[attr])
+            const elem = document.createElement(elemType) ; Object.assign(elem, attrs)
             return elem
         },
 
         style(content, attrs = {}) {
-            const style = document.createElement('style')
-            for (const attr in attrs) style.setAttribute(attr, attrs[attr])
+            const style = document.createElement('style') ; Object.assign(style, attrs)
             if (content) style.innerText = content
             return style
         },
