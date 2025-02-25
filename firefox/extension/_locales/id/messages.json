@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "Interval Balasan" },
   "menuLabel_about": { "message": "Ihwal" },
   "menuLabel_donate": { "message": "Kirimkan donasi" },
-  "menuLabel_disabled": { "message": "Dinonaktifkan (ekstensi terpasang)" },
   "about_author": { "message": "Penulis" },
   "about_and": { "message": "dan" },
   "about_contributors": { "message": "konributor" },

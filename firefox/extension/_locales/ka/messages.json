@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "პასუხის ინტერვალი" },
   "menuLabel_about": { "message": "პროგრამის შესახებ" },
   "menuLabel_donate": { "message": "Გაიღეთ შემოწირულობა" },
-  "menuLabel_disabled": { "message": "გაუქმებულია (გაფართოება დაყენებულია)" },
   "about_author": { "message": "ავტორი" },
   "about_and": { "message": "და" },
   "about_contributors": { "message": "შემომწირავები" },

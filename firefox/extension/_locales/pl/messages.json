@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "Interwał Odpowiedzi" },
   "menuLabel_about": { "message": "Około" },
   "menuLabel_donate": { "message": "Prześlij darowiznę" },
-  "menuLabel_disabled": { "message": "Wyłączone (rozszerzenie zainstalowane)" },
   "about_author": { "message": "Wytwórca" },
   "about_and": { "message": "oraz" },
   "about_contributors": { "message": "współuczestnicy" },

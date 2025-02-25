@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "Interval odgovora" },
   "menuLabel_about": { "message": "O nama" },
   "menuLabel_donate": { "message": "Pošaljite donaciju" },
-  "menuLabel_disabled": { "message": "Onemogućeno (proširenje instalirano)" },
   "about_author": { "message": "Autor" },
   "about_and": { "message": "i" },
   "about_contributors": { "message": "kontributori" },

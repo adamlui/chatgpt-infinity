@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "Interval sa Tubag" },
   "menuLabel_about": { "message": "Mga Bahin" },
   "menuLabel_donate": { "message": "Palihug ipadala ang usa ka donasyon" },
-  "menuLabel_disabled": { "message": "Nahilakip (na-instalar ang ekstensyon)" },
   "about_author": { "message": "Awtor" },
   "about_and": { "message": "og " },
   "about_contributors": { "message": "MGA KONTRIBUTOR" },

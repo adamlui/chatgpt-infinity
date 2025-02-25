@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "Vastuse intervall" },
   "menuLabel_about": { "message": "Umbes" },
   "menuLabel_donate": { "message": "Saada annetus" },
-  "menuLabel_disabled": { "message": "Keelatud (laiend installitud)" },
   "about_author": { "message": "Autor" },
   "about_and": { "message": "ja" },
   "about_contributors": { "message": "Kaastöötajad" },

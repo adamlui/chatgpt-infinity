@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "Διάστημα Απάντησης" },
   "menuLabel_about": { "message": "Σχετικά" },
   "menuLabel_donate": { "message": "Στείλτε μια δωρεά" },
-  "menuLabel_disabled": { "message": "Απενεργοποιημένο (επέκταση εγκατεστημένη)" },
   "about_author": { "message": "Συντάκτης" },
   "about_and": { "message": "και" },
   "about_contributors": { "message": "συντελεστές" },

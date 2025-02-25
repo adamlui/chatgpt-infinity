@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "Válaszidőköz" },
   "menuLabel_about": { "message": "Ról ről" },
   "menuLabel_donate": { "message": "Kérjük, küldjön adományt" },
-  "menuLabel_disabled": { "message": "Letiltva (kiegészítő telepítve)" },
   "about_author": { "message": "Szerző" },
   "about_and": { "message": "és" },
   "about_contributors": { "message": "Közreműködők" },

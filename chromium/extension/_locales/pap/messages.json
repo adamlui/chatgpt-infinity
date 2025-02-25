@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "Intervalo di Contestá" },
   "menuLabel_about": { "message": "Tocante" },
   "menuLabel_donate": { "message": "Por fabor haci un donacion" },
-  "menuLabel_disabled": { "message": "Desactivá (extenshon instalá)" },
   "about_author": { "message": "Autor" },
   "about_and": { "message": "i" },
   "about_contributors": { "message": "kontributornan" },

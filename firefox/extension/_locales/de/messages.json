@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "Antwortintervall" },
   "menuLabel_about": { "message": "Über" },
   "menuLabel_donate": { "message": "Bitte spenden Sie" },
-  "menuLabel_disabled": { "message": "Deaktiviert (Erweiterung installiert)" },
   "about_author": { "message": "Verfasser" },
   "about_and": { "message": "und" },
   "about_contributors": { "message": "beitragende" },

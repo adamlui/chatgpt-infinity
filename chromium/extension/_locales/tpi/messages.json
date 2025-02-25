@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "Taim bilong Toktok" },
   "menuLabel_about": { "message": "Long Toktok" },
   "menuLabel_donate": { "message": "Plis salim wanpela donesen" },
-  "menuLabel_disabled": { "message": "Diwai (extension i bin putim)" },
   "about_author": { "message": "Man bilong raitim" },
   "about_and": { "message": "Na" },
   "about_contributors": { "message": "ol contributor" },

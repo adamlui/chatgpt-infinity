@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "জবাব ইন্টারভাল" },
   "menuLabel_about": { "message": "সম্বন্ধে" },
   "menuLabel_donate": { "message": "অনুগ্রহ করে একটি অনুদান পাঠান" },
-  "menuLabel_disabled": { "message": "নিষ্ক্রিয় (এক্সটেনশন ইনস্টল করা হয়েছে)" },
   "about_author": { "message": "রচয়িতা" },
   "about_and": { "message": "এবং" },
   "about_contributors": { "message": "অবদান রয়েছে" },

@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "Yankhani Interval" },
   "menuLabel_about": { "message": "Zokhudza" },
   "menuLabel_donate": { "message": "Chonde tumizani zopereka" },
-  "menuLabel_disabled": { "message": "Olemala (Extension anaikidwa)" },
   "about_author": { "message": "Wolemba" },
   "about_and": { "message": "Ndi" },
   "about_contributors": { "message": "othandizira" },

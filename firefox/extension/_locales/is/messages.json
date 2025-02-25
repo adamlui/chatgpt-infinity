@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "Bilið á milli svara" },
   "menuLabel_about": { "message": "Um" },
   "menuLabel_donate": { "message": "Vinsamlegast sendu styrk" },
-  "menuLabel_disabled": { "message": "Óvirkt (viðbót uppsett)" },
   "about_author": { "message": "Author" },
   "about_and": { "message": "og" },
   "about_contributors": { "message": "Meðhöfundar" },

@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "Պատասխանել ինտերվալով" },
   "menuLabel_about": { "message": "Մանրամասն" },
   "menuLabel_donate": { "message": "Խնդրում ենք նվիրատվություն ուղարկել" },
-  "menuLabel_disabled": { "message": "Անջատված է (երկարաձգումը տեղադրված է)" },
   "about_author": { "message": "Հեղինակ" },
   "about_and": { "message": "և" },
   "about_contributors": { "message": "ներդրողներ" },

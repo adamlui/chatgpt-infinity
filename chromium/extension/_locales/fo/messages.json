@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "Svar Bili" },
   "menuLabel_about": { "message": "Um" },
   "menuLabel_donate": { "message": "Send okkum eina gávu" },
-  "menuLabel_disabled": { "message": "Óvirkin (viðbót innsett)" },
   "about_author": { "message": "Høvundur" },
   "about_and": { "message": "og" },
   "about_contributors": { "message": "ískoytisfólk" },

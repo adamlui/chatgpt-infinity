@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "فاصله پاسخ" },
   "menuLabel_about": { "message": "درباره" },
   "menuLabel_donate": { "message": "لطفا کمک مالی بفرستید" },
-  "menuLabel_disabled": { "message": "غیرفعال (برنامه افزودنی نصب شده)" },
   "about_author": { "message": "نویسنده" },
   "about_and": { "message": "و" },
   "about_contributors": { "message": "همکاران" },

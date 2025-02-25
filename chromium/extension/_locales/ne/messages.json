@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "जवाफ अन्तराल" },
   "menuLabel_about": { "message": "बारेमा" },
   "menuLabel_donate": { "message": "कृपया दान पठाउनुहोस्" },
-  "menuLabel_disabled": { "message": "अक्षम पारियो (विस्तार स्थापना गरियो)" },
   "about_author": { "message": "लेखक" },
   "about_and": { "message": "र" },
   "about_contributors": { "message": "दाताहरू" },

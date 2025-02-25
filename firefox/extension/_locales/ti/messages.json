@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "ናይ መልሲ ፍልልይ" },
   "menuLabel_about": { "message": "ብዛዕባ" },
   "menuLabel_donate": { "message": "ብኽብረትካ በጃኻ ውህበት ልኢኽካ" },
-  "menuLabel_disabled": { "message": "ኣገልግሎት ከም ዘይህብ ምግባር (እተኸልከለ ምንቅስቓስ)" },
   "about_author": { "message": "ደራሲ" },
   "about_and": { "message": "ከምኡ ድማ" },
   "about_contributors": { "message": "<g id=\"581\">ዘርጋሕቲ:</g> " },

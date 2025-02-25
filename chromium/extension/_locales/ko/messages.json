@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "응답 간격" },
   "menuLabel_about": { "message": "소개" },
   "menuLabel_donate": { "message": "기부금을 보내주세요" },
-  "menuLabel_disabled": { "message": "비활성화됨 (확장이 설치됨)" },
   "about_author": { "message": "작성자" },
   "about_and": { "message": "및" },
   "about_contributors": { "message": "참여자" },

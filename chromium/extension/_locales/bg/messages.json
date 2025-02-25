@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "Интервал за отговор" },
   "menuLabel_about": { "message": "Относно" },
   "menuLabel_donate": { "message": "Моля, изпратете дарение" },
-  "menuLabel_disabled": { "message": "Деактивирано (разширението е инсталирано)" },
   "about_author": { "message": "Автор" },
   "about_and": { "message": "и" },
   "about_contributors": { "message": "Сътрудници" },

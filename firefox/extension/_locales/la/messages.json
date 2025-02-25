@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "Intervalum Responsionis" },
   "menuLabel_about": { "message": "De" },
   "menuLabel_donate": { "message": "Mandefa fanomezana azafady" },
-  "menuLabel_disabled": { "message": "Inactivum (extensionem installatam habens)" },
   "about_author": { "message": "auctor" },
   "about_and": { "message": "ac (atque)" },
   "about_contributors": { "message": "partes" },

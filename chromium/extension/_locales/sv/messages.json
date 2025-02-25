@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "Svarsintervall" },
   "menuLabel_about": { "message": "Om" },
   "menuLabel_donate": { "message": "Vänligen skicka en donation" },
-  "menuLabel_disabled": { "message": "Inaktiverad (tillägg installerat)" },
   "about_author": { "message": "Författare" },
   "about_and": { "message": "och" },
   "about_contributors": { "message": "bidragsgivare" },

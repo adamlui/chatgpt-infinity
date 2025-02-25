@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "Intervallo di Risposta" },
   "menuLabel_about": { "message": "Informazioni generali" },
   "menuLabel_donate": { "message": "Invia una donazione" },
-  "menuLabel_disabled": { "message": "Disattivato (estensione installata)" },
   "about_author": { "message": "Autore" },
   "about_and": { "message": "e" },
   "about_contributors": { "message": "collaboratori" },

@@ -12,7 +12,6 @@
   "menuLabel_replyInt": { "message": "Antwoord Interval" },
   "menuLabel_about": { "message": "Omtrent" },
   "menuLabel_donate": { "message": "Stuur asseblief 'n donasie" },
-  "menuLabel_disabled": { "message": "Gestremde (uitbreiding geïnstalleer)" },
   "about_author": { "message": "Outeur" },
   "about_and": { "message": "en" },
   "about_contributors": { "message": "medewerkers" },
