@@ -101,6 +101,7 @@ if [[ "$no_commit" != true ]] ; then
 fi
 
 # Final SUMMARY log
+echo # line break
 for manifest in "${!bumped_manifests[@]}" ; do
     IFS=";" read -r old_ver new_ver <<< "${bumped_manifests[$manifest]}"
     echo -e "  ± $manifest ${BW}v${old_ver}${NC} → ${BG}v${new_ver}${NC}"
