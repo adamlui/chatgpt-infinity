@@ -40,6 +40,8 @@ window.settings = {
     getMsg(key) {
         return typeof GM_info != 'undefined' ? this.imports.app.msgs[key] : chrome.i18n.getMessage(key) },
 
+    isEnabled(key) { return config[key] ^ /disabled/i.test(key) },
+
     load(...keys) {
         keys = keys.flat() // flatten array args nested by spread operator
         if (typeof GM_info != 'undefined') // synchronously load from userscript manager storage
