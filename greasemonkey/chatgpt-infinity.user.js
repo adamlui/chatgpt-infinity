@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2025.2.25.4
+// @version             2025.2.26
 // @license             MIT
 // @icon                https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?v=69e434b
 // @icon64              https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?v=69e434b
@@ -223,7 +223,7 @@
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@1ae4e33/chromium/extension/components/modals.js#sha256-7uMRCTHm/QvOmoh79h5IrcMmHIsWAR/BxCxfQrNjGkY=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@b12ceda/chromium/extension/components/toggles.js#sha256-sFL457jgLTfSpxhR0eKWvIJzlxc0NzPFlErBhbmxAAQ=
 // @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@1ae4e33/chromium/extension/lib/dom.js#sha256-U+SUWAkqLIY6krdR2WPhVy5/f+cTV03n3F8b+Y+/Py0=
-// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@d06f46a/chromium/extension/lib/settings.js#sha256-CKUzAudngxPTmGJTgdpJaDklEGUo7ylTB+UyyZI0LXc=
+// @require             https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@4394539/chromium/extension/lib/settings.js#sha256-56/R5S/ocinOCsn6BGgJU9aZs39hvzDkVt1hWyFgzdY=
 // @resource rpgCSS     https://assets.aiwebextensions.com/styles/rising-particles/dist/gray.min.css?v=727feff#sha256-48sEWzNUGUOP04ur52G5VOfGZPSnZQfrF3szUr4VaRs=
 // @resource rpwCSS     https://assets.aiwebextensions.com/styles/rising-particles/dist/white.min.css?v=727feff#sha256-6xBXczm7yM1MZ/v0o1KVFfJGehHk47KJjq8oTktH4KE=
 // @grant               GM_setValue
@@ -411,11 +411,11 @@
                 Object.keys(settings.controls).forEach(key => {
                     const ctrlType = settings.controls[key].type
                     const menuLabel = `${ settings.controls[key].symbol
-                                       || this.state.symbols[+settingIsEnabled(key)] } `
+                                       || this.state.symbols[+settings.isEnabled(key)] } `
                                     + settings.controls[key].label
                                     + ( ctrlType == 'toggle' ? this.state.separator
-                                                                + this.state.words[+settingIsEnabled(key)]
-                                                                : `— ${settings.controls[key].status}` )
+                                                             + this.state.words[+settings.isEnabled(key)]
+                                                             : `— ${settings.controls[key].status}` )
                     this.ids.push(GM_registerMenuCommand(menuLabel, () => {
                         if (ctrlType == 'toggle') {
                             settings.save(key, !config[key])
@@ -483,8 +483,6 @@
                     () => modals.open(entryType), env.scriptManager.supportsTooltips ? { title: ' ' } : undefined
                 ))
             })
-
-            function settingIsEnabled(key) { return config[key] ^ /disabled/i.test(key) }
         }
     }
 
