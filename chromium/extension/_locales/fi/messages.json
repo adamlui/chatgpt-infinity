@@ -62,6 +62,7 @@
   "btnLabel_dismiss": { "message": "Hylkää" },
   "link_viewChanges": { "message": "Näytä muutokset" },
   "unit_seconds": { "message": "sekunti" },
+  "state_enabled": { "message": "käytössä" },
   "state_disabled": { "message": "pois käytöstä" },
   "state_on": { "message": "aktiivinen" },
   "state_off": { "message": "pois" }

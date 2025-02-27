@@ -62,6 +62,7 @@
   "btnLabel_dismiss": { "message": "បោះបង់" },
   "link_viewChanges": { "message": "មើលការផ្លាស់ប្តូរ" },
   "unit_seconds": { "message": "ទីពីរ" },
+  "state_enabled": { "message": "បានជ្រើស" },
   "state_disabled": { "message": "បានបិទ" },
   "state_on": { "message": "បើក" },
   "state_off": { "message": "បិទ" }

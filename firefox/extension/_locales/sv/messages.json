@@ -62,6 +62,7 @@
   "btnLabel_dismiss": { "message": "Avfärda" },
   "link_viewChanges": { "message": "Visa ändringar" },
   "unit_seconds": { "message": "sekunder" },
+  "state_enabled": { "message": "aktiverad" },
   "state_disabled": { "message": "inaktiverad" },
   "state_on": { "message": "på" },
   "state_off": { "message": "av" }

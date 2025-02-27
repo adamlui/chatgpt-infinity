@@ -62,6 +62,7 @@
   "btnLabel_dismiss": { "message": "رد کریں" },
   "link_viewChanges": { "message": "تبدیلیاں دیکھیں" },
   "unit_seconds": { "message": "سیکنڈز" },
+  "state_enabled": { "message": "چالو ہے" },
   "state_disabled": { "message": "غیر فعال ہے" },
   "state_on": { "message": "پر" },
   "state_off": { "message": "بند کریں" }

@@ -62,6 +62,7 @@
   "btnLabel_dismiss": { "message": "Respingeți" },
   "link_viewChanges": { "message": "Vizualizează modificările" },
   "unit_seconds": { "message": "secunde" },
+  "state_enabled": { "message": "activat" },
   "state_disabled": { "message": "dezactivat" },
   "state_on": { "message": "pornit" },
   "state_off": { "message": "oprit" }

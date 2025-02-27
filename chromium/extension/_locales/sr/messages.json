@@ -62,6 +62,7 @@
   "btnLabel_dismiss": { "message": "Odbaci" },
   "link_viewChanges": { "message": "Prikaži promjene" },
   "unit_seconds": { "message": "секунди" },
+  "state_enabled": { "message": "укључено" },
   "state_disabled": { "message": "искључено" },
   "state_on": { "message": "on (uključeno)" },
   "state_off": { "message": "off (isključeno)" }

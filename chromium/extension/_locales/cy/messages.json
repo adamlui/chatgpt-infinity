@@ -62,6 +62,7 @@
   "btnLabel_dismiss": { "message": "Cau" },
   "link_viewChanges": { "message": "Gweld newidiadau" },
   "unit_seconds": { "message": "eiliadau" },
+  "state_enabled": { "message": "wedi’i alluogi" },
   "state_disabled": { "message": "analluogwyd" },
   "state_on": { "message": "ar" },
   "state_off": { "message": "i ffwrdd" }

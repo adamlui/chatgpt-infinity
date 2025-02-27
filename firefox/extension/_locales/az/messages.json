@@ -62,6 +62,7 @@
   "btnLabel_dismiss": { "message": "Bağla" },
   "link_viewChanges": { "message": "Dəyişikliklərə bax" },
   "unit_seconds": { "message": "saniyə" },
+  "state_enabled": { "message": "Aktivdir" },
   "state_disabled": { "message": "kilitlidir" },
   "state_on": { "message": "yandır" },
   "state_off": { "message": "getmək" }

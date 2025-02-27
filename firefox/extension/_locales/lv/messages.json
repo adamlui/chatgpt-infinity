@@ -62,6 +62,7 @@
   "btnLabel_dismiss": { "message": "Noraidīt" },
   "link_viewChanges": { "message": "Skatīt izmaiņas" },
   "unit_seconds": { "message": "sekundes" },
+  "state_enabled": { "message": "iespējots" },
   "state_disabled": { "message": "Izslēgt" },
   "state_on": { "message": "ieslēgts" },
   "state_off": { "message": "izslēgt" }
