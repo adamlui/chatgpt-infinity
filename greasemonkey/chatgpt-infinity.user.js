@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2025.2.26
+// @version             2025.2.26.1
 // @license             MIT
 // @icon                https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?v=69e434b
 // @icon64              https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?v=69e434b
@@ -623,14 +623,7 @@
     toggles.sidebar.update.navicon({ preload: true })
 
     // Create browser TOOLBAR MENU + DISABLE SCRIPT if extension active
-    env.extensionActive = await Promise.race([
-        new Promise(resolve => {
-            (function checkextensionActive() {
-                if (document.documentElement.hasAttribute('chatgpt-infinity-extension-installed')) resolve(true)
-                else setTimeout(checkextensionActive, 200)
-            })()
-        }), new Promise(resolve => setTimeout(() => resolve(false), 1500))])
-
+    env.extensionActive = !!sessionStorage.chatgptInfinityExtensionActive
     toolbarMenu.register() ; if (env.extensionActive) return
 
     // Init BROWSER/UI props
