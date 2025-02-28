@@ -3,7 +3,23 @@
 
 (async () => {
 
-    sessionStorage.chatgptInfinityExtensionActive = 'true' // for userscript auto-disable
+    // Add WINDOW MSG listener for userscript request to self-disable
+    addEventListener('message', event => event.data.source == 'chatgpt-infinity.user.js' &&
+        postMessage({ source: 'chatgpt-infinity/*/extension/content.js' }))
+
+    // Add CHROME MSG listener
+    chrome.runtime.onMessage.addListener(req => {
+        if (req.action == 'notify')
+            notify(...['msg', 'pos', 'notifDuration', 'shadow'].map(arg => req.options[arg]))
+        else if (req.action == 'alert')
+            modals.alert(...['title', 'msg', 'btns', 'checkbox', 'width'].map(arg => req.options[arg]))
+        else if (req.action == 'showAbout') chatgpt.isLoaded().then(() => modals.open('about'))
+        else if (req.action == 'syncConfigToUI') {
+            if (req.fromBG) // disable Infinity mode 1st to not transfer between tabs
+                settings.save('infinityMode', false)
+            syncConfigToUI(req.options)
+        }
+    })
 
     // Import JS resources
     for (const resource of
@@ -20,20 +36,6 @@
     // Export DEPENDENCIES to imported resources
     dom.import({ scheme: env.ui.scheme }) // for dom.addRisingParticles()
     modals.import({ app, env }) // for app data + env['<browser|ui>'] flags
-
-    // Add CHROME MSG listener
-    chrome.runtime.onMessage.addListener(req => {
-        if (req.action == 'notify')
-            notify(...['msg', 'pos', 'notifDuration', 'shadow'].map(arg => req.options[arg]))
-        else if (req.action == 'alert')
-            modals.alert(...['title', 'msg', 'btns', 'checkbox', 'width'].map(arg => req.options[arg]))
-        else if (req.action == 'showAbout') chatgpt.isLoaded().then(() => modals.open('about'))
-        else if (req.action == 'syncConfigToUI') {
-            if (req.fromBG) // disable Infinity mode 1st to not transfer between tabs
-                settings.save('infinityMode', false)
-            syncConfigToUI(req.options)
-        }
-    })
 
     // Init SETTINGS
     await settings.load('extensionDisabled', ...Object.keys(settings.controls)

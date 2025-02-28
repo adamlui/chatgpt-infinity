@@ -3,23 +3,9 @@
 
 (async () => {
 
-    sessionStorage.chatgptInfinityExtensionActive = 'true' // for userscript auto-disable
-
-    // Import JS resources
-    for (const resource of
-        ['components/modals.js', 'components/toggles.js', 'lib/chatgpt.js', 'lib/dom.js', 'lib/settings.js'])
-            await import(chrome.runtime.getURL(resource))
-
-    // Init ENV context
-    const env = { browser: { isMobile: chatgpt.browser.isMobile() }, ui: { scheme: getScheme() }}
-    env.browser.isPortrait = env.browser.isMobile && (window.innerWidth < window.innerHeight)
-
-    // Import APP data
-    const { app } = await chrome.storage.local.get('app')
-
-    // Export DEPENDENCIES to imported resources
-    dom.import({ scheme: env.ui.scheme }) // for dom.addRisingParticles()
-    modals.import({ app, env }) // for app data + env['<browser|ui>'] flags
+    // Add WINDOW MSG listener for userscript request to self-disable
+    addEventListener('message', event => event.data.source == 'chatgpt-infinity.user.js' &&
+        postMessage({ source: 'chatgpt-infinity/*/extension/content.js' }))
 
     // Add CHROME MSG listener
     chrome.runtime.onMessage.addListener((req, _, sendResp) => {
@@ -37,6 +23,22 @@
             syncConfigToUI(req.options)
         }
     })
+
+    // Import JS resources
+    for (const resource of
+        ['components/modals.js', 'components/toggles.js', 'lib/chatgpt.js', 'lib/dom.js', 'lib/settings.js'])
+            await import(chrome.runtime.getURL(resource))
+
+    // Init ENV context
+    const env = { browser: { isMobile: chatgpt.browser.isMobile() }, ui: { scheme: getScheme() }}
+    env.browser.isPortrait = env.browser.isMobile && (window.innerWidth < window.innerHeight)
+
+    // Import APP data
+    const { app } = await chrome.storage.local.get('app')
+
+    // Export DEPENDENCIES to imported resources
+    dom.import({ scheme: env.ui.scheme }) // for dom.addRisingParticles()
+    modals.import({ app, env }) // for app data + env['<browser|ui>'] flags
 
     // Init SETTINGS
     await settings.load('extensionDisabled', ...Object.keys(settings.controls)

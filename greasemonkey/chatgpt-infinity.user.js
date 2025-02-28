@@ -199,7 +199,7 @@
 // @description:zh-TW   從無所不知的 ChatGPT 生成無窮無盡的答案 (用任何語言!)
 // @author              Adam Lui
 // @namespace           https://github.com/adamlui
-// @version             2025.2.27
+// @version             2025.2.28
 // @license             MIT
 // @icon                https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon48.png?v=69e434b
 // @icon64              https://assets.chatgptinfinity.com/images/icons/infinity-symbol/circled/with-robot/icon64.png?v=69e434b
@@ -623,8 +623,18 @@
     toggles.import({ app, env, notify, syncConfigToUI })
     toggles.sidebar.update.navicon({ preload: true })
 
+    // Init EXTENSION ACTIVE state
+    env.extensionActive = false
+    postMessage({ action: 'getExtensionInfo', source: `${app.slug}.user.js` })
+    addEventListener('message', handleMsgResp)
+    function handleMsgResp(resp) {
+        const sender = resp.data.source.toLowerCase()
+        env.extensionActive = sender.includes(app.slug.toLowerCase()) && sender.includes('extension')
+    }
+    await new Promise(resolve => setTimeout(resolve, 100)) // wait for extension response
+    removeEventListener('message', handleMsgResp)
+
     // Create browser TOOLBAR MENU + DISABLE SCRIPT if extension active
-    env.extensionActive = sessionStorage.chatgptInfinityExtensionActive  == 'true'
     toolbarMenu.register() ; if (env.extensionActive) return
 
     // Init BROWSER/UI props
