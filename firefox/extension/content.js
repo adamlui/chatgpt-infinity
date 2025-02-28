@@ -4,10 +4,12 @@
 (async () => {
 
     // Add WINDOW MSG listener for userscript request to self-disable
-    addEventListener('message', event => event.data.source == 'chatgpt-infinity.user.js' &&
-        postMessage({ source: 'chatgpt-infinity/*/extension/content.js' }))
+    addEventListener('message', event => {
+        if (event.origin != location.origin || event.data.source != 'chatgpt-infinity.user.js') return
+        postMessage({ source: 'chatgpt-infinity/*/extension/content.js' }, location.origin)
+    })
 
-    // Add CHROME MSG listener
+    // Add CHROME MSG listener for background/popup requests to sync modes/settings
     chrome.runtime.onMessage.addListener((req, _, sendResp) => {
         if (req.action == 'notify')
             notify(...['msg', 'pos', 'notifDuration', 'shadow'].map(arg => req.options[arg]))
