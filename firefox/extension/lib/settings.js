@@ -23,17 +23,17 @@ window.settings = {
         get replyLanguage() { return { type: 'prompt', symbol: '🌐',
             label: settings.getMsg('menuLabel_replyLang'),
             helptip: settings.getMsg('prompt_updateReplyLang'),
-            status: window.config.replyLanguage
+            status: config.replyLanguage
         }},
         get replyTopic() { return { type: 'prompt', symbol: '🧠',
             label: settings.getMsg('menuLabel_replyTopic'),
             helptip: settings.getMsg('prompt_updateReplyTopic'),
-            status: window.config.replyTopic
+            status: config.replyTopic
         }},
         get replyInterval() { return { type: 'prompt', symbol: '⌚',
             label: settings.getMsg('menuLabel_replyInt'),
             helptip: settings.getMsg('prompt_updateReplyInt'),
-            status: `${window.config.replyInterval}s`
+            status: `${config.replyInterval}s`
         }}
     },
 
@@ -51,7 +51,7 @@ window.settings = {
             )
         else // asynchronously load from browser extension storage
             return Promise.all(keys.map(async key => // resolve promise when all keys load
-                window.config[key] = (await chrome.storage.local.get(key))[key]
+                config[key] = (await chrome.storage.local.get(key))[key]
                     ?? this.controls[key]?.defaultVal ?? this.controls[key]?.type == 'toggle'
             ))
     },
@@ -61,6 +61,6 @@ window.settings = {
             GM_setValue(`${this.imports.app.configKeyPrefix}_${key}`, val)
         else // save to browser extension storage
             chrome.storage.local.set({ [key]: val })
-        window.config[key] = val // save to memory
+        config[key] = val // save to memory
     }
 };
