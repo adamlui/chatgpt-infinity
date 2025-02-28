@@ -38,9 +38,18 @@ window.settings = {
     },
 
     getMsg(key) {
-        return typeof GM_info != 'undefined' ? this.imports.app.msgs[key] : chrome.i18n.getMessage(key) },
+        this._msgKeys ??= new Map() // to cache keys for this.isEnabled() inversion logic
+        const msg = typeof GM_info != 'undefined' ? this.imports.app.msgs[key] : chrome.i18n.getMessage(key)
+        this._msgKeys.set(msg, key)
+        return msg
+    },
 
-    isEnabled(key) { return config[key] ^ /disabled/i.test(key) },
+    isEnabled(key) {
+        const reInvertFlags = /disabled|hidden/i
+        return reInvertFlags.test(key) // flag in control key name
+            && !reInvertFlags.test(this._msgKeys.get(this.controls[key]?.label) || '') // but not in label msg key name
+                ? !config[key] : config[key] // so invert since flag reps opposite state, else don't
+    },
 
     load(...keys) {
         keys = keys.flat() // flatten array args nested by spread operator
