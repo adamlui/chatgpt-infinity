@@ -45,7 +45,7 @@
   "alert_isOSS": { "message": "je softver otvorenog koda izgrađen i održava se besplatno kroz 100% volonterske napore" },
   "alert_despiteAffliction": { "message": "Uprkos tome što je teško pogođen" },
   "alert_longCOVID": { "message": "long COVID" },
-  "alert_since2020": { "message": "Од 2020. године " },
+  "alert_since2020": { "message": "Од 2020. године" },
   "alert_byDonatingResults": { "message": "donacijom mi pomažete da nastavim da se poboljšavam, ispravljam greške, dodajem nove funkcije i još više poboljšavam softver" },
   "alert_yourContrib": { "message": "Vaš doprinos" },
   "alert_noMatterSize": { "message": "bez obzira na veličinu" },

@@ -31,7 +31,7 @@
   "alert_yourSysLang": { "message": "ulwimi lwenkqubo yakho" },
   "alert_replyTopicUpdated": { "message": "Isihloko sihlaziyiwe" },
   "alert_willAnswer": { "message": "uya kuphendula imibuzo" },
-  "alert_onTopicOf": { "message": "ngokwesihloko se-" },
+  "alert_onTopicOf": { "message": "ngokwesihloko se" },
   "alert_onAllTopics": { "message": "kUZO ZONKE IZIHLOKO" },
   "alert_replyIntUpdated": { "message": "Ikhefu lihlaziyiwe" },
   "alert_willReplyEvery": { "message": "iza kuphendula yonke imibuzo" },

@@ -18,7 +18,7 @@
   "about_contributors": { "message": "colaboratorilor" },
   "about_version": { "message": "Versiune" },
   "about_poweredBy": { "message": "Operat de" },
-  "about_openSourceCode": { "message": "Cod cu sursă deschisă. " },
+  "about_openSourceCode": { "message": "Cod cu sursă deschisă." },
   "prompt_updateReplyLang": { "message": "Actualizați limba de răspuns" },
   "prompt_updateReplyTopic": { "message": "Actualizează subiectul răspunsului" },
   "prompt_orEnter": { "message": "sau introduceți" },

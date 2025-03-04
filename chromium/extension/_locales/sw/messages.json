@@ -44,7 +44,7 @@
   "alert_showYourSupport": { "message": "Onyesha usaidizi wako" },
   "alert_isOSS": { "message": "ni programu ya chanzo huria iliyojengwa na kudumishwa bila malipo kupitia juhudi za kujitolea za 100%" },
   "alert_despiteAffliction": { "message": "Licha ya kusumbuliwa sana na" },
-  "alert_longCOVID": { "message": "COVID ya muda mrefu " },
+  "alert_longCOVID": { "message": "COVID ya muda mrefu" },
   "alert_since2020": { "message": "tangu 2020" },
   "alert_byDonatingResults": { "message": "kwa kutoa mchango, unanisaidia kuendelea kuboresha, kurekebisha hitilafu, kuongeza vipengele vipya na kufanya programu iwe bora zaidi" },
   "alert_yourContrib": { "message": "Mchango wako" },

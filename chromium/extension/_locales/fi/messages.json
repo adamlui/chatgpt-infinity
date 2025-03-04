@@ -55,7 +55,7 @@
   "btnLabel_moreAIextensions": { "message": "Lisää tekoälylaajennuksia" },
   "btnLabel_leaveReview": { "message": "Jätä arvostelu" },
   "btnLabel_rateUs": { "message": "Anna meille arvostelu" },
-  "btnLabel_discuss": { "message": "Keskustele " },
+  "btnLabel_discuss": { "message": "Keskustele" },
   "btnLabel_getSupport": { "message": "Ota yhteyttä" },
   "btnLabel_checkForUpdates": { "message": "Tarkista päivitykset" },
   "btnLabel_update": { "message": "Päivitä" },

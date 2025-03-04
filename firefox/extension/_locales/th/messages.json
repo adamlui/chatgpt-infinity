@@ -18,7 +18,7 @@
   "about_contributors": { "message": "ผู้ให้ข้อมูล" },
   "about_version": { "message": "เวอร์ชัน" },
   "about_poweredBy": { "message": "สนับสนุนโดย" },
-  "about_openSourceCode": { "message": "โปรแกรมโอเพนซอร์ซ " },
+  "about_openSourceCode": { "message": "โปรแกรมโอเพนซอร์ซ" },
   "prompt_updateReplyLang": { "message": "อัปเดตภาษาตอบกลับ" },
   "prompt_updateReplyTopic": { "message": "ปรับปรุงหัวข้อการตอบกลับ" },
   "prompt_orEnter": { "message": "หรือเข้า" },

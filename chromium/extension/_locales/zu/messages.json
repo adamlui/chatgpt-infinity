@@ -31,7 +31,7 @@
   "alert_yourSysLang": { "message": "uhlelo lwakho lolimi" },
   "alert_replyTopicUpdated": { "message": "Isihloko sibuyekeziwe" },
   "alert_willAnswer": { "message": "uzophendula imibuzo" },
-  "alert_onTopicOf": { "message": "ngesihloko se-" },
+  "alert_onTopicOf": { "message": "ngesihloko se" },
   "alert_onAllTopics": { "message": "kuzo ZONKE IZIHLOKO" },
   "alert_replyIntUpdated": { "message": "Isikhala sibuyekeziwe" },
   "alert_willReplyEvery": { "message": "izophendula njalo" },

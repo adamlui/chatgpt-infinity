@@ -51,7 +51,7 @@
   "alert_noMatterSize": { "message": "ဘယ္ေလာက္ပဲ အေရးႀကီးတယ္" },
   "alert_directlySupports": { "message": "ဤပရောဂျက်ကို အခမဲ့ဖြစ်စေရန်နှင့် လူတိုင်းအသုံးပြုနိုင်ရန်အတွက် ပွင့်လင်းမြင်သာမှုရှိစေရန် ကျွန်ုပ် ၏ လစာမဲ့ကြိုးပမ်းအားထုတ်မှုများကို တိုက်ရိုက်ထောက်ခံပါသည် ။" },
   "alert_growTogether": { "message": "အတူတကွ ဒီအစွမ်းထက်တဲ့ ဆော့ဖ်ဝဲကို ကြီးထွားအောင် ထိန်းထားနိုင်ပါတယ် ။" },
-  "alert_tyForSupport": { "message": "စဉ်ဆက်မပြတ်ပံပိုးမှုအတွက် ကျေးဇူးတင်ရှိပါသည်။ " },
+  "alert_tyForSupport": { "message": "စဉ်ဆက်မပြတ်ပံပိုးမှုအတွက် ကျေးဇူးတင်ရှိပါသည်။" },
   "btnLabel_moreAIextensions": { "message": "ပိုများသော AI Extensions" },
   "btnLabel_leaveReview": { "message": "ပြန်လည်သုံးသပ်မှုကိုစွန့်ခွာပါ" },
   "btnLabel_rateUs": { "message": "ကြှနျုပျတို့ကို Rate" },

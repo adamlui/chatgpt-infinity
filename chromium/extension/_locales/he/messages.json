@@ -37,7 +37,7 @@
   "alert_willReplyEvery": { "message": "יענה על כל שאלה" },
   "alert_choosePlatform": { "message": "בחירת פלטפורמה" },
   "alert_updateAvail": { "message": "עדכון זמין" },
-  "alert_newerVer": { "message": "עדכון ל -" },
+  "alert_newerVer": { "message": "עדכון ל" },
   "alert_isAvail": { "message": "%s זמין" },
   "alert_upToDate": { "message": "מעודכן" },
   "alert_isUpToDate": { "message": "מעודכן" },

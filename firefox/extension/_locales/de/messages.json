@@ -45,7 +45,7 @@
   "alert_isOSS": { "message": "ist Open-Source-Software, die durch 100% freiwillige Bemühungen kostenlos entwickelt und gepflegt wird" },
   "alert_despiteAffliction": { "message": "Trotz schwerer Beeinträchtigung durch" },
   "alert_longCOVID": { "message": "<g id=\"1\">Long Covid</g>" },
-  "alert_since2020": { "message": "Seit 2020 " },
+  "alert_since2020": { "message": "Seit 2020" },
   "alert_byDonatingResults": { "message": "indem Sie spenden, helfen Sie mir, mich weiter zu verbessern, Fehler zu beheben, neue Funktionen hinzuzufügen und die Software noch besser zu machen" },
   "alert_yourContrib": { "message": "Dein Beitrag" },
   "alert_noMatterSize": { "message": "egal wie groß" },
