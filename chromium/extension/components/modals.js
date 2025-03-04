@@ -59,8 +59,7 @@ window.modals = {
 
             // Replace link buttons w/ clones that don't dismiss modal
             if (/support|extensions/i.test(btn.textContent)) {
-                const btnClone = btn.cloneNode(true)
-                btn.parentNode.replaceChild(btnClone, btn) ; btn = btnClone
+                btn.replaceWith(btn = btn.cloneNode(true))
                 btn.onclick = () => this.safeWinOpen(this.imports.app.urls[
                     btn.textContent.includes(this.getMsg('btnLabel_getSupport')) ? 'support' : 'relatedExtensions' ])
             }
@@ -124,8 +123,7 @@ window.modals = {
 
             // Replace link buttons w/ clones that don't dismiss modal
             if (!/dismiss/i.test(btn.textContent)) {
-                const btnClone = btn.cloneNode(true)
-                btn.parentNode.replaceChild(btnClone, btn) ; btn = btnClone
+                btn.replaceWith(btn = btn.cloneNode(true))
                 btn.onclick = () => this.safeWinOpen(this.imports.app.urls.donate[
                     btn.textContent == 'Cash App' ? 'cashApp'
                   : btn.textContent == 'Github Sponsors' ? 'gitHub' : 'payPal'
@@ -163,8 +161,7 @@ window.modals = {
             if (idx == 0) btn.style.display = 'none' // hide Dismiss button
 
             // Replace buttons w/ clones that don't dismiss modal
-            const btnClone = btn.cloneNode(true)
-            btn.parentNode.replaceChild(btnClone, btn) ; btn = btnClone
+            btn.replaceWith(btn = btn.cloneNode(true))
             btn.onclick = () => this.safeWinOpen(this.imports.app.urls.review[
                 btn.textContent == 'Alternativeto' ? 'alternativeTo'
               : btn.textContent == 'Chrome Web Store' ? 'chromeWebStore'
