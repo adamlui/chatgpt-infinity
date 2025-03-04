@@ -40,9 +40,9 @@ window.toggles = {
             this.update.scheme() ; this.update.state()
 
             // Add hover/click listeners
-            this.div.onmouseover = this.div.onmouseout = event => // trigger OpenAI hover overlay
+            this.div.onmouseover = this.div.onmouseout = ({ type }) => // trigger OpenAI hover overlay
                 this.div.style.setProperty('--item-background-color',
-                    `var(--sidebar-surface-${event.type == 'mouseover' ? 'secondary' : 'primary'})`)
+                    `var(--sidebar-surface-${ type == 'mouseover' ? 'secondary' : 'primary' })`)
             this.div.onclick = () => { // toggle Infinity mode
                 settings.save('infinityMode', !this.toggleInput.checked)
                 toggles.imports.syncConfigToUI({ updatedKey: 'infinityMode' })
