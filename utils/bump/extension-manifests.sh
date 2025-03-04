@@ -85,6 +85,7 @@ if [[ "$no_commit" != true ]] ; then
     for manifest in "${!bumped_manifests[@]}" ; do
         IFS=";" read -r old_ver new_ver <<< "${bumped_manifests[$manifest]}" ; unique_versions["$new_ver"]=1 ; done
     if (( ${#unique_versions[@]} == 1 )) ; then COMMIT_MSG+=" to \`${unique_versions[0]}\`" ; fi
+    if (( ${#unique_versions[@]} == 1 )) ; then COMMIT_MSG+=" to \`${!unique_versions[@]}\`" ; fi
 
     # git add/commit/push
     git add ./**/manifest.json && git commit -n -m "$COMMIT_MSG"
