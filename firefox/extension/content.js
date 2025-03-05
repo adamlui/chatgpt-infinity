@@ -17,7 +17,7 @@
             modals.alert(...['title', 'msg', 'btns', 'checkbox', 'width'].map(arg => req.options[arg]))
         else if (req.action == 'showAbout') chatgpt.isLoaded().then(() => modals.open('about'))
         else if (req.action == 'prompt') {
-            const userInput = window.prompt(req.options.msg || 'Please enter your input:', req.options.defaultVal || '')
+            const userInput = prompt(req.options.msg || 'Please enter your input:', req.options.defaultVal || '')
             sendResp({ input: userInput })
         } else if (req.action == 'syncConfigToUI') {
             if (req.fromBG) // disable Infinity mode 1st to not transfer between tabs
@@ -33,7 +33,7 @@
 
     // Init ENV context
     const env = { browser: { isMobile: chatgpt.browser.isMobile() }, ui: { scheme: getScheme() }}
-    env.browser.isPortrait = env.browser.isMobile && (window.innerWidth < window.innerHeight)
+    env.browser.isPortrait = env.browser.isMobile && (innerWidth < innerHeight)
 
     // Import APP data
     const { app } = await chrome.storage.local.get('app')
