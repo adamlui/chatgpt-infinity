@@ -42,7 +42,7 @@
   "devDependencies": {
     "@eslint/css": "^0.3.0",
     "@eslint/json": "^0.10.0",
-    "@eslint/markdown": "^6.2.2",
+    "@eslint/markdown": "^6.3.0",
     "@html-eslint/eslint-plugin": "^0.35.2",
     "@html-eslint/parser": "^0.35.2",
     "@stylistic/eslint-plugin-js": "^4.2.0",
