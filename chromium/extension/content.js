@@ -30,6 +30,8 @@
 
     // Init ENV context
     const env = { browser: { isMobile: chatgpt.browser.isMobile() }, ui: { scheme: getScheme() }}
+    console.log(env.ui.scheme)
+    console.log(getScheme())
     env.browser.isPortrait = env.browser.isMobile && (innerWidth < innerHeight)
 
     // Import APP data
@@ -94,7 +96,7 @@
 
     function getScheme() {
         return document.documentElement.className
-            || window.matchMedia?.('(prefers-color-scheme: dark)')?.matches ? 'dark' : 'light'
+          || ( window.matchMedia?.('(prefers-color-scheme: dark)')?.matches ? 'dark' : 'light' )
     }
 
     chatgpt.isIdle = function() { // replace waiting for chat to start in case of interrupts
@@ -212,5 +214,8 @@
         })).observe(document.body, { attributes: true, subtree: true, attributeFilter: ['style'] })
         document.documentElement.setAttribute('sidebar-click-zoom-observed', true)
     }
+
+    console.log(getScheme())
+    setTimeout(() => console.log(getScheme()), 5000)
 
 })()

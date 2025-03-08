@@ -97,7 +97,7 @@
 
     function getScheme() {
         return document.documentElement.className
-            || window.matchMedia?.('(prefers-color-scheme: dark)')?.matches ? 'dark' : 'light'
+          || ( window.matchMedia?.('(prefers-color-scheme: dark)')?.matches ? 'dark' : 'light' )
     }
 
     chatgpt.isIdle = function() { // replace waiting for chat to start in case of interrupts
