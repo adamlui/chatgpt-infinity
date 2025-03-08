@@ -27,12 +27,12 @@
     })
 
     // Import JS resources
-    for (const resource of
-        ['components/modals.js', 'components/toggles.js', 'lib/chatgpt.js', 'lib/dom.js', 'lib/settings.js'])
-            await import(chrome.runtime.getURL(resource))
+    for (const resource of [
+        'components/modals.js', 'components/toggles.js', 'lib/chatgpt.js', 'lib/dom.js', 'lib/settings.js', 'lib/ui.js'
+    ]) await import(chrome.runtime.getURL(resource))
 
     // Init ENV context
-    const env = { browser: { isMobile: chatgpt.browser.isMobile() }, ui: { scheme: getScheme() }}
+    const env = { browser: { isMobile: chatgpt.browser.isMobile() }, ui: { scheme: ui.getScheme() }}
     env.browser.isPortrait = env.browser.isMobile && (innerWidth < innerHeight)
 
     // Import APP data
@@ -93,11 +93,6 @@
         if (options?.updatedKey == 'infinityMode') infinity[config.infinityMode ? 'activate' : 'deactivate']()
         else if (settings.controls[options?.updatedKey]?.type == 'prompt' && config.infinityMode)
             infinity.restart({ target: options?.updatedKey == 'replyInterval' ? 'self' : 'new' })
-    }
-
-    function getScheme() {
-        return document.documentElement.className
-          || ( window.matchMedia?.('(prefers-color-scheme: dark)')?.matches ? 'dark' : 'light' )
     }
 
     chatgpt.isIdle = function() { // replace waiting for chat to start in case of interrupts
@@ -200,7 +195,7 @@
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener( // for browser/system scheme pref changes
         'change', () => requestAnimationFrame(handleSchemePrefChange))
     function handleSchemePrefChange() {
-        const displayedScheme = getScheme()
+        const displayedScheme = ui.getScheme()
         if (env.ui.scheme != displayedScheme) {
             env.ui.scheme = displayedScheme ; toggles.sidebar.update.scheme() ; modals.stylize() }
     }
