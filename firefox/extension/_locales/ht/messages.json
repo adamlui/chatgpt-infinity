@@ -38,9 +38,9 @@
   "alert_choosePlatform": { "message": "Chwazi yon platfòm" },
   "alert_updateAvail": { "message": "Mizajou ki disponib" },
   "alert_newerVer": { "message": "Yon ajou nan" },
-  "alert_isAvail": { "message": "ki disponib/à votre disposition/sont disponibles" },
-  "alert_upToDate": { "message": "Mizajou/ajou/a jou/alamòd /monte a dat/le plus récent /à jour /moderne" },
-  "alert_isUpToDate": { "message": "se mete ajou/est à jour" },
+  "alert_isAvail": { "message": "ki disponib" },
+  "alert_upToDate": { "message": "Ajou" },
+  "alert_isUpToDate": { "message": "se ajou" },
   "alert_showYourSupport": { "message": "Montre sipò w" },
   "alert_isOSS": { "message": "se lojisyèl sous louvri bati & konsève pou gratis nan 100% efò volontè" },
   "alert_despiteAffliction": { "message": "Malgre ke yo te seryezman aflije pa/Malgre ke yo te grav" },
@@ -58,12 +58,12 @@
   "btnLabel_discuss": { "message": "diskite/diskite sou" },
   "btnLabel_getSupport": { "message": "Jwenn Sipò" },
   "btnLabel_checkForUpdates": { "message": "Tcheke pou Updates" },
-  "btnLabel_update": { "message": "Update" },
+  "btnLabel_update": { "message": "Mizajou" },
   "btnLabel_dismiss": { "message": "Demisyon" },
   "link_viewChanges": { "message": "Gade chanjman yo" },
   "unit_seconds": { "message": "Segonn" },
   "state_enabled": { "message": "pèmèt" },
   "state_disabled": { "message": "andikape/enfim/antrave/antravè" },
-  "state_on": { "message": "nan dat" },
-  "state_off": { "message": "etenn/koupe " }
+  "state_on": { "message": "Sou" },
+  "state_off": { "message": "Koupe " }
 }
