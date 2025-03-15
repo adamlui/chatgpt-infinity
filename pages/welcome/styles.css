@@ -16,7 +16,7 @@ img { max-width: 100% ; height: auto ; margin-bottom: 15px }
 footer { height: 75px ; font-weight: bold ; font-size: 22px }
 
 @media (max-width: 768px) {
-    .title-icon { width: 42px ; height: 42px ; position: relative ; top: 22px ; margin-right: 11px }
+    .title-icon { width: 42px ; height: 42px ; position: relative ; top: 25px ; margin-right: 11px }
     h1 { font-size: 32px ; margin-bottom: 20px }
     p { font-size: 18px ; margin-bottom: 15px }
     .main { padding: 16px 10vw 60px }
