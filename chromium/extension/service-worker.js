@@ -17,7 +17,7 @@ const appReady = (async () => {
 // Launch WELCOME PAGE on install
 chrome.runtime.onInstalled.addListener(details => {
     if (details.reason == 'install') // to exclude updates
-        appReady.then(app => chrome.tabs.create({ url: app.urls.welcome }))
+        appReady.then(app => chrome.tabs.create({ url: app.urls.welcome + '/welcome' }))
 })
 
 // Sync SETTINGS to activated tabs
