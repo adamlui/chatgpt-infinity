@@ -1,4 +1,19 @@
-const chatgptURL = 'https://chatgpt.com'
+const chatgptURL = 'https://chatgpt.com';
+
+// Init APP data
+(async () => {
+    const app = {
+        version: chrome.runtime.getManifest().version,
+        latestResourceCommitHash: '3975f24', // for cached app.json...
+            // ... + navicon in toggles.sidebar.insert() + icons.questionMark.src
+        urls: {},
+        chatgptJSver: /v(\d+\.\d+\.\d+)/.exec(await (await fetch(chrome.runtime.getURL('lib/chatgpt.js'))).text())[1]
+    }
+    app.urls.resourceHost = `https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@${app.latestResourceCommitHash}`
+    const remoteAppData = await (await fetch(`${app.urls.resourceHost}/assets/data/app.json`)).json()
+    Object.assign(app, { ...remoteAppData, urls: { ...app.urls, ...remoteAppData.urls }})
+    chrome.storage.local.set({ app }) // save to browser storage
+})()
 
 // Launch CHATGPT on install
 chrome.runtime.onInstalled.addListener(details => {
@@ -26,19 +41,4 @@ chrome.runtime.onMessage.addListener(async req => {
         }}))
         chrome.tabs.sendMessage(chatgptTab.id, { action: 'showAbout' })
     }
-});
-
-// Init APP data
-(async () => {
-    const app = {
-        version: chrome.runtime.getManifest().version,
-        latestResourceCommitHash: '3975f24', // for cached app.json...
-            // ... + navicon in toggles.sidebar.insert() + icons.questionMark.src
-        urls: {},
-        chatgptJSver: /v(\d+\.\d+\.\d+)/.exec(await (await fetch(chrome.runtime.getURL('lib/chatgpt.js'))).text())[1]
-    }
-    app.urls.resourceHost = `https://cdn.jsdelivr.net/gh/adamlui/chatgpt-infinity@${app.latestResourceCommitHash}`
-    const remoteAppData = await (await fetch(`${app.urls.resourceHost}/assets/data/app.json`)).json()
-    Object.assign(app, { ...remoteAppData, urls: { ...app.urls, ...remoteAppData.urls }})
-    chrome.storage.local.set({ app }) // save to browser storage
-})()
+})
