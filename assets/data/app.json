@@ -2,6 +2,7 @@
   "name": "ChatGPT Infinity", "symbol": "∞", "slug": "chatgpt-infinity",
   "author": { "name": "Adam Lui", "url": "https://github.com/adamlui" },
   "urls": {
+    "assetHost": "https://assets.chatgptinfinity.com",
     "chatgptJS": "https://chatgpt.js.org",
     "cjsAssetHost": "https://assets.chatgptjs.org",
     "contributors": "https://docs.chatgptautorefresh.com/#-contributors",
@@ -12,7 +13,6 @@
       "payPal": "https://paypal.me/adamlui"
     },
     "gitHub": "https://github.com/adamlui/chatgpt-infinity",
-    "assetHost": "https://assets.chatgptinfinity.com",
     "relatedExtensions": "https://aiwebextensions.com",
     "review": {
       "alternativeTo": "https://alternativeto.net/software/chatgpt-infinity/about/",
