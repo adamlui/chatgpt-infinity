@@ -43,7 +43,7 @@
 </div>
 
 > [!IMPORTANT]
-> _**Greasy Fork ユーザー:** ChatGPT Auto-Continue を **2025 年 1 月 18 日より前に** インストールした場合、スクリプトの更新メカニズムが GitHub に移行したため、自動更新は機能しなくなりました。更新を引き続き受信するには、下の "Install Greasemonkey Userscript" ボタンをクリックするか (1 回)、[このリンク](https://gm.chatgptinfinity.com) を (1 回) クリックしてください。_
+> _**Greasy Fork ユーザー:** ChatGPT Infinity を **2025 年 1 月 18 日より前に** インストールした場合、スクリプトの更新メカニズムが GitHub に移行したため、自動更新は機能しなくなりました。更新を引き続き受信するには、下の "Install Greasemonkey Userscript" ボタンをクリックするか (1 回)、[このリンク](https://gm.chatgptinfinity.com) を (1 回) クリックしてください。_
 
 <div align="center">
 
