@@ -21,6 +21,7 @@
       "firefoxAddons": "https://addons.mozilla.org/firefox/addon/chatgpt-infinity/",
       "productHunt": "https://www.producthunt.com/products/chatgpt-infinity/reviews/new"
     },
-    "support": "https://support.chatgptinfinity.com"
+    "support": "https://support.chatgptinfinity.com",
+    "welcome": "https://aiwebextensions.com/chatgpt-infinity/pages/welcome"
   }
 }
