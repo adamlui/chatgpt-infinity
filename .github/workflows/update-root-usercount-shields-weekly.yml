@@ -94,34 +94,45 @@ jobs:
           echo "Greasy Fork users: $gf_users"
 
           # Sum user counts
-          total_users=$((chrome_users + ff_users + edge_users + gf_users))
+          chromium_users=$((chrome_users + edge_users))
+          total_users=$((chromium_users + ff_users + gf_users))
+          echo -e "\n-----\nTotal Chromium users: $chromium_users\n-----\n"
           echo -e "\n-----\nTotal users: $total_users\n-----\n"
 
-          # Format total
+          # Format totals
+          formatted_chromium_users=$(format_total "$chromium_users")
           formatted_total_users=$(format_total "$total_users")
+          echo "Formatted Chromium users: $formatted_chromium_users"
           echo "Formatted total users: $formatted_total_users"
 
           # Expose total for update step next
+          echo "CHROMIUM_USERS=$formatted_chromium_users" >> $GITHUB_ENV
           echo "TOTAL_USERS=$formatted_total_users" >> $GITHUB_ENV
 
       - name: Update README shields
         run: |
           cd ${{ github.workspace }}/adamlui/chatgpt-infinity
-          TOTAL_USERS="${{ env.TOTAL_USERS }}"
+          CHROMIUM_USERS="${{ env.CHROMIUM_USERS }}" TOTAL_USERS="${{ env.TOTAL_USERS }}"
           if [ "$TOTAL_USERS" == "0" ] ; then echo "Error getting total usercount"
           else # perform update
+            users_updated=false
             for readme in $(find docs/ -name "README.md") ; do
               old_readme=$(<"$readme")
               sed -i "s/\(badge\/[^-]*-\)[0-9.,km+]\+-/\1$TOTAL_USERS-/gI" "$readme"
               new_readme=$(<"$readme")
-              if [[ "$old_readme" != "$new_readme" && "$users_updated" != true ]]
-                then users_updated=true ; fi
+              if [[ "$old_readme" != "$new_readme" ]] ; then users_updated=true ; fi
             done
-            if [ "$users_updated" = true ] ; then echo "Usercount shields updated to $TOTAL_USERS"
+            for readme in $(find chromium/docs/ -name "README.md") ; do
+              old_readme=$(<"$readme")
+              sed -i "s/\(badge\/[^-]*-\)[0-9.,km+]\+-/\1$CHROMIUM_USERS-/gI" "$readme"
+              new_readme=$(<"$readme")
+              if [[ "$old_readme" != "$new_readme" ]] ; then users_updated=true ; fi
+            done
+            if [ "$users_updated" = true ] ; then echo "Usercount shields updated"
             else echo "Usercount shields already up-to-date" ; fi
           fi
 
-          # Set Updated flag to check in subseuqent steps
+          # Set Updated flag to check in subsequent steps
           if [ "$users_updated" = true ] ; then echo "USERS_UPDATED=true" >> $GITHUB_ENV ; fi
 
       - name: Sync ** to adamlui/ai-web-extensions/chatgpt-infinity/
