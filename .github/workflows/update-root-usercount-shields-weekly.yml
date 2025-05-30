@@ -1,4 +1,4 @@
-name: Update usercount shields in root READMEs, then sync to adamlui/ai-web-extensions
+name: Update usercount shields in root readmes, then sync to adamlui/ai-web-extensions
 
 on:
   workflow_dispatch:
@@ -156,7 +156,7 @@ jobs:
         run: |
           cd ${{ github.workspace }}/adamlui/chatgpt-infinity
           git add .
-          git commit -n -m "Updated usercount shield counters in root READMEs" || true
+          git commit -n -m "Updated usercount shield counters in root readmes" || true
           git push
 
       - name: Push changes to adamlui/ai-web-extensions
@@ -164,5 +164,5 @@ jobs:
         run: |
           cd ${{ github.workspace }}/adamlui/ai-web-extensions
           git add .
-          git commit -n -m "Updated usercount shield counters in ChatGPT Infinity root READMEs" || true
+          git commit -n -m "Updated usercount shield counters in ChatGPT Infinity root readmes" || true
           git push
