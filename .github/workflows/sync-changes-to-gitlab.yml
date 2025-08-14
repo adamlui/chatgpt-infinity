@@ -22,4 +22,6 @@ jobs:
           fetch-depth: 0
 
       - name: Push changes to gitlab.com/adamlui/chatgpt-infinity
-        run: git push --force https://oauth2:${{ secrets.GITLAB_SYNC_PAT }}@gitlab.com/adamlui/chatgpt-infinity.git main
+        run: |
+          git push --force -o ci.skip \
+            https://oauth2:${{ secrets.GITLAB_SYNC_PAT }}@gitlab.com/adamlui/chatgpt-infinity.git main
