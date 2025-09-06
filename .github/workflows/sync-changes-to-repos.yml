@@ -20,8 +20,6 @@ jobs:
       - name: Checkout adamlui/chatgpt-infinity
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.REPO_SYNC_PAT }}
-          repository: adamlui/chatgpt-infinity
           path: adamlui/chatgpt-infinity
           fetch-depth: 2
 
