@@ -5,4 +5,4 @@ sync_changes_to_github:
   script:
     - apk add --no-cache git
     - git clone https://gitlab.com/adamlui/chatgpt-infinity.git
-    - git push --force -o ci.skip https://${GITHUB_SYNC_PAT}@github.com/adamlui/chatgpt-infinity.git HEAD:main
+    - git push --force -o ci.skip https://$GITHUB_SYNC_PAT@github.com/adamlui/chatgpt-infinity.git HEAD:main
