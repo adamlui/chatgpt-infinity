@@ -102,7 +102,7 @@ jobs:
         if: env.SYNC_SRC
         run: |
           cd ${{ github.workspace }}/adamlui/chatgpt-infinity
-          git add . && git commit -n -m "$ESCAPED_MSG ↞ [auto-sync from ${{ env.SYNC_SRC }}/]" || true
+          git add . && git commit -n -m "$ESCAPED_MSG ↞ [auto-sync from $SYNC_SRC/]" || true
           git push
 
       - name: Push changes to adamlui/ai-web-extensions
