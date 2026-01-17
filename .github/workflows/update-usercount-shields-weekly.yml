@@ -5,12 +5,11 @@ on:
   schedule:
     - cron: "18 2 * * 2" # every Tue @ 2:18 AM
 
-permissions:
-  contents: read
-
 jobs:
   update-root-usercount-shields:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     env:
       TZ: PST8PDT
 

@@ -5,12 +5,11 @@ on:
     branches: [main]
     paths: [firefox/extension/manifest.json]
 
-permissions:
-  contents: read
-
 jobs:
   check-version-to-publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
 
       - name: Checkout adamlui/chatgpt-infinity
