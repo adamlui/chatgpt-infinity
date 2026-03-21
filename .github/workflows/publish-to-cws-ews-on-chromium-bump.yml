@@ -7,14 +7,14 @@ on:
 
 jobs:
   check-version-to-publish:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
 
     steps:
 
       - name: Checkout adamlui/chatgpt-infinity
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
         with:
           sparse-checkout: chromium
           fetch-depth: 2

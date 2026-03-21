@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     if: (github.repository == 'adamlui/chatgpt-infinity') && (github.event.commits[0].committer.username != 'kudo-sync-bot')
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
     env:
@@ -17,21 +17,21 @@ jobs:
     steps:
 
       - name: Checkout adamlui/chatgpt-infinity
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
         with:
           token: ${{ secrets.REPO_SYNC_PAT }}
           path: adamlui/chatgpt-infinity
           fetch-depth: 2
 
       - name: Checkout adamlui/ai-web-extensions
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
         with:
           token: ${{ secrets.REPO_SYNC_PAT }}
           repository: adamlui/ai-web-extensions
           path: adamlui/ai-web-extensions
 
       - name: Checkout adamlui/userscripts
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
         with:
           token: ${{ secrets.REPO_SYNC_PAT }}
           repository: adamlui/userscripts
