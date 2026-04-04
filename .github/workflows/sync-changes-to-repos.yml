@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    if: (github.repository == 'adamlui/chatgpt-infinity') && !contains(github.event.head_commit.message, '[auto-sync]')
+    if: (github.repository == 'adamlui/chatgpt-infinity') && !contains(github.event.head_commit.message, '[auto-sync')
     runs-on: ubuntu-24.04
     permissions:
       contents: read
