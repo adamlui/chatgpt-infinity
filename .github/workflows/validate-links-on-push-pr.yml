@@ -2,46 +2,19 @@ name: Validate links on push + PR
 
 on:
   push:
-    branches:
-      - main
+    paths: ['**/*.md']
   pull_request:
-    branches:
-      - main
+    paths: ['**/*.md']
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 jobs:
-  lychee:
+  linkinator:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7.0.0
-
-      - name: Restore lychee cache
-        id: restore-cache
-        uses: actions/cache/restore@v6.1.0
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: JustinBeckwith/linkinator-action@7b6b0bc671f6264e1a8daa4488a5bd91ce61dcd4 # v2.4.2
         with:
-          path: .lycheecache
-          key: cache-lychee-${{ github.sha }}
-          restore-keys: cache-lychee-
-
-      - name: Validate links
-        uses: lycheeverse/lychee-action@v2.9.0
-        with:
-          # Check all files, ignore ok/redir/blocked/rate-limited, exclude commonly down domains
-          args: >-
-            . --no-progress --include-mail --exclude "#.*$"
-            --accept 200..299,300..399,403,429
-            --cache --max-cache-age 3d
-            --exclude ghostbrowser\.com
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-      - name: Save lychee cache
-        uses: actions/cache/save@v6.1.0
-        if: always()
-        with:
-          path: .lycheecache
-          key: ${{ steps.restore-cache.outputs.cache-primary-key }}
+          paths: '**/*.md'
+          statusCodes: '{ "408": "skip", "429": "skip", "504": "skip" }'
